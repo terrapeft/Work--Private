@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>E:\Temp\cui</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/CommonControls.dll">
+      <publishTime>10/27/2015 17:22:13</publishTime>
+    </File>
+    <File Include="bin/CustomersUI.dll">
+      <publishTime>10/27/2015 18:24:27</publishTime>
+    </File>
+    <File Include="bin/Elmah.dll">
+      <publishTime>03/30/2015 12:41:16</publishTime>
+    </File>
+    <File Include="bin/Ionic.Zip.dll">
+      <publishTime>10/28/2013 19:48:59</publishTime>
+    </File>
+    <File Include="bin/LukeSkywalker.IPNetwork.dll">
+      <publishTime>12/19/2014 18:05:30</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>01/11/2015 19:51:04</publishTime>
+    </File>
+    <File Include="bin/SharedLibrary.dll">
+      <publishTime>10/23/2015 17:17:33</publishTime>
+    </File>
+    <File Include="bin/Telerik.Web.Design.dll">
+      <publishTime>12/19/2014 18:05:30</publishTime>
+    </File>
+    <File Include="bin/Telerik.Web.UI.dll">
+      <publishTime>12/19/2014 18:05:30</publishTime>
+    </File>
+    <File Include="bin/TradeDataAPI.dll">
+      <publishTime>10/23/2015 17:17:35</publishTime>
+    </File>
+    <File Include="bin/UsersDb.dll">
+      <publishTime>10/23/2015 17:17:34</publishTime>
+    </File>
+    <File Include="Bundle.config">
+      <publishTime>12/19/2014 18:05:30</publishTime>
+    </File>
+    <File Include="Content/Css/bootstrap-ie7.css">
+      <publishTime>02/24/2015 17:16:18</publishTime>
+    </File>
+    <File Include="Content/Css/checkbox-buttons.css">
+      <publishTime>12/19/2014 18:05:30</publishTime>
+    </File>
+    <File Include="Content/Css/ie8.css">
+      <publishTime>02/24/2015 17:16:18</publishTime>
+    </File>
+    <File Include="Content/Css/Site.css">
+      <publishTime>03/19/2015 17:45:22</publishTime>
+    </File>
+    <File Include="Content/Css/styles.css">
+      <publishTime>03/02/2015 17:52:58</publishTime>
+    </File>
+    <File Include="Content/Images/minus.png">
+      <publishTime>03/11/2015 16:36:17</publishTime>
+    </File>
+    <File Include="Content/Images/plus.png">
+      <publishTime>03/11/2015 16:34:08</publishTime>
+    </File>
+    <File Include="Content/Scripts/customers-ui.js">
+      <publishTime>03/20/2015 18:27:44</publishTime>
+    </File>
+    <File Include="Content/Scripts/twitter-bootstrap-hover-dropdown.min.js">
+      <publishTime>02/24/2015 17:16:18</publishTime>
+    </File>
+    <File Include="Controls/BreadcrumbControl.ascx">
+      <publishTime>10/13/2015 12:10:03</publishTime>
+    </File>
+    <File Include="Controls/DetailsControl.ascx">
+      <publishTime>10/13/2015 12:10:03</publishTime>
+    </File>
+    <File Include="Controls/EntityCollectionControl.ascx">
+      <publishTime>10/13/2015 12:10:03</publishTime>
+    </File>
+    <File Include="Controls/EntityDataControl.ascx">
+      <publishTime>03/11/2015 15:32:21</publishTime>
+    </File>
+    <File Include="Controls/MenuControl.ascx">
+      <publishTime>10/13/2015 12:10:03</publishTime>
+    </File>
+    <File Include="Controls/MyStatisticsControl.ascx">
+      <publishTime>10/13/2015 12:10:03</publishTime>
+    </File>
+    <File Include="Controls/MySubscriptionControl.ascx">
+      <publishTime>03/20/2015 16:44:12</publishTime>
+    </File>
+    <File Include="Controls/Pager/SimplePager.ascx">
+      <publishTime>02/27/2015 13:39:18</publishTime>
+    </File>
+    <File Include="Controls/SearchBoxControl.ascx">
+      <publishTime>03/16/2015 17:37:03</publishTime>
+    </File>
+    <File Include="Controls/SearchOptionsControl.ascx">
+      <publishTime>02/26/2015 18:55:12</publishTime>
+    </File>
+    <File Include="Controls/SearchResults.ascx">
+      <publishTime>10/13/2015 12:10:03</publishTime>
+    </File>
+    <File Include="Controls/UserSearchQueries.ascx">
+      <publishTime>10/13/2015 12:10:04</publishTime>
+    </File>
+    <File Include="Default.aspx">
+      <publishTime>12/19/2014 18:05:30</publishTime>
+    </File>
+    <File Include="Error.aspx">
+      <publishTime>10/13/2015 12:10:04</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>12/19/2014 18:05:30</publishTime>
+    </File>
+    <File Include="Login.aspx">
+      <publishTime>03/06/2015 11:15:49</publishTime>
+    </File>
+    <File Include="Pages/Details.aspx">
+      <publishTime>02/24/2015 17:16:19</publishTime>
+    </File>
+    <File Include="Pages/Tracked/1/Account.aspx">
+      <publishTime>02/26/2015 12:02:28</publishTime>
+    </File>
+    <File Include="Pages/Tracked/1/Statistics.aspx">
+      <publishTime>02/24/2015 17:16:19</publishTime>
+    </File>
+    <File Include="Pages/Tracked/1/Subscription.aspx">
+      <publishTime>03/10/2015 19:21:35</publishTime>
+    </File>
+    <File Include="Pages/Tracked/2/Search.aspx">
+      <publishTime>03/16/2015 17:31:44</publishTime>
+    </File>
+    <File Include="Site.Master">
+      <publishTime>10/13/2015 12:10:04</publishTime>
+    </File>
+    <File Include="Site.Mobile.Master">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>10/27/2015 18:24:28</publishTime>
+    </File>
+    <File Include="WebMethods/CustomerService.asmx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

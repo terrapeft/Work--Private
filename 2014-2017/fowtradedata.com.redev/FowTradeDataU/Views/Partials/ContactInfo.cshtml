@@ -1,0 +1,7 @@
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+<b>Contact</b><br>
+<small>	
+	<div>Phone:&nbsp;&nbsp;@Umbraco.Field("ciPhone", recursive: true)</div>
+	<div>Email:&nbsp;&nbsp;<a href='mailto:@Umbraco.Field("ciEmail", recursive: true)'>@Umbraco.Field("ciEmail", recursive: true)</a></div>
+</small>

@@ -1,0 +1,340 @@
+/* RadGrid */
+
+.rgEditForm {
+    padding: 3px 3px 3px 10px;
+}
+
+.RadGrid_Sitefinity .rgMasterTable {
+    border-collapse: collapse !important;
+}
+
+.RadGrid_Sitefinity .rgGroupHeader {
+    border-bottom: 2px solid #ccc !important;
+}
+
+.RadGrid_Sitefinity .rgHeader {
+    font-size: 12px !important;
+    font-weight: bold !important;
+    background-color: #F1F1F1;
+    border-top: 1px solid #ccc !important;
+    border-bottom: 3px solid #ccc !important;
+}
+
+    .RadGrid_Sitefinity .rgHeader a {
+        color: black !important;
+    }
+
+.RadGrid_Sitefinity .rgGroupItem {
+    border: 1px solid #999 !important;
+    border-collapse: separate !important;
+    -ms-border-radius: 4px !important;
+    border-radius: 4px !important;
+    background-color: #4cc7ca !important;
+    border-color: #4cc7ca !important;
+    color: #fff !important;
+}
+
+    .RadGrid_Sitefinity .rgGroupItem > .rgSortAsc {
+        background-position: 0 !important;
+        -moz-background-position-x: 3px !important;
+        -o-background-position-x: 3px !important;
+        background-position-x: 3px !important;
+        background-image: url("/Content/Images/caret-up.png") !important;
+    }
+
+    .RadGrid_Sitefinity .rgGroupItem > .rgSortDesc {
+        background-position: 0px !important;
+        -moz-background-position-x: 3px !important;
+        -o-background-position-x: 3px !important;
+        background-position-x: 3px !important;
+        background-image: url("/Content/Images/caret-down.png") !important;
+    }
+
+.RadGrid_Sitefinity .rgUngroup {
+    background-position: 0px !important;
+    -moz-background-position-y: 4px !important;
+    -o-background-position-y: 4px !important;
+    background-position-y: 4px !important;
+    -moz-background-position-x: 2px !important;
+    -o-background-position-x: 2px !important;
+    background-position-x: 2px !important;
+    background-image: url("/Content/Images/close.png") !important;
+}
+
+.RadGrid_Sitefinity .rgPageFirst {
+    background-position: 0px !important;
+    background-image: url("/App_Themes/Newedge/Images/first.png") !important;
+    width: 39px !important;
+    height: 29px !important;
+    outline: none;
+}
+
+    .RadGrid_Sitefinity .rgPageFirst:hover,
+    .RadGrid_Sitefinity .rgPageFirst:focus,
+    .RadGrid_Sitefinity .rgPageFirst:active {
+        background-position: -39px !important;
+    }
+
+.RadGrid_Sitefinity .rgPagePrev {
+    background-position: 0px !important;
+    background-image: url("/App_Themes/Newedge/Images/prev.png") !important;
+    width: 31px !important;
+    height: 29px !important;
+    outline: none;
+}
+
+    .RadGrid_Sitefinity .rgPagePrev:hover,
+    .RadGrid_Sitefinity .rgPagePrev:focus,
+    .RadGrid_Sitefinity .rgPagePrev:active {
+        background-position: -31px !important;
+    }
+
+.RadGrid_Sitefinity input.rgPagePrev {
+    position: relative !important;
+    left: -5px !important;
+}
+
+.RadGrid_Sitefinity input.rgPageNext {
+    position: relative !important;
+    left: 5px !important;
+}
+
+.RadGrid_Sitefinity .rgPageNext {
+    background-position: 0px !important;
+    background-image: url("/App_Themes/Newedge/Images/next.png") !important;
+    width: 30px !important;
+    height: 29px !important;
+    outline: none;
+}
+
+    .RadGrid_Sitefinity .rgPageNext:hover,
+    .RadGrid_Sitefinity .rgPageNext:focus,
+    .RadGrid_Sitefinity .rgPageNext:active {
+        background-position: -30px !important;
+    }
+
+
+.RadGrid_Sitefinity .rgPageLast {
+    background-position: 0px !important;
+    background-image: url("/App_Themes/Newedge/Images/last.png") !important;
+    width: 40px !important;
+    height: 29px !important;
+    outline: none;
+}
+
+    .RadGrid_Sitefinity .rgPageLast:hover,
+    .RadGrid_Sitefinity .rgPageLast:focus,
+    .RadGrid_Sitefinity .rgPageLast:active {
+        background-position: -40px !important;
+    }
+
+.RadGrid_Sitefinity .rgArrPart2 {
+    position: relative;
+    left: -13px;
+}
+
+.RadGrid_Sitefinity .rgAdvPart,
+.RadGrid_Sitefinity .rgInfoPart {
+    position: relative;
+    top: 4px;
+}
+
+.RadGrid_Sitefinity .rgNumPart {
+    position: relative;
+    left: -7px;
+    height: 29px !important;
+}
+
+    .RadGrid_Sitefinity .rgNumPart a {
+        border: 1px solid #ddd;
+        border-right-width: 0;
+        padding: 2px 9px 0 9px !important;
+        float: none !important;
+        min-height: 29px !important;
+        height: 29px !important;
+        display: inline-block;
+    }
+
+        .RadGrid_Sitefinity .rgNumPart a span {
+            color: #000;
+            padding: 0 0 0 0 !important;
+            float: none !important;
+        }
+
+        .RadGrid_Sitefinity .rgNumPart a:hover {
+            background: none !important;
+            background-color: #eee !important;
+        }
+
+            .RadGrid_Sitefinity .rgNumPart a:hover span {
+                background: none !important;
+            }
+
+
+        .RadGrid_Sitefinity .rgNumPart a.rgCurrentPage {
+            background: none !important;
+            background-color: #ccc !important;
+        }
+
+            .RadGrid_Sitefinity .rgNumPart a.rgCurrentPage span {
+                background: none !important;
+                color: white !important;
+            }
+
+.RadGrid_Sitefinity .rgGroupPanel {
+    background-color: inherit !important;
+    border: 1px dashed #ccc !important;
+    margin-bottom: 5px !important;
+}
+
+    .RadGrid_Sitefinity .rgGroupPanel table {
+        border-collapse: separate !important;
+        line-height: 1.9 !important;
+        color: #c3c3c3 !important;
+    }
+
+.RadGrid_Sitefinity .rgFilterBox {
+    border: 1px solid #ccc !important;
+    -ms-border-radius: 4px !important;
+    border-radius: 4px !important;
+    -ms-border-top-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    -ms-border-bottom-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    height: 22px !important;
+}
+
+.RadGrid_Sitefinity .rgFilter {
+    border: 1px solid #ccc !important;
+    background-image: url(/Content/Images/filter-gray.png) !important;
+    background-position: 5px !important;
+    -ms-border-radius: 4px !important;
+    border-radius: 4px !important;
+    -ms-border-top-left-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    -ms-border-bottom-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    margin: 0 0 0 0 !important;
+    width: 37px !important;
+}
+
+    .RadGrid_Sitefinity .rgFilter:focus {
+        border-color: #ccc !important;
+        -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.075) inset,0 0 8px rgba(160,160,160,.8) !important;
+        -ms-box-shadow: 0 1px 1px rgba(0,0,0,.075) inset,0 0 8px rgba(160,160,160,.8) !important;
+        box-shadow: 0 1px 1px rgba(0,0,0,.075) inset,0 0 8px rgba(160,160,160,.8) !important;
+        outline: 0 none !important;
+        border: 1px solid #ccc !important;
+    }
+
+.RadGrid_Sitefinity .rgFilterBox:focus {
+    border-color: #ccc !important;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.075) inset,0 0 8px rgba(160,160,160,.8) !important;
+    -ms-box-shadow: 0 1px 1px rgba(0,0,0,.075) inset,0 0 8px rgba(160,160,160,.8) !important;
+    box-shadow: 0 1px 1px rgba(0,0,0,.075) inset,0 0 8px rgba(160,160,160,.8) !important;
+    outline: 0 none !important;
+}
+
+.RadGrid_Sitefinity table {
+    border-width: 0 !important;
+    border: 0 !important;
+    -moz-border-image-width: 0 !important;
+    -ms-border-image-width: 0 !important;
+    -o-border-image-width: 0 !important;
+    -webkit-border-image-width: 0 !important;
+    border-image-width: 0 !important;
+}
+
+.RadGrid_Sitefinity td {
+    border-width: 0 !important;
+}
+
+.RadGrid_Sitefinity .rgRow > td {
+    border-bottom: solid 1px #D3D3D3 !important;
+    line-height: 1.5;
+}
+
+.RadGrid_Sitefinity .rgRow td > input[type=image] {
+    outline: 1px none !important;
+    outline-color: #b56cb5 !important;
+}
+
+
+.RadGrid_Sitefinity .rgAltRow > td {
+    border-bottom: solid 1px #D3D3D3 !important;
+    line-height: 1.5;
+}
+
+.RadGrid_Sitefinity .rgAltRow td > input[type=image] {
+    outline: 1px none !important;
+    outline-color: #b56cb5 !important;
+}
+
+
+.many-to-many-view {
+    width: 90%;
+}
+
+    .many-to-many-view td {
+        width: 33%;
+    }
+
+
+.many-to-many-2-view {
+    border-top: 3px solid #ccc !important;
+    border-bottom: 3px solid #ccc !important;
+}
+
+    .many-to-many-2-view td {
+        border-top-width: 1px !important;
+        border-top: 1px solid #ccc !important;
+    }
+
+    .many-to-many-2-view tr:nth-child(odd) {
+        background-color: rgba(0, 0, 0, 0.07);
+    }
+
+.edit-in-place td {
+    padding: 2px 5px;
+}
+
+.edit-in-place tbody table {
+    border-top: 3px solid #ccc !important;
+    border-bottom: 3px solid #ccc !important;
+}
+
+    .edit-in-place tbody table td {
+        border-top-width: 1px !important;
+        border-top: 1px solid #ccc !important;
+    }
+
+.edit-in-place table tr:nth-child(odd) {
+    background-color: rgba(0, 0, 0, 0.07);
+}
+
+
+.edit-in-place td[colspan="1"] {
+    text-align: right !important;
+}
+
+[many-to-many-link] {
+    white-space: nowrap;
+    padding: 2px 0 2px 0;
+    /*border-left: 1px dotted #ccc;*/
+}
+
+div [data-valsummary] {
+    border: 1px solid red;
+    color: red;
+    padding-top: 10px;
+    margin-bottom: 4px;
+}
+
+.progress-panel {
+    background-color: white !important;
+    z-index: 1000001 !important;
+}
+
+.rgPagerCell  .rgWrap {
+    padding-left: 0px !important;
+}

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <UI>
+            <Dialog Id="ConnectionStringDlg" Width="370" Height="270" Title="Database Settings - [ProductName]" NoMinimize="yes">
+                <!-- Connection String -->
+                <Control Id="Label1" Type="Text" X="25" Y="50" Width="100" Height="15" TabSkip="no" Text="SQL Server:" />
+                <Control Id="Ctrl1" Type="Edit" X="25" Y="61" Width="320" Height="15" Property="SQL_SERVER" Text="{200}" />
+                <Control Id="Ctrl2" Type="CheckBox" X="25" Y="78" Width="120" Height="15" Text="Use trusted connection" Property="TRUSTED_CONNECTION" CheckBoxValue="1" />
+                <Control Id="Label3" Type="Text" X="25" Y="95" Width="158" Height="15" TabSkip="no" Text="User: (will be apllied for all data sources)" />
+                <Control Id="Ctrl3" Type="Edit" X="25" Y="106" Width="156" Height="15" Property="DB_USER" Text="{200}">
+                    <Condition Action="disable">TRUSTED_CONNECTION = 1</Condition>
+                    <Condition Action="enable"><![CDATA[TRUSTED_CONNECTION <> 1]]></Condition>
+                </Control>
+                <Control Id="Label4" Type="Text" X="192" Y="95" Width="100" Height="15" TabSkip="no" Text="Password:" />
+                <Control Id="Ctrl4" Type="Edit" X="191" Y="106" Width="154" Height="15" Property="DB_PASSWORD" Text="{200}">
+                    <Condition Action="disable">TRUSTED_CONNECTION = 1</Condition>
+                    <Condition Action="enable"><![CDATA[TRUSTED_CONNECTION <> 1]]></Condition>
+                </Control>
+                <Control Type="CheckBox" Id="reuseDb" Width="154" Height="17" X="25" Y="123" CheckBoxValue="1" Property="REUSE_DB" Text="Reuse database(s)" />
+                <Control Id="Label36" Type="Text" X="26" Y="147" Width="214" Height="15" TabSkip="no" Text="Default password for built-in users in Users db:" />
+                <Control Id="Ctrl36" Type="Edit" X="25" Y="158" Width="320" Height="15" Property="DEFAULT_PASSWORD" Text="{200}" />
+                <Control Id="Label5" Type="Text" X="26" Y="183" Width="150" Height="15" TabSkip="no" Text="Job Account (must exist in database):" />
+                <Control Id="Ctrl5" Type="Edit" X="25" Y="194" Width="156" Height="15" Property="JOB_USER" Text="{200}" />
+                <Control Id="Label6" Type="Text" X="192" Y="183" Width="150" Height="15" TabSkip="no" Text="Database Mail Profile:" />
+                <Control Id="Ctrl6" Type="Edit" X="191" Y="194" Width="156" Height="15" Property="DB_MAIL_PROFILE" Text="{200}" />
+                <!-- Back button -->
+                <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="Back">
+                    <Publish Event="NewDialog" Value="CustomizeDlg">1</Publish>
+                </Control>
+                <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="Next">
+                    <Publish Event="NewDialog" Value="PoolSettingsDlg" />
+                </Control>
+                <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="Cancel">
+                    <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+                </Control>
+                <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" TabSkip="no" Text="WixUI_Bmp_Banner" />
+                <Control Id="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Transparent="yes" NoPrefix="yes">
+                    <Text>Data consumed by SQL scripts and configuration files.</Text>
+                </Control>
+                <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="0" />
+                <Control Id="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Transparent="yes" NoPrefix="yes">
+                    <Text>{\WixUI_Font_Title}Database Settings</Text>
+                </Control>
+                <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="370" Height="0" />
+                <Control Type="Text" Id="notabeneLabel" Width="311" Height="17" X="26" Y="214" Text="NB! Make sure the server is available and SQL Server Agent  is started!" />
+            </Dialog>
+            <Dialog Id="PoolSettingsDlg" Width="370" Height="270" Title="IIS Settings - [ProductName]" NoMinimize="yes">
+                <!-- name of the application pool -->
+                <Control Id="PoolNameLabel" Type="Text" X="25" Y="50" Width="100" Height="15" TabSkip="no" Text="Application pool name:" />
+                <Control Id="PoolNameEdit" Type="Edit" X="25" Y="61" Width="195" Height="15" Property="APPPOOL_NAME" Text="{80}" />
+                <Control Id="l0" Type="Text" X="25" Y="82" Width="40" Height="15" TabSkip="no" Text="API Site:" />
+                <Control Id="l1" Type="Text" X="26" Y="95" Width="50" Height="15" TabSkip="no" Text="Protocol" />
+                <Control Id="c1" Type="Edit" X="25" Y="106" Width="49" Height="15" Property="API_PROTOCOL" Text="{80}" />
+                <Control Id="l2" Type="Text" X="76" Y="95" Width="50" Height="15" TabSkip="no" Text="DNS" />
+                <Control Id="c2" Type="Edit" X="75" Y="106" Width="145" Height="15" Property="API_DNS" Text="{80}" />
+                <Control Id="l3" Type="Text" X="222" Y="95" Width="50" Height="15" TabSkip="no" Text="IP" />
+                <Control Id="c3" Type="Edit" X="221" Y="106" Width="81" Height="15" Property="API_IP" Text="{80}" />
+                <Control Id="l4" Type="Text" X="305" Y="95" Width="50" Height="15" TabSkip="no" Text="Port" />
+                <Control Id="c4" Type="Edit" X="304" Y="106" Width="41" Height="15" Property="API_PORT" Text="{80}" />
+                <Control Id="l10" Type="Text" X="25" Y="126" Width="40" Height="15" TabSkip="no" Text="Admin UI:" />
+                <Control Id="l11" Type="Text" X="26" Y="139" Width="50" Height="15" TabSkip="no" Text="Protocol" />
+                <Control Id="c11" Type="Edit" X="25" Y="150" Width="49" Height="15" Property="WEB_ADMIN_PROTOCOL" Text="{80}" />
+                <Control Id="l12" Type="Text" X="76" Y="139" Width="50" Height="15" TabSkip="no" Text="DNS" />
+                <Control Id="c12" Type="Edit" X="75" Y="150" Width="145" Height="15" Property="WEB_ADMIN_DNS" Text="{80}" />
+                <Control Id="l13" Type="Text" X="222" Y="139" Width="50" Height="15" TabSkip="no" Text="IP" />
+                <Control Id="c13" Type="Edit" X="221" Y="150" Width="81" Height="15" Property="WEB_ADMIN_IP" Text="{80}" />
+                <Control Id="l14" Type="Text" X="305" Y="139" Width="50" Height="15" TabSkip="no" Text="Port" />
+                <Control Id="c14" Type="Edit" X="304" Y="150" Width="41" Height="15" Property="WEB_ADMIN_PORT" Text="{80}" />
+                <!-- Back button -->
+                <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="Back">
+                    <Publish Event="NewDialog" Value="ConnectionStringDlg">1</Publish>
+                </Control>
+                <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="Next">
+                    <Publish Property="PROXY_BYPASS" Value="[API_DNS];[WEB_ADMIN_DNS]">1</Publish>
+                    <Publish Event="NewDialog" Value="ProxyDlg">1</Publish>
+                </Control>
+                <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="Cancel">
+                    <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+                </Control>
+                <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" TabSkip="no" Text="WixUI_Bmp_Banner" />
+                <Control Id="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Transparent="yes" NoPrefix="yes">
+                    <Text>Data consumed by IIS setup and configuration files.</Text>
+                </Control>
+                <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="0" />
+                <Control Id="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Transparent="yes" NoPrefix="yes">
+                    <Text>{\WixUI_Font_Title}Application Pool Settings</Text>
+                </Control>
+                <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="370" Height="0" />
+            </Dialog>
+            <Dialog Id="ProxyDlg" Width="370" Height="270" Title="Proxy Settings - [ProductName]" NoMinimize="yes">
+                <!-- Connection String -->
+                <Control Id="Ctrl2" Integer="yes" Type="CheckBox" X="25" Y="50" Width="120" Height="15" Text="Enable proxy" Property="ENABLE_PROXY" CheckBoxValue="1" />
+                <Control Id="Label3" Type="Text" X="25" Y="71" Width="60" Height="15" TabSkip="no" Text="Proxy:port" />
+                <Control Id="Ctrl3" Type="Edit" X="25" Y="82" Width="320" Height="15" Property="PROXY" Text="{200}">
+                    <Condition Action="disable">NOT ENABLE_PROXY OR ENABLE_PROXY = 0</Condition>
+                    <Condition Action="enable"><![CDATA[ENABLE_PROXY = 1]]></Condition>
+                </Control>
+                <Control Id="Label4" Type="Text" X="25" Y="142" Width="308" Height="15" TabSkip="no" Text="Use semicolons ( ; ) to separate entries." />
+                <Control Id="Label5" Type="Text" X="25" Y="109" Width="321" Height="15" TabSkip="no" Text="Do not use proxy server for addresses beginning with:" />
+                <Control Id="Ctrl5" Type="Edit" X="25" Y="120" Width="320" Height="15" Property="PROXY_BYPASS" Text="{200}">
+                    <Condition Action="disable">NOT ENABLE_PROXY OR ENABLE_PROXY = 0</Condition>
+                    <Condition Action="enable"><![CDATA[ENABLE_PROXY = 1]]></Condition>
+                </Control>
+                <!-- Back button -->
+                <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="Back">
+                    <Publish Event="NewDialog" Value="PoolSettingsDlg">1</Publish>
+                </Control>
+                <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="Next">
+                    <Publish Event="NewDialog" Value="CertificateDlg">1</Publish>
+                </Control>
+                <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="Cancel">
+                    <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+                </Control>
+                <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" TabSkip="no" Text="WixUI_Bmp_Banner" />
+                <Control Id="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Transparent="yes" NoPrefix="yes">
+                    <Text>Please enter proxy configuration</Text>
+                </Control>
+                <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="0" />
+                <Control Id="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Transparent="yes" NoPrefix="yes">
+                    <Text>{\WixUI_Font_Title}Proxy Settings</Text>
+                </Control>
+                <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="370" Height="0" />
+            </Dialog>
+            <Dialog Id="CertificateDlg" Width="370" Height="270" Title="Proxy Settings - [ProductName]" NoMinimize="yes">
+                <Control Id="Ctrl2" Integer="yes" Type="CheckBox" X="25" Y="50" Width="192" Height="15" Text="Provide SSL certificate for TD API" Property="X509_SELECT" CheckBoxValue="1" />
+                <Control Type="Text" Id="StoreLabel" Width="61" Height="10" X="25" Y="71" Text="Store:" />
+                <Control Type="Text" Id="StoreLocationLabel" Width="84" Height="10" X="154" Y="71" Text="Store Location" />
+                <Control Type="ComboBox" Property="X509_STORE" Id="StoreCombo" Width="116" Height="16" X="25" Y="86" ComboList="yes" Text="Certificate Store">
+                    <ComboBox Property="X509_STORE">
+                        <ListItem Text="Address Book" Value="1" />
+                        <ListItem Text="Auth Root" Value="2" />
+                        <ListItem Text="Certificate Authority" Value="3" />
+                        <ListItem Text="Disallowed" Value="4" />
+                        <ListItem Text="My" Value="5" />
+                        <ListItem Text="Root" Value="6" />
+                        <ListItem Text="Trusted People" Value="7" />
+                        <ListItem Text="Trusted Publisher" Value="8" />
+                    </ComboBox>
+                    <Condition Action="disable"><![CDATA[X509_SELECT <> 1]]></Condition>
+                    <Condition Action="enable"><![CDATA[X509_SELECT = 1]]></Condition>
+                </Control>
+                <Control Type="ComboBox" Property="X509_STORELOCATION" Id="StoreLocationCombo" ComboList="yes" Width="116" Height="16" X="154" Y="86">
+                    <ComboBox Property="X509_STORELOCATION">
+                        <ListItem Text="Current User" Value="1" />
+                        <ListItem Text="Local Machine" Value="2" />
+                    </ComboBox>
+                    <Condition Action="disable"><![CDATA[X509_SELECT <> 1]]></Condition>
+                    <Condition Action="enable"><![CDATA[X509_SELECT = 1]]></Condition>
+                </Control>
+                <Control Id="Label3" Type="Text" X="25" Y="116" Width="301" Height="15" TabSkip="no" Text="The X.509 certificate thumbprint (with or without spaces):" />
+                <Control Id="Ctrl3" Type="Edit" X="25" Y="131" Width="320" Height="15" Text="{200}" Property="X509_CERTIFICATE">
+                    <Condition Action="disable"><![CDATA[X509_SELECT <> 1]]></Condition>
+                    <Condition Action="enable"><![CDATA[X509_SELECT = 1]]></Condition>
+                </Control>
+                <Control Id="Label4" Type="Text" X="26" Y="210" Width="301" Height="15" TabSkip="no" Text="Paste a thumbprint and press Tab to enable the Next button" />
+                <!-- Back button -->
+                <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="Back">
+                    <Publish Event="NewDialog" Value="ProxyDlg">1</Publish>
+                </Control>
+                <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="Next">
+                    <Publish Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+                    <Condition Action="disable"><![CDATA[X509_SELECT = 1 AND NOT X509_CERTIFICATE]]></Condition>
+                    <Condition Action="enable"><![CDATA[NOT X509_SELECT OR X509_SELECT = 0 OR (X509_SELECT = 1 AND X509_CERTIFICATE)]]></Condition>
+                </Control>
+                <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="Cancel">
+                    <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+                </Control>
+                <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" TabSkip="no" Text="WixUI_Bmp_Banner" />
+                <Control Id="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Transparent="yes" NoPrefix="yes">
+                    <Text>Please enter certificate details</Text>
+                </Control>
+                <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="0" />
+                <Control Id="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Transparent="yes" NoPrefix="yes">
+                    <Text>{\WixUI_Font_Title}X.509 Certificate</Text>
+                </Control>
+                <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="370" Height="0" />
+            </Dialog>
+            <Dialog Id="WarningDlg" Width="284" Height="73" Title="Java Runtime" NoMinimize="yes">
+                <Control Id="Text" Type="Text" X="38" Y="8" Width="240" Height="40" TabSkip="no">
+                    <Text><![CDATA[&Client_Feature, &Admin_Feature, &API_Feature]]></Text>
+                </Control>
+                <Control Id="OK" Type="PushButton" X="114" Y="52" Width="56" Height="17" Default="yes" Cancel="yes" Text="OK">
+                    <Publish Event="EndDialog" Value="Return">1</Publish>
+                </Control>
+            </Dialog>
+        </UI>
+    </Fragment>
+</Wix>

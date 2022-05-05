@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ExplorerPluginHandler xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <menuItemPath>Tools|BSLS|Manage Series</menuItemPath>
+   <menuPosition>151</menuPosition>
+   <assembly>ThirdDimension.Explorer.BarcodeSeries.dll</assembly>
+   <type>Jnj.ThirdDimension.Explorer.BarcodeSeries.SeriesManagerWizard</type>
+   <needsView>false</needsView>
+   <needsStructures>false</needsStructures>
+   <parameters>
+      <value>
+         <helpPage>Series+Manager</helpPage>
+         <dsn>ABCDTRNS</dsn>
+         <applicationId>19</applicationId>
+      </value>
+   </parameters>
+   <toolbarInfo>
+      <toolbar>BSLS</toolbar>
+      <tooltipText>Manage Series</tooltipText>
+      <text>Manage Series</text>
+      <icon>
+         iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOwgAA
+         DsIBFShKgAAAAV1JREFUSEut0zFLw0AUB/D6bao4OHUQ3MXFChXSRbDFKK2LINkiCNmyBdxshhI/joKD
+         bsUuUkRQFwvB4ck/cNe7y/XyUg08cs3/8cv1+rq2udOiRsW1vb5b1VLOATcfm9bauN6i0d2Y6l6+f0WN
+         ZfCqKDaxFAZ6fnlBWZbVrjz/scOunaZp6jwV5PN5XoZV1PO8AhF3rFVYfS7WVhhof3gqMTQnSaLh6mf1
+         xWKN/PPje7FjoDe3I4rjWH5VG2zmolnAyDUYKB5EUaTB5lHYcrUHuYQxGrPZV1FhGDp/HE4Opxg3FQ6C
+         wAlzcis8GJzRX0uDpy/vxCm81HUhhyOPgoOiR4UxCZhb3MVUlODJ5I04deL3tTk3xw05HLljDoqe496R
+         cxyRa/Dz0ytxyvwbm0eBHI7cMQdFT7fbcf54yFeCO4f7Thi5Bj/cT4lT7YM9qio48ig4aJ0eCWPx3/UL
+         s8ajttf1rRYAAAAASUVORK5CYII=
+      </icon>
+   </toolbarInfo>
+</ExplorerPluginHandler>

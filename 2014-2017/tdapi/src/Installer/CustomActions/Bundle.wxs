@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Bundle Name="Bundle" Version="1.0.0.0" Manufacturer="FOW TRADEData" UpgradeCode="7c735cb9-3648-4f9f-bb95-1fd3e0277922">
+    <!--<BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.RtfLicense" />-->
+
+    <BootstrapperApplicationRef Id="ManagedBootstrapperApplicationHost" >
+      <PayloadGroupRef Id="InstallerPayload" />
+    </BootstrapperApplicationRef>
+
+    <Chain>
+      <PackageGroupRef Id="NetFx45Web" />
+      <PackageGroupRef Id="TDAPIInstaller" />
+    </Chain>
+  </Bundle>
+
+  <Fragment>
+    <PayloadGroup Id="InstallerPayload">
+<!--      <Payload SourceFile =" $(var.Installer.TargetPath)"/>-->
+      <Payload SourceFile="..\..\..\CustomActions\Bin\$(var.Bundle.Configuration)\Microsoft.Deployment.WindowsInstaller.dll" />
+    </PayloadGroup>
+  </Fragment>
+
+  <Fragment>
+    <PackageGroup Id="TDAPIInstaller" >
+
+      <MsiPackage SourceFile="$(var.WiXProduct.TargetPath)"
+          Compressed="yes" EnableFeatureSelection="yes" Vital="yes" >
+      </MsiPackage>
+
+    </PackageGroup>
+  </Fragment>
+</Wix>

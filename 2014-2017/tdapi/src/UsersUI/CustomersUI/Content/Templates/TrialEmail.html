@@ -1,0 +1,317 @@
+﻿<!-- style block to inline styles convertion tool http://templates.mailchimp.com/resources/inline-css/  -->
+<!-- keep styles in the style block, use the tool to apply to elements -->
+<!-- styles must be removed before using that tool, otherwise they will not be updated (at least on Feb 2016) -->
+
+<style>
+    body {
+        font-family: Calibri, Tahoma, Arial;
+        font-size: 11pt;
+        color: black;
+    }
+
+    pre {
+        font-family: Calibri, Tahoma, Arial;
+        font-size: 10pt;
+    }
+
+        pre.example {
+            font-family: Courier New;
+            font-size: 10pt;
+        }
+
+    li {
+        margin-top: 10pt;
+        margin-bottom: 10pt;
+    }
+
+    table.header {
+        border: none;
+        width: 100%;
+        padding: 0;
+        border-spacing: 0;
+        border-collapse: collapse;
+    }
+
+        table.header td.logo {
+            text-align: right;
+            vertical-align: top;
+        }
+
+        table.header td.hello {
+            text-align: left;
+            vertical-align: bottom;
+        }
+
+    table.commands {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 10pt;
+    }
+
+        table.commands td {
+            border: solid 1px lightgrey;
+            vertical-align: top;
+            padding: 3px;
+        }
+
+    .example {
+        border: solid 1px lightgrey;
+        padding: 7px;
+        font-size: 12pt;
+    }
+
+    h4 {
+        font-size: 12pt;
+        font-weight: bold;
+    }
+
+    .fs10 {
+        font-size: 10pt;
+    }
+
+    .fs11 {
+        font-size: 11pt;
+    }
+
+    .fs12 {
+        font-size: 11pt;
+    }
+
+    .underline {
+        text-decoration: underline;
+    }
+
+    .italic {
+        font-style: italic;
+    }
+
+    .bold {
+        font-weight: bold;
+    }
+
+    .normal {
+        font-weight: normal;
+    }
+
+</style>
+<body>
+    <table class="header">
+        <tr>
+            <td class="hello fs12 bold">Hello {name}!</td>
+            <td class="logo"><img src="emailLogo.png" alt="Euromoney TRADEDATA" /></td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        This is an automated notification, which has been created from your submission {email} to subscribe to access a trial at
+        <a href="https://www.fowtradedata-customer.com">https://www.fowtradedata-customer.com</a><br>
+        <br>
+        Your trial was accepted and your subscription details are below.
+    </div>
+    <div>
+        <br>
+        To activate your account, please follow this link:<br>
+        {link}<br>
+        <br>
+        <div class="bold underline">Members area access:</div>
+        <div class="bold">Username:&nbsp;<span class="normal">{username}</span></div>
+        <div class="bold">Password:&nbsp;<span class="normal">{password}</span></div>
+    </div>
+    <br>
+    <div class="bold italic">You now have access to our web service, via the browser or from your own client. See below examples of usage.</div>
+    <br>
+    <br>
+    <div class="bold underline">How the URL is structured:</div>
+
+    <ul>
+        <li>tda stands for the database alias, during the trial period, this is the only DB you can use.</li>
+        <li>GetExchangeCodes - method name</li>
+        <li>csv - data format</li>
+        <li>then go parameters and filters</li>
+    </ul>
+
+    <br>
+    <div class="fs10">
+        <div class="bold underline">There are a number of available commands and options:</div>
+        <ol>
+            <li>
+                <strong>List</strong> all available methods with parameters:<br>
+                <a href="{ServiceUrl}tda/list?u={username}&p={password}">{ServiceUrl}tda/list?u={username}&p={password}</a><br>
+            </li>
+            <li>
+                When you have a list of methods, you can query for the method <strong>help</strong>, for example lets query method GetExchangeCodes:
+                <br><a href="{ServiceUrl}tda/{methodName}/help?u={username}&p={password}">{ServiceUrl}tda/{methodName}/help?u={username}&p={password}</a><br>
+            </li>
+            <li>
+                And you can <strong>count</strong> number of results:
+                <br><a href="{ServiceUrl}tda/{methodName}/count?u={username}&p={password}">{ServiceUrl}tda/{methodName}/count?u={username}&p={password}</a><br>
+            </li>
+            <li>
+                <strong>Query</strong> a method for data in:
+                <ul>
+                    <li>
+                        <strong>csv</strong> format:<br>
+                        <a href="{ServiceUrl}tda/{methodName}/csv?u={username}&p={password}">
+                            {ServiceUrl}tda/{methodName}/csv?u={username}&p={password}
+                        </a>
+                        <ul>
+                            <li>
+                                add <strong>column headers</strong>:<br>
+                                <a href="{ServiceUrl}tda/{methodName}/csv?cn=true&u={username}&p={password}">{ServiceUrl}tda/{methodName}/csv?cn=true&u={username}&p={password}</a>
+                            </li>
+                            <li>
+                                <strong>force quotes</strong>:<br>
+                                <a href="{ServiceUrl}tda/{methodName}/csv?cn=true&q=true&u={username}&p={password}">{ServiceUrl}tda/{methodName}/csv?cn=true&q=true&u={username}&p={password}</a>
+                            </li>
+                            <li>
+                                specify <strong>custom delimiter</strong>:<br>
+                                <a href="{ServiceUrl}tda/{methodName}/csv?cn=true&q=true&d=;&u={username}&p={password}">{ServiceUrl}tda/{methodName}/csv?cn=true&q=true&d=;&u={username}&p={password}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>xml</strong> format:<br>
+                        <a href="{ServiceUrl}tda/{methodName}/xml?u={username}&p={password}">{ServiceUrl}tda/{methodName}/xml?u={username}&p={password}</a>
+                    </li>
+                    <li>
+                        <strong>json</strong> format:<br>
+                        <a href="{ServiceUrl}tda/{methodName}/json?u={username}&p={password}">
+                            {ServiceUrl}tda/{methodName}/json?u={username}&p={password}
+                        </a>
+                        <ul>
+                            <li>
+                                <strong>add indents</strong>:<br>
+                                <a href="{ServiceUrl}tda/{methodName}/json?ij=true&u={username}&p={password}">{ServiceUrl}tda/{methodName}/json?ij=true&u={username}&p={password}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                Specify page size and page number:<br><br>
+                <strong>pg</strong> - page size,<br>
+                <strong>pn</strong> - page number<br>
+                <br>
+                Show first 50 records:<br>
+                <br><a href="{ServiceUrl}tda/{methodName}/help?u={username}&p={password}&ps=50&pn=1">{ServiceUrl}tda/{methodName}/help?u={username}&p={password}&ps=50&pn=1</a><br>
+            </li>
+            <li>
+                Specify filters.<br>
+                <br>
+                Available filters are:
+                <table class="commands">
+                    <tr>
+                        <td>
+                            <strong>Equal (=)</strong>:<br>
+                            <pre>t0.ColumnName=Value</pre>
+                        </td>
+                        <td>
+                            <strong>Greater than (gt)</strong>: <pre>t0.ColumnName-gt=Value</pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Less than (lt)</strong>: <pre>t0.ColumnName-lt=Value</pre>
+                        </td>
+                        <td>
+                            <strong>Greater than or equal (gte)</strong>: <pre>t0.ColumnName-gte=Value</pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Less than or equal (lte)</strong>: <pre>t0.ColumnName-lte=Value</pre>
+                        </td>
+                        <td>
+                            <strong>LIKE</strong>: SQL "like" operator, use "%" as a wildcard, you MUST use URL encoded percent sign - "%25", <pre>t0.ColumnName-like=%25Value%25, t0.ColumnName=Value%25</pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>IN</strong>: SQL "in", separate values with comma, without quotes, <pre>t0.ColumnName-in=new year,old school,red fox</pre>
+                        </td>
+                        <td>
+                            <strong>NOTIN</strong>: SQL "not in" same rules like for "in", <pre>t0.ColumnName-notin=new year,old school,red fox</pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>SORT</strong>: you can order output by column or by several columns, <pre>t0.ColumnName-sort=ASC&t0.AnotherColumnName-sort=DESC</pre>
+                        </td>
+                        <td>
+                            <strong>AND</strong>: concatenate current condition with previous one, "and" is a default value and can be omitted, <pre>t0.ColumnName=14&t0.AnotherColumnName=AMEX</pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>OR</strong>: <pre>t0.ColumnName=14&t0.or-AnotherColumnName=AMEX</pre>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </li>
+            <li>You can specify several filters for one column.</li>
+        </ol>
+        <br>
+        <br>
+        <br>
+    </div>
+    <strong>
+        <u>You can call the service from your application.</u><br>
+        C# example
+    </strong>:
+<pre class="example">
+using System;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+namespace TdApiExample
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            DownloadData();
+        }
+        static private void DownloadData()
+        {
+            using (var client = new HttpClient())
+            {   
+                // this is a base URL
+                client.BaseAddress = new Uri("{ServiceUrl}");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/xml"));
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/plain"));
+                HttpResponseMessage response = null;
+                try
+                {
+                    response = client.GetAsync("tda/{methodName}/csv?cn=true&u={username}&p={password}").Result;
+                    response.EnsureSuccessStatusCode(); // treat http error codes as exceptions
+                    var content = response.Content.ReadAsStringAsync().Result;
+                    Console.WriteLine(content);
+                }
+                catch (HttpRequestException rex)
+                {
+                    var status = response?.StatusCode;
+                    if (status != null)
+                    {
+                        Console.WriteLine($"{(int) status} {status}");
+                    }
+                    else
+                    {
+                        Console.WriteLine(rex);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+            }
+        }
+    }
+}
+</pre>
+    <br>
+    <br>
+    <b>If you have any further questions contact <a href="mailto:support@euromoneytradedata.com">support@euromoneytradedata.com</a></b>
+</body>

@@ -1,0 +1,13 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+<a id="supportButton"
+   style="@Model.MacroParameters["style"]"
+   target="@Model.MacroParameters["target"]"
+   class="btn btn-lrg @Model.MacroParameters["class"] btn-larger"
+   href="@Model.MacroParameters["href"]"
+   data-container="body"
+   data-target="#@Model.MacroParameters["dataTarget"]"
+   data-toggle="collapse"
+   data-placement="bottom"
+   data-trigger="hover"
+   onclick="@Model.MacroParameters["onclick"]"
+   data-content="@Model.MacroParameters["description"]">@Model.MacroParameters["text"]</a>

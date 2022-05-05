@@ -1,0 +1,114 @@
+﻿.cookieAccepterSlider {
+    height: 216px;
+    width: 223px;
+    background: url(../images/pecr/cookies_popup.png) no-repeat left top;
+    position: fixed;
+    bottom: 0;
+    left: -223px;
+    z-index: 10000;
+}
+
+.cookieAccepterSliderButton {
+    z-index: 1;
+    width: 140px;
+    height: 85px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    cursor: pointer;
+}
+
+.cookieAccepterSliderLink {
+    z-index: 1;
+    height: 40px;
+    width: 110px;
+    position: fixed;
+    bottom: 85px;
+    left: 0;
+    cursor: pointer;
+}
+
+.cookieAccepterPopup {
+    height: 289px;
+    width: 565px;
+    background: url(../images/pecr/BgTermsConditionsPopUp.png) no-repeat left top;
+    position: absolute;
+    z-index: 10000000;
+    display: none;
+    padding: 27px 27px 87px 27px;
+}
+
+    .cookieAccepterPopup input[type="checkbox"], .cookieAccepterNoScrtipPanel input[type="checkbox"] {
+        margin: 0 5px 0 0;
+    }
+
+    .cookieAccepterPopup p.cookieAccepterPopupParagraph {
+        padding-top: 50px;
+        text-align: center;
+    }
+
+.cookieAccepterPopupButton {
+    background: url(../images/pecr/proceed_button.png) no-repeat left top;
+    width: 109px;
+    height: 29px;
+    margin: 0 auto;
+    cursor: pointer;
+    border: 0;
+}
+
+.cookieAccepterGrayBody {
+    display: none;
+    background: #000;
+    z-index: 1000000;
+    position: absolute;
+}
+
+.cookieAccepterNoScrtipPanel {
+    width: 709px;
+    margin: auto;
+    position: relative;
+    top: -5px;
+}
+
+    .cookieAccepterNoScrtipPanel .top {
+        background: url(../images/pecr/BgTermsConditionsRB1.png) repeat-y;
+        padding: 19px 25px;
+    }
+
+    .cookieAccepterNoScrtipPanel .bottom {
+        background: url(../images/pecr/BgTermsConditionsRB2.png) top;
+        text-align: center;
+        height: 88px;
+    }
+
+        .cookieAccepterNoScrtipPanel .bottom input {
+            margin-top: 40px;
+        }
+
+.cookieAccepterNoScrtipPanel, #cookieAccepterNoScrtipPanel a {
+    color: #fff;
+}
+
+    .cookieAccepterNoScrtipPanel a {
+        text-decoration: underline;
+    }
+
+.cookieAccepterPoupuHeader {
+    display: block;
+    clear: both;
+}
+
+.cookieAccepterPopupCloseButton {
+    float: right;
+    display: block;
+    cursor: pointer;
+    background: url(../images/pecr/cookies_close.png);
+    width: 38px;
+    height: 38px;
+}
+
+.cookieAccepterSliderPiece {
+    height: 10px;
+    background: url(../images/pecr/cookies_popup.png) no-repeat scroll left top transparent;
+    position: absolute;
+}

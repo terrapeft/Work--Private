@@ -1,0 +1,431 @@
+﻿body {
+    font: 13px Tahoma, Arial;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    background-color: #b0e0e6;
+}
+
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 102;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #000000;
+    -ms-opacity: .15;
+    -webkit-filter: alpha(opacity=15);
+    -moz-filter: alpha(opacity=15);
+    -o-filter: alpha(opacity=15);
+    filter: alpha(opacity=15);
+    -moz-opacity: .15;
+    opacity: .15;
+    z-index: 101;
+    display: none;
+}
+
+.shadow {
+    -webkit-box-shadow: 1px 1px 2px #888888;
+    -ms-box-shadow: 1px 1px 2px #888888;
+    box-shadow: 1px 1px 2px #888888;
+}
+
+/**/
+
+span.aspNetDisabled > label {
+    font-weight: normal !important;
+    color: #aaaaaa;
+}
+
+td > label {
+    font-weight: normal !important;
+}
+
+.de-name-alt {
+    padding: 3px 10px 3px 3px;
+    font-weight: bolder;
+    white-space: nowrap;
+}
+
+.de-value-alt {
+    padding: 3px 10px 3px 3px;
+    width: 70%;
+}
+
+.de-name {
+    padding: 3px 10px 3px 3px;
+    font-weight: bolder;
+    white-space: nowrap;
+}
+
+.de-value {
+    padding: 3px 10px 3px 3px;
+    width: 70%;
+}
+
+.search-result-table {
+    margin-left: 45px;
+    position: relative;
+    top: -2px;
+}
+
+.tr-alt {
+    background-color: #EFEFEF;
+    border-bottom: 1px solid #D3D3D3;
+    line-height: 1.5;
+}
+
+.tr-item {
+    border-bottom: 1px solid #D3D3D3;
+    line-height: 1.5;
+}
+
+.table-alt {
+    background-color: #e0ffff;
+}
+
+ul.dropdown-menu-form {
+    padding: 5px 10px 0;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.checkboxlist-nowrap tr td {
+    white-space: nowrap;
+    padding-right: 5px;
+    overflow: hidden;
+}
+
+.package-list tr td {
+    white-space: nowrap;
+    padding-right: 5px;
+    overflow: hidden;
+    position: relative;
+    top: 33px;
+}
+
+.userPositionAdjustment {
+    position: relative;
+    top: 2px;
+}
+
+td input[type=checkbox] + label {
+    position: relative;
+    top: -2px;
+    margin-left: 2px;
+}
+
+input[type=radio] + label {
+    position: relative;
+    top: -2px;
+    margin-left: 2px;
+    font-weight: normal;
+}
+
+input[type=checkbox] + label {
+    position: relative;
+    top: -2px;
+    margin-left: 2px;
+    font-weight: normal;
+}
+
+.panel-body {
+    overflow-x: hidden;
+}
+
+.search-highlight {
+    background-color: yellow;
+}
+
+.pull-center {
+    display: table;
+    margin: 0 auto;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.pull-bottom {
+    position: absolute;
+    bottom: 0px;
+}
+
+.pull-top {
+    position: absolute;
+    top: 0px;
+}
+
+.upper-right {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+
+.no-wrap {
+    white-space: nowrap;
+}
+
+.deselect-checkbox {
+    position: relative;
+    top: -2px;
+    margin-left: -3px;
+    font-weight: bold !important;
+    color: #B56CB5 !important;
+}
+
+.entity-data-coll-header {
+    font-weight: bold;
+}
+
+
+
+/*
+    
+    Chevrons for collapsable panels    
+    
+*/
+.collapse-trigger {
+    cursor: pointer;
+}
+
+    .collapse-trigger .show-when-collapsed {
+        display: none;
+    }
+
+    .collapse-trigger.collapsed .show-when-collapsed {
+        display: inline-block;
+    }
+
+    .collapse-trigger .show-when-open {
+        display: inline-block;
+    }
+
+    .collapse-trigger.collapsed .show-when-open {
+        display: none;
+    }
+
+.pager-current {
+    font-weight: bold;
+}
+
+.checkboxlist-nowrap {
+    width: 100% !important;
+}
+
+    .checkboxlist-nowrap td {
+        width: 50% !important;
+    }
+
+
+/* Override bootstrap */
+.pager-current {
+    color: black !important;
+    background-color: #eee !important;
+}
+
+
+/* My account pager */
+.pagination {
+    margin-top: 0 !important;
+}
+
+    .pagination > .disabled > a {
+        color: #ccc;
+    }
+
+    .pagination > .active > a {
+        background-color: #34ACAF !important;
+        border-color: #34ACAF !important;
+    }
+
+    .pagination > li > a {
+        color: #b56cb5;
+    }
+
+.package-list-header label {
+    font-weight: bold !important;
+}
+
+.package-list-methods {
+    padding-left: 15px;
+    line-height: 1.5;
+}
+
+.package-expand-button {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+[dynamic-filters] select {
+    width: 100%;
+}
+
+[dynamic-filters] label {
+    font-weight: bold !important;
+}
+
+.advanced-search td {
+    line-height: 2.1;
+    padding-left: 7px;
+    padding-right: 7px;
+    vertical-align: central;
+}
+
+.advanced-search input[type=text] {
+    line-height: 1;
+    margin: 2px;
+    width: 100%;
+}
+
+.advanced-search select {
+    margin: 2px;
+    width: 100%;
+}
+
+.advanced-search input[type=radio] {
+    margin-left: 10px;
+    position: relative;
+    top: 3px;
+}
+
+    .advanced-search input[type=radio] + label {
+        position: relative;
+        top: 2px;
+        left: -3px;
+    }
+
+
+tr.options-alt-row > td {
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+    background-color: #eee;
+}
+
+
+.form-control:focus, .form-control-thick:focus {
+    border-color: #b56cb5;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.075) inset,0 0 8px rgba(181,108,181,.6);
+    -ms-box-shadow: 0 1px 1px rgba(0,0,0,.075) inset,0 0 8px rgba(181,108,181,.6);
+    box-shadow: 0 1px 1px rgba(0,0,0,.075) inset,0 0 8px rgba(181,108,181,.6);
+    outline: 0 none;
+}
+
+.diary-frame {
+    border: 1px dotted #ccc;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 15px;
+    overflow-x: auto;
+}
+
+.TitleStyle {
+    font-size: 15px !important;
+}
+
+h2 {
+    margin-top: 5px !important;
+    line-height: 1.1 !important;
+}
+
+.btm-page ul, .btm-page ol {
+    margin-left: 50px;
+}
+
+.checkbox-buttons img {
+    position: relative;
+    top: -2px !important;
+}
+
+.checkbox-buttons label {
+    background-color: #B56CB5 !important;
+    position: relative;
+    top: 0 !important;
+}
+
+    .checkbox-buttons label:hover {
+        background-color: #C68EC6 !important;
+    }
+
+.checkbox-buttons input[type=checkbox]:checked + label {
+    background-color: #C68EC6 !important;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.121569) 0px 3px 5px 0px inset !important;
+    -ms-box-shadow: rgba(0, 0, 0, 0.121569) 0px 3px 5px 0px inset !important;
+    box-shadow: rgba(0, 0, 0, 0.121569) 0px 3px 5px 0px inset !important;
+    -ms-text-shadow: rgba(0, 0, 0, 0.2) 0px -1px 0px !important;
+    text-shadow: rgba(0, 0, 0, 0.2) 0px -1px 0px !important;
+}
+
+.statix-contacts img {
+    margin-right: 5px;
+}
+
+.active-selector {
+    background-color: #b56cb5;
+    padding: 5px;
+    color: white;
+}
+
+    .active-selector:hover {
+        color: white;
+    }
+
+.ui-widget-header {
+    background-color: #000000 !important;
+    background: none;
+    color: white;
+}
+
+.ui-state-hover, .ui-state-focus {
+    border: 1px solid #999999;
+    background: none !important;
+    background-color: #C790C7 !important;
+    color: white !important;
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline-color: darkmagenta;
+}
+
+.container-fluid-sm {
+    padding-right: 8px !important;
+    padding-left: 8px !important;
+}
+
+.content-holder {
+    margin: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.no-left-padding-default {
+    padding-left: 0 !important;
+}
+
+.dropdown-menu-sm {
+    font-size: 13px;
+}

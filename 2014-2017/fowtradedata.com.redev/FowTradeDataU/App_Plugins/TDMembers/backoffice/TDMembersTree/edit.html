@@ -1,0 +1,6 @@
+<iframe id="gridContainer" style="position: absolute; width: 100%; height: 100%; border: none"></iframe>
+<script>
+    var url = String(window.location);
+    var id = url.substring(url.lastIndexOf('/') + 1);
+    document.getElementById("gridContainer").src = '/umbraco/CustomWebForms/' + id + '.aspx';
+</script>

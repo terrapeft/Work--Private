@@ -1,0 +1,146 @@
+﻿@using FowTradeDataU.Controllers
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = null;
+    var home = @CurrentPage.Site();
+    var cookiesAccepted = Request.Cookies["CookiesAccepted"] != null;
+    var currentUser = Session["CurrentUser"];
+    var mUser = currentUser as MembershipUser;
+}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="foi,intelligence,symbology,forensyx,xymbology,tradedata,fowtradedata,data feeds,instrument data,root level,traded series,brokerage services,market data,exchange traded,mapping service,instrument mapping,trade settlement,vendor codes,futures,options,futures and options,trusted data source,reference data,enterprise securities master,securities master,derivative,client on-board,global repository,enterprise data management,cloud data,statix,mifid" />
+    <meta name="description" content="EUROMONEY TRADEDATA is in the leading edge of smart data engineering, providing data feeds of instrument data, enriched with either root level or traded series symbology, mapped to key market data and back office vendor codes." />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <title>@CurrentPage.Name | @CurrentPage._siteTitle</title>
+    <!-- Bootstrap core CSS -->
+    <link href="http://fonts.googleapis.com/css?family=Ubuntu:400,500,700" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css" />
+
+    <link rel="stylesheet" href="/css/CookieAccepterInit.css" />
+    <link href="/css/fonts-icons.css" rel="stylesheet" />
+    <link href="/css/carousel.css" rel="stylesheet" />
+    <link type="text/css" href="/css/styles.css" rel="stylesheet" />
+    <link type="text/css" href="/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/thickbox.css" type="text/css" media="screen" />
+
+    <script src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/thickbox.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <link type="text/css" href="/css/ie8.css" rel="stylesheet" />
+        <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <style>
+            .hide-ie8 {display:none}
+        </style>
+    <![endif]-->
+    <!--[if lt IE 8]>
+         <link href="/css/bootstrap-ie7.css" rel="stylesheet">
+    <![endif]-->
+</head>
+<body class="bgd-med">
+    <!-- Google Tag Manager -->
+    <noscript>
+        <iframe src="//www.googletagmanager.com/ns.html?id=GTM-KLLZQ3" height="0" width="0" style="display: none; visibility: hidden"></iframe>
+    </noscript>
+    <noscript>
+        @if (!cookiesAccepted)
+        {
+            <div class="cookieAccepterNoScrtipPanel">
+                <div class="top">
+                    <div>
+                        <img src="/images/pecr/TermsConditionsNonJS1.png" usemap="#Map" border="0" height="143" width="630">
+                        <map name="Map" id="Map">
+                            <area shape="rect" coords="384,89,441,104" href="/cookies">
+                        </map>
+                    </div>
+                </div>
+                <div class="bottom">
+                    @using (Html.BeginUmbracoForm<CookieAccepterNoScriptController>("SubmitCookie"))
+                    {
+                        <fieldset>
+                            <input name="submitCA" value="" id="submitCA" class="cookieAccepterPopupButton" type="submit">
+                        </fieldset>
+                    }
+                </div>
+            </div>
+        }
+    </noscript>
+    <script type="text/javascript">
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+            var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true; j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KLLZQ3');
+    </script>
+    <form>
+        <div class="masthead bgd-white">
+            <div class="container spc-top align-top-portrait">
+                <div class="header row" style="margin-bottom: 10px;">
+                    <div class="col-xs-3 col-sm-3 col-md-3 alpha ao-nonmob">
+                        <a href="@home.Url">
+                            <img src="@Umbraco.TypedMedia(@home.siteLogo).Url" width="236" height="39" />
+                        </a>
+                    </div>
+                    <div class="col-md-7 col-md-offset-2 col-sm-7 col-xs-7 ao-nonmob" style="padding-right: 0px;">
+                        <div class="social-page-btns fright hidden-mob">
+                            <a href="https://twitter.com/emTRADEDATA" class="soc-icon-tw" target="_blank"><span class="glyphicon foundicon-twitter"></span></a>
+                            <a href="http://www.linkedin.com/company/em-tradedata" class="soc-icon-li" target="_blank"><span class="glyphicon foundicon-linkedin"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="menuContainer" class="nav-bg-wrap" data-spy="affix" data-offset-top="90">
+                <div class="container mob-full-width alpha omega">
+                    <div class="navbar navbar-inverse">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                            <a class="navbar-brand visible-xs" href="#"></a>
+                        </div>
+                        @Html.Partial("MainNavigation")
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container bgd-white light-lined-block spc-top mob-no-spc-top">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-8">
+                    @Umbraco.RenderMacro("Breadcrumb")
+                </div>
+            </div>
+            @RenderBody()
+        </div>
+        @Html.Partial("CookieAcceptor")
+        @Html.Partial("Footer")
+    </form>
+    <script src="/js/bootstrap331b.js"></script>
+    <script src="/js/twitter-bootstrap-hover-dropdown.min.js"></script>
+    <script src="https://cdn.euromoneyapi.com/Shared/PECR/Scripts/centerInClient.js" type="text/javascript"></script>
+    <script src="/js/CookieAccepterInit.js" type="text/javascript"></script>
+
+    <script>
+        $(function () {
+            if (GetCookie("CookiesAccepted") == null) {
+                var CookieAccepterCssClasses = {
+                    grayBody: 'cookieAccepterGrayBody',
+                    popupPanel: 'cookieAccepterPopup',
+                    popupButton: 'cookieAccepterPopupButton',
+                    popupCloseButton: 'cookieAccepterPopupCloseButton',
+                    slideButton: 'cookieAccepterSliderButton',
+                    slideLink: 'cookieAccepterSliderLink',
+                    slidePanel: 'cookieAccepterSlider'
+                };
+
+                InitCookieAccepterEffect(CookieAccepterCssClasses);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+﻿<asp:CheckBox SkinID="q12" runat="server" Text='<img src="/Content/Images/filter-white.png">' />
+<asp:CheckBox SkinID="q13" runat="server" Text='<img src="/Content/Images/grouping-white.png">' />

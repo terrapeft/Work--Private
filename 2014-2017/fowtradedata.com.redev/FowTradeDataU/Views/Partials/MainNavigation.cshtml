@@ -1,0 +1,84 @@
+﻿@using FowTradeDataU.Models.ViewModels
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    var home = CurrentPage.Site();
+    var children = home.Children.Where("hideInTopMenu == false && isLoginMenu == false").OrderBy("position");
+    var userMenu = home.Children.FirstOrDefault("isLoginMenu == true");
+    var currentUser = Session["CurrentUser"];
+    var lm = new LoginViewModel();
+}
+
+<div class="navbar-collapse collapse">
+	@if (children.Any())
+	{
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>
+
+				@foreach (var childPage in children)
+				{
+					if (childPage.Children.Any())
+					{
+						<li class="dropdown">
+							@{
+								<a class="dropdown-toggle" data-hover="dropdown" data-delay="300" data-close-others="true" href="@childPage.Url">
+									@childPage.Name
+									&nbsp;<span class="glyphicon glyphicon-chevron-down"></span>
+										</a>
+										@childPages(childPage.Children)
+									}
+						</li>}
+					else
+					{
+						<li class="@(childPage.IsAncestorOrSelf(CurrentPage) ? "selected" : null)">
+							<a href="@childPage.Url">@childPage.Name</a>
+							</li>
+							}
+				}
+
+		</ul>
+	}
+
+	@if (userMenu != null)
+    {
+        var mUser = currentUser as MembershipUser;
+        var txt = currentUser == null ? "log in" : mUser.ToString();
+        var icon = currentUser == null ? "glyphicon-log-in" : "glyphicon-log-out";
+        var title = currentUser == null ? "Login" : "Logout";
+        var command = currentUser == null ? userMenu.Url : "javascript:LogOut();";
+
+	    <ul class="nav navbar-nav navbar-right alternate">
+	        <li class="nav-item-first">
+	            <a href="@command" title="@title" class="btn-hlight">@txt &nbsp;<span class="glyphicon @icon"></span></a>
+	        </li>
+	    </ul>
+    }
+
+</div>
+
+@helper childPages(dynamic pages)
+{
+	if (pages.Any())
+	{
+		<ul class="dropdown-menu">
+			@foreach (var page in pages)
+			{
+				<li>
+					<a href="@page.Url">@page.Name</a>
+
+					@if (page.Children.Any())
+					{
+						@childPages(page.Children)
+					}
+				</li>
+			}
+		</ul>
+	}
+}
+
+<script>
+	function LogOut() {
+		$.post("@Url.Action("Logout", "LoginPageSurface")", function () {
+			location.reload();
+		});
+	}
+</script>

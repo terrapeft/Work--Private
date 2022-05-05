@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FowTradeDataU", "FowTradeDataU\FowTradeDataU.csproj", "{23ECAF99-8022-4F98-A0EB-932DC6BED9E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDUmbracoMembership", "TDUmbracoMembership\TDUmbracoMembership.csproj", "{0132FE59-DF94-43AD-8A79-484171BCFD85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedLibrary", "..\SharedLibrary\SharedLibrary.csproj", "{B2C7552C-432D-4A1D-BFF1-0F0A041B5761}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Arcadia Debug|Any CPU = Arcadia Debug|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		x64 Debug|Any CPU = x64 Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23ECAF99-8022-4F98-A0EB-932DC6BED9E7}.Arcadia Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23ECAF99-8022-4F98-A0EB-932DC6BED9E7}.Arcadia Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23ECAF99-8022-4F98-A0EB-932DC6BED9E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23ECAF99-8022-4F98-A0EB-932DC6BED9E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23ECAF99-8022-4F98-A0EB-932DC6BED9E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23ECAF99-8022-4F98-A0EB-932DC6BED9E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23ECAF99-8022-4F98-A0EB-932DC6BED9E7}.x64 Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23ECAF99-8022-4F98-A0EB-932DC6BED9E7}.x64 Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0132FE59-DF94-43AD-8A79-484171BCFD85}.Arcadia Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0132FE59-DF94-43AD-8A79-484171BCFD85}.Arcadia Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0132FE59-DF94-43AD-8A79-484171BCFD85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0132FE59-DF94-43AD-8A79-484171BCFD85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0132FE59-DF94-43AD-8A79-484171BCFD85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0132FE59-DF94-43AD-8A79-484171BCFD85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0132FE59-DF94-43AD-8A79-484171BCFD85}.x64 Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0132FE59-DF94-43AD-8A79-484171BCFD85}.x64 Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2C7552C-432D-4A1D-BFF1-0F0A041B5761}.Arcadia Debug|Any CPU.ActiveCfg = Arcadia Debug|Any CPU
+		{B2C7552C-432D-4A1D-BFF1-0F0A041B5761}.Arcadia Debug|Any CPU.Build.0 = Arcadia Debug|Any CPU
+		{B2C7552C-432D-4A1D-BFF1-0F0A041B5761}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2C7552C-432D-4A1D-BFF1-0F0A041B5761}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2C7552C-432D-4A1D-BFF1-0F0A041B5761}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2C7552C-432D-4A1D-BFF1-0F0A041B5761}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2C7552C-432D-4A1D-BFF1-0F0A041B5761}.x64 Debug|Any CPU.ActiveCfg = x64 Debug|Any CPU
+		{B2C7552C-432D-4A1D-BFF1-0F0A041B5761}.x64 Debug|Any CPU.Build.0 = x64 Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

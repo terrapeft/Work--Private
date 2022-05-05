@@ -1,0 +1,33 @@
+USE [master];
+GO
+
+IF (SELECT COUNT(*) FROM sys.symmetric_keys WHERE name like '%DatabaseMasterKey%') = 0
+	CREATE MASTER KEY ENCRYPTION BY PASSWORD = '123';
+GO
+
+IF (SELECT COUNT(*) FROM sys.certificates WHERE name = 'UsersCert') = 0
+	CREATE CERTIFICATE UsersCert WITH SUBJECT = 'Unified Users Certificate';
+GO
+
+BACKUP CERTIFICATE UsersCert
+TO FILE = 'e:\temp\UsersCert'
+WITH PRIVATE KEY (file='e:\temp\UsersCertKey',
+ENCRYPTION BY PASSWORD='123')
+
+GO
+
+USE [TRADEdataUsers]
+GO
+
+CREATE DATABASE ENCRYPTION KEY
+WITH ALGORITHM = AES_256
+ENCRYPTION BY SERVER CERTIFICATE UsersCert
+
+ALTER DATABASE [TRADEdataUsers] SET ENCRYPTION ON
+
+/* symmetric key */
+
+IF (SELECT COUNT(*) FROM sys.symmetric_keys WHERE name = 'PasswordsKey') = 0
+BEGIN
+CREATE SYMMETRIC KEY PasswordsKey WITH ALGORITHM=AES_256 ENCRYPTION BY CERTIFICATE UsersCert;
+END

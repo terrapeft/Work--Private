@@ -1,0 +1,64 @@
+﻿<%@ Master Language="C#" CodeBehind="Bp2s.master.cs" Inherits="Statix.Bp2s" %>
+
+<%@ Register TagPrefix="ajaxToolkit" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=4.1.7.1213, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
+<%@ Register TagPrefix="uc" TagName="Menu" Src="Controls/Menu/MenuBp2s.ascx" %>
+<%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI, Version=2010.3.1109.20, Culture=neutral, PublicKeyToken=121fae78165ba3d4" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Statix.co.uk</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/Css/checkbox-buttons.css" rel="stylesheet" type="text/css" />
+    <link href="~/App_Themes/Bp2s/dd.css" rel="stylesheet" type="text/css" />
+    <link href="~/App_Themes/Bp2s/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/App_Themes/Bp2s/Grid.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/Css/Common.css" rel="stylesheet" type="text/css" />
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <link type="text/css" href="/Content/css/ie8.css" rel="stylesheet" />
+        <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <style>
+	        .hide-ie8 {display:none}
+        </style>
+    <![endif]-->
+    <!--[if lt IE 8]>
+        <link href="/Content/css/bootstrap-ie7.css" rel="stylesheet">
+    <![endif]-->
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="page" style="background-color: white;">
+    <form id="form1" runat="server">
+        <asp:HiddenField runat="server" ID="uid" />
+        <ajaxToolkit:ToolkitScriptManager runat="server" EnablePartialRendering="true" CombineScripts="false" ID="ScriptManager1">
+            <Scripts>
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Path="//code.jquery.com/ui/1.11.4/jquery-ui.min.js" />
+                <asp:ScriptReference Path="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" />
+                <asp:ScriptReference Path="Content/Scripts/twitter-bootstrap-hover-dropdown.min.js" />
+                <asp:ScriptReference Path="Content/Scripts/users-ui.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" />
+            </Scripts>
+        </ajaxToolkit:ToolkitScriptManager>
+        <telerik:RadCodeBlock ID="RadCodeBlock1" runat="server">
+            <uc:Menu ID="Menu1" runat="server" />
+        </telerik:RadCodeBlock>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+        <div iframe-progress class="centered panel panel-green shadow progress-panel" style="padding-top: 10px; display: none;">
+            <img src="/Content/Images/animated-progress.gif" alt="Processing...">
+        </div>
+        <div popup style="overflow: hidden; display: none;">
+            <iframe popup-iframe marginwidth="0" marginheight="0" style="border: 0"></iframe>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/umbraco/Masterpages/umbracoPage.Master" AutoEventWireup="true" CodeBehind="TDMasterPage.master.cs" Inherits="FowTradeDataU.umbraco.CustomWebForms.TDMasterPage" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="DocType" runat="server">
+    <asp:contentplaceholder id="DocType" runat="server">
+    </asp:contentplaceholder>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../Css/style.css">
+    <link rel="stylesheet" type="text/css" href="../Css/RadGrid.css">
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="body" runat="server">
+    <div tabs="dashboard.tabs" class="umb-panel-header ng-scope" style="position: relative; top: 1px">
+        <div class="row-fluid">
+            <div ng-transclude="">
+                <div class="umb-headline-editor-wrapper span12 ng-scope">
+                    <h1 class="ng-binding">
+                        <asp:ContentPlaceHolder ID="title" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </h1>
+                </div>
+            </div>
+            <asp:ContentPlaceHolder ID="tabs" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </div>
+            <div id="gridDiv" class="vertical-scroll tab-content">
+                <asp:ContentPlaceHolder ID="body" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+    <script src="../js/TdMembers.js"></script>
+</asp:Content>
+
+<asp:Content ID="Content4" ContentPlaceHolderID="footer" runat="server">
+    <asp:ContentPlaceHolder ID="footer" runat="server">
+    </asp:ContentPlaceHolder>
+    
+    <script>
+        var searchPanel = $("#search-form", window.parent.document);
+        searchPanel.attr("class", "umb-panel-header");
+        $(".umb-modalcolumn-header", searchPanel).hide();
+    </script>
+</asp:Content>

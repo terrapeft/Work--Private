@@ -1,0 +1,51 @@
+﻿<%@ Master Language="C#" CodeBehind="SiteAdmin.master.cs" Inherits="AdministrativeUI.SiteAdmin" %>
+
+<%@ Register TagPrefix="ajaxToolkit" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=4.1.7.1213, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
+<%@ Register TagPrefix="uc" TagName="Menu" Src="Controls/MenuAdmin.ascx" %>
+<%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI, Version=2010.3.1109.20, Culture=neutral, PublicKeyToken=121fae78165ba3d4" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Statix Administrative Interface</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+    <link href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/Content/Css/Site.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/Css/checkbox-buttons.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="page" style="background-color: white;">
+    <form id="form1" runat="server">
+        <asp:HiddenField runat="server" ID="uid" />
+        <div>
+            <ajaxToolkit:ToolkitScriptManager runat="server" EnablePartialRendering="true" CombineScripts="false" ID="ScriptManager1">
+                <Scripts>
+                    <asp:ScriptReference Name="jquery" />
+                    <asp:ScriptReference Path="//code.jquery.com/ui/1.11.2/jquery-ui.min.js" />
+                    <asp:ScriptReference Path="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" />
+                    <asp:ScriptReference Path="Content/Scripts/twitter-bootstrap-hover-dropdown.min.js" />
+                    <asp:ScriptReference Path="Content/Scripts/users-ui.js" />
+                    <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" />
+                </Scripts>
+            </ajaxToolkit:ToolkitScriptManager>
+            <asp:MultiView runat="server" ID="multiView1">
+                <Views>
+                    <asp:View runat="server" ID="notAuthorizedView">
+                    </asp:View>
+                    <asp:View runat="server" ID="authorizedView">
+                        <telerik:RadCodeBlock ID="RadCodeBlock1" runat="server">
+                            <uc:Menu ID="Menu1" runat="server" />
+                        </telerik:RadCodeBlock>
+                    </asp:View>
+                </Views>
+            </asp:MultiView>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

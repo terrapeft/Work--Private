@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains job definitions in schema version 2.0 format -->
+
+<job-scheduling-data xmlns="http://quartznet.sourceforge.net/JobSchedulingData" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0">
+
+  <processing-directives>
+    <overwrite-existing-data>true</overwrite-existing-data>
+  </processing-directives>
+
+  <schedule>
+
+<!--
+    ~1~ Start InstallationJob @1@
+    <job>
+      <name>InstallationJob</name>
+      <group>DB</group>
+      <description>Runs required SQL scripts to make database operable. If overwrite is true, existed tables will be dropped and created, otherwise scripts will run only if there are no target tables. It will check only for first table in the set, so if some tables missed, some exist, just set to overwrite.</description>
+      <job-type>SpansLib.QuartzJobs.InstallationJob, SpansLib</job-type>
+      <durable>false</durable>
+      <recover>false</recover>
+      <job-data-map>
+        <entry>
+          <key>connStr</key>
+          <value>Integrated Security=SSPI;Persist Security Info=True;Initial Catalog=Spans;Data Source=(local)</value>
+        </entry>
+      </job-data-map>
+    </job>
+    <trigger>
+      <simple>
+        <name>ImmediateInstallationTrigger</name>
+        <group>DB</group>
+        <description></description>
+        <job-name>InstallationJob</job-name>
+        <job-group>DB</job-group>
+        <priority>25</priority>
+        <job-data-map>
+          <entry>
+            <key>overwrite</key>
+            <value>true</value>
+          </entry>
+        </job-data-map>
+        <start-time-seconds-in-future>20</start-time-seconds-in-future>
+      </simple>
+    </trigger>
+    ~1~ End InstallationJob @1@
+
+    
+    ~1~ Start DocsBulkLoadJob @1@
+    <job>
+      <name>DocsBulkLoadJob</name>
+      <group>DB</group>
+      <description>Uploads data from OrgMast.xml, CMEcntrSpecs.xml, MarginRates.xml, product_calendar.xml files</description>
+      <job-type>SpansLib.QuartzJobs.DocsBulkLoadJob, SpansLib</job-type>
+      <durable>false</durable>
+      <recover>false</recover>
+      <job-data-map>
+        <entry>
+          <key>connStr</key>
+          <value>Integrated Security=SSPI;Persist Security Info=True;Initial Catalog=Spans;Data Source=(local)</value>
+        </entry>
+        <entry>
+          <key>ftpPath</key>
+          <value>ftp://ftp.cmegroup.com/pub/span/util</value>
+        </entry>
+        <entry>
+          <key>filePath</key>
+          <value>e:\cme\ftp\util</value>
+        </entry>
+        <entry>
+          <key>serviceFiles</key>
+          <value>Jobs\Sources</value>
+        </entry>
+      </job-data-map>
+    </job>
+    <trigger>
+      <simple>
+        <name>ImmediateDocsBulkLoadTrigger</name>
+        <group>DB</group>
+        <description>Starts in one minute after the server start.</description>
+        <job-name>DocsBulkLoadJob</job-name>
+        <job-group>DB</job-group>
+        <priority>20</priority>
+        <start-time-seconds-in-future>20</start-time-seconds-in-future>
+      </simple>
+    </trigger>
+    <trigger>
+      <cron>
+        <name>DocsBulkLoadTrigger</name>
+        <group>DB</group>
+        <description>First day of every month at 1:01 AM </description>
+        <job-name>DocsBulkLoadJob</job-name>
+        <job-group>DB</job-group>
+        <priority>20</priority>
+        <misfire-instruction>FireOnceNow</misfire-instruction>
+        <cron-expression>0 1 1 1 1/1 ? *</cron-expression>
+      </cron>
+    </trigger>
+    ~1~ End DocsBulkLoadJob @1@
+-->
+
+
+
+    <!-- Start FtpSyncJob -->
+    <job>
+      <name>FtpSyncJob</name>
+      <group>FTP</group>
+      <description>Sync ftp and local folders</description>
+      <job-type>SpansLib.QuartzJobs.FtpSyncJob, SpansLib</job-type>
+      <durable>false</durable>
+      <recover>false</recover>
+      <job-data-map>
+        <entry>
+          <key>daysBack</key>
+          <value>1</value>
+        </entry>
+        <entry>
+          <key>ftpPath</key>
+          <value>ftp://ftp.cmegroup.com/pub/span/data/</value>
+        </entry>
+        <entry>
+          <key>localPath</key>
+          <value>e:\cme\ftp\data\</value>
+        </entry>
+        <entry>
+          <key>connStr</key>
+          <value>Integrated Security=SSPI;Persist Security Info=True;Initial Catalog=Spans;Data Source=(local)</value>
+        </entry>
+        <entry>
+          <key>skipFolders</key>
+          <value>2013;2014;test;.archive_scripts</value>
+        </entry>
+        <entry>
+          <key>skipFileTypes</key>
+          <value>txt;dat;csv;txt.zip;dat.zip;csv.zip</value>
+        </entry>
+        <entry>
+          <key>overwrite</key>
+          <value>true</value>
+        </entry>
+      </job-data-map>
+    </job>
+    <trigger>
+      <simple>
+        <name>ImmediateFtpSyncTrigger</name>
+        <group>FTP</group>
+        <description>Starts in one minute after the server start.</description>
+        <job-name>FtpSyncJob</job-name>
+        <job-group>FTP</job-group>
+        <priority>15</priority>
+        <start-time-seconds-in-future>20</start-time-seconds-in-future>
+      </simple>
+    </trigger>
+    <trigger>
+      <cron>
+        <name>FtpSyncTrigger</name>
+        <group>FTP</group>
+        <description>Every week day at 1:01 AM </description>
+        <job-name>FtpSyncJob</job-name>
+        <job-group>FTP</job-group>
+        <priority>15</priority>
+        <misfire-instruction>FireOnceNow</misfire-instruction>
+        <cron-expression>0 1 1 ? * MON-FRI *</cron-expression>
+      </cron>
+    </trigger>
+    <!-- End FtpSyncJob -->
+
+<!--
+
+    ~1~ Start XmlBulkLoadJob @1@
+    <job>
+      <name>XmlBulkLoadJob</name>
+      <group>DB</group>
+      <description>Uploads data from spn/xml files</description>
+      <job-type>SpansLib.QuartzJobs.XmlBulkLoadJob, SpansLib</job-type>
+      <durable>false</durable>
+      <recover>false</recover>
+      <job-data-map>
+        <entry>
+          <key>path</key>
+          <value>e:\cme\ftp\data</value>
+        </entry>
+        <entry>
+          <key>connStr</key>
+          <value>Integrated Security=SSPI;Persist Security Info=True;Initial Catalog=Spans;Data Source=(local)</value>
+        </entry>
+        <entry>
+          <key>overwrite</key>
+          <value>true</value>
+        </entry>
+        <entry>
+          <key>daysBack</key>
+          <value>1</value>
+        </entry>
+      </job-data-map>
+    </job>
+    <trigger>
+      <simple>
+        <name>ImmediateXmlBulkLoadTrigger</name>
+        <group>DB</group>
+        <description>Starts in one minute after the server start.</description>
+        <job-name>XmlBulkLoadJob</job-name>
+        <job-group>DB</job-group>
+        <priority>10</priority>
+        <start-time-seconds-in-future>20</start-time-seconds-in-future>
+      </simple>
+    </trigger>
+    <trigger>
+      <cron>
+        <name>XmlBulkLoadTrigger</name>
+        <group>DB</group>
+        <description>Every week day at 1:01 AM </description>
+        <job-name>XmlBulkLoadJob</job-name>
+        <job-group>DB</job-group>
+        <priority>10</priority>
+        <misfire-instruction>FireOnceNow</misfire-instruction>
+        <cron-expression>0 1 1 ? * MON-FRI *</cron-expression>
+      </cron>
+    </trigger>
+    ~1~ End XmlBulkLoadJob @1@
+
+
+    ~1~ Start PaBulkLoadJob @1@
+    <job>
+      <name>PaBulkLoadJob</name>
+      <group>DB</group>
+      <description>Pocesses pa6-pa2 files</description>
+      <job-type>SpansLib.QuartzJobs.PaBulkLoadJob, SpansLib</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+      <job-data-map>
+        <entry>
+          <key>path</key>
+          <value>e:\cme\ftp\data\</value>
+        </entry>
+        <entry>
+          <key>connStr</key>
+          <value>Integrated Security=SSPI;Persist Security Info=True;Initial Catalog=Spans;Data Source=(local)</value>
+        </entry>
+        <entry>
+          <key>overwrite</key>
+          <value>false</value>
+        </entry>
+        <entry>
+          <key>daysBack</key>
+          <value>1</value>
+        </entry>
+      </job-data-map>
+    </job>
+    <trigger>
+      <simple>
+        <name>ImmediatePaBulkLoadTrigger</name>
+        <group>DB</group>
+        <description>Starts in one minute after the server start.</description>
+        <job-name>PaBulkLoadJob</job-name>
+        <job-group>DB</job-group>
+        <priority>5</priority>
+        <start-time-seconds-in-future>20</start-time-seconds-in-future>
+      </simple>
+    </trigger>
+    <trigger>
+      <cron>
+        <name>PaBulkLoadTrigger</name>
+        <group>DB</group>
+        <description>Every week day at 1:01 AM </description>
+        <job-name>PaBulkLoadJob</job-name>
+        <job-group>DB</job-group>
+        <priority>5</priority>
+        <misfire-instruction>FireOnceNow</misfire-instruction>
+        <cron-expression>0 1 1 ? * MON-FRI *</cron-expression>
+      </cron>
+    </trigger>
+    ~1~ End FtpSyncJob @1@
+
+
+    ~1~ Start SupervisorJob @1@
+    <job>
+      <name>SupervisorJob</name>
+      <group>Monitoring</group>
+      <description>Checks log for errors and notify of results</description>
+      <job-type>SpansLib.QuartzJobs.SupervisorJob, SpansLib</job-type>
+      <durable>false</durable>
+      <recover>false</recover>
+      <job-data-map>
+        <entry>
+          <key>hoursBack</key>
+          <value>8</value>
+        </entry>
+        <entry>
+          <key>connStr</key>
+          <value>Integrated Security=SSPI;Persist Security Info=True;Initial Catalog=Spans;Data Source=(local)</value>
+        </entry>
+      </job-data-map>
+    </job>
+    <trigger>
+      <simple>
+        <name>ImmediateSupervisorTrigger</name>
+        <group>Monitoring</group>
+        <description>Starts in one minute after the server start.</description>
+        <job-name>SupervisorJob</job-name>
+        <job-group>Monitoring</job-group>
+        <priority>1</priority>
+        <start-time-seconds-in-future>20</start-time-seconds-in-future>
+      </simple>
+    </trigger>
+    <trigger>
+      <cron>
+        <name>SupervisorTrigger</name>
+        <group>Monitoring</group>
+        <description>Every week day at 1:01 AM </description>
+        <job-name>SupervisorJob</job-name>
+        <job-group>Monitoring</job-group>
+        <priority>1</priority>
+        <misfire-instruction>FireOnceNow</misfire-instruction>
+        <cron-expression>0 1 1 ? * MON-FRI *</cron-expression>
+      </cron>
+    </trigger>
+    ~1~ End SupervisorJob @1@
+-->
+
+  </schedule>
+</job-scheduling-data>

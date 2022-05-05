@@ -1,0 +1,22 @@
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+
+   @if (Model.MacroParameters["description"] != null)
+   {
+       <a style="@Model.MacroParameters["style"]"
+          target="@Model.MacroParameters["target"]"
+          class="btn btn-lrg @Model.MacroParameters["class"] btn-larger" 
+          href="@Model.MacroParameters["href"]"
+          data-container="body" 
+          data-toggle="popover" 
+          data-placement="top" 
+          data-trigger="hover"
+          data-content="@Model.MacroParameters["description"]">@Model.MacroParameters["text"]</a>
+   }
+   else
+   {
+       <a style="@Model.MacroParameters["style"]"
+          target="@Model.MacroParameters["target"]"
+          class="btn btn-lrg @Model.MacroParameters["class"] btn-larger" 
+          href="@Model.MacroParameters["href"]">@Model.MacroParameters["text"]</a>
+   }

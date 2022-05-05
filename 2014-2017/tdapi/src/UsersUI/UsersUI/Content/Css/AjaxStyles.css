@@ -1,0 +1,257 @@
+﻿/* Ajax Calendar */
+
+.ajax__calendar_container {
+	padding: 4px;
+	position: absolute;
+	cursor: default;
+	width: 170px;
+	font-size: 10px;
+	text-align: center;
+	background-color: #FFFFFF;
+	z-index: 1000;
+}
+
+.ajax__calendar_body {
+	height: 139px;
+	width: 170px;
+	position: relative;
+	overflow: hidden;
+	margin: auto;
+}
+
+.ajax__calendar_days, .ajax__calendar_months, .ajax__calendar_years {
+	top: 0px;
+	left: 0px;
+	height: 139px;
+	width: 170px;
+	position: absolute;
+	text-align: center;
+	margin: auto;
+}
+
+.ajax__calendar_container table {
+	font-size: 10px;
+}
+
+.ajax__calendar_header {
+	height: 20px;
+	width: 100%;
+}
+
+.ajax__calendar_prev {
+	cursor: pointer;
+	width: 15px;
+	height: 15px;
+	float: left;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-color: #DCD5E0;
+}
+
+.ajax__calendar_next {
+	cursor: pointer;
+	width: 15px;
+	height: 15px;
+	float: right;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-color: #DCD5E0;
+}
+
+.ajax__calendar_title {
+	cursor: pointer;
+	font-weight: bold;
+	color: #000000;
+	height: 15px;
+	background-color: #EEEEEE;
+}
+
+.ajax__calendar_footer {
+	height: 15px;
+	z-index: 999998;
+}
+
+.ajax__calendar_today {
+	cursor: pointer;
+	padding-top: 3px;
+	color: black;
+	background-color: #DCD5E0;
+}
+
+.ajax__calendar_dayname {
+	height: 17px;
+	width: 17px;
+	text-align: center;
+	padding: 2px;
+	color: #000000;
+	background-color: #EEEEEE;
+}
+
+.ajax__calendar_day {
+	height: 17px;
+	width: 18px;
+	text-align: center;
+	padding: 2px;
+	cursor: pointer;
+	color: #FFFFFF;
+	background-color: #006699;
+}
+
+.ajax__calendar_month {
+	height: 44px;
+	width: 40px;
+	text-align: center;
+	cursor: pointer;
+	overflow: hidden;
+	color: #000000;
+	background-color: #EEEEEE;
+}
+
+.ajax__calendar_year {
+	height: 44px;
+	width: 40px;
+	text-align: center;
+	cursor: pointer;
+	overflow: hidden;
+	color: #000000;
+	background-color: #EEEEEE;
+}
+
+.ajax__calendar_other .ajax__calendar_day {
+	background-color: #EEEEEE;
+	border-color: #ffffff;
+	color: #000000;
+}
+
+.ajax__calendar_other .ajax__calendar_year {
+	background-color: #EEEEEE;
+	border-color: #ffffff;
+	color: #000000;
+}
+
+/* End Ajax Calendar */
+
+/*Ajax Tabs Style*/
+.ajaxTab .ajax__tab_container {
+	color: inherit;
+}
+
+.ajaxTab .ajax__tab_outer .ajax__tab_inner .ajax__tab_tab {
+	margin-right: 0;
+}
+
+.ajaxTab .ajax__tab_header {
+	font-family: inherit;
+	font-style: inherit;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 11px;
+	color: inherit;
+	background: url(Images/Tabs/tab-line.gif) repeat-x bottom;
+}
+
+.ajaxTab .ajax__tab_outer {
+	display: inline-block;
+	padding: 6px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 1.428571429;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	border: 1px solid transparent;
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-top-right-radius: 4px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+	background: #999999;
+	border-color: #999999;
+	color: #ffffff;
+	margin-right: 1px;
+}
+
+.ajaxTab .ajax__tab_inner {
+}
+
+.ajaxTab .ajax__tab_tab {
+}
+
+.ajaxTab .ajax__tab_hover .ajax__tab_outer {
+	background: #cccccc;
+	border-color: #cccccc;
+}
+
+.ajaxTab .ajax__tab_hover .ajax__tab_inner {
+}
+
+.ajaxTab .ajax__tab_hover .ajax__tab_tab {
+}
+
+.ajaxTab .ajax__tab_active .ajax__tab_outer {
+	background: #666666;
+	border-color: #666666;
+}
+
+.ajaxTab .ajax__tab_active .ajax__tab_inner {
+}
+
+.ajaxTab .ajax__tab_active .ajax__tab_tab {
+}
+
+.ajaxTab .ajax__tab_body {
+	font: inherit;
+	border: 1px solid #999999;
+	border-top: 0;
+	padding: 8px;
+	background-color: #ffffff;
+}
+
+/*End Of Ajax Tabs Style*/
+
+/*AutoComplete flyout */
+
+.autocomplete_completionListElement {
+	margin: 0px!important;
+	background-color: inherit;
+	color: windowtext;
+	border: buttonshadow;
+	border-width: 0px;
+	border-style: solid;
+	padding-left: 0px;
+	overflow: auto;
+	height: auto;
+	max-height: 200px;
+	text-align: left;
+	list-style-type: none;
+	-webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+	transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+	border-radius: 4px;
+	box-shadow: 0 2px 3px rgba(0,0,0,0.1) inset;
+	border: 1px solid #999;
+	z-index: 100500;
+}
+
+/* AutoComplete highlighted item */
+
+.autocomplete_highlightedListItem {
+	background-color: #59376D;
+	color: #FFFFFF;
+	padding: 1px;
+}
+
+/* AutoComplete item */
+
+.autocomplete_listItem {
+	background-color: #FFFFFF;
+	color: windowtext;
+	padding: 1px;
+}

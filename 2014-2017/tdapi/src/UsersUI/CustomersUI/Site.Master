@@ -1,0 +1,92 @@
+﻿<%@ Master Language="C#" CodeBehind="Site.master.cs" Inherits="CustomersUI.Site" %>
+
+<%@ Register TagPrefix="uc" TagName="menu" Src="Controls/MenuControl.ascx" %>
+<%--<%@ Register TagPrefix="uc" TagName="breadcrumb" Src="Controls/BreadcrumbControl.ascx" %>--%>
+<%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI, Version=2010.3.1109.20, Culture=neutral, PublicKeyToken=121fae78165ba3d4" %>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link href='//fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.css" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet" />
+    <link href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <%--<link href="~/Content/Css/sb-admin-2.css" rel="stylesheet" />--%>
+    <link href="/Content/Css/Site.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/Css/Styles.css" rel="stylesheet" type="text/css" />
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <link type="text/css" href="/Content/css/ie8.css" rel="stylesheet" />
+        <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <style>
+	        .hide-ie8 {display:none}
+        </style>
+    <![endif]-->
+    <!--[if lt IE 8]>
+        <link href="/Content/css/bootstrap-ie7.css" rel="stylesheet">
+    <![endif]-->
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <title>TradeData Customer Service</title>
+</head>
+<body class="bgd-med">
+    <form id="form1" runat="server" data-toggle="validator">
+        <%--<asp:HiddenField runat="server" ID="uid" />--%>
+        <asp:ScriptManager runat="server" EnablePartialRendering="true" EnableCdn="false" ID="ScriptManager1">
+            <Scripts>
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Path="//code.jquery.com/ui/1.11.2/jquery-ui.min.js" />
+                <asp:ScriptReference Path="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" />
+                <asp:ScriptReference Path="Content/Scripts/customers-ui.js" />
+                <asp:ScriptReference Path="Content/Scripts/twitter-bootstrap-hover-dropdown.min.js" />
+                <asp:ScriptReference Path="Content/Scripts/jquery.twbsPagination.js" />
+            </Scripts>
+        </asp:ScriptManager>
+        <asp:MultiView runat="server" ID="multiView1">
+            <Views>
+                <asp:View runat="server" ID="notAuthorizedView">
+                </asp:View>
+                <asp:View runat="server" ID="authorizedView">
+                    <telerik:RadCodeBlock ID="RadCodeBlock1" runat="server">
+                        <uc:menu ID="Menu1" runat="server" />
+                    </telerik:RadCodeBlock>
+                </asp:View>
+            </Views>
+        </asp:MultiView>
+        <div class="container bgd-white light-lined-block spc-top mob-no-spc-top" style="padding-top: 15px;">
+            <asp:UpdateProgress Visible="true" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
+                <ProgressTemplate>
+                    <div class="centered panel panel-green shadow progress-panel" style="padding-top: 10px">
+                        <img src="/Content/Images/animated-progress.gif" alt="Processing...">
+                    </div>
+                </ProgressTemplate>
+            </asp:UpdateProgress>
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <%--<uc:breadcrumb ID="Breadcrumb1" runat="server" />--%>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>
+        <footer>
+            <div class="container">
+                <div class="footerstyle">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-9">
+                            <%--Contact Us | Advertise--%>
+                        </div>
+                        <div class="col-sm-12 col-md-3">
+                            <div class="copyright text-right"><small>All material subject to strictly enforced copyright laws. &copy; 2015 <a href="http://www.euromoneyplc.com/">Euromoney Institutional Investor PLC</a>. </small></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </form>
+</body>
+</html>

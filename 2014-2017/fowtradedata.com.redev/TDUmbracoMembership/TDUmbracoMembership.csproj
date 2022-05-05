@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0132FE59-DF94-43AD-8A79-484171BCFD85}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TDUmbracoMembership</RootNamespace>
+    <AssemblyName>TDUmbracoMembership</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="AppSettings.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppSettings.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Company.cs">
+      <DependentUpon>UmbracoMembers.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ddl.cs">
+      <DependentUpon>UmbracoMembers.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DdlOption.cs">
+      <DependentUpon>UmbracoMembers.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EfConfiguration.cs" />
+    <Compile Include="Entities\Member.cs" />
+    <Compile Include="Entities\SupportRequestsHistory.cs" />
+    <Compile Include="HierarchicalDdl.cs">
+      <DependentUpon>UmbracoMembers.tt</DependentUpon>
+    </Compile>
+    <Compile Include="History.cs">
+      <DependentUpon>UmbracoMembers.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Member.cs">
+      <DependentUpon>UmbracoMembers.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MemberView.cs">
+      <DependentUpon>UmbracoMembers.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceType.cs">
+      <DependentUpon>UmbracoMembers.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SalesforceFieldsMapping.cs">
+      <DependentUpon>UmbracoMembers.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SiteConfig.cs">
+      <DependentUpon>UmbracoMembers.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SupportRequestsHistory.cs">
+      <DependentUpon>UmbracoMembers.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TDMembersMembershipProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TDRoleProvider.cs" />
+    <Compile Include="UmbracoMembers.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UmbracoMembers.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UmbracoMembers.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UmbracoMembers.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UmbracoMembers.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UmbracoMembers.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="UmbracoMembersEntities.cs" />
+    <Compile Include="UmInterceptor.cs" />
+    <Compile Include="vwDropDownListOption.cs">
+      <DependentUpon>UmbracoMembers.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwHierarchy.cs">
+      <DependentUpon>UmbracoMembers.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwHistory.cs">
+      <DependentUpon>UmbracoMembers.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <EntityDeploy Include="UmbracoMembers.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>UmbracoMembers.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="UmbracoMembers.edmx.diagram">
+      <DependentUpon>UmbracoMembers.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Xml" />
+    <Reference Include="umbraco">
+      <HintPath>..\packages\UmbracoCms.Core.7.2.1\lib\umbraco.dll</HintPath>
+    </Reference>
+    <Reference Include="Umbraco.Core">
+      <HintPath>..\packages\UmbracoCms.Core.7.2.1\lib\Umbraco.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="umbraco.providers">
+      <HintPath>..\packages\UmbracoCms.Core.7.2.1\lib\umbraco.providers.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AppSettings.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AppSettings.cs</LastGenOutput>
+      <TransformOnBuild>True</TransformOnBuild>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="UmbracoMembers.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>UmbracoMembers.edmx</DependentUpon>
+      <LastGenOutput>UmbracoMembers.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="UmbracoMembers.edmx.sql" />
+    <Content Include="UmbracoMembers.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>UmbracoMembers.edmx</DependentUpon>
+      <LastGenOutput>UmbracoMembers.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

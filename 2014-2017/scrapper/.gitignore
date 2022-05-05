@@ -1,0 +1,6 @@
+packages/HtmlAgilityPack.1.4.9/
+scraper/bin/
+scraper/obj/
+scraper/QuartzJob/
+Sql/ddl.sql
+packages/

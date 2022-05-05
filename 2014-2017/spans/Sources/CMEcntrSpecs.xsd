@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cn="custom-namespace" xmlns:sql="urn:schemas-microsoft-com:mapping-schema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:annotation>
+		<xsd:appinfo>
+			<sql:relationship name="ClearingOrgExchange" parent="CmeCntrSpecs_ClearingOrg" parent-key="Id" child="CmeCntrSpecs_Exchange" child-key="ClearingOrgId"/>
+			<sql:relationship name="ExchangeFutPf" parent="CmeCntrSpecs_Exchange" parent-key="Id" child="CmeCntrSpecs_FutPf" child-key="ExchangeId"/>
+			<sql:relationship name="FutPfFutSpecs" parent="CmeCntrSpecs_FutPf" parent-key="Id" child="CmeCntrSpecs_FutSpecs" child-key="FutPfId"/>
+			<sql:relationship name="ExchangeFwdPf" parent="CmeCntrSpecs_Exchange" parent-key="Id" child="CmeCntrSpecs_FwdPf" child-key="ExchangeId"/>
+			<sql:relationship name="FwdPfFwdSpecs" parent="CmeCntrSpecs_FwdPf" parent-key="Id" child="CmeCntrSpecs_FwdSpecs" child-key="FwdPfId"/>
+			<sql:relationship name="ExchangeOofPf" parent="CmeCntrSpecs_Exchange" parent-key="Id" child="CmeCntrSpecs_OofPf" child-key="ExchangeId"/>
+			<sql:relationship name="OofPfOofSpecs" parent="CmeCntrSpecs_OofPf" parent-key="Id" child="CmeCntrSpecs_OofSpecs" child-key="OofPfId"/>
+			<sql:relationship name="FutSpecsToVenue" parent="CmeCntrSpecs_FutSpecs" parent-key="Id" child="CmeCntrSpecs_FutSpecsVenue" child-key="FutSpecsId" inverse="true"/>
+			<sql:relationship name="FwdSpecsToVenue" parent="CmeCntrSpecs_FwdSpecs" parent-key="Id" child="CmeCntrSpecs_FwdSpecsVenue" child-key="FwdSpecsId" inverse="true"/>
+			<sql:relationship name="OofSpecsToVenue" parent="CmeCntrSpecs_OofSpecs" parent-key="Id" child="CmeCntrSpecs_OofSpecsVenue" child-key="OofSpecsId" inverse="true"/>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:annotation/>
+	<xsd:annotation/>
+	<xsd:annotation/>
+	<xsd:annotation/>
+	<xsd:element name="spanFile" sql:is-constant="true">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="created" type="xsd:string" sql:relation="CmeCntrSpecs_Created" />
+				<xsd:element name="definitions" sql:is-constant="true">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="venueDef" maxOccurs="unbounded" sql:relation="CmeCntrSpecs_Venue" sql:overflow-field="MissingElements">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="id" type="xsd:int" sql:field="Id"/>
+										<xsd:element name="name" type="xsd:string"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="pointInTime" sql:is-constant="true">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="date" type="xsd:unsignedInt" sql:is-constant="true"/>
+							<xsd:element name="clearingOrg" sql:relation="CmeCntrSpecs_ClearingOrg" sql:overflow-field="MissingElements">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="ec" type="xsd:string"/>
+										<xsd:element name="exchange" maxOccurs="unbounded" sql:relation="CmeCntrSpecs_Exchange" sql:relationship="ClearingOrgExchange" sql:overflow-field="MissingElements">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="exch" type="xsd:string"/>
+													<xsd:element name="exchAlias" type="xsd:string"/>
+													<xsd:element name="futPf" maxOccurs="unbounded" sql:relation="CmeCntrSpecs_FutPf" sql:relationship="ExchangeFutPf" sql:overflow-field="MissingElements">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="pfCode" type="xsd:string"/>
+																<xsd:element name="specs" sql:relation="CmeCntrSpecs_FutSpecs" sql:relationship="FutPfFutSpecs" sql:overflow-field="MissingElements">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="aliasDesc" type="xsd:string"/>
+																			<xsd:element name="venue" minOccurs="0" maxOccurs="unbounded" sql:is-constant="1">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="id" sql:field="VenueId" sql:relation="CmeCntrSpecs_FutSpecsVenue" sql:relationship="FutSpecsToVenue"/>
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+																<xsd:element name="name" type="xsd:string"/>
+															</xsd:sequence>
+															<xsd:attribute name="status" type="xsd:string" use="required"/>
+															<xsd:attribute name="rptOrder" type="xsd:unsignedShort" use="required"/>
+															<xsd:attribute name="pageBreak" type="xsd:boolean" use="required"/>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="fwdPf" minOccurs="0" maxOccurs="unbounded" sql:relation="CmeCntrSpecs_FwdPf" sql:relationship="ExchangeFwdPf" sql:overflow-field="MissingElements">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="pfCode" type="xsd:string"/>
+																<xsd:element name="specs" sql:relation="CmeCntrSpecs_FwdSpecs" sql:relationship="FwdPfFwdSpecs" sql:overflow-field="MissingElements">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="aliasDesc" type="xsd:string"/>
+																			<xsd:element name="venue" sql:is-constant="1">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="id" sql:field="VenueId" sql:relation="CmeCntrSpecs_FwdSpecsVenue" sql:relationship="FwdSpecsToVenue"/>
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+																<xsd:element name="name" type="xsd:string"/>
+															</xsd:sequence>
+															<xsd:attribute name="status" type="xsd:string" use="required"/>
+															<xsd:attribute name="rptOrder" type="xsd:unsignedShort" use="required"/>
+															<xsd:attribute name="pageBreak" type="xsd:boolean" use="required"/>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="oofPf" maxOccurs="unbounded" sql:relation="CmeCntrSpecs_OofPf" sql:relationship="ExchangeOofPf" sql:overflow-field="MissingElements">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="pfCode" type="xsd:string"/>
+																<xsd:element name="specs" sql:relation="CmeCntrSpecs_OofSpecs" sql:relationship="OofPfOofSpecs" sql:overflow-field="MissingElements">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="aliasDesc" type="xsd:string"/>
+																			<xsd:element name="venue" minOccurs="0" maxOccurs="unbounded" sql:is-constant="1">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="id" sql:field="VenueId" sql:relation="CmeCntrSpecs_OofSpecsVenue" sql:relationship="OofSpecsToVenue"/>
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+																<xsd:element name="name" type="xsd:string"/>
+															</xsd:sequence>
+															<xsd:attribute name="status" type="xsd:string" use="required"/>
+															<xsd:attribute name="rptOrder" type="xsd:unsignedShort" use="required"/>
+															<xsd:attribute name="pageBreak" type="xsd:boolean" use="required"/>
+														</xsd:complexType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

@@ -1,0 +1,26 @@
+﻿<%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI, Version=2010.3.1109.20, Culture=neutral, PublicKeyToken=121fae78165ba3d4" %>
+
+<telerik:RadTagCloud runat="server" 
+    MinFontSize="12"
+    MaxFontSize="30"
+    MinColor="#777"
+    MaxColor="#B56CB5"
+    Width="222px"
+    />
+
+<telerik:RadCalendar runat="server"
+    DayNameFormat="FirstLetter"
+    FirstDayOfWeek="Monday"
+    EnableNavigation="False"
+    EnableMonthYearFastNavigation="false"
+    CalendarTableStyle="line-height: 2"
+    ShowOtherMonthsDays="False"
+    EnableMultiSelect="False"
+    WeekendDayStyle-BackColor="#B7DFD1"
+    DayOverStyle-CssClass="SelecteItemStyle"
+    TitleStyle-CssClass="TitleStyle"
+    SelectedDayStyle-CssClass="SelecteItemStyle"
+ />
+
+<asp:CheckBox SkinID="q12" runat="server" Text='<img src="/Content/Images/filter-white.png">' />
+<asp:CheckBox SkinID="q13" runat="server" Text='<img src="/Content/Images/grouping-white.png">' />

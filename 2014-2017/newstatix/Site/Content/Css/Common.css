@@ -1,0 +1,59 @@
+﻿.td-vertical-align-top-full-width {
+    vertical-align: top;
+    width: 100%;
+}
+
+.td-vertical-align-top {
+    vertical-align: top;
+}
+
+.td-vertical-align-btm {
+    vertical-align: bottom;
+}
+
+h1, h2, h3 {
+    font-family: 'Ubuntu',Arial,Helvetica,sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 30px !important;
+    margin-top: 5px !important;
+}
+
+.calendar-month {
+    width: 100%;
+    height: 32px;
+    font-size: 14px;
+}
+
+.menu-fluid {
+    margin: 0 10px;
+}
+
+/* hide close button on the jquery ui dialog */
+.ui-dialog-titlebar-close {
+    visibility: hidden;
+}
+
+/* show resize icon on the jquery ui dialog */
+.ui-dialog .ui-resizable-se {
+    width: 14px;
+    height: 14px;
+    right: 3px;
+    bottom: 3px;
+    background-position: -80px -224px;
+}
+
+.ui-widget-overlay {
+    background: #000 !important;
+    -ms-opacity: 0.6 !important;
+    opacity: 0.6 !important;
+}
+
+.page-title {
+    margin-top: 0px !important;
+    margin-bottom: 10px;
+    font: 1.8em Trebuchet MS, Arial, sans-serif !important;
+}
+
+.menu-sm {
+    font-size: 13px !important;
+}

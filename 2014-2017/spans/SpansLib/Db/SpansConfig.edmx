@@ -1,0 +1,437 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SpansModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="SpansModelStoreContainer">
+          <EntitySet Name="cfg_ExtraFields" EntityType="SpansModel.Store.cfg_ExtraFields" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="cfg_RecordsDefinitions" EntityType="SpansModel.Store.cfg_RecordsDefinitions" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="cfg_RecordTableName" EntityType="SpansModel.Store.cfg_RecordTableName" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="cfg_Relationships" EntityType="SpansModel.Store.cfg_Relationships" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ftp_Batches" EntityType="SpansModel.Store.ftp_Batches" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ftp_FilesLists" EntityType="SpansModel.Store.ftp_FilesLists" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="import_Error" EntityType="SpansModel.Store.import_Error" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="import_Log" EntityType="SpansModel.Store.import_Log" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="paFile" EntityType="SpansModel.Store.paFile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="spanFile" EntityType="SpansModel.Store.spanFile" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_ftp_FilesList_ftp_FileListingBatch" Association="SpansModel.Store.FK_ftp_FilesList_ftp_FileListingBatch">
+            <End Role="ftp_Batches" EntitySet="ftp_Batches" />
+            <End Role="ftp_FilesLists" EntitySet="ftp_FilesLists" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="cfg_ExtraFields">
+          <Key>
+            <PropertyRef Name="RecordId" />
+            <PropertyRef Name="FileFormat" />
+            <PropertyRef Name="FieldName" />
+          </Key>
+          <Property Name="RecordId" Type="nvarchar" Nullable="false" MaxLength="2" />
+          <Property Name="FileFormat" Type="nvarchar" Nullable="false" MaxLength="5" />
+          <Property Name="FieldName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="FieldType" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="nchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="cfg_RecordsDefinitions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="_RecordType" Type="nvarchar" Nullable="false" MaxLength="2" />
+          <Property Name="_FieldLength" Type="int" Nullable="false" />
+          <Property Name="_StartPosition" Type="int" Nullable="false" />
+          <Property Name="Definition" Type="nvarchar" MaxLength="12" />
+          <Property Name="ValueFormat" Type="nvarchar" MaxLength="15" />
+          <Property Name="_DateFormat" Type="nvarchar" MaxLength="25" />
+          <Property Name="_ColumnName" Type="nvarchar" MaxLength="50" />
+          <Property Name="_DataType" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="_DefaultValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="2500" />
+          <Property Name="_Method" Type="nvarchar" MaxLength="2" />
+          <Property Name="_FileFormat" Type="nvarchar" Nullable="false" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="cfg_RecordTableName">
+          <Key>
+            <PropertyRef Name="RecordId" />
+            <PropertyRef Name="FileFormat" />
+          </Key>
+          <Property Name="RecordId" Type="nvarchar" Nullable="false" MaxLength="2" />
+          <Property Name="FileFormat" Type="nvarchar" Nullable="false" MaxLength="5" />
+          <Property Name="TableName" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="cfg_Relationships">
+          <Key>
+            <PropertyRef Name="RecordId" />
+            <PropertyRef Name="ParentRecordId" />
+            <PropertyRef Name="FileFormat" />
+          </Key>
+          <Property Name="RecordId" Type="nvarchar" Nullable="false" MaxLength="2" />
+          <Property Name="ParentRecordId" Type="nvarchar" Nullable="false" MaxLength="2" />
+          <Property Name="FileFormat" Type="nvarchar" Nullable="false" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="ftp_Batches">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Url" Type="nvarchar" Nullable="false" MaxLength="2000" />
+          <Property Name="SearchFromDate" Type="datetime" />
+          <Property Name="BatchCreatedDateUTC" Type="datetime" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="ftp_FilesLists">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BatchId" Type="int" Nullable="false" />
+          <Property Name="Path" Type="nvarchar" MaxLength="2048" />
+          <Property Name="Url" Type="nvarchar" Nullable="false" MaxLength="2048" />
+          <Property Name="FileDate" Type="datetime" Nullable="false" />
+          <Property Name="FileSize" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="import_Error">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="2000" />
+          <Property Name="Information" Type="nvarchar(max)" />
+          <Property Name="UpdatedUtc" Type="datetime" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="import_Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="JobName" Type="nvarchar" MaxLength="250" />
+          <Property Name="TriggerName" Type="nvarchar" MaxLength="250" />
+          <Property Name="Trace" Type="nvarchar(max)" />
+          <Property Name="StartDateUtc" Type="datetime" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EndDateUtc" Type="datetime" />
+        </EntityType>
+        <EntityType Name="paFile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BatchId" Type="int" />
+          <Property Name="Filename" Type="nvarchar" MaxLength="2000" />
+          <Property Name="StartDateUtc" Type="datetime" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="spanFile">
+          <Key>
+            <PropertyRef Name="spanFileId" />
+          </Key>
+          <Property Name="spanFileId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="fileName" Type="nvarchar" MaxLength="1024" />
+          <Property Name="loadTimeUtc" Type="datetime" />
+          <Property Name="MissingElements" Type="nvarchar(max)" />
+          <Property Name="spanVersion" Type="nvarchar" MaxLength="1000" />
+          <Property Name="fileFormat" Type="nvarchar" MaxLength="1000" />
+          <Property Name="created" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <Association Name="FK_ftp_FilesList_ftp_FileListingBatch">
+          <End Role="ftp_Batches" Type="SpansModel.Store.ftp_Batches" Multiplicity="1" />
+          <End Role="ftp_FilesLists" Type="SpansModel.Store.ftp_FilesLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ftp_Batches">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ftp_FilesLists">
+              <PropertyRef Name="BatchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_FindMissedElements" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SpansModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SpansEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="ExtraFields" EntityType="SpansModel.ExtraField" />
+          <EntitySet Name="RecordTableNames" EntityType="SpansModel.RecordTableName" />
+          <EntitySet Name="Batches" EntityType="SpansModel.Batch" />
+          <EntitySet Name="FilesLists" EntityType="SpansModel.FilesList" />
+          <AssociationSet Name="FK_ftp_FilesList_ftp_FileListingBatch" Association="SpansModel.FK_ftp_FilesList_ftp_FileListingBatch">
+            <End Role="ftp_Batches" EntitySet="Batches" />
+            <End Role="ftp_FilesLists" EntitySet="FilesLists" />
+          </AssociationSet>
+          <EntitySet Name="RecordsDefinitions" EntityType="SpansModel.RecordDefinition" />
+          <EntitySet Name="Relationships" EntityType="SpansModel.Relationship" />
+          <EntitySet Name="Errors" EntityType="SpansModel.Error" />
+          <EntitySet Name="SpanFiles" EntityType="SpansModel.SpanFile" />
+          <EntitySet Name="ImportLogs" EntityType="SpansModel.ImportLog" />
+          <FunctionImport Name="FindMissedElements" ReturnType="Collection(SpansModel.FindMissedElements_Result)" />
+          <EntitySet Name="PaFiles" EntityType="SpansModel.PaFile" />
+        </EntityContainer>
+        <EntityType Name="ExtraField">
+          <Key>
+            <PropertyRef Name="RecordId" />
+            <PropertyRef Name="FileFormat" />
+            <PropertyRef Name="FieldName" />
+          </Key>
+          <Property Name="RecordId" Type="String" Nullable="false" MaxLength="2" Unicode="true" FixedLength="false" />
+          <Property Name="FileFormat" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
+          <Property Name="FieldName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="FieldType" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="Description" MaxLength="300" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="RecordTableName">
+          <Key>
+            <PropertyRef Name="RecordId" />
+            <PropertyRef Name="FileFormat" />
+          </Key>
+          <Property Name="RecordId" Type="String" Nullable="false" MaxLength="2" Unicode="true" FixedLength="false" />
+          <Property Name="FileFormat" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
+          <Property Name="TableName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Batch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Url" Type="String" Nullable="false" MaxLength="2000" Unicode="true" FixedLength="false" />
+          <Property Name="SearchFromDate" Type="DateTime" Precision="3" />
+          <Property Name="BatchCreatedDateUTC" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Identity" Type="DateTime" />
+          <NavigationProperty Name="FilesLists" Relationship="SpansModel.FK_ftp_FilesList_ftp_FileListingBatch" FromRole="ftp_Batches" ToRole="ftp_FilesLists" />
+        </EntityType>
+        <EntityType Name="FilesList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="BatchId" Type="Int32" Nullable="false" />
+          <Property Name="Path" Type="String" MaxLength="2048" Unicode="true" FixedLength="false" />
+          <Property Name="Url" Type="String" Nullable="false" MaxLength="2048" Unicode="true" FixedLength="false" />
+          <Property Name="FileDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FileSize" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Batches" Relationship="SpansModel.FK_ftp_FilesList_ftp_FileListingBatch" FromRole="ftp_FilesLists" ToRole="ftp_Batches" />
+        </EntityType>
+        <Association Name="FK_ftp_FilesList_ftp_FileListingBatch">
+          <End Role="ftp_Batches" Type="SpansModel.Batch" Multiplicity="1" />
+          <End Role="ftp_FilesLists" Type="SpansModel.FilesList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ftp_Batches">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ftp_FilesLists">
+              <PropertyRef Name="BatchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RecordDefinition">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="RecordType" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="FieldLength" Nullable="false" />
+          <Property Type="Int32" Name="StartPosition" Nullable="false" />
+          <Property Type="String" Name="Definition" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ValueFormat" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DateFormat" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ColumnName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DataType" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DefaultValue" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="2500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Method" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FileFormat" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Relationship">
+          <Key>
+            <PropertyRef Name="RecordId" />
+            <PropertyRef Name="ParentRecordId" />
+            <PropertyRef Name="FileFormat" />
+          </Key>
+          <Property Type="String" Name="RecordId" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ParentRecordId" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FileFormat" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Error">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="FileName" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Information" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UpdatedUtc" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="SpanFile">
+          <Key>
+            <PropertyRef Name="SpanFileId" />
+          </Key>
+          <Property Type="Int32" Name="SpanFileId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="FileName" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LoadTimeUtc" Precision="3" />
+          </EntityType>
+        <EntityType Name="ImportLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="JobName" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TriggerName" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Trace" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="StartDateUtc" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EndDateUtc" Precision="3" Type="DateTime" />
+        </EntityType>
+        <ComplexType Name="FindMissedElements_Result">
+          <Property Type="String" Name="TableName" Nullable="true" MaxLength="128" />
+        </ComplexType>
+        <EntityType Name="PaFile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="BatchId" />
+          <Property Type="String" Name="Filename" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="StartDateUtc" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SpansModelStoreContainer" CdmEntityContainer="SpansEntities">
+          <EntitySetMapping Name="ExtraFields">
+            <EntityTypeMapping TypeName="SpansModel.ExtraField">
+              <MappingFragment StoreEntitySet="cfg_ExtraFields">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+                <ScalarProperty Name="FileFormat" ColumnName="FileFormat" />
+                <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+                <ScalarProperty Name="FieldType" ColumnName="FieldType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecordTableNames">
+            <EntityTypeMapping TypeName="SpansModel.RecordTableName">
+              <MappingFragment StoreEntitySet="cfg_RecordTableName">
+                <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+                <ScalarProperty Name="FileFormat" ColumnName="FileFormat" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Batches">
+            <EntityTypeMapping TypeName="SpansModel.Batch">
+              <MappingFragment StoreEntitySet="ftp_Batches">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="SearchFromDate" ColumnName="SearchFromDate" />
+                <ScalarProperty Name="BatchCreatedDateUTC" ColumnName="BatchCreatedDateUTC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FilesLists">
+            <EntityTypeMapping TypeName="SpansModel.FilesList">
+              <MappingFragment StoreEntitySet="ftp_FilesLists">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BatchId" ColumnName="BatchId" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="FileDate" ColumnName="FileDate" />
+                <ScalarProperty Name="FileSize" ColumnName="FileSize" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecordsDefinitions">
+            <EntityTypeMapping TypeName="SpansModel.RecordDefinition">
+              <MappingFragment StoreEntitySet="cfg_RecordsDefinitions">
+                <ScalarProperty Name="FileFormat" ColumnName="_FileFormat" />
+                <ScalarProperty Name="Method" ColumnName="_Method" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DefaultValue" ColumnName="_DefaultValue" />
+                <ScalarProperty Name="DataType" ColumnName="_DataType" />
+                <ScalarProperty Name="ColumnName" ColumnName="_ColumnName" />
+                <ScalarProperty Name="DateFormat" ColumnName="_DateFormat" />
+                <ScalarProperty Name="ValueFormat" ColumnName="ValueFormat" />
+                <ScalarProperty Name="Definition" ColumnName="Definition" />
+                <ScalarProperty Name="StartPosition" ColumnName="_StartPosition" />
+                <ScalarProperty Name="FieldLength" ColumnName="_FieldLength" />
+                <ScalarProperty Name="RecordType" ColumnName="_RecordType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Relationships">
+            <EntityTypeMapping TypeName="SpansModel.Relationship">
+              <MappingFragment StoreEntitySet="cfg_Relationships">
+                <ScalarProperty Name="FileFormat" ColumnName="FileFormat" />
+                <ScalarProperty Name="ParentRecordId" ColumnName="ParentRecordId" />
+                <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Errors">
+            <EntityTypeMapping TypeName="SpansModel.Error">
+              <MappingFragment StoreEntitySet="import_Error">
+                <ScalarProperty Name="UpdatedUtc" ColumnName="UpdatedUtc" />
+                <ScalarProperty Name="Information" ColumnName="Information" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpanFiles">
+            <EntityTypeMapping TypeName="SpansModel.SpanFile">
+              <MappingFragment StoreEntitySet="spanFile">
+                <ScalarProperty Name="LoadTimeUtc" ColumnName="loadTimeUtc" />
+                <ScalarProperty Name="FileName" ColumnName="fileName" />
+                <ScalarProperty Name="SpanFileId" ColumnName="spanFileId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImportLogs">
+            <EntityTypeMapping TypeName="SpansModel.ImportLog">
+              <MappingFragment StoreEntitySet="import_Log">
+                <ScalarProperty Name="EndDateUtc" ColumnName="EndDateUtc" />
+                <ScalarProperty Name="StartDateUtc" ColumnName="StartDateUtc" />
+                <ScalarProperty Name="Trace" ColumnName="Trace" />
+                <ScalarProperty Name="TriggerName" ColumnName="TriggerName" />
+                <ScalarProperty Name="JobName" ColumnName="JobName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="FindMissedElements" FunctionName="SpansModel.Store.sp_FindMissedElements" >
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="SpansModel.FindMissedElements_Result">
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="PaFiles">
+            <EntityTypeMapping TypeName="SpansModel.PaFile">
+              <MappingFragment StoreEntitySet="paFile">
+                <ScalarProperty Name="StartDateUtc" ColumnName="StartDateUtc" />
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
+                <ScalarProperty Name="BatchId" ColumnName="BatchId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

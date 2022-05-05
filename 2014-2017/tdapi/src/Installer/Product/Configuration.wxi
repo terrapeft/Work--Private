@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+  <WixVariable Id="WixUIDialogBmp" Value="Images\backdropLeft.bmp" />
+  <WixVariable Id="WixUIBannerBmp" Value="Images\banner.bmp" />
+
+  <!-- Restrict Modify and Repair modes -->
+  <Property Id="ARPNOREPAIR" Value="yes" Secure="yes" />
+  <Property Id="ARPNOMODIFY" Value="yes" Secure="yes" />
+
+  <Property Id="CIPHER" Value="VN6J87*LfzcR*CBmzvF4K6zg|-w2R+l|%YC|B5fR^ARCvV9n8T7IVEk3Tiqz" Secure="yes" />
+  
+  <Property Id="REUSE_DB" Secure="yes" />
+  
+  <Property Id="X509_SELECT" Secure="yes" />
+  <Property Id="X509_CERTIFICATE" Secure="yes" />
+  <Property Id="X509_STORE" Secure="yes" Value="5"/>
+  <Property Id="X509_STORELOCATION" Secure="yes" Value="2"/>
+
+  <Property Id="DEFAULT_PASSWORD" Value="123" />
+
+  <Property Id="ENABLE_PROXY" Secure="yes" />
+  <Property Id="DB_MAIL_PROFILE" Value="CLRelay" />
+  <Property Id="PROXY" Secure="yes" /><!--10.55.0.48:8080-->
+  <Property Id="PROXY_BYPASS" Secure="yes" Value="{}" />
+
+  <Property Id="TRUSTED_CONNECTION" Secure="yes" />
+  <Property Id="WEB_APP_API" Value="TradeDataApi" />
+  <Property Id="WEB_APP_ADMIN" Value="TradeDataAdmin" />
+  <Property Id="APPPOOL_NAME" Value="TRADEDataAppPool" Secure="yes"/>
+
+  <!-- This property doesn't replace all occurrences of the value, so there are duplications -->
+  <!-- Statix project depends on this value, if changed, please mnd to update the Statix setup (it reads td app pool from registry) -->
+  <Property Id="PRODUCT_NAME" Value="TRADEData API Service" />
+
+  <Property Id="DB_NAME" Value="Users" />
+  <Property Id="DB_USER" Value="td_user" />
+  <Property Id="DB_PASSWORD" Value="#td_aRc_16_dEv"/>
+  <Property Id="SQL_SERVER" Value="chupaev08e01\mssqlservertest"/>
+  <Property Id="JOB_USER" Value="td_user" />
+  <Property Id="TDAPI_DB_NAME" Value="TRADEDataAPI" />
+
+  <Property Id="API_PROTOCOL" Value="http" />
+  <Property Id="API_DNS" Value="tdapi.uat" />
+  <Property Id="API_IP" Value="127.0.11.1" />
+  <Property Id="API_PORT" Value="80" />
+
+  <Property Id="WEB_ADMIN_PROTOCOL" Value="http" />
+  <Property Id="WEB_ADMIN_DNS" Value="tdadmin.uat" />
+  <Property Id="WEB_ADMIN_IP" Value="127.0.11.2" />
+  <Property Id="WEB_ADMIN_PORT" Value="80" />
+
+  <Property Id="TDUSERS_DB_NAME" Value="TRADEDataUsers" />
+</Include>

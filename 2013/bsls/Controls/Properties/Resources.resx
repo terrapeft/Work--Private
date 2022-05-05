@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Error_EmptyQuery" xml:space="preserve">
+    <value>DB Query cannot be empty.</value>
+  </data>
+  <data name="Error_EmptySeriesName" xml:space="preserve">
+    <value>Series Name cannot be empty.</value>
+  </data>
+  <data name="Error_EmptySeriesTemplate" xml:space="preserve">
+    <value>Label Series format should be specified.</value>
+  </data>
+  <data name="Error_EndDateLesser" xml:space="preserve">
+    <value>End date cannot be less then start date.</value>
+  </data>
+  <data name="Error_ExistedSeriesName" xml:space="preserve">
+    <value>Series Name already exists.</value>
+  </data>
+  <data name="Error_IncorrectSeriesTemplate" xml:space="preserve">
+    <value>Label Series should have Series # or specified Year, Month and Day in digital form.</value>
+  </data>
+  <data name="Error_IntersectingRanges" xml:space="preserve">
+    <value>Range is intersecting with another reservation.</value>
+  </data>
+  <data name="Error_MaxIsLesser" xml:space="preserve">
+    <value>Maximum value cannot be less then Minimum.</value>
+  </data>
+  <data name="Error_MinIsGreater" xml:space="preserve">
+    <value>Minimum value cannot be greater than Maximum.</value>
+  </data>
+  <data name="Error_StartDateGreater" xml:space="preserve">
+    <value>Start date cannot be greater then end date.</value>
+  </data>
+  <data name="FormIsNotFilled" xml:space="preserve">
+    <value>Not all required fields are filled.</value>
+  </data>
+  <data name="MessageBox_IncorrectInputTitle" xml:space="preserve">
+    <value>Incorrect input</value>
+  </data>
+  <data name="MessageBox_WarnTitle" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="Message_IncorrectDate" xml:space="preserve">
+    <value>Date is incorrect.</value>
+  </data>
+  <data name="Message_IncorrectEdit" xml:space="preserve">
+    <value>You can only change sequence and/or date.
+Please check if the data is correct.</value>
+  </data>
+  <data name="MSSQL_Unsupported" xml:space="preserve">
+    <value>MS SQL Server is not supported in this version.
+To request the feature, contact JnJ R&amp;D, please.</value>
+  </data>
+  <data name="Question_CreateNewSeq_Format" xml:space="preserve">
+    <value>Do you want to create a new sequence?
+Note that it will be created in {0} schema.</value>
+  </data>
+  <data name="Question_SeqExistsInCurrentSchema_Format" xml:space="preserve">
+    <value>Specified sequence does not exist in {0} schema.
+But there is a sequence with the same name in {1} schema.
+Do you want to use this instead?</value>
+  </data>
+  <data name="SequenceDoesNotExist" xml:space="preserve">
+    <value>Sequence '{0}' does not exist or inaccessible and won't be updated.
+If you continue, next time you'll receive the same values.
+Proceed with printing?</value>
+  </data>
+  <data name="TDX_Name" xml:space="preserve">
+    <value>Series Manager</value>
+  </data>
+  <data name="Wait_Connect" xml:space="preserve">
+    <value>Trying to connect...</value>
+  </data>
+  <data name="Wait_CreatingSeq" xml:space="preserve">
+    <value>Creating sequence...</value>
+  </data>
+  <data name="Wait_RetrievingData" xml:space="preserve">
+    <value>Retrieving data from DB...</value>
+  </data>
+</root>

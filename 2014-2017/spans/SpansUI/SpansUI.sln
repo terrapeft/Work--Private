@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpansUI", "SpansUI.csproj", "{F023BE9D-B0C8-4011-B47F-58D6B956CFE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpansLib", "..\SpansLib\SpansLib.csproj", "{6EBB6532-71A7-4C03-AE77-B2B6286D5C26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpansTests", "..\SpansTests\SpansTests.csproj", "{D0A6E805-45E0-4733-826F-C97B78284F63}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sources", "Sources", "{05D40774-619E-44D6-B267-656CCD683A3A}"
+	ProjectSection(SolutionItems) = preProject
+		..\Sources\CMECntrSpecs.sql = ..\Sources\CMECntrSpecs.sql
+		..\Sources\CMEcntrSpecs.xsd = ..\Sources\CMEcntrSpecs.xsd
+		..\Sources\Config.sql = ..\Sources\Config.sql
+		..\Sources\DropAll.sql = ..\Sources\DropAll.sql
+		..\Sources\MarginRates.sql = ..\Sources\MarginRates.sql
+		..\Sources\MarginRates.xsd = ..\Sources\MarginRates.xsd
+		..\Sources\MarginRates.xslt = ..\Sources\MarginRates.xslt
+		..\Sources\OrgMast.sql = ..\Sources\OrgMast.sql
+		..\Sources\OrgMast.xsd = ..\Sources\OrgMast.xsd
+		..\Sources\OrgMast.xslt = ..\Sources\OrgMast.xslt
+		..\Sources\Product_Calendar.sql = ..\Sources\Product_Calendar.sql
+		..\Sources\product_calendar.xsd = ..\Sources\product_calendar.xsd
+		..\Sources\spanFile.sql = ..\Sources\spanFile.sql
+		..\Sources\spanFile.xsd = ..\Sources\spanFile.xsd
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedLibrary", "..\..\SharedLibrary\SharedLibrary.csproj", "{B2C7552C-432D-4A1D-BFF1-0F0A041B5761}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5D7198F8-1FF9-4714-88CE-B483EFDBB324}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F023BE9D-B0C8-4011-B47F-58D6B956CFE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F023BE9D-B0C8-4011-B47F-58D6B956CFE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F023BE9D-B0C8-4011-B47F-58D6B956CFE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F023BE9D-B0C8-4011-B47F-58D6B956CFE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EBB6532-71A7-4C03-AE77-B2B6286D5C26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EBB6532-71A7-4C03-AE77-B2B6286D5C26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EBB6532-71A7-4C03-AE77-B2B6286D5C26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EBB6532-71A7-4C03-AE77-B2B6286D5C26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0A6E805-45E0-4733-826F-C97B78284F63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0A6E805-45E0-4733-826F-C97B78284F63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0A6E805-45E0-4733-826F-C97B78284F63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0A6E805-45E0-4733-826F-C97B78284F63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2C7552C-432D-4A1D-BFF1-0F0A041B5761}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2C7552C-432D-4A1D-BFF1-0F0A041B5761}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2C7552C-432D-4A1D-BFF1-0F0A041B5761}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2C7552C-432D-4A1D-BFF1-0F0A041B5761}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

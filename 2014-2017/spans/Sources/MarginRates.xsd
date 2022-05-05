@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by Vitaly Chupaev (Home user) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cn="custom-namespace" xmlns:sql="urn:schemas-microsoft-com:mapping-schema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<sql:relationship name="GroupProduct" parent="MarginRates_Groups" parent-key="Id" child="MarginRates_MarginProduct" child-key="GroupId"/>
+			<sql:relationship name="ProductRate" parent="MarginRates_MarginProduct" parent-key="Id" child="MarginRates_Rates" child-key="MarginProductId"/>
+			<sql:relationship name="TiersTierProduct" parent="MarginRates_Tiers" parent-key="Id" child="MarginRates_TierProduct" child-key="TierId"/>
+			<sql:relationship name="TierProductTier" parent="MarginRates_TierProduct" parent-key="Id" child="MarginRates_Tier" child-key="TierProductId"/>
+			<sql:relationship name="BFCCToProductFamily" parent="MarginRates_BFCC" parent-key="Id" child="MarginRates_BFCCProductFamily" child-key="BFCCID"/>
+			<sql:relationship name="MarginProductToProductFamily" parent="MarginRates_MarginProduct" parent-key="Id" child="MarginRates_MarginProductProductFamily" child-key="MarginProductId"/>
+			<sql:relationship name="ProductFamilyToBFCC" parent="MarginRates_ProductFamily" parent-key="Id" child="MarginRates_BFCCProductFamily" child-key="ProductFamilyId" inverse="true"/>
+			<sql:relationship name="ProductFamilyToMarginProduct" parent="MarginRates_ProductFamily" parent-key="Id" child="MarginRates_MarginProductProductFamily" child-key="ProductFamilyId" inverse="true"/>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:annotation/>
+	<xs:annotation/>
+	<xs:annotation/>
+	<xs:annotation/>
+	<xs:annotation/>
+	<xs:annotation/>
+	<xs:annotation/>
+	<xs:element name="root" sql:is-constant="true">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="dictionaries" sql:is-constant="true">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ProductFamily" sql:relation="MarginRates_ProductFamily" maxOccurs="unbounded" sql:overflow-field="MissingElements">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Id" type="xs:string"/>
+										<xs:element name="PFCode" type="xs:string"/>
+										<xs:element name="Long_Name"/>
+										<xs:element name="ScalingFactor" type="xs:decimal"/>
+										<xs:element name="PFType" type="xs:string"/>
+										<xs:element name="C21Type" type="xs:string"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="marginRatesFile" sql:is-constant="true">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="created" type="xs:string" sql:relation="MarginRates_Created"/>
+							<xs:element name="BFCCProductFamily" sql:is-constant="true">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="BFCC" sql:relation="MarginRates_BFCC" maxOccurs="unbounded" sql:overflow-field="MissingElements">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="CCCode" type="xs:string"/>
+													<xs:element name="CCName" type="xs:string"/>
+													<xs:element name="Effective" type="xs:date"/>
+													<xs:element name="PFIds" minOccurs="0" sql:is-constant="true">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Id" type="xs:string" sql:field="ProductFamilyId" sql:relation="MarginRates_BFCCProductFamily" sql:relationship="BFCCToProductFamily"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Group" maxOccurs="unbounded" sql:relation="MarginRates_Groups" sql:overflow-field="MissingElements">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="GroupDescription" type="xs:string"/>
+										<xs:element name="OutrightRates" sql:is-constant="true">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Current" sql:is-constant="true">
+														<xs:complexType>
+															<xs:sequence minOccurs="0">
+																<xs:element name="Product" maxOccurs="unbounded" sql:relationship="GroupProduct" sql:relation="MarginRates_MarginProduct" sql:overflow-field="MissingElements">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="IsCurrent" type="xs:unsignedByte"/>
+																			<xs:element name="Outright" type="xs:unsignedByte"/>
+																			<xs:element name="ProductDescription" type="xs:string"/>
+																			<xs:element name="BFCC_ID" type="xs:unsignedShort"/>
+																			<xs:element name="CCCode" type="xs:string"/>
+																			<xs:element name="PFIds" minOccurs="0" sql:is-constant="true">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="Id" type="xs:string" sql:field="ProductFamilyId" sql:relation="MarginRates_MarginProductProductFamily" sql:relationship="MarginProductToProductFamily"/>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="Rates" sql:relation="MarginRates_Rates" maxOccurs="unbounded" sql:relationship="ProductRate" sql:overflow-field="MissingElements">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="RateType" type="xs:string"/>
+																						<xs:element name="isPercentage" type="xs:unsignedByte"/>
+																						<xs:element name="ISOCode" type="xs:string"/>
+																						<xs:element name="Symbol" type="xs:string"/>
+																						<xs:element name="InitialRequirement" type="xs:decimal"/>
+																						<xs:element name="MaintenanceRequirement" type="xs:decimal"/>
+																						<xs:element name="Effective" type="xs:date"/>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Future" sql:is-constant="true">
+														<xs:complexType>
+															<xs:sequence minOccurs="0">
+																<xs:element name="Product" maxOccurs="unbounded" sql:relationship="GroupProduct" sql:relation="MarginRates_MarginProduct" sql:overflow-field="MissingElements">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="IsCurrent" type="xs:unsignedByte"/>
+																			<xs:element name="Outright" type="xs:unsignedByte"/>
+																			<xs:element name="ProductDescription" type="xs:string"/>
+																			<xs:element name="BFCC_ID" type="xs:unsignedShort"/>
+																			<xs:element name="CCCode" type="xs:string"/>
+																			<xs:element name="PFIds" minOccurs="0" sql:is-constant="true">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="Id" type="xs:string" sql:field="ProductFamilyId" sql:relation="MarginRates_MarginProductProductFamily" sql:relationship="MarginProductToProductFamily"/>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="Rates" sql:relation="MarginRates_Rates" maxOccurs="unbounded" sql:relationship="ProductRate" sql:overflow-field="MissingElements">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="RateType" type="xs:string"/>
+																						<xs:element name="isPercentage" type="xs:unsignedByte"/>
+																						<xs:element name="ISOCode" type="xs:string"/>
+																						<xs:element name="Symbol" type="xs:string"/>
+																						<xs:element name="InitialRequirement" type="xs:decimal"/>
+																						<xs:element name="MaintenanceRequirement" type="xs:decimal"/>
+																						<xs:element name="Effective" type="xs:date"/>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="IntraCommodityRates" sql:is-constant="true">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Current" sql:is-constant="true">
+														<xs:complexType>
+															<xs:sequence minOccurs="0">
+																<xs:element name="Product" maxOccurs="unbounded" sql:relationship="GroupProduct" sql:relation="MarginRates_MarginProduct" sql:overflow-field="MissingElements">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="IsCurrent" type="xs:unsignedByte"/>
+																			<xs:element name="IntraCommodity" type="xs:unsignedByte"/>
+																			<xs:element name="ProductDescription" type="xs:string"/>
+																			<xs:element name="BFCC_ID" type="xs:unsignedShort"/>
+																			<xs:element name="CCCode" type="xs:string"/>
+																			<xs:element name="Rates" sql:relation="MarginRates_Rates" maxOccurs="unbounded" sql:relationship="ProductRate" sql:overflow-field="MissingElements">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="RateType" type="xs:string"/>
+																						<xs:element name="isPercentage" type="xs:unsignedByte"/>
+																						<xs:element name="ISOCode" type="xs:string"/>
+																						<xs:element name="Symbol" type="xs:string"/>
+																						<xs:element name="InitialRequirement" type="xs:decimal"/>
+																						<xs:element name="MaintenanceRequirement" type="xs:string"/>
+																						<xs:element name="Effective" type="xs:date"/>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Future" sql:is-constant="true">
+														<xs:complexType>
+															<xs:sequence minOccurs="0">
+																<xs:element name="Product" maxOccurs="unbounded" sql:relationship="GroupProduct" sql:relation="MarginRates_MarginProduct" sql:overflow-field="MissingElements">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="IsCurrent" type="xs:unsignedByte"/>
+																			<xs:element name="IntraCommodity" type="xs:unsignedByte"/>
+																			<xs:element name="ProductDescription" type="xs:string"/>
+																			<xs:element name="BFCC_ID" type="xs:unsignedShort"/>
+																			<xs:element name="CCCode" type="xs:string"/>
+																			<xs:element name="Rates" sql:relation="MarginRates_Rates" maxOccurs="unbounded" sql:relationship="ProductRate" sql:overflow-field="MissingElements">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="RateType" type="xs:string"/>
+																						<xs:element name="isPercentage" type="xs:unsignedByte"/>
+																						<xs:element name="ISOCode" type="xs:string"/>
+																						<xs:element name="Symbol" type="xs:string"/>
+																						<xs:element name="InitialRequirement" type="xs:decimal"/>
+																						<xs:element name="MaintenanceRequirement" type="xs:decimal"/>
+																						<xs:element name="Effective" type="xs:date"/>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="InterCommodityRates" sql:is-constant="true">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Current" sql:is-constant="true">
+														<xs:complexType>
+															<xs:sequence minOccurs="0">
+																<xs:element name="Product" maxOccurs="unbounded" sql:relationship="GroupProduct" sql:relation="MarginRates_MarginProduct" sql:overflow-field="MissingElements">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="IsCurrent" type="xs:unsignedByte"/>
+																			<xs:element name="InterCommodity" type="xs:unsignedByte"/>
+																			<xs:element name="ProductDescription" type="xs:string"/>
+																			<xs:element name="Rates" sql:relation="MarginRates_Rates" sql:relationship="ProductRate" sql:overflow-field="MissingElements">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="RateType" type="xs:string"/>
+																						<xs:element name="Ratio" type="xs:string"/>
+																						<xs:element name="isPercentage" type="xs:unsignedByte"/>
+																						<xs:element name="InitialRequirement" type="xs:string"/>
+																						<xs:element name="MaintenanceRequirement" type="xs:string"/>
+																						<xs:element name="Effective" type="xs:date"/>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Future" sql:is-constant="true">
+														<xs:complexType>
+															<xs:sequence minOccurs="0">
+																<xs:element name="Product" maxOccurs="unbounded" sql:relationship="GroupProduct" sql:relation="MarginRates_MarginProduct" sql:overflow-field="MissingElements">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="IsCurrent" type="xs:unsignedByte"/>
+																			<xs:element name="InterCommodity" type="xs:unsignedByte"/>
+																			<xs:element name="ProductDescription" type="xs:string"/>
+																			<xs:element name="Rates" sql:relation="MarginRates_Rates" sql:relationship="ProductRate" sql:overflow-field="MissingElements">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="RateType" type="xs:string"/>
+																						<xs:element name="Ratio" type="xs:string"/>
+																						<xs:element name="isPercentage" type="xs:unsignedByte"/>
+																						<xs:element name="InitialRequirement" type="xs:decimal"/>
+																						<xs:element name="MaintenanceRequirement" type="xs:decimal"/>
+																						<xs:element name="Effective" type="xs:date"/>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="IntexRates" sql:is-constant="true">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Current" sql:is-constant="true">
+														<xs:complexType>
+															<xs:sequence minOccurs="0">
+																<xs:element name="Product" maxOccurs="unbounded" sql:relationship="GroupProduct" sql:relation="MarginRates_MarginProduct" sql:overflow-field="MissingElements">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="IsCurrent" type="xs:unsignedByte"/>
+																			<xs:element name="Intex" type="xs:unsignedByte"/>
+																			<xs:element name="ProductDescription" type="xs:string"/>
+																			<xs:element name="Rates" sql:relation="MarginRates_Rates" sql:relationship="ProductRate" sql:overflow-field="MissingElements">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="RateType" type="xs:string"/>
+																						<xs:element name="Ratio" type="xs:string"/>
+																						<xs:element name="isPercentage" type="xs:unsignedByte"/>
+																						<xs:element name="InitialRequirement" type="xs:decimal"/>
+																						<xs:element name="MaintenanceRequirement" type="xs:decimal"/>
+																						<xs:element name="Effective" type="xs:date"/>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Future" sql:is-constant="true">
+														<xs:complexType>
+															<xs:sequence minOccurs="0">
+																<xs:element name="Product" maxOccurs="unbounded" sql:relationship="GroupProduct" sql:relation="MarginRates_MarginProduct" sql:overflow-field="MissingElements">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="IsCurrent" type="xs:unsignedByte"/>
+																			<xs:element name="Intex" type="xs:unsignedByte"/>
+																			<xs:element name="ProductDescription" type="xs:string"/>
+																			<xs:element name="Rates" sql:relation="MarginRates_Rates" sql:relationship="ProductRate" sql:overflow-field="MissingElements">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="RateType" type="xs:string"/>
+																						<xs:element name="Ratio" type="xs:string"/>
+																						<xs:element name="isPercentage" type="xs:unsignedByte"/>
+																						<xs:element name="InitialRequirement" type="xs:decimal"/>
+																						<xs:element name="MaintenanceRequirement" type="xs:decimal"/>
+																						<xs:element name="Effective" type="xs:date"/>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Tiers" sql:is-constant="true">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="TierType" maxOccurs="unbounded" sql:relation="MarginRates_Tiers">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="TierTypeDescription" type="xs:string"/>
+													<xs:element name="CurrentTier" sql:is-constant="true">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="TierProduct" maxOccurs="unbounded" sql:relation="MarginRates_TierProduct" sql:relationship="TiersTierProduct" sql:overflow-field="MissingElements">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="IsCurrent" type="xs:unsignedByte"/>
+																			<xs:element name="TierProductDescription" type="xs:string"/>
+																			<xs:element name="Tier" sql:relation="MarginRates_Tier" maxOccurs="unbounded" sql:relationship="TierProductTier" sql:overflow-field="MissingElements">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="TierSeqNumber" type="xs:unsignedByte"/>
+																						<xs:element name="StartTierPeriodType" type="xs:string"/>
+																						<xs:element name="StartPeriodSeq" type="xs:string"/>
+																						<xs:element name="EndTierPeriodType" type="xs:string"/>
+																						<xs:element name="EndPeriodSeq" type="xs:string"/>
+																						<xs:element name="Effetive" type="xs:date"/>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="FutureTier" sql:is-constant="true">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="TierProduct" maxOccurs="unbounded" sql:relation="MarginRates_TierProduct" sql:relationship="TiersTierProduct" sql:overflow-field="MissingElements">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="IsCurrent" type="xs:unsignedByte"/>
+																			<xs:element name="TierProductDescription" type="xs:string"/>
+																			<xs:element name="Tier" sql:relation="MarginRates_Tier" maxOccurs="unbounded" sql:relationship="TierProductTier" sql:overflow-field="MissingElements">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="TierSeqNumber" type="xs:unsignedByte"/>
+																						<xs:element name="StartTierPeriodType" type="xs:string"/>
+																						<xs:element name="StartPeriodSeq" type="xs:string"/>
+																						<xs:element name="EndTierPeriodType" type="xs:string"/>
+																						<xs:element name="EndPeriodSeq" type="xs:string"/>
+																						<xs:element name="Effetive" type="xs:date"/>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="SOMRates" sql:is-constant="true">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="VolSomRates" sql:relation="MarginRates_VolSomRates" maxOccurs="unbounded" sql:overflow-field="MissingElements">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Ticker" type="xs:string"/>
+													<xs:element name="ProductName" type="xs:string"/>
+													<xs:element name="isPctM" type="xs:unsignedByte"/>
+													<xs:element name="MaintToInit" type="xs:string"/>
+													<xs:element name="isPctV" type="xs:unsignedByte"/>
+													<xs:element name="VolScan" type="xs:string"/>
+													<xs:element name="SOM" type="xs:string"/>
+													<xs:element name="isPctS" type="xs:unsignedByte"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ProductFamilyByTicker" sql:is-constant="true"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

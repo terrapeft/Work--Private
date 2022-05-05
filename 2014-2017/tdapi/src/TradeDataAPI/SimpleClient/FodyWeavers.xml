@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Weavers>
+  <Costura IncludeDebugSymbols="false">
+    <ExcludeAssemblies>
+      Telerik.Web.UI
+      LukeSkywalker.IPNetwork
+      Elmah
+      EntityFramework
+      ImageComboBox
+    </ExcludeAssemblies>
+  </Costura>
+
+</Weavers>

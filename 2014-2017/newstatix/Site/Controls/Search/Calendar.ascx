@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Calendar.ascx.cs" Inherits="Statix.Controls.Search._Calendar" %>
+<input runat="server" id="dateTextBox" class="form-control-thick" type="text" style="border: 1px solid darkgray; height: 20px;" datepicker/>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:sql="urn:schemas-microsoft-com:mapping-schema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<sql:relationship name="ProductTypesProduct" parent="Calendar_ProductTypes" parent-key="Id" child="Calendar_Product" child-key="ProductTypeId"/>
+			<sql:relationship name="ProductContract" parent="Calendar_Product" parent-key="Id" child="Calendar_Contract" child-key="ProductId"/>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="CALENDAR_DATA" sql:is-constant="1">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DATE_CREATED" type="xs:string" sql:relation="Calendar_Created" sql:field="created"/>
+				<xs:element name="PRODUCT_TYPES" maxOccurs="unbounded" sql:relation="Calendar_ProductTypes" sql:overflow-field="MissingElements">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="PRODUCT_TYPE" type="xs:string" sql:field="ProductType"/>
+							<xs:element name="PRODUCT" maxOccurs="unbounded" sql:relation="Calendar_Product" sql:relationship="ProductTypesProduct" sql:overflow-field="MissingElements">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Exchange" type="xs:string"/>
+										<xs:element name="Commodity_Name" type="xs:string"/>
+										<xs:element name="Commodity_Code" type="xs:string"/>
+										<xs:element name="PRODUCT_TYPE_CODE" type="xs:string" sql:field="ProductTypeCode"/>
+										<xs:element name="CONTRACT" maxOccurs="unbounded" sql:relation="Calendar_Contract" sql:relationship="ProductContract" sql:overflow-field="MissingElements">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Contract_Name" type="xs:string"/>
+													<xs:element name="Contract_Product_Code" type="xs:unsignedInt"/>
+													<xs:element name="Exp_Contract_Code" type="xs:string"/>
+													<xs:element name="ITC_Code" type="xs:string" minOccurs="0"/>
+													<xs:element name="Contract_Code" type="xs:string"/>
+													<xs:element name="Option_Type" type="xs:string" minOccurs="0"/>
+													<xs:element name="FTD" type="xs:string"/>
+													<xs:element name="LTD" type="xs:string"/>
+													<xs:element name="SD" type="xs:string"/>
+													<xs:element name="DD" type="xs:string"/>
+													<xs:element name="IID" type="xs:string" minOccurs="0"/>
+													<xs:element name="FID" type="xs:string" minOccurs="0"/>
+													<xs:element name="FND" type="xs:string" minOccurs="0"/>
+													<xs:element name="FDD" type="xs:string" minOccurs="0"/>
+													<xs:element name="LPD" type="xs:string" minOccurs="0"/>
+													<xs:element name="LID" type="xs:string" minOccurs="0"/>
+													<xs:element name="LND" type="xs:string" minOccurs="0"/>
+													<xs:element name="LDD" type="xs:string" minOccurs="0"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

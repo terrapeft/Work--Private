@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5e7e9e735a4c46fb9f33bb45120335db" Name="Diagram1">
+        <EntityTypeShape EntityType="SpansModel.ExtraField" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpansModel.RecordTableName" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpansModel.Batch" Width="2" PointX="8.375" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpansModel.FilesList" Width="1.5" PointX="11.25" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="SpansModel.FK_ftp_FilesList_ftp_FileListingBatch" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SpansModel.RecordDefinition" Width="1.5" PointX="4.875" PointY="4.375" />
+        <EntityTypeShape EntityType="SpansModel.Relationship" Width="1.5" PointX="5.5" PointY="1.5" />
+        <EntityTypeShape EntityType="SpansModel.Error" Width="1.5" PointX="8.625" PointY="6.75" />
+        <EntityTypeShape EntityType="SpansModel.SpanFile" Width="1.5" PointX="11.125" PointY="5.375" />
+        <EntityTypeShape EntityType="SpansModel.ImportLog" Width="1.5" PointX="8.75" PointY="3.875" />
+        <EntityTypeShape EntityType="SpansModel.PaFile" Width="1.5" PointX="12.875" PointY="5.375" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,41 @@
+﻿@inherits UmbracoTemplatePage
+@{
+    Layout = "MasterFowTemplate.cshtml";
+    var questions = CurrentPage.someFaqs;
+}
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-8">
+        <h3 class="larger-caps">@Umbraco.Field("header")</h3>
+        <br>	
+        <small>
+            @Umbraco.Field("content")
+        </small>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-8">
+        <div style="margin: 7px 0;">
+            <strong>FAQs</strong>
+        </div>
+        <small>
+            <select id="ddlFAQ" class="select-faq form-control">
+                @foreach (var question in questions)
+                {
+                    <option value="@question.GetValue("faqAnswer")">@question.GetValue("faqQuestion")</option>
+                }
+            </select>
+            <div id="faqAnswers"></div>
+        </small>
+    </div>
+</div>
+<br>
+
+<script>
+    $(document).ready(function () {
+
+        // show first item on load
+        $('#faqAnswers').text($('#ddlFAQ').val());
+
+        $('#ddlFAQ').change(function() {
+            $('#faqAnswers').text($('#ddlFAQ').val());
+        });
+    });
+</script>

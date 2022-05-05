@@ -1,0 +1,11 @@
+Clean Installation, delete when ready/
+FowTradeDataU/App_Data/TEMP/
+FowTradeDataU/App_Data/Logs/
+TDUmbracoMembership/bin/
+TDUmbracoMembership/obj/
+FowTradeDataU/bin/
+FowTradeDataU/obj/
+packages/
+FowTradeDataU/App_Data/cache/
+FowTradeDataU/App_Data/preview/5_a8481f4e-553d-4e00-8ad8-a93ee6259ffb.config
+Db/Backup/

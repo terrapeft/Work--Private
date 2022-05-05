@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9FE690C8-9B42-4D1E-BFED-5F9253FA88A7}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CustomersUI</RootNamespace>
+    <AssemblyName>CustomersUI</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\External Dependencies\ELMAH\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\External Dependencies\DotNetZip\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\..\..\External Dependencies\log4net\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\External Dependencies\Newtonsoft\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Telerik.Web.Design">
+      <HintPath>..\..\..\..\External Dependencies\Telerik\RadControls\Q3 2010 For ASP.Net Ajax\Bin20\Telerik.Web.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.UI">
+      <HintPath>..\..\..\..\External Dependencies\Telerik\RadControls\Q3 2010 For ASP.Net Ajax\Bin20\Telerik.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UsersDb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\External Dependencies\TradeData\UsersDb.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\CommonControls\Content\Css\bootstrap-ie7.css">
+      <Link>Content\Css\bootstrap-ie7.css</Link>
+    </Content>
+    <Content Include="..\CommonControls\Content\Css\checkbox-buttons.css">
+      <Link>Content\Css\checkbox-buttons.css</Link>
+    </Content>
+    <Content Include="..\CommonControls\Content\Css\ie8.css">
+      <Link>Content\Css\ie8.css</Link>
+    </Content>
+    <Content Include="..\CommonControls\Content\Css\styles.css">
+      <Link>Content\Css\styles.css</Link>
+    </Content>
+    <Content Include="..\CommonControls\Content\Scripts\twitter-bootstrap-hover-dropdown.min.js">
+      <Link>Content\Scripts\twitter-bootstrap-hover-dropdown.min.js</Link>
+    </Content>
+    <Content Include="Content\Css\Site.css" />
+    <Content Include="Content\Images\animated-progress.gif" />
+    <Content Include="Content\Images\arrow_up.png" />
+    <Content Include="Content\Images\caret-down.png" />
+    <Content Include="Content\Images\caret-up.png" />
+    <Content Include="Content\Images\close.png" />
+    <Content Include="Content\Images\filter-gray.png" />
+    <Content Include="Content\Images\first.png" />
+    <Content Include="Content\Images\last.png" />
+    <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\minus.png" />
+    <Content Include="Content\Images\next.png" />
+    <Content Include="Content\Images\plus.png" />
+    <Content Include="Content\Images\prev.png" />
+    <Content Include="Content\Scripts\customers-ui.js" />
+    <Content Include="Content\Scripts\validator.min.js" />
+    <Content Include="Content\Templates\TrialEmail.html" />
+    <Content Include="Controls\BreadcrumbControl.ascx" />
+    <Content Include="Controls\Pager\SimplePager.ascx" />
+    <Content Include="Controls\UserSearchQueries.ascx" />
+    <Content Include="Controls\SearchOptionsControl.ascx" />
+    <Content Include="Controls\DetailsControl.ascx" />
+    <Content Include="Controls\EntityCollectionControl.ascx" />
+    <Content Include="Controls\SearchBoxControl.ascx" />
+    <Content Include="Controls\SearchResults.ascx" />
+    <Content Include="Controls\MyStatisticsControl.ascx" />
+    <Content Include="Controls\MySubscriptionControl.ascx" />
+    <Content Include="Controls\EntityDataControl.ascx" />
+    <Content Include="Controls\MenuControl.ascx" />
+    <Content Include="Default.aspx" />
+    <Content Include="Error.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Login.aspx" />
+    <Content Include="Pages\Details.aspx" />
+    <Content Include="Pages\Tracked\0\Account.aspx" />
+    <Content Include="Pages\Tracked\2\Search.aspx" />
+    <Content Include="Pages\Tracked\1\Statistics.aspx" />
+    <Content Include="Pages\Tracked\1\Subscription.aspx" />
+    <Content Include="Pages\Trial.aspx" />
+    <Content Include="Pages\VerifyEmail.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Bundle.config" />
+    <Content Include="WebMethods\CustomerService.asmx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Site.Mobile.Master" />
+    <Content Include="Pages\Tracked\1\Web.config" />
+    <Content Include="Pages\Tracked\2\Web.config" />
+    <None Include="Properties\PublishProfiles\CustomerUI.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controls\BreadcrumbControl.ascx.cs">
+      <DependentUpon>BreadcrumbControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\BreadcrumbControl.ascx.designer.cs">
+      <DependentUpon>BreadcrumbControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Pager\PagerItem.cs" />
+    <Compile Include="Controls\Pager\SimplePager.ascx.cs">
+      <DependentUpon>SimplePager.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Pager\SimplePager.ascx.designer.cs">
+      <DependentUpon>SimplePager.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UserSearchQueries.ascx.cs">
+      <DependentUpon>UserSearchQueries.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\UserSearchQueries.ascx.designer.cs">
+      <DependentUpon>UserSearchQueries.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SearchOptionsControl.ascx.cs">
+      <DependentUpon>SearchOptionsControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\SearchOptionsControl.ascx.designer.cs">
+      <DependentUpon>SearchOptionsControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DetailsControl.ascx.cs">
+      <DependentUpon>DetailsControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\DetailsControl.ascx.designer.cs">
+      <DependentUpon>DetailsControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EntityCollectionControl.ascx.cs">
+      <DependentUpon>EntityCollectionControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\EntityCollectionControl.ascx.designer.cs">
+      <DependentUpon>EntityCollectionControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SearchBoxControl.ascx.cs">
+      <DependentUpon>SearchBoxControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\SearchBoxControl.ascx.designer.cs">
+      <DependentUpon>SearchBoxControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SearchResults.ascx.cs">
+      <DependentUpon>SearchResults.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\SearchResults.ascx.designer.cs">
+      <DependentUpon>SearchResults.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MyStatisticsControl.ascx.cs">
+      <DependentUpon>MyStatisticsControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\MyStatisticsControl.ascx.designer.cs">
+      <DependentUpon>MyStatisticsControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Details.aspx.cs">
+      <DependentUpon>Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Details.aspx.designer.cs">
+      <DependentUpon>Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Tracked\2\Search.aspx.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Tracked\2\Search.aspx.designer.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Tracked\1\Statistics.aspx.cs">
+      <DependentUpon>Statistics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Tracked\1\Statistics.aspx.designer.cs">
+      <DependentUpon>Statistics.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Trial.aspx.cs">
+      <DependentUpon>Trial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Trial.aspx.designer.cs">
+      <DependentUpon>Trial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VerifyEmail.aspx.cs">
+      <DependentUpon>VerifyEmail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\VerifyEmail.aspx.designer.cs">
+      <DependentUpon>VerifyEmail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubscriptionControlMode.cs" />
+    <Compile Include="Controls\MySubscriptionControl.ascx.cs">
+      <DependentUpon>MySubscriptionControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\MySubscriptionControl.ascx.designer.cs">
+      <DependentUpon>MySubscriptionControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EntityDataControl.ascx.cs">
+      <DependentUpon>EntityDataControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\EntityDataControl.ascx.designer.cs">
+      <DependentUpon>EntityDataControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MenuControl.ascx.cs">
+      <DependentUpon>MenuControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\MenuControl.ascx.designer.cs">
+      <DependentUpon>MenuControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Tracked\0\Account.aspx.cs">
+      <DependentUpon>Account.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Tracked\0\Account.aspx.designer.cs">
+      <DependentUpon>Account.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Tracked\1\Subscription.aspx.cs">
+      <DependentUpon>Subscription.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Tracked\1\Subscription.aspx.designer.cs">
+      <DependentUpon>Subscription.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.designer.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Trial\TrialSubscription.cs" />
+    <Compile Include="WebMethods\CustomerService.asmx.cs">
+      <DependentUpon>CustomerService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\SharedLibrary\SharedLibrary.csproj">
+      <Project>{B2C7552C-432D-4A1D-BFF1-0F0A041B5761}</Project>
+      <Name>SharedLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TradeDataAPI\TradeDataAPI\TradeDataAPI.csproj">
+      <Project>{C8421F84-0ED5-46E2-A765-154B84A6A3F3}</Project>
+      <Name>TradeDataAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonControls\CommonControls.csproj">
+      <Project>{f850ad09-3800-4d6d-9c91-b4c4b6f08848}</Project>
+      <Name>CommonControls</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50924</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:62267/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

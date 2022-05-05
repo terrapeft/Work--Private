@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ErrorResults.ascx.cs" Inherits="UsersUI.Controls.InformersControls.Footers.ErrorResults" %>
+<a runat="server" id="link1" style="padding-left: 5px;" href="/elmah.axd">Details</a>

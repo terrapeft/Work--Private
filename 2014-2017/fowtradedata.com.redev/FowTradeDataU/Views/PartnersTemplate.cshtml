@@ -1,0 +1,41 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "MasterFowTemplate.cshtml";
+    var images = CurrentPage.images;
+    var k = 1;
+}
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-8">
+        <h3 class="larger-caps">@Umbraco.Field("header")</h3>
+        <br>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-8">
+        <small>
+            @Umbraco.Field("content")
+        </small>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-8">
+        @foreach (var image in images)
+        {
+            var url = Umbraco.TypedMedia(image.GetValue("icImage")).Url;
+            
+            <a href="@image.GetValue("icLink")" target="@image.GetValue("icTarget")"><img class="partner-image" src ='@url'></a>
+
+            if (k++ % 5 == 0)
+            {
+                <br>
+            }
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-8 fright">
+         @Html.Partial("BottomButtons")
+	</div>
+</div>		
+
+<br>

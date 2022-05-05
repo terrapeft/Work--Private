@@ -1,0 +1,828 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="UmbracoMembersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DropDownListHierarchical">
+          <Key>
+            <PropertyRef Name="HierarchyId" />
+          </Key>
+          <Property Name="HierarchyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OptionId" Type="int" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+        </EntityType>
+        <EntityType Name="DropDownListOptions">
+          <Key>
+            <PropertyRef Name="OptionId" />
+          </Key>
+          <Property Name="OptionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DropDownListId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="Value" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsDefault" Type="bit" />
+          <Property Name="OrderBy" Type="int" />
+        </EntityType>
+        <EntityType Name="DropDownLists">
+          <Key>
+            <PropertyRef Name="DropDownListId" />
+          </Key>
+          <Property Name="DropDownListId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="HistoryId" />
+          </Key>
+          <Property Name="HistoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberId" Type="int" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="TimestampUtc" Type="datetime" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Action" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Members">
+          <Key>
+            <PropertyRef Name="MemberId" />
+          </Key>
+          <Property Name="MemberId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varbinary" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="ResourceType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="SalesforceFieldsMapping">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Alias" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SiteConfig">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Value" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1500" />
+          <Property Name="ResourceTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SupportRequestsHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestData" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Submitted" Type="datetime" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="int" Nullable="false" />
+          <Property Name="RequestFiles" Type="nvarchar(max)" />
+          <Property Name="SalesForcePostResult" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'UmbracoMembers.dbo.vwDropDownListOptions' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwDropDownListOptions">
+          <Key>
+            <PropertyRef Name="OptionId" />
+            <PropertyRef Name="DropDownListId" />
+            <PropertyRef Name="DropDownList" />
+          </Key>
+          <Property Name="OptionId" Type="int" Nullable="false" />
+          <Property Name="DropDownListId" Type="int" Nullable="false" />
+          <Property Name="DropDownList" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="Value" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsDefault" Type="bit" />
+          <Property Name="OrderBy" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'UmbracoMembers.dbo.vwHierarchy' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwHierarchy">
+          <Key>
+            <PropertyRef Name="HierarchyId" />
+            
+            <PropertyRef Name="DropDownListId" />
+          </Key>
+          <Property Name="HierarchyId" Type="int" Nullable="false" />
+          <Property Name="ParentHierarchyId" Type="int" />
+          <Property Name="Option" Type="nvarchar" MaxLength="1009" />
+          <Property Name="ParentOption" Type="nvarchar" MaxLength="1009" />
+          <Property Name="OptionId" Type="int" Nullable="false" />
+          <Property Name="ParentOptionId" Type="int" />
+          <Property Name="DropDownListId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'UmbracoMembers.dbo.vwHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwHistory">
+          <Key>
+            <PropertyRef Name="Action" />
+            <PropertyRef Name="TimestampUtc" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="100" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="100" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="Action" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TimestampUtc" Type="datetime" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'UmbracoMembers.dbo.vwMembers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwMembers">
+          <Key>
+            <PropertyRef Name="MemberId" />
+            <PropertyRef Name="CompanyId" />
+            <PropertyRef Name="Company" />
+            <PropertyRef Name="Firstname" />
+            <PropertyRef Name="Lastname" />
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="MemberId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+          <Property Name="Company" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_DropDownListHierarchical_DropDownListHierarchical">
+          <End Role="DropDownListHierarchical" Type="Self.DropDownListHierarchical" Multiplicity="0..1" />
+          <End Role="DropDownListHierarchical1" Type="Self.DropDownListHierarchical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DropDownListHierarchical">
+              <PropertyRef Name="HierarchyId" />
+            </Principal>
+            <Dependent Role="DropDownListHierarchical1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DropDownListHierarchical_DropDownListOptions">
+          <End Role="DropDownListOptions" Type="Self.DropDownListOptions" Multiplicity="1" />
+          <End Role="DropDownListHierarchical" Type="Self.DropDownListHierarchical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DropDownListOptions">
+              <PropertyRef Name="OptionId" />
+            </Principal>
+            <Dependent Role="DropDownListHierarchical">
+              <PropertyRef Name="OptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DropDownListOptions_DropDownLists">
+          <End Role="DropDownLists" Type="Self.DropDownLists" Multiplicity="1" />
+          <End Role="DropDownListOptions" Type="Self.DropDownListOptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DropDownLists">
+              <PropertyRef Name="DropDownListId" />
+            </Principal>
+            <Dependent Role="DropDownListOptions">
+              <PropertyRef Name="DropDownListId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Members_Companies">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="1" />
+          <End Role="Members" Type="Self.Members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="Members">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiteConfig_ResourceType">
+          <End Role="ResourceType" Type="Self.ResourceType" Multiplicity="1" />
+          <End Role="SiteConfig" Type="Self.SiteConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResourceType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SiteConfig">
+              <PropertyRef Name="ResourceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupportRequestsHistory_Members">
+          <End Role="Members" Type="Self.Members" Multiplicity="1" />
+          <End Role="SupportRequestsHistory" Type="Self.SupportRequestsHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemberId" />
+            </Principal>
+            <Dependent Role="SupportRequestsHistory">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="DecryptPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+          <Parameter Name="password" Type="varbinary" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="EncryptPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varbinary">
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spMemberDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="memberId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spMemberInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="companyId" Type="int" Mode="In" />
+          <Parameter Name="firstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="lastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="userName" Type="nvarchar" Mode="In" />
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="spMemberUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="memberId" Type="int" Mode="In" />
+          <Parameter Name="companyId" Type="int" Mode="In" />
+          <Parameter Name="firstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="lastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="userName" Type="nvarchar" Mode="In" />
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="UmbracoMembersModelStoreContainer">
+          <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DropDownListHierarchical" EntityType="Self.DropDownListHierarchical" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DropDownListOptions" EntityType="Self.DropDownListOptions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DropDownLists" EntityType="Self.DropDownLists" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="History" EntityType="Self.History" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResourceType" EntityType="Self.ResourceType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalesforceFieldsMapping" EntityType="Self.SalesforceFieldsMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SiteConfig" EntityType="Self.SiteConfig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SupportRequestsHistory" EntityType="Self.SupportRequestsHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vwDropDownListOptions" EntityType="Self.vwDropDownListOptions" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwDropDownListOptions].[OptionId] AS [OptionId], 
+    [vwDropDownListOptions].[DropDownListId] AS [DropDownListId], 
+    [vwDropDownListOptions].[DropDownList] AS [DropDownList], 
+    [vwDropDownListOptions].[Name] AS [Name], 
+    [vwDropDownListOptions].[Value] AS [Value], 
+    [vwDropDownListOptions].[IsDefault] AS [IsDefault], 
+    [vwDropDownListOptions].[OrderBy] AS [OrderBy]
+    FROM [dbo].[vwDropDownListOptions] AS [vwDropDownListOptions]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwHierarchy" EntityType="Self.vwHierarchy" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwHierarchy].[HierarchyId] AS [HierarchyId], 
+    [vwHierarchy].[ParentHierarchyId] AS [ParentHierarchyId], 
+    [vwHierarchy].[Option] AS [Option], 
+    [vwHierarchy].[ParentOption] AS [ParentOption], 
+    [vwHierarchy].[OptionId] AS [OptionId], 
+    [vwHierarchy].[ParentOptionId] AS [ParentOptionId], 
+    [vwHierarchy].[DropDownListId] AS [DropDownListId]
+    FROM [dbo].[vwHierarchy] AS [vwHierarchy]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwHistory" EntityType="Self.vwHistory" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwHistory].[Name] AS [Name], 
+    [vwHistory].[Firstname] AS [Firstname], 
+    [vwHistory].[Lastname] AS [Lastname], 
+    [vwHistory].[Username] AS [Username], 
+    [vwHistory].[Action] AS [Action], 
+    [vwHistory].[TimestampUtc] AS [TimestampUtc], 
+    [vwHistory].[Message] AS [Message]
+    FROM [dbo].[vwHistory] AS [vwHistory]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwMembers" EntityType="Self.vwMembers" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwMembers].[MemberId] AS [MemberId], 
+    [vwMembers].[CompanyId] AS [CompanyId], 
+    [vwMembers].[Company] AS [Company], 
+    [vwMembers].[Firstname] AS [Firstname], 
+    [vwMembers].[Lastname] AS [Lastname], 
+    [vwMembers].[Username] AS [Username], 
+    [vwMembers].[Password] AS [Password]
+    FROM [dbo].[vwMembers] AS [vwMembers]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_DropDownListHierarchical_DropDownListHierarchical" Association="Self.FK_DropDownListHierarchical_DropDownListHierarchical">
+            <End Role="DropDownListHierarchical" EntitySet="DropDownListHierarchical" />
+            <End Role="DropDownListHierarchical1" EntitySet="DropDownListHierarchical" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DropDownListHierarchical_DropDownListOptions" Association="Self.FK_DropDownListHierarchical_DropDownListOptions">
+            <End Role="DropDownListOptions" EntitySet="DropDownListOptions" />
+            <End Role="DropDownListHierarchical" EntitySet="DropDownListHierarchical" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DropDownListOptions_DropDownLists" Association="Self.FK_DropDownListOptions_DropDownLists">
+            <End Role="DropDownLists" EntitySet="DropDownLists" />
+            <End Role="DropDownListOptions" EntitySet="DropDownListOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Members_Companies" Association="Self.FK_Members_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Members" EntitySet="Members" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiteConfig_ResourceType" Association="Self.FK_SiteConfig_ResourceType">
+            <End Role="ResourceType" EntitySet="ResourceType" />
+            <End Role="SiteConfig" EntitySet="SiteConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupportRequestsHistory_Members" Association="Self.FK_SupportRequestsHistory_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="SupportRequestsHistory" EntitySet="SupportRequestsHistory" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UmbracoMembersModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="UmbracoMembersEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="spOpenPasswordsKey" />
+          <FunctionImport Name="spMemberDelete">
+          <Parameter Name="memberId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spMemberInsert">
+            <Parameter Name="companyId" Mode="In" Type="Int32" />
+            <Parameter Name="firstName" Mode="In" Type="String" />
+            <Parameter Name="lastName" Mode="In" Type="String" />
+            <Parameter Name="userName" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spMemberUpdate">
+            <Parameter Name="memberId" Mode="In" Type="Int32" />
+            <Parameter Name="companyId" Mode="In" Type="Int32" />
+            <Parameter Name="firstName" Mode="In" Type="String" />
+            <Parameter Name="lastName" Mode="In" Type="String" />
+            <Parameter Name="userName" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Companies" EntityType="UmbracoMembersModel.Company" />
+          <EntitySet Name="Members" EntityType="UmbracoMembersModel.Member" />
+          <EntitySet Name="Histories" EntityType="UmbracoMembersModel.History" />
+          <EntitySet Name="MemberViews" EntityType="UmbracoMembersModel.MemberView" />
+          <AssociationSet Name="FK_Members_Companies" Association="UmbracoMembersModel.FK_Members_Companies">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Member" EntitySet="Members" />
+          </AssociationSet>
+          <EntitySet Name="SupportRequestsHistories" EntityType="UmbracoMembersModel.SupportRequestsHistory" />
+          <EntitySet Name="vwHistories" EntityType="UmbracoMembersModel.vwHistory" />
+          <EntitySet Name="HierarchicalDdls" EntityType="UmbracoMembersModel.HierarchicalDdl" />
+          <EntitySet Name="Ddls" EntityType="UmbracoMembersModel.Ddl" />
+          <AssociationSet Name="FK_QueryTypes_QueryTypes" Association="UmbracoMembersModel.FK_QueryTypes_QueryTypes">
+            <End Role="DropDownListHierarchical" EntitySet="HierarchicalDdls" />
+            <End Role="DropDownListHierarchical1" EntitySet="HierarchicalDdls" />
+          </AssociationSet>
+          <EntitySet Name="DdlOptions" EntityType="UmbracoMembersModel.DdlOption" />
+          <EntitySet Name="vwHierarchies" EntityType="UmbracoMembersModel.vwHierarchy" />
+          <AssociationSet Name="FK_DropDownListOptions_DropDownLists" Association="UmbracoMembersModel.FK_DropDownListOptions_DropDownLists">
+            <End Role="Ddl" EntitySet="Ddls" />
+            <End Role="DropDownListOption" EntitySet="DdlOptions" />
+          </AssociationSet>
+          <EntitySet Name="vwDropDownListOptions" EntityType="UmbracoMembersModel.vwDropDownListOption" />
+          <AssociationSet Name="FK_SupportRequestsHistory_Members" Association="UmbracoMembersModel.FK_SupportRequestsHistory_Members">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="SupportRequestsHistory" EntitySet="SupportRequestsHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DropDownListHierarchical_DropDownListOptions" Association="UmbracoMembersModel.FK_DropDownListHierarchical_DropDownListOptions">
+            <End Role="DdlOption" EntitySet="DdlOptions" />
+            <End Role="HierarchicalDdl" EntitySet="HierarchicalDdls" />
+          </AssociationSet>
+          <EntitySet Name="ResourceTypes" EntityType="UmbracoMembersModel.ResourceType" />
+          <EntitySet Name="SiteConfigs" EntityType="UmbracoMembersModel.SiteConfig" />
+          <AssociationSet Name="FK_SiteConfig_ResourceType" Association="UmbracoMembersModel.FK_SiteConfig_ResourceType">
+            <End Role="ResourceType" EntitySet="ResourceTypes" />
+            <End Role="SiteConfig" EntitySet="SiteConfigs" />
+          </AssociationSet>
+          <EntitySet Name="SalesforceFieldsMappings" EntityType="UmbracoMembersModel.SalesforceFieldsMapping" />
+        </EntityContainer>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Members" Relationship="UmbracoMembersModel.FK_Members_Companies" FromRole="Company" ToRole="Member" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="MemberId" />
+          </Key>
+          <Property Name="MemberId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <Property Name="Firstname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Lastname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="Binary" MaxLength="300" FixedLength="false" />
+          <NavigationProperty Name="Company" Relationship="UmbracoMembersModel.FK_Members_Companies" FromRole="Member" ToRole="Company" />
+          <NavigationProperty Name="SupportRequestsHistories" Relationship="UmbracoMembersModel.FK_SupportRequestsHistory_Members" FromRole="Member" ToRole="SupportRequestsHistory" />
+        </EntityType>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="HistoryId" />
+          </Key>
+          <Property Name="HistoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="Int32" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TimestampUtc" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Action" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MemberView">
+          <Key>
+            <PropertyRef Name="MemberId" />
+            <PropertyRef Name="CompanyId" />
+            <PropertyRef Name="Firstname" />
+            <PropertyRef Name="Lastname" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Company" />
+          </Key>
+          <Property Name="MemberId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <Property Name="Firstname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Lastname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Members_Companies">
+          <End Type="UmbracoMembersModel.Company" Role="Company" Multiplicity="1" />
+          <End Type="UmbracoMembersModel.Member" Role="Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SupportRequestsHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestData" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Submitted" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Member" Relationship="UmbracoMembersModel.FK_SupportRequestsHistory_Members" FromRole="SupportRequestsHistory" ToRole="Member" />
+          <Property Name="RequestFiles" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SalesForcePostResult" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vwHistory">
+          <Key>
+            <PropertyRef Name="Action" />
+            <PropertyRef Name="TimestampUtc" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Firstname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Lastname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Action" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TimestampUtc" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="HierarchicalDdl">
+          <Key>
+            <PropertyRef Name="HierarchyId" />
+          </Key>
+          <Property Name="HierarchyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="OptionId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Children" Relationship="UmbracoMembersModel.FK_QueryTypes_QueryTypes" FromRole="DropDownListHierarchical" ToRole="DropDownListHierarchical1" />
+          <NavigationProperty Name="Parent" Relationship="UmbracoMembersModel.FK_QueryTypes_QueryTypes" FromRole="DropDownListHierarchical1" ToRole="DropDownListHierarchical" />
+          <NavigationProperty Name="DdlOption" Relationship="UmbracoMembersModel.FK_DropDownListHierarchical_DropDownListOptions" FromRole="HierarchicalDdl" ToRole="DdlOption" />
+        </EntityType>
+        <EntityType Name="Ddl">
+          <Key>
+            <PropertyRef Name="DropDownListId" />
+          </Key>
+          <Property Name="DropDownListId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DdlOptions" Relationship="UmbracoMembersModel.FK_DropDownListOptions_DropDownLists" FromRole="Ddl" ToRole="DropDownListOption" />
+        </EntityType>
+        <Association Name="FK_QueryTypes_QueryTypes">
+          <End Type="UmbracoMembersModel.HierarchicalDdl" Role="DropDownListHierarchical" Multiplicity="0..1" />
+          <End Type="UmbracoMembersModel.HierarchicalDdl" Role="DropDownListHierarchical1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DropDownListHierarchical">
+              <PropertyRef Name="HierarchyId" />
+            </Principal>
+            <Dependent Role="DropDownListHierarchical1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DdlOption">
+          <Key>
+            <PropertyRef Name="OptionId" />
+          </Key>
+          <Property Name="OptionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DropDownListId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsDefault" Type="Boolean" />
+          <Property Name="OrderBy" Type="Int32" />
+          <NavigationProperty Name="Parent" Relationship="UmbracoMembersModel.FK_DropDownListOptions_DropDownLists" FromRole="DropDownListOption" ToRole="Ddl" />
+          <NavigationProperty Name="Children" Relationship="UmbracoMembersModel.FK_DropDownListHierarchical_DropDownListOptions" FromRole="DdlOption" ToRole="HierarchicalDdl" />
+        </EntityType>
+        <EntityType Name="vwHierarchy">
+          <Key>
+            <PropertyRef Name="HierarchyId" />
+            <PropertyRef Name="DropDownListId" />
+          </Key>
+          <Property Name="HierarchyId" Type="Int32" Nullable="false" />
+          <Property Name="ParentHierarchyId" Type="Int32" />
+          <Property Name="Option" Type="String" MaxLength="1009" FixedLength="false" Unicode="true" />
+          <Property Name="ParentOption" Type="String" MaxLength="1009" FixedLength="false" Unicode="true" />
+          <Property Name="OptionId" Type="Int32" Nullable="false" />
+          <Property Name="ParentOptionId" Type="Int32" />
+          <Property Name="DropDownListId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DropDownListOptions_DropDownLists">
+          <End Type="UmbracoMembersModel.Ddl" Role="Ddl" Multiplicity="1" />
+          <End Type="UmbracoMembersModel.DdlOption" Role="DropDownListOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ddl">
+              <PropertyRef Name="DropDownListId" />
+            </Principal>
+            <Dependent Role="DropDownListOption">
+              <PropertyRef Name="DropDownListId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vwDropDownListOption">
+          <Key>
+            <PropertyRef Name="OptionId" />
+            <PropertyRef Name="DropDownListId" />
+            <PropertyRef Name="DropDownList" />
+          </Key>
+          <Property Name="OptionId" Type="Int32" Nullable="false" />
+          <Property Name="DropDownListId" Type="Int32" Nullable="false" />
+          <Property Name="DropDownList" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsDefault" Type="Boolean" />
+          <Property Name="OrderBy" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_SupportRequestsHistory_Members">
+          <End Type="UmbracoMembersModel.Member" Role="Member" Multiplicity="1" />
+          <End Type="UmbracoMembersModel.SupportRequestsHistory" Role="SupportRequestsHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberId" />
+            </Principal>
+            <Dependent Role="SupportRequestsHistory">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DropDownListHierarchical_DropDownListOptions">
+          <End Type="UmbracoMembersModel.DdlOption" Role="DdlOption" Multiplicity="1" />
+          <End Type="UmbracoMembersModel.HierarchicalDdl" Role="HierarchicalDdl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DdlOption">
+              <PropertyRef Name="OptionId" />
+            </Principal>
+            <Dependent Role="HierarchicalDdl">
+              <PropertyRef Name="OptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ResourceType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SiteConfigs" Relationship="UmbracoMembersModel.FK_SiteConfig_ResourceType" FromRole="ResourceType" ToRole="SiteConfig" />
+        </EntityType>
+        <EntityType Name="SiteConfig">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="1500" FixedLength="false" Unicode="true" />
+          <Property Name="ResourceTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ResourceType" Relationship="UmbracoMembersModel.FK_SiteConfig_ResourceType" FromRole="SiteConfig" ToRole="ResourceType" />
+        </EntityType>
+        <Association Name="FK_SiteConfig_ResourceType">
+          <End Type="UmbracoMembersModel.ResourceType" Role="ResourceType" Multiplicity="1" />
+          <End Type="UmbracoMembersModel.SiteConfig" Role="SiteConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResourceType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SiteConfig">
+              <PropertyRef Name="ResourceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SalesforceFieldsMapping">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Alias" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UmbracoMembersModelStoreContainer" CdmEntityContainer="UmbracoMembersEntities">
+    <FunctionImportMapping FunctionImportName="spMemberDelete" FunctionName="UmbracoMembersModel.Store.spMemberDelete" />
+          <FunctionImportMapping FunctionImportName="spMemberInsert" FunctionName="UmbracoMembersModel.Store.spMemberInsert" />
+          <FunctionImportMapping FunctionImportName="spMemberUpdate" FunctionName="UmbracoMembersModel.Store.spMemberUpdate" />
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="UmbracoMembersModel.Company">
+              <MappingFragment StoreEntitySet="Companies">
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="UmbracoMembersModel.Member">
+              <MappingFragment StoreEntitySet="Members">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Histories">
+            <EntityTypeMapping TypeName="UmbracoMembersModel.History">
+              <MappingFragment StoreEntitySet="History">
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="TimestampUtc" ColumnName="TimestampUtc" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="HistoryId" ColumnName="HistoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberViews">
+            <EntityTypeMapping TypeName="UmbracoMembersModel.MemberView">
+              <MappingFragment StoreEntitySet="vwMembers">
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SupportRequestsHistories">
+            <EntityTypeMapping TypeName="UmbracoMembersModel.SupportRequestsHistory">
+              <MappingFragment StoreEntitySet="SupportRequestsHistory">
+                <ScalarProperty Name="SalesForcePostResult" ColumnName="SalesForcePostResult" />
+                <ScalarProperty Name="RequestFiles" ColumnName="RequestFiles" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="Submitted" ColumnName="Submitted" />
+                <ScalarProperty Name="RequestData" ColumnName="RequestData" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwHistories">
+            <EntityTypeMapping TypeName="UmbracoMembersModel.vwHistory">
+              <MappingFragment StoreEntitySet="vwHistory">
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="TimestampUtc" ColumnName="TimestampUtc" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HierarchicalDdls">
+            <EntityTypeMapping TypeName="UmbracoMembersModel.HierarchicalDdl">
+              <MappingFragment StoreEntitySet="DropDownListHierarchical">
+                <ScalarProperty Name="OptionId" ColumnName="OptionId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="HierarchyId" ColumnName="HierarchyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ddls">
+            <EntityTypeMapping TypeName="UmbracoMembersModel.Ddl">
+              <MappingFragment StoreEntitySet="DropDownLists">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DropDownListId" ColumnName="DropDownListId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DdlOptions">
+            <EntityTypeMapping TypeName="UmbracoMembersModel.DdlOption">
+              <MappingFragment StoreEntitySet="DropDownListOptions">
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DropDownListId" ColumnName="DropDownListId" />
+                <ScalarProperty Name="OptionId" ColumnName="OptionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwHierarchies">
+            <EntityTypeMapping TypeName="UmbracoMembersModel.vwHierarchy">
+              <MappingFragment StoreEntitySet="vwHierarchy">
+                <ScalarProperty Name="DropDownListId" ColumnName="DropDownListId" />
+                <ScalarProperty Name="ParentOptionId" ColumnName="ParentOptionId" />
+                <ScalarProperty Name="OptionId" ColumnName="OptionId" />
+                <ScalarProperty Name="ParentOption" ColumnName="ParentOption" />
+                <ScalarProperty Name="Option" ColumnName="Option" />
+                <ScalarProperty Name="ParentHierarchyId" ColumnName="ParentHierarchyId" />
+                <ScalarProperty Name="HierarchyId" ColumnName="HierarchyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwDropDownListOptions">
+            <EntityTypeMapping TypeName="UmbracoMembersModel.vwDropDownListOption">
+              <MappingFragment StoreEntitySet="vwDropDownListOptions">
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DropDownList" ColumnName="DropDownList" />
+                <ScalarProperty Name="DropDownListId" ColumnName="DropDownListId" />
+                <ScalarProperty Name="OptionId" ColumnName="OptionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResourceTypes">
+            <EntityTypeMapping TypeName="UmbracoMembersModel.ResourceType">
+              <MappingFragment StoreEntitySet="ResourceType">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SiteConfigs">
+            <EntityTypeMapping TypeName="UmbracoMembersModel.SiteConfig">
+              <MappingFragment StoreEntitySet="SiteConfig">
+                <ScalarProperty Name="ResourceTypeId" ColumnName="ResourceTypeId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesforceFieldsMappings">
+            <EntityTypeMapping TypeName="UmbracoMembersModel.SalesforceFieldsMapping">
+              <MappingFragment StoreEntitySet="SalesforceFieldsMapping">
+                <ScalarProperty Name="Alias" ColumnName="Alias" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

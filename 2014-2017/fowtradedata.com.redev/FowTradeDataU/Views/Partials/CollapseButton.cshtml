@@ -1,0 +1,20 @@
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    var topButtons = CurrentPage.topButtons;
+}
+
+@foreach (var button in topButtons)
+{
+    @Html.Raw(
+        Umbraco.RenderMacro("CollapseButton", new {
+            Style="margin-right: 7px; position: relative; top: -4px;",
+            Target=button.GetValue("linkTarget"),
+            Class=button.GetValue("class") + " fright",
+            Href=button.GetValue("link"),
+            Text=button.GetValue("text"),
+            Description=button.GetValue("description"),
+            DataTarget=button.GetValue("dataTarget"),
+            OnClick = button.GetValue("onclick")
+        })
+    );
+}

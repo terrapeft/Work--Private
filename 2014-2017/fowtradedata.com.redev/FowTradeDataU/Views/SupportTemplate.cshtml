@@ -1,0 +1,98 @@
+﻿@using FowTradeDataU.Models.ViewModels
+@using FowTradeDataU.umbraco.CustomWebForms
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "MasterFowTemplate.cshtml";
+    var user = Session["CurrentUser"];
+}
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-8">
+
+        @Html.Partial("CollapseButton")
+        <h3 class="larger-caps">
+            @Umbraco.Field("header")
+        </h3>
+
+        <br>
+
+        <div id="infoDiv" class="td-alert-info" style="display: none;">
+            <button type="button" class="close" onclick="SwitchSubmitMessage('#infoDiv');" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <span text></span>
+        </div>
+
+        <div id="errorDiv" class="td-alert-error" style="display: none;">
+            <button type="button" class="close" onclick="SwitchSubmitMessage('#errorDiv');" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <span text>{0}</span>
+        </div>
+
+        <div id="salesForcePanel" class="salesforce-panel panel-collapse collapse out">
+            @if (user != null)
+            {
+                @Umbraco.RenderMacro("SalesforceForm")
+            }
+            else
+            {
+                <div>
+                    <strong>Please login to raise a query.</strong>
+                    @Umbraco.RenderMacro("Login")
+                </div>
+            }
+        </div>
+
+        @Html.Partial("ContactInfo")
+        <br>
+        <small>
+            @Umbraco.Field("content")
+        </small>
+    </div>
+</div>
+
+<script type="text/javascript" src="/js/iframe/iframeResizer.min.js"></script>
+
+<script type="text/javascript">
+
+    iFrameResize({
+        log: false,                  // Enable console logging
+        enablePublicMethods: true,                  // Enable methods within iframe hosted page
+        resizedCallback: function (messageData) { },
+        messageCallback: function (messageData) { },
+        closedCallback: function (id) { }
+    });
+
+
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        @if (user != null)
+        {
+            <text>$('#salesForcePanel').collapse('show');</text>
+        }
+    });
+
+    function ClearPanels() {
+        $('#infoDiv').hide();
+        $('#errorDiv').hide();
+    }
+
+    function HideRequestForm() {
+        $('#salesForcePanel').collapse('hide');
+    }
+
+    function SwitchSubmitMessage(id, injectText, show) {
+        if (show === true) {
+            var template = '@SiteConfig.SF_Form_Submit_message';
+            var span = $(id + ' span[text]');
+            span.html(template.replace('{0}', injectText));
+
+            $(id).show();
+        } else {
+            $(id).hide();
+        }
+    }
+
+</script>
+
+<br>
+<br>

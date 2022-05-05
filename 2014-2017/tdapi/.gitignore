@@ -1,0 +1,94 @@
+src/UsersUI/UsersUI/obj/
+src/UsersUI/UsersUI/bin/
+src/UsersUI/CustomersUI/obj/
+src/UsersUI/CustomersUI/bin/
+src/UsersUI/CustomersUI/Log/
+src/TradeDataAPI/SimpleClient/obj/
+src/TradeDataAPI/SimpleClient/bin/
+src/TradeDataAPI/TradeDataAPI/bin/
+src/TradeDataAPI/TradeDataAPI/obj/
+src/TradeDataAPI/TradeDataAPITests/bin/
+src/TradeDataAPI/TradeDataAPITests/obj/
+src/TradeDataAPI/UsersDb/obj/
+src/TradeDataAPI/UsersDb/bin/
+src/TradeDataAPI/TestResults/
+src/UsersUI/packages/
+src/TradeDataAPI/packages/
+src/UsersUI/UsersUITests/obj/
+src/UsersUI/UsersUITests/bin/
+src/UsersUI/CommonControls/obj/
+src/UsersUI/CommonControls/bin/
+src/UsersUI/UsersUI/Noname1.html
+src/UsersUI/UsersUI/Noname2.html
+src/UsersUI/UsersUI/Log/
+src/UsersUI/CustomersUI/Content/Css/bootstrap.colorpickersliders.min.css
+src/UsersUI/CustomersUI/Content/Css/checkbox-buttons.css
+src/UsersUI/CustomersUI/Content/Css/sb-admin-2.css
+src/UsersUI/CustomersUI/Content/Images/animated_progress.gif
+src/UsersUI/CustomersUI/Content/Images/logo.png
+src/UsersUI/CustomersUI/Content/Scripts/bootstrap.colorpickersliders.min.js
+src/UsersUI/CustomersUI/Content/Scripts/sb-admin-2.js
+src/UsersUI/UsersUI/Content/Css/bootstrap.colorpickersliders.min.css
+src/UsersUI/UsersUI/Content/Css/checkbox-buttons.css
+src/UsersUI/UsersUI/Content/Css/sb-admin-2.css
+src/UsersUI/UsersUI/Content/Images/animated_progress.gif
+src/UsersUI/UsersUI/Content/Images/logo.png
+src/UsersUI/UsersUI/Content/Scripts/bootstrap.colorpickersliders.min.js
+src/UsersUI/UsersUI/Content/Scripts/sb-admin-2.js
+src/TradeDataAPI/TradeDataAPI/traces.svclog
+bak/1. users_designer db, ddl script.sql
+bak/2. users_designer db, data script.sql
+bak/Diagram script.txt
+src/UsersUI/TestResults/UsersUI.TE.Tests_log.ldf
+src/UsersUI/TestResults/UsersUI.TE.Tests.mdf
+src/UsersUI/CustomersUI/Content/Images/caret-down.png
+src/UsersUI/CustomersUI/Content/Images/caret-up.png
+src/UsersUI/CustomersUI/Content/Images/close.png
+src/UsersUI/CustomersUI/Content/Images/first.png
+src/UsersUI/CustomersUI/Content/Images/last.png
+src/UsersUI/CustomersUI/Content/Images/next.png
+src/UsersUI/CustomersUI/Content/Images/prev.png
+src/UsersUI/UsersUI/Content/Images/caret-down.png
+src/UsersUI/UsersUI/Content/Images/caret-up.png
+src/UsersUI/UsersUI/Content/Images/close.png
+src/UsersUI/UsersUI/Content/Images/first.png
+src/UsersUI/UsersUI/Content/Images/last.png
+src/UsersUI/UsersUI/Content/Images/next.png
+src/UsersUI/UsersUI/Content/Images/prev.png
+src/UsersUI/UsersUI/Content/Images/animated-progress.gif
+src/UsersUI/CustomersUI/Content/Images/animated-progress.gif
+src/UsersUI/UsersUI/Content/Images/filter-gray.png
+src/UsersUI/CustomersUI/Content/Images/filter-gray.png
+External Dependencies/Newtonsoft/Source/
+External Dependencies/Newtonsoft/Bin/WinRT/Newtonsoft.Json.xml
+External Dependencies/Newtonsoft/Bin/Net20/Newtonsoft.Json.xml
+docs/~$adeData AUI.docx
+docs/TradeDataAUI.7z
+docs/~$Service responses.xlsx
+src/Installer/obj/
+src/Installer/publish/
+src/Installer/bin/Debug
+src/Installer/bin/Gen
+src/Installer/WiXCustomActions/obj/
+src/Installer/WiXCustomActions/bin/
+src/UsersUI/Installer/publish/
+src/Installer/Product.msi
+src/Installer/wix.xsd
+src/Installer/Product/publish/
+src/Installer/Product/obj/
+src/Installer/CustomActions/obj/
+src/UsersUI/.vs/
+src/Installer/CustomActions/bin/
+src/Installer/Product/bin/
+src/Installer/Bundle/obj/
+src/Installer/RegistryChanger/obj/
+src/Installer/RegistryChanger/bin/
+src/Installer/Bundle/bin/
+src/TradeDataAPI/.vs/config/applicationhost.config
+src/TradeDataAPI/TdApiExample/TdApiExample/bin/
+src/TradeDataAPI/TdApiExample/TdApiExample/obj/
+src/TradeDataAPI/UsersDb/App_Data/NuGetBackup/
+src/TradeDataAPI/UsersDb 1.0/App_Data/NuGetBackup/
+src/TradeDataAPI/UsersDb 1.0/bin/
+src/TradeDataAPI/UsersDb 1.0/obj/
+src/TradeDataAPI/UsersDb 1.0/packages/

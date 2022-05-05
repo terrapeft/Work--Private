@@ -1,0 +1,85 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Configuration" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Configuration" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Globalization" #>
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+
+namespace SpansLib
+{
+    public static class AppSettings 
+	{
+	    private static Configuration _cfg = ConfigurationManager.OpenExeConfiguration(typeof(AppSettings).Assembly.Location);
+        private static AppSettingsSection _appSettings;
+
+        private static AppSettingsSection SettingsSection
+        {
+            get
+            {
+                if (_appSettings == null)
+                {
+                    // when working in Quartz folder
+                    _appSettings = (AppSettingsSection)_cfg.GetSection("appSettings");
+                }
+                if (_appSettings.Settings.Count == 0)
+                {
+                    // when working with UI
+                    _cfg = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                    _appSettings = (AppSettingsSection)_cfg.GetSection("appSettings");
+                }
+
+                return _appSettings;
+            }
+        }
+
+<#
+    var configurationFileMap = new ExeConfigurationFileMap();
+    configurationFileMap.ExeConfigFilename = this.Host.ResolvePath("../SpansUI/App.config");
+    var configuration = ConfigurationManager.OpenMappedExeConfiguration(configurationFileMap, ConfigurationUserLevel.None);
+    foreach(KeyValueConfigurationElement setting in configuration.AppSettings.Settings)
+    {
+        if (setting.Key.Contains(":")) //these are ASP.NET MVC keys
+            continue;
+ 
+        string settingType;
+        int i; 
+		bool b; 
+		decimal d;
+        if (setting.Value.Contains(";") && !setting.Key.EndsWith("Template")) {#>
+		<# AddSummary(setting.Value); #>
+        public static IEnumerable<string> <#= setting.Key #> { get { return SettingsSection.Settings["<#= setting.Key #>"].Value.Split(new [] {';'}, StringSplitOptions.RemoveEmptyEntries); }}
+<# continue; } else if (int.TryParse(setting.Value, out i))
+            settingType = "int";
+        else if (bool.TryParse(setting.Value, out b))
+            settingType = "bool";
+        else if (decimal.TryParse(setting.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out d))
+            settingType = "decimal";
+        else { #>
+
+		<# AddSummary(setting.Value); #>
+		public static string <#= setting.Key #> { get { return SettingsSection.Settings["<#= setting.Key #>"].Value; }}
+<# continue; } 
+#>
+        <# AddSummary(setting.Value); #>
+		public static <#= settingType #> <#= setting.Key #> { get { return <#= settingType #>.Parse(SettingsSection.Settings["<#= setting.Key #>"].Value); }}
+<# } #>
+    }
+}
+
+<#+
+private void AddSummary(string setting)
+{
+#>
+/// <summary>
+        /// <#= string.IsNullOrEmpty(setting) 
+				? string.Empty 
+				: "Like \"" + (setting.IndexOf(Environment.NewLine) > -1 
+					? setting.Replace(Environment.NewLine, " ")
+					: setting) + "\"" #>
+        /// </summary>
+<#+
+}
+#>

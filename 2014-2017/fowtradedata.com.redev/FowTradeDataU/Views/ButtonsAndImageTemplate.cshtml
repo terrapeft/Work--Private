@@ -1,0 +1,26 @@
+﻿@inherits UmbracoTemplatePage
+@{
+    Layout = "MasterFowTemplate.cshtml";
+}
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-8">
+        <h3 class="larger-caps">@Umbraco.Field("header")</h3>
+        <br>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-8">
+        <small>
+            @Umbraco.Field("content")
+        </small>
+    </div>
+    <div class="col-md-2">
+		<img src="@Umbraco.TypedMedia(CurrentPage.image).Url"/>
+        
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        @Html.Partial("BottomButtons")
+    </div>
+</div>
+<br>

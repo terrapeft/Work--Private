@@ -1,0 +1,11 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+	// CurrentPage.Site() stands for the Home node on Content tab, 
+	// this node contains the property we need here
+	var text = CurrentPage.Site().GetPropertyValue("cookiesNoticePopupText");
+}
+
+@Html.Raw(
+	Umbraco.RenderMacro("CookieAcceptor", new {
+		popupText=text
+	}))

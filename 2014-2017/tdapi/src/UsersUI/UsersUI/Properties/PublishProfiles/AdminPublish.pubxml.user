@@ -1,0 +1,420 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>E:\Temp\aui</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/AjaxControlToolkit.dll">
+      <publishTime>12/19/2014 18:05:30</publishTime>
+    </File>
+    <File Include="bin/AjaxMin.dll">
+      <publishTime>12/19/2014 18:05:30</publishTime>
+    </File>
+    <File Include="bin/CommonControls.dll">
+      <publishTime>10/27/2015 18:37:16</publishTime>
+    </File>
+    <File Include="bin/Elmah.dll">
+      <publishTime>03/30/2015 12:41:16</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>12/19/2014 18:05:30</publishTime>
+    </File>
+    <File Include="bin/LukeSkywalker.IPNetwork.dll">
+      <publishTime>12/19/2014 18:05:30</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>01/11/2015 19:51:04</publishTime>
+    </File>
+    <File Include="bin/SharedLibrary.dll">
+      <publishTime>10/27/2015 18:37:16</publishTime>
+    </File>
+    <File Include="bin/Telerik.Web.Design.dll">
+      <publishTime>12/19/2014 18:05:30</publishTime>
+    </File>
+    <File Include="bin/Telerik.Web.UI.dll">
+      <publishTime>12/19/2014 18:05:30</publishTime>
+    </File>
+    <File Include="bin/UsersDb.dll">
+      <publishTime>10/27/2015 18:37:17</publishTime>
+    </File>
+    <File Include="bin/UsersUI.dll">
+      <publishTime>10/27/2015 18:37:18</publishTime>
+    </File>
+    <File Include="Content/Css/bootstrap.colorpickersliders.min.css">
+      <publishTime>12/19/2014 18:05:30</publishTime>
+    </File>
+    <File Include="Content/Css/checkbox-buttons.css">
+      <publishTime>12/19/2014 18:05:30</publishTime>
+    </File>
+    <File Include="Content/Css/sb-admin-2.css">
+      <publishTime>12/19/2014 18:05:30</publishTime>
+    </File>
+    <File Include="Content/Css/Site.css">
+      <publishTime>03/24/2015 15:48:38</publishTime>
+    </File>
+    <File Include="Content/Images/apply.gif">
+      <publishTime>03/03/2015 17:34:48</publishTime>
+    </File>
+    <File Include="Content/Images/back-in-view.png">
+      <publishTime>03/05/2015 12:56:01</publishTime>
+    </File>
+    <File Include="Content/Images/cancel.gif">
+      <publishTime>03/03/2015 17:35:01</publishTime>
+    </File>
+    <File Include="Content/Images/cancel.png">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="Content/Images/command-panel.png">
+      <publishTime>03/05/2015 12:22:29</publishTime>
+    </File>
+    <File Include="Content/Images/delete-item.gif">
+      <publishTime>03/03/2015 17:33:05</publishTime>
+    </File>
+    <File Include="Content/Images/edit-item.gif">
+      <publishTime>03/03/2015 17:32:31</publishTime>
+    </File>
+    <File Include="Content/Images/edit.png">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="Content/Images/filter.png">
+      <publishTime>03/05/2015 12:19:15</publishTime>
+    </File>
+    <File Include="Content/Images/grouping.png">
+      <publishTime>03/05/2015 12:24:24</publishTime>
+    </File>
+    <File Include="Content/Images/logo.png">
+      <publishTime>01/20/2015 11:38:43</publishTime>
+    </File>
+    <File Include="Content/Images/ok.png">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="Content/Images/rearrange.png">
+      <publishTime>03/03/2015 17:20:53</publishTime>
+    </File>
+    <File Include="Content/Scripts/bootstrap.colorpickersliders.min.js">
+      <publishTime>12/19/2014 18:05:30</publishTime>
+    </File>
+    <File Include="Content/Scripts/tinycolor.js">
+      <publishTime>01/23/2015 07:09:08</publishTime>
+    </File>
+    <File Include="Content/Scripts/users-ui.js">
+      <publishTime>03/04/2015 17:25:42</publishTime>
+    </File>
+    <File Include="Content/Xslt/Audit.xslt">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="Content/Xslt/Geolocation.xslt">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="Content/Xslt/Informers/DataSet.xslt">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="Content/Xslt/Informers/Expirations.xslt">
+      <publishTime>03/23/2015 16:21:31</publishTime>
+    </File>
+    <File Include="Content/Xslt/Informers/RecentErrors.xslt">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="Content/Xslt/Informers/SubscriptionRequests.xslt">
+      <publishTime>03/11/2015 12:22:01</publishTime>
+    </File>
+    <File Include="Content/Xslt/Informers/TodaysRequests.xslt">
+      <publishTime>03/23/2015 17:14:10</publishTime>
+    </File>
+    <File Include="Content/Xslt/Informers/UnregisteredIPs.xslt">
+      <publishTime>03/23/2015 17:12:09</publishTime>
+    </File>
+    <File Include="Content/Xslt/MethodParameters.xslt">
+      <publishTime>12/26/2014 17:03:56</publishTime>
+    </File>
+    <File Include="Controls/BreadcrumbControl.ascx">
+      <publishTime>03/03/2015 16:31:56</publishTime>
+    </File>
+    <File Include="Controls/GridOptionsControl.ascx">
+      <publishTime>04/17/2015 14:45:38</publishTime>
+    </File>
+    <File Include="Controls/Informers.ascx">
+      <publishTime>03/12/2015 18:35:27</publishTime>
+    </File>
+    <File Include="Controls/InformersControls/Footers/ErrorResults.ascx">
+      <publishTime>03/23/2015 18:34:02</publishTime>
+    </File>
+    <File Include="Controls/Menu.ascx">
+      <publishTime>10/12/2015 15:14:22</publishTime>
+    </File>
+    <File Include="Default.aspx">
+      <publishTime>03/13/2015 16:30:05</publishTime>
+    </File>
+    <File Include="DynamicData/Content/GridViewPager.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/Content/Images/Back.gif">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/Content/Images/clone.png">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/Content/Images/delete.png">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/Content/Images/down.png">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/Content/Images/find.png">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/Content/Images/header_back.gif">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/Content/Images/insert.png">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/Content/Images/keys.png">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/Content/Images/password.png">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/Content/Images/PgFirst.gif">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/Content/Images/PgLast.gif">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/Content/Images/PgNext.gif">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/Content/Images/PgPrev.gif">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/Content/Images/plus.gif">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/Content/Images/up.png">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/EntityTemplates/Default.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/EntityTemplates/Default_Edit.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/EntityTemplates/Default_Insert.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/Boolean.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/Boolean_Edit.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/Children.ascx">
+      <publishTime>03/05/2015 15:54:11</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/Children_Insert.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/ColorPicker.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/ColorPicker_Edit.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/ConnectionString.ascx">
+      <publishTime>10/12/2015 17:32:00</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/ConnectionString_Edit.ascx">
+      <publishTime>10/13/2015 13:37:23</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/DateTime.ascx">
+      <publishTime>03/11/2015 16:41:48</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/DateTime_Edit.ascx">
+      <publishTime>03/11/2015 16:53:33</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/Decimal_Edit.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/EmailAddress.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/EmailAddress_Edit.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/Enumeration.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/Enumeration_Edit.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/ForeignKey.ascx">
+      <publishTime>03/05/2015 15:53:51</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/ForeignKeyAutoPostBack.ascx">
+      <publishTime>03/13/2015 15:25:32</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/ForeignKeyAutoPostBack_Edit.ascx">
+      <publishTime>03/13/2015 15:47:22</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/ForeignKey_Edit.ascx">
+      <publishTime>03/13/2015 15:25:30</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/GroupPermission.ascx">
+      <publishTime>12/30/2014 16:04:00</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/GroupPermission_Edit.ascx">
+      <publishTime>12/23/2014 12:20:27</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/Informer.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/Informer_Edit.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/Integer_Edit.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/IpRange.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/IpRange_Edit.ascx">
+      <publishTime>03/04/2015 17:41:23</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/JsonTransform.ascx">
+      <publishTime>03/04/2015 14:33:17</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/JsonTransform_Edit.ascx">
+      <publishTime>03/05/2015 16:34:30</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/ManyToMany.ascx">
+      <publishTime>03/05/2015 15:57:09</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/ManyToManyTooMany.ascx">
+      <publishTime>03/11/2015 12:04:17</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/ManyToManyTooMany_Edit.ascx">
+      <publishTime>03/03/2015 14:19:58</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/ManyToMany_Edit.ascx">
+      <publishTime>03/10/2015 13:00:24</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/MultilineText_Edit.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/Package.ascx">
+      <publishTime>10/19/2015 14:00:21</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/Package_Edit.ascx">
+      <publishTime>10/20/2015 12:17:03</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/Password.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/Password_Edit.ascx">
+      <publishTime>03/06/2015 11:51:30</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/Phone.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/Phone_Edit.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/ReadonlyDate.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/ReadonlyDate_Edit.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/RequestMethodsField.ascx">
+      <publishTime>03/16/2015 12:08:03</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/RequestMethodsField_Edit.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/SearchColumns.ascx">
+      <publishTime>12/30/2014 14:24:15</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/SearchColumns_Edit.ascx">
+      <publishTime>12/30/2014 14:17:18</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/SubscriptionMethods.ascx">
+      <publishTime>03/10/2015 13:02:19</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/SubscriptionMethods_Edit.ascx">
+      <publishTime>03/10/2015 15:27:25</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/Text.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/Text_Edit.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/Url.ascx">
+      <publishTime>03/04/2015 18:02:14</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/Url_Edit.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/XsltFile.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/FieldTemplates/XsltFile_Edit.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/Filters/Boolean.ascx">
+      <publishTime>03/02/2015 15:45:00</publishTime>
+    </File>
+    <File Include="DynamicData/Filters/Enumeration.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/Filters/ForeignKey.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/Filters/Informer.ascx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/PageTemplates/Details.aspx">
+      <publishTime>03/24/2015 14:34:14</publishTime>
+    </File>
+    <File Include="DynamicData/PageTemplates/Edit.aspx">
+      <publishTime>03/24/2015 14:28:46</publishTime>
+    </File>
+    <File Include="DynamicData/PageTemplates/Insert.aspx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/PageTemplates/List.aspx">
+      <publishTime>10/12/2015 15:13:21</publishTime>
+    </File>
+    <File Include="DynamicData/PageTemplates/ListDetails.aspx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="DynamicData/web.config">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="Error.aspx">
+      <publishTime>10/12/2015 15:14:22</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+    <File Include="Login.aspx">
+      <publishTime>03/06/2015 11:15:07</publishTime>
+    </File>
+    <File Include="Site.master">
+      <publishTime>03/05/2015 15:21:07</publishTime>
+    </File>
+    <File Include="web.config">
+      <publishTime>10/27/2015 18:37:18</publishTime>
+    </File>
+    <File Include="WebMethods/WebService.asmx">
+      <publishTime>12/19/2014 18:05:31</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,47 @@
+﻿<!-- html is optimized for Outlook, taking into account that it will be converted in Outlook into smth else. -->
+<table style="background-color: white; font-family: Calibri Light,Calibri,Arial,Century;">
+    <tr>
+        <td style="padding: 5px; border: 1px solid gray; background-color: #eee">Hello,<br>
+            This is an automated report sent by the SPAN sync service, please do not reply.<br>
+            <br>
+            The FAILURE status is assigned when there are any errors or missed elements in the log.<br>
+            Otherwise the SUCCESS status is assigned.<br>
+            <br>
+            Log entries are put in the report for your information, you can find these and other entries in the <b>import_Error</b> and <b>import_Log</b> tables<br>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <br />
+            <br />
+            <br />
+        </td>
+    </tr>
+    <tr>
+        <td style="padding: 0px">
+            <!-- Number of errors -->
+            <h3 style="background-color: #ff6347; color: white">&nbsp;Errors ({0}):</h3>
+            <!-- list of errors, consists of elements formatted with ErrorItem.html -->
+            <div style="margin-left: 15px; color: #ff6347;">{1}</div>
+            <br />
+        </td>
+    </tr>
+    <tr>
+        <td style="padding: 0px">
+            <!-- number of tables with missed xml elements -->
+            <h3 style="background-color: #ff6347; color: white">&nbsp;Tables with missed elements ({4}):</h3>
+            <!-- list of records, consists of elements formatted with MissedElements.html -->
+            <div style="margin-left: 15px; color: #ff6347">{5}</div>
+            <br />
+        </td>
+    </tr>
+    <tr>
+        <td style="padding: 0px">
+            <!-- number of records -->
+            <h3 style="background-color: #6AB8FE; color: white">&nbsp;Messages ({2}):</h3>
+            <!-- list of records, consists of elements formatted with LogItem.html -->
+            <div style="margin-left: 15px; color: grey;">{3}</div>
+            <br />
+        </td>
+    </tr>
+</table>

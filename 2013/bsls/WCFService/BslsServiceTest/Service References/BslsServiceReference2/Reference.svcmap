@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="50e9c198-6e45-44de-8f63-4c74a2f0abe8" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="Jnj.ThirdDimension.Service.BarcodeSeries" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8090/BslsService/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="3c86a02c-c0cd-46b1-8f36-2e0d0d0997fc" SourceId="1" SourceUrl="http://localhost:8090/BslsService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="1b993102-6bad-47af-82f3-41d247cdf50a" SourceId="1" SourceUrl="http://localhost:8090/BslsService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="f40e14a3-cbfa-4f53-85a0-0ba211d22298" SourceId="1" SourceUrl="http://localhost:8090/BslsService/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="89aa3cbd-25c8-41e8-98bc-b7f37c12641f" SourceId="1" SourceUrl="http://localhost:8090/BslsService/mex" />
+    <MetadataFile FileName="Jnj.ThirdDimension.BusinessLayer.BarcodeSeries.xsd" MetadataType="Schema" ID="959caf39-798c-40bb-a05b-b8a55f3eea77" SourceId="1" SourceUrl="http://localhost:8090/BslsService/mex" />
+    <MetadataFile FileName="Jnj.ThirdDimension.Service.BarcodeSeries.xsd" MetadataType="Schema" ID="5138371a-808f-4247-9862-049af5e1f92c" SourceId="1" SourceUrl="http://localhost:8090/BslsService/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

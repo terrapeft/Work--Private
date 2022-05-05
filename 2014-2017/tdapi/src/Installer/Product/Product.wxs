@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension"
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+  <Product Id="c999b022-5003-4918-affc-8669cc8bc29c" Name="TRADEData API Service" Language="1033" Version="1.0.0.0" Manufacturer="Euromoney TRADEdata" UpgradeCode="a28c5066-b786-49bc-8456-95cadf368610">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Description="TRADEData API Service Installer" />
+
+    <PropertyRef Id="NETFRAMEWORK45"/>
+    <!--<Condition Message ="[NETFRAMEWORK45]">0</Condition>-->
+    <Condition Message="This application requires .NET Framework 4.5. Please install the .NET Framework then run this installer again.">
+      <![CDATA[Installed OR NETFRAMEWORK45 >= "#378675"]]>
+    </Condition>
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <Media Id="1" Cabinet="tdapi.cab" EmbedCab="yes" />
+
+    <Icon Id="icon.ico" SourceFile="Images/db.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="icon.ico" />
+
+    <?include Configuration.wxi ?>
+
+    <Binary Id="WixCustomActionsBinary" SourceFile="$(var.WiXCustomActions.TargetDir)$(var.WiXCustomActions.TargetName).CA.dll" />
+    <Binary Id="CreateDatabase" SourceFile="SQL/1. users db, ddl script.sql" />
+    <Binary Id="FillDatabase" SourceFile="SQL/2. users db, dml script.sql" />
+    <Binary Id="CreateExpireUsersJob" SourceFile="SQL/3. Job tdApi_Users_ExpireUsers.sql" />
+    <Binary Id="CreateZeroHitCounterJob" SourceFile="SQL/4. Job tdApi_Users_ZeroHitCounter.sql" />
+    <Binary Id="UpdateTradeDataAPIDB" SourceFile="SQL/5. TRADEdataAPI db, ddl script.sql" />
+    <Binary Id="AppPoolUserScript" SourceFile="SQL/6. user.sql" />
+
+    <Feature Id="UninstallInfo" Title="Uninstall Info" Level="1" Display="hidden">
+      <ComponentRef Id="RegistryEntries" />
+      <Condition Level="1">Privileged</Condition>
+    </Feature>
+
+    <Feature Id="ProxySettings" Title="Proxy settings" Level="1" Display="hidden">
+      <ComponentRef Id="RegistryChangerFiles"/>
+      <Condition Level="1">Privileged AND ENABLE_PROXY = 1</Condition>
+    </Feature>
+
+    <Feature Id="API_Feature" Title="TRADEData API" Level="1" Description="Installs the web service.">
+      <!-- Refenrence to the Generated/_TradeDataAPIFiles.wxs -->
+      <ComponentGroupRef Id="ApiWeb" />
+      <Condition Level="1">Privileged</Condition>
+    </Feature>
+
+    <Feature Id="Admin_Feature" Title="Administrative UI" Level="1" Description="Installs the Administrative web site.">
+      <!-- Refenrence to the Generated/_AdminWebFiles.wxs -->
+      <ComponentGroupRef Id="AdminWeb" />
+      <Component Id="TempFolderPermissions" Directory="TEMP_FILES_FOLDER" Guid="CE35F332-4010-4087-BF4B-26ACC021E3DC">
+        <CreateFolder>
+          <util:PermissionEx User="IIS_IUSRS" GenericAll="yes"   />
+        </CreateFolder>
+      </Component>
+      <Condition Level="1">Privileged</Condition>
+    </Feature>
+
+    <!--
+    https://msdn.microsoft.com/en-us/library/aa371626(v=vs.85).aspx
+    
+    Custom actions that reference an installed file as their source, such as Custom Action Type 17 (DLL), Custom Action Type 18 (EXE), Custom Action Type 21 (JScript), and Custom Action Type 22 (VBScript), must adhere to the following 
+    sequencing restrictions.
+    The custom action must be sequenced after the CostFinalize action so that the path to the referenced file can be resolved.
+    If the source file is not already installed on the computer, deferred (in-script) custom actions must be sequenced after the InstallFiles.
+    If the source file is not already installed on the computer, nondeferred custom actions must be sequenced after the InstallInitialize action.
+
+    The following sequencing restrictions apply to custom actions that change or update a Windows Installer package.
+
+    If the custom action changes the package, such as by adding rows to a table, the action must be sequenced before the InstallInitialize action.
+    If the custom action makes changes that would affect costing, then it should be sequenced before the CostInitialize action.
+    If the custom action changes the installation state of features or components, it must be sequenced before the InstallValidate action.
+    -->
+    <Feature Id="Client_Feature" Title="Simple Client" Level="1" ConfigurableDirectory="SC">
+      <ComponentGroupRef Id="SimpleClient" />
+      <ComponentRef Id="ApplicationShortcutDesktop" />
+    </Feature>
+
+    <Property Id="ApiSite" Value="|||||" />
+    <Property Id="AdminSite" Value="|||||" />
+    <Property Id="SimpleClient" Value="|||" />
+
+    <SetProperty Action="SetApiSite" Id="ApiSite" After="CostFinalize" Value="[WEB_APP_API]|[API_FOLDER]|[API_DNS]|[API_IP]|[API_PORT]|[API_PROTOCOL]"><![CDATA[&API_Feature=3]]></SetProperty>
+    <SetProperty Action="SetAdminSite" Id="AdminSite" After="CostFinalize" Value="[WEB_APP_ADMIN]|[WEB_ADMIN_FOLDER]|[WEB_ADMIN_DNS]|[WEB_ADMIN_IP]|[WEB_ADMIN_PORT]|[WEB_ADMIN_PROTOCOL]"><![CDATA[&Admin_Feature=3]]></SetProperty>
+    <SetProperty Action="SetSimpleClient" Id="SimpleClient" After="CostFinalize" Value="[SC]|[API_PROTOCOL]|[API_DNS]"><![CDATA[&Client_Feature=3]]></SetProperty>
+
+    <!-- UNINST properties are initialized from the registry on uninstall, when user input is not available -->
+    <Property Id="UNINST_APPPOOL">
+      <RegistrySearch Id="uap" Root="HKCU" Key="Software\!(bind.property.Manufacturer)\[PRODUCT_NAME]" Name="AppPool" Type="raw" />
+    </Property>
+    <Property Id="UNINST_APISITE">
+      <RegistrySearch Id="uapis" Root="HKCU" Key="Software\!(bind.property.Manufacturer)\[PRODUCT_NAME]" Name="APISite" Type="raw" />
+    </Property>
+    <Property Id="UNINST_ADMINSITE">
+      <RegistrySearch Id="uadmins" Root="HKCU" Key="Software\!(bind.property.Manufacturer)\[PRODUCT_NAME]" Name="AdminSite" Type="raw" />
+    </Property>
+
+    <CustomAction Id="RunScriptParameters" Return="check" Property="RunScripts" Value="scripts=CreateDatabase,FillDatabase,CreateExpireUsersJob,CreateZeroHitCounterJob,AppPoolUserScript;ReuseDb=[REUSE_DB];Db=[DB_NAME];Server=[SQL_SERVER];User=[DB_USER];Pwd=[DB_PASSWORD];Trusted=[TRUSTED_CONNECTION];JobUser=[JOB_USER];AppPool=[APPPOOL_NAME];Msi=[OriginalDatabase];Site=[ApiSite];DefaultPassword=[DEFAULT_PASSWORD];dbCfgs=tda,gs;Cipher=[CIPHER];MailProfile=[DB_MAIL_PROFILE]" />
+    <CustomAction Id="RunScripts" Impersonate="no" BinaryKey="WixCustomActionsBinary" DllEntry="RunScripts" Execute="deferred" Return="check" />
+
+    <CustomAction Id="RunScriptParameters2" Return="check" Property="RunScripts2" Value="scripts=UpdateTradeDataAPIDB,AppPoolUserScript;ReuseDb=[REUSE_DB];Db=[TDAPI_DB_NAME];Server=[SQL_SERVER];User=[DB_USER];Pwd=[DB_PASSWORD];Trusted=[TRUSTED_CONNECTION];JobUser=[JOB_USER];AppPool=[APPPOOL_NAME];Msi=[OriginalDatabase];Site=[ApiSite];dbCfgs=tda,gs;Cipher=[CIPHER]" />
+    <CustomAction Id="RunScripts2" Impersonate="no" BinaryKey="WixCustomActionsBinary" DllEntry="RunScripts" Execute="deferred" Return="check" />
+
+    <CustomAction Id="IIsParameters" Return="check" Property="ConfigureIIS" Value="Root=[WWW_ROOT];Sc=[SimpleClient];Sites=[ApiSite],[AdminSite];AppPool=[APPPOOL_NAME];Server=[SQL_SERVER];User=[DB_USER];Pwd=[DB_PASSWORD];Trusted=[TRUSTED_CONNECTION];SSL=[X509_SELECT];Store=[X509_STORE];StoreLocation=[X509_STORELOCATION];Thumb=[X509_CERTIFICATE];ConnStr=TRADEdataUsers:[TDUSERS_DB_NAME]" />
+    <CustomAction Id="ConfigureIIS" Impersonate="no" BinaryKey="WixCustomActionsBinary" DllEntry="SetUpIIS" Execute="deferred" Return="check" />
+
+    <CustomAction Id="IIsUninstallParameters" Return="check" Property="UninstallSites" Value="AppPool=[UNINST_APPPOOL];AdminSite=[UNINST_ADMINSITE];Api=[UNINST_APISITE]" />
+    <CustomAction Id="UninstallSites" Impersonate="no" BinaryKey="WixCustomActionsBinary" DllEntry="DeleteSites" Execute="deferred" Return="check"/>
+
+    <!-- To make it work, the registry changer app MUST be x64 AND custom action MUST be impersonated AND user MUST be administrator -->
+    <CustomAction
+      Id="RegistryChanger"
+      FileKey="REGISTRYCHANGER.EXE"
+      Impersonate="yes"
+      Execute="deferred"
+      ExeCommand="-enableproxy=[ENABLE_PROXY] -address=[PROXY] -exclude=[PROXY_BYPASS] -enablescripting=[ENABLE_JAVASCRIPT]"
+      Return="check" />
+    
+    <CustomAction
+      Id="EnableNet45"
+      Impersonate="yes"
+      Execute="deferred"
+      Directory="TARGETDIR"
+      ExeCommand="dism.exe /online /Enable-Feature /FeatureName:IIS-ASPNET45 /all"
+      Return="ignore" />
+
+    <CustomAction
+      Id="UnlockModules"
+      Impersonate="yes"
+      Execute="deferred"
+      Directory="TARGETDIR"
+      ExeCommand="[WindowsFolder]system32\inetsrv\appcmd.exe unlock config /section:system.webServer/modules"
+      Return="ignore" />
+    
+    <InstallExecuteSequence>
+      <!--
+        http://stackoverflow.com/questions/537584/how-to-execute-custom-action-only-in-install-not-uninstall
+      -->
+      <Custom Action="IIsParameters" Before="ConfigureIIS">NOT REMOVE</Custom>
+      <Custom Action="ConfigureIIS" After="InstallFiles">NOT REMOVE</Custom>
+      <Custom Action="RunScriptParameters" Before="RunScripts">NOT REMOVE</Custom>
+      <Custom Action="RunScripts" After="ConfigureIIS">NOT REMOVE</Custom>
+      <Custom Action="RunScriptParameters2" Before="RunScripts2">NOT REMOVE</Custom>
+      <Custom Action="RunScripts2" After="RunScripts">NOT REMOVE</Custom>
+
+      <Custom Action="IIsUninstallParameters" Before="UninstallSites">(NOT UPGRADINGPRODUCTCODE) AND (REMOVE="ALL")</Custom>
+      <Custom Action="UninstallSites" Before="RemoveRegistryValues">(NOT UPGRADINGPRODUCTCODE) AND (REMOVE="ALL")</Custom>
+
+      <Custom Action="RegistryChanger" Before="InstallFinalize">NOT REMOVE AND ENABLE_PROXY = 1</Custom>
+      <Custom Action="UnlockModules" Before="InstallFinalize">NOT REMOVE</Custom>
+      <Custom Action="EnableNet45" Before="InstallFinalize">NOT REMOVE</Custom>
+    </InstallExecuteSequence>
+
+    <UIRef Id="Custom_UI" />
+
+    <Property Id="WWW_ROOT">
+      <RegistrySearch Id="FindInetPubFolder" Root="HKLM" Key="SOFTWARE\Microsoft\InetStp" Name="PathWWWRoot" Type="directory" />
+    </Property>
+    <!--<Icon Id="Foobar10.exe" SourceFile="FoobarAppl10.exe" />-->
+  </Product>
+
+  <Fragment>
+    <DirectoryRef Id="TARGETDIR">
+      <Component Id="RegistryEntries" Guid="EE16176A-667A-4804-A31B-217E75B4F854">
+        <RegistryKey Root="HKCU" Key="Software\!(bind.property.Manufacturer)\[PRODUCT_NAME]" Action="createAndRemoveOnUninstall">
+          <RegistryValue Type="string" Name="AppPool" Value="[APPPOOL_NAME]" KeyPath="yes"/>
+          <RegistryValue Type="string" Name="APISite" Value="[API_DNS]" />
+          <RegistryValue Type="string" Name="AdminSite" Value="[WEB_ADMIN_DNS]" />
+        </RegistryKey>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+
+  <Fragment>
+    <DirectoryRef Id="DesktopFolder">
+      <Component Id="ApplicationShortcutDesktop" Guid="{e63aac5a-e36b-4ad7-9b02-d1c093a55e7d}">
+        <Shortcut Id="ApplicationDesktopShortcut" Name="Simple Client" Icon="icon.ico" Description="Client app for the TRADEData API Web Service." Target="[SC]SimpleClient.exe" WorkingDirectory="SC" />
+        <RemoveFolder Id="RemoveDesktopFolder" Directory="DesktopFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\!(bind.property.Manufacturer)\[PRODUCT_NAME]" Name="Installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="WindowsFolder" Name="WindowsFolder" />
+      <Directory Id="TempFolder"/>
+      <Directory Id="WWW_ROOT">
+        <Directory Id="API_FOLDER" Name="TradeDataApi" />
+        <Directory Id="WEB_ADMIN_FOLDER" Name="TradeDataAdminUI" >
+          <Directory Id="TEMP_FILES_FOLDER" Name="TempFiles" />
+        </Directory>
+      </Directory>
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="SC" Name="TRADEData API Simple Client" />
+      </Directory>
+      <Directory Id="DesktopFolder" Name="Desktop"></Directory>
+    </Directory>
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="SimpleClient" Directory="SC">
+      <Component Id="SimpleClientFiles" Guid="66DC872D-A636-4648-A701-1656C724E992">
+        <File Id="SIMPLECLIENT.EXE" Name="SimpleClient.exe" Source="..\..\TradeDataAPI\SimpleClient\bin\$(var.Configuration)\SimpleClient.exe"/>
+        <File Id="SIMPLECLIENT.EXE.CONFIG" Name="SimpleClient.exe.config" Source="..\..\TradeDataAPI\SimpleClient\bin\$(var.Configuration)\SimpleClient.exe.config" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+  <Fragment>
+    <Component Id="RegistryChangerFiles" Guid="2086CB0C-E1F2-42FD-B71E-8F4B83919A1F" Directory="TempFolder">
+      <File Id="REGISTRYCHANGER.EXE" Name="RegistryChanger.exe" Source="..\RegistryChanger\bin\$(var.Configuration)\RegistryChanger.exe" KeyPath="yes"/>
+    </Component>
+  </Fragment>
+  <Fragment>
+    <UI Id="Custom_UI">
+      <ProgressText Action="ConfigureIIS">Configuring IIS...</ProgressText>
+      <ProgressText Action="RunScripts">Creating Users database...</ProgressText>
+      <ProgressText Action="RunScripts2">Configuring TRADEdataAPI database...</ProgressText>
+      <ProgressText Action="RegistryChanger">Setting up system proxy...</ProgressText>
+
+      <UIRef Id="WixUI_FeatureTree" />
+      <UIRef Id="WixUI_ErrorProgressText" />
+
+      <DialogRef Id="ConnectionStringDlg" ></DialogRef>
+      <DialogRef Id="PoolSettingsDlg" />
+      <DialogRef Id="ProxyDlg" />
+      <DialogRef Id="CertificateDlg" />
+      <DialogRef Id="WarningDlg" />
+
+
+      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="CustomizeDlg" Order="1">1</Publish>
+      <Publish Dialog="CustomizeDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg" Order="3">1</Publish>
+      <Publish Dialog="CustomizeDlg" Control="Next" Event="NewDialog" Value="ConnectionStringDlg" Order="3">1</Publish>
+      <Publish Dialog="CustomizeDlg" Control="Next" Event="NewDialog" Value="ExitDialog" Order="43">
+        <![CDATA[&Client_Feature<>3 AND &Admin_Feature<>3 AND &API_Feature<>3]]>
+      </Publish>
+
+      <Publish Dialog="ProxyDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg" Order="44"><![CDATA[&API_Feature<>3]]></Publish>
+      <Publish Dialog="ProxyDlg" Control="Next" Event="NewDialog" Value="CertificateDlg" Order="44"><![CDATA[&API_Feature=3]]></Publish>
+
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="ProxyDlg" Order="44"><![CDATA[&API_Feature<>3]]></Publish>
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="CertificateDlg" Order="44"><![CDATA[&API_Feature=3]]></Publish>
+
+    </UI>
+    <UIRef Id="WixUI_Common" />
+  </Fragment>
+</Wix>

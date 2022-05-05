@@ -1,0 +1,86 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment Configuration", "Deployment Configuration", "{625D899E-05DB-4FFA-9B2D-3AF9B45FE424}"
+	ProjectSection(SolutionItems) = preProject
+		BSLS.sln.deploy.config = BSLS.sln.deploy.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C0F89B2A-C897-4BC1-BFA5-3D5550299828}"
+	ProjectSection(SolutionItems) = preProject
+		BSLS.sln.deploy.config = BSLS.sln.deploy.config
+		BSLS.vsmdi = BSLS.vsmdi
+		BSLS3.vsmdi = BSLS3.vsmdi
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{15A80155-1EF7-40EB-B5BB-A84D34CEE15A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{19B0CB3D-24F9-40DC-866C-AD0C00CA790A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controls", "Controls\Controls.csproj", "{49713DF7-8AE8-4418-83DD-4FBD7DEC08CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{0DEF741B-70A4-4054-8156-8791951618C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugins", "Plugins\Plugins.csproj", "{245CB7BB-2E31-4042-8AC4-6A73B79CB3C3}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = BSLS3.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		ArcadiaDebug|Any CPU = ArcadiaDebug|Any CPU
+		ArcadiaRelease|Any CPU = ArcadiaRelease|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{15A80155-1EF7-40EB-B5BB-A84D34CEE15A}.ArcadiaDebug|Any CPU.ActiveCfg = Release|x86
+		{15A80155-1EF7-40EB-B5BB-A84D34CEE15A}.ArcadiaDebug|Any CPU.Build.0 = Release|x86
+		{15A80155-1EF7-40EB-B5BB-A84D34CEE15A}.ArcadiaRelease|Any CPU.ActiveCfg = Release|x86
+		{15A80155-1EF7-40EB-B5BB-A84D34CEE15A}.ArcadiaRelease|Any CPU.Build.0 = Release|x86
+		{15A80155-1EF7-40EB-B5BB-A84D34CEE15A}.Debug|Any CPU.ActiveCfg = Release|x86
+		{15A80155-1EF7-40EB-B5BB-A84D34CEE15A}.Debug|Any CPU.Build.0 = Release|x86
+		{15A80155-1EF7-40EB-B5BB-A84D34CEE15A}.Release|Any CPU.ActiveCfg = Release|x86
+		{15A80155-1EF7-40EB-B5BB-A84D34CEE15A}.Release|Any CPU.Build.0 = Release|x86
+		{19B0CB3D-24F9-40DC-866C-AD0C00CA790A}.ArcadiaDebug|Any CPU.ActiveCfg = Release|x86
+		{19B0CB3D-24F9-40DC-866C-AD0C00CA790A}.ArcadiaDebug|Any CPU.Build.0 = Release|x86
+		{19B0CB3D-24F9-40DC-866C-AD0C00CA790A}.ArcadiaRelease|Any CPU.ActiveCfg = Release|x86
+		{19B0CB3D-24F9-40DC-866C-AD0C00CA790A}.ArcadiaRelease|Any CPU.Build.0 = Release|x86
+		{19B0CB3D-24F9-40DC-866C-AD0C00CA790A}.Debug|Any CPU.ActiveCfg = Release|x86
+		{19B0CB3D-24F9-40DC-866C-AD0C00CA790A}.Debug|Any CPU.Build.0 = Release|x86
+		{19B0CB3D-24F9-40DC-866C-AD0C00CA790A}.Release|Any CPU.ActiveCfg = Release|x86
+		{19B0CB3D-24F9-40DC-866C-AD0C00CA790A}.Release|Any CPU.Build.0 = Release|x86
+		{49713DF7-8AE8-4418-83DD-4FBD7DEC08CA}.ArcadiaDebug|Any CPU.ActiveCfg = Release|x86
+		{49713DF7-8AE8-4418-83DD-4FBD7DEC08CA}.ArcadiaDebug|Any CPU.Build.0 = Release|x86
+		{49713DF7-8AE8-4418-83DD-4FBD7DEC08CA}.ArcadiaRelease|Any CPU.ActiveCfg = Release|x86
+		{49713DF7-8AE8-4418-83DD-4FBD7DEC08CA}.ArcadiaRelease|Any CPU.Build.0 = Release|x86
+		{49713DF7-8AE8-4418-83DD-4FBD7DEC08CA}.Debug|Any CPU.ActiveCfg = Release|x86
+		{49713DF7-8AE8-4418-83DD-4FBD7DEC08CA}.Debug|Any CPU.Build.0 = Release|x86
+		{49713DF7-8AE8-4418-83DD-4FBD7DEC08CA}.Release|Any CPU.ActiveCfg = Release|x86
+		{49713DF7-8AE8-4418-83DD-4FBD7DEC08CA}.Release|Any CPU.Build.0 = Release|x86
+		{0DEF741B-70A4-4054-8156-8791951618C9}.ArcadiaDebug|Any CPU.ActiveCfg = Release|x86
+		{0DEF741B-70A4-4054-8156-8791951618C9}.ArcadiaDebug|Any CPU.Build.0 = Release|x86
+		{0DEF741B-70A4-4054-8156-8791951618C9}.ArcadiaRelease|Any CPU.ActiveCfg = Release|x86
+		{0DEF741B-70A4-4054-8156-8791951618C9}.ArcadiaRelease|Any CPU.Build.0 = Release|x86
+		{0DEF741B-70A4-4054-8156-8791951618C9}.Debug|Any CPU.ActiveCfg = Release|x86
+		{0DEF741B-70A4-4054-8156-8791951618C9}.Debug|Any CPU.Build.0 = Release|x86
+		{0DEF741B-70A4-4054-8156-8791951618C9}.Release|Any CPU.ActiveCfg = Release|x86
+		{0DEF741B-70A4-4054-8156-8791951618C9}.Release|Any CPU.Build.0 = Release|x86
+		{245CB7BB-2E31-4042-8AC4-6A73B79CB3C3}.ArcadiaDebug|Any CPU.ActiveCfg = Release|x86
+		{245CB7BB-2E31-4042-8AC4-6A73B79CB3C3}.ArcadiaDebug|Any CPU.Build.0 = Release|x86
+		{245CB7BB-2E31-4042-8AC4-6A73B79CB3C3}.ArcadiaRelease|Any CPU.ActiveCfg = Release|x86
+		{245CB7BB-2E31-4042-8AC4-6A73B79CB3C3}.ArcadiaRelease|Any CPU.Build.0 = Release|x86
+		{245CB7BB-2E31-4042-8AC4-6A73B79CB3C3}.Debug|Any CPU.ActiveCfg = Release|x86
+		{245CB7BB-2E31-4042-8AC4-6A73B79CB3C3}.Debug|Any CPU.Build.0 = Release|x86
+		{245CB7BB-2E31-4042-8AC4-6A73B79CB3C3}.Release|Any CPU.ActiveCfg = Release|x86
+		{245CB7BB-2E31-4042-8AC4-6A73B79CB3C3}.Release|Any CPU.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

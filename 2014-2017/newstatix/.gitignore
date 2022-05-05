@@ -1,0 +1,14 @@
+Site/bin/
+Site/obj/
+Site/packages/
+Db/obj/
+Db/bin/
+Site/TestResults/
+Tests/StatixIntegrationTests/obj/
+Tests/StatixIntegrationTests/bin/
+Tests/SharedLibraryTests/obj/
+Tests/SharedLibraryTests/bin/
+SiteAdmin/obj/
+SiteAdmin/bin/
+Database/old users + vchupaev.sql
+Database/Statix.bak__

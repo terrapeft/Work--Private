@@ -1,0 +1,545 @@
+﻿body {
+    font: 13px Tahoma, Arial;
+}
+
+    body.page {
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    background-color: #b0e0e6;
+}
+
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 102;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #000000;
+    -ms-opacity: .15;
+    -webkit-filter: alpha(opacity=15);
+    -moz-filter: alpha(opacity=15);
+    -o-filter: alpha(opacity=15);
+    filter: alpha(opacity=15);
+    -moz-opacity: .15;
+    opacity: .15;
+    z-index: 101;
+    display: none;
+}
+
+.shadow {
+    -webkit-box-shadow: 1px 1px 2px #888888;
+    -ms-box-shadow: 1px 1px 2px #888888;
+    box-shadow: 1px 1px 2px #888888;
+}
+
+/**/
+
+span.aspNetDisabled > label {
+    font-weight: normal !important;
+    color: #aaaaaa;
+}
+
+td > label {
+    font-weight: normal !important;
+}
+
+.de-name-alt {
+    padding: 3px 10px 3px 3px;
+    font-weight: bolder;
+    white-space: nowrap;
+}
+
+.de-value-alt {
+    padding: 3px 10px 3px 3px;
+    width: 70%;
+}
+
+.de-name {
+    padding: 3px 10px 3px 3px;
+    font-weight: bolder;
+    white-space: nowrap;
+}
+
+.de-value {
+    padding: 3px 10px 3px 3px;
+    width: 70%;
+}
+
+.search-result-table {
+    margin-left: 45px;
+    position: relative;
+    top: -2px;
+}
+
+.tr-alt {
+    background-color: #EFEFEF;
+    border-bottom: 1px solid #D3D3D3;
+    line-height: 1.5;
+}
+
+.tr-item {
+    border-bottom: 1px solid #D3D3D3;
+    line-height: 1.5;
+}
+
+.table-alt {
+    background-color: #e0ffff;
+}
+
+ul.dropdown-menu-form {
+    padding: 5px 10px 0;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.checkboxlist-nowrap tr td {
+    white-space: nowrap;
+    padding-right: 5px;
+    overflow: hidden;
+}
+
+.package-list tr td {
+    white-space: nowrap;
+    padding-right: 5px;
+    overflow: hidden;
+    position: relative;
+    top: 33px;
+}
+
+.userPositionAdjustment {
+    position: relative;
+    top: 2px;
+}
+
+.RadGrid {
+    overflow: hidden;
+}
+
+.rgMasterTable {
+    border-collapse: collapse !important;
+}
+
+.rgGroupHeader {
+    border-bottom: 2px solid #ccc !important;
+}
+
+.rgHeader {
+    font-size: 12px !important;
+    font-weight: bold !important;
+    background-color: #F1F1F1;
+    border-top: 1px solid #ccc !important;
+    border-bottom: 3px solid #ccc !important;
+}
+
+    .rgHeader a {
+        color: black !important;
+    }
+
+.rgGroupItem {
+    border: 1px solid #999 !important;
+    border-collapse: separate !important;
+    -ms-border-radius: 4px !important;
+    border-radius: 4px !important;
+    background-color: #4cc7ca !important;
+    border-color: #4cc7ca !important;
+    color: #fff !important;
+}
+
+    .rgGroupItem > .rgSortAsc {
+        background-position: 0 !important;
+        -moz-background-position-x: 3px !important;
+        -o-background-position-x: 3px !important;
+        background-position-x: 3px !important;
+        background-image: url("/Content/Images/caret-up.png") !important;
+    }
+
+    .rgGroupItem > .rgSortDesc {
+        background-position: 0px !important;
+        -moz-background-position-x: 3px !important;
+        -o-background-position-x: 3px !important;
+        background-position-x: 3px !important;
+        background-image: url("/Content/Images/caret-down.png") !important;
+    }
+
+.rgUngroup {
+    background-position: 0px !important;
+    -moz-background-position-y: 4px !important;
+    -o-background-position-y: 4px !important;
+    background-position-y: 4px !important;
+    -moz-background-position-x: 2px !important;
+    -o-background-position-x: 2px !important;
+    background-position-x: 2px !important;
+    background-image: url("/Content/Images/close.png") !important;
+}
+
+.rgPageFirst {
+    background-position: 0px !important;
+    background-image: url("/Content/Images/first.png") !important;
+    width: 39px !important;
+    height: 29px !important;
+    outline: none;
+}
+
+    .rgPageFirst:hover, .rgPageFirst:focus, .rgPageFirst:active {
+        background-position: -39px !important;
+    }
+
+.rgPagePrev {
+    background-position: 0px !important;
+    background-image: url("/Content/Images/prev.png") !important;
+    width: 31px !important;
+    height: 29px !important;
+    outline: none;
+}
+
+    .rgPagePrev:hover, .rgPagePrev:focus, .rgPagePrev:active {
+        background-position: -31px !important;
+    }
+
+input.rgPagePrev {
+    position: relative !important;
+    left: -5px !important;
+}
+
+input.rgPageNext {
+    position: relative !important;
+    left: 5px !important;
+}
+
+.rgPageNext {
+    background-position: 0px !important;
+    background-image: url("/Content/Images/next.png") !important;
+    width: 30px !important;
+    height: 29px !important;
+    outline: none;
+}
+
+    .rgPageNext:hover, .rgPageNext:focus, .rgPageNext:active {
+        background-position: -30px !important;
+    }
+
+
+.rgPageLast {
+    background-position: 0px !important;
+    background-image: url("/Content/Images/last.png") !important;
+    width: 40px !important;
+    height: 29px !important;
+    outline: none;
+}
+
+    .rgPageLast:hover, .rgPageLast:focus, .rgPageLast:active {
+        background-position: -40px !important;
+    }
+
+.rgArrPart2 {
+    position: relative;
+    left: -13px;
+}
+
+.rgAdvPart, .rgInfoPart {
+    position: relative;
+    top: 4px;
+}
+
+.rgNumPart {
+    position: relative;
+    left: -7px;
+    height: 29px !important;
+}
+
+    .rgNumPart a {
+        border: 1px solid #ddd;
+        border-right-width: 0;
+        padding: 2px 9px 0 9px !important;
+        float: none !important;
+        min-height: 29px !important;
+        height: 29px !important;
+        display: inline-block;
+    }
+
+        .rgNumPart a span {
+            color: #B56CB5;
+            padding: 0 0 0 0 !important;
+            float: none !important;
+        }
+
+        .rgNumPart a:hover {
+            background: none !important;
+            background-color: #ddd !important;
+        }
+
+            .rgNumPart a:hover span {
+                background: none !important;
+            }
+
+
+        .rgNumPart a.rgCurrentPage {
+            background: none !important;
+            background-color: #34acaf !important;
+        }
+
+            .rgNumPart a.rgCurrentPage span {
+                background: none !important;
+                color: white !important;
+            }
+
+.rgGroupPanel {
+    background-color: inherit !important;
+    border: 1px dashed #ccc !important;
+    margin-bottom: 5px !important;
+}
+
+    .rgGroupPanel table {
+        border-collapse: separate !important;
+        line-height: 1.9 !important;
+        color: #c3c3c3 !important;
+    }
+
+.rgFilterBox {
+    border: 1px solid #ccc !important;
+    -ms-border-radius: 4px !important;
+    border-radius: 4px !important;
+    -ms-border-top-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    -ms-border-bottom-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    height: 22px !important;
+}
+
+.rgFilter {
+    border: 1px solid #ccc !important;
+    background-image: url(../Images/filter-gray.png) !important;
+    background-position: 5px !important;
+    -ms-border-radius: 4px !important;
+    border-radius: 4px !important;
+    -ms-border-top-left-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    -ms-border-bottom-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    margin: 0 0 0 0 !important;
+    width: 37px !important;
+}
+
+    .rgFilter:focus {
+        border-color: #b56cb5 !important;
+        -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.075) inset,0 0 8px rgba(181,108,181,.6) !important;
+        -ms-box-shadow: 0 1px 1px rgba(0,0,0,.075) inset,0 0 8px rgba(181,108,181,.6) !important;
+        box-shadow: 0 1px 1px rgba(0,0,0,.075) inset,0 0 8px rgba(181,108,181,.6) !important;
+        outline: 0 none !important;
+        border: 1px solid #b56cb5 !important;
+    }
+
+.rgFilterBox:focus {
+    border-color: #b56cb5 !important;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.075) inset,0 0 8px rgba(181,108,181,.6) !important;
+    -ms-box-shadow: 0 1px 1px rgba(0,0,0,.075) inset,0 0 8px rgba(181,108,181,.6) !important;
+    box-shadow: 0 1px 1px rgba(0,0,0,.075) inset,0 0 8px rgba(181,108,181,.6) !important;
+    outline: 0 none !important;
+}
+
+.rgRow > td {
+    border-bottom: solid 1px #D3D3D3 !important;
+    line-height: 1.5;
+}
+
+.rgRow td > input[type=image] {
+    outline: 1px none !important;
+    outline-color: #b56cb5 !important;
+}
+
+
+.rgAltRow > td {
+    border-bottom: solid 1px #D3D3D3 !important;
+    line-height: 1.5;
+}
+
+.rgAltRow td > input[type=image] {
+    outline: 1px none !important;
+    outline-color: #b56cb5 !important;
+}
+
+
+/* fix for a Simple skin's column filter dropdown */
+.RadMenu_Simple a.rmRootLink .rmText {
+    padding-left: 28px !important;
+}
+
+td input[type=checkbox] + label {
+    position: relative;
+    top: -2px;
+    margin-left: 2px;
+}
+
+input[type=radio] + label {
+    position: relative;
+    top: -2px;
+    margin-left: 2px;
+    font-weight: normal;
+}
+
+input[type=checkbox] + label {
+    position: relative;
+    top: -2px;
+    margin-left: 2px;
+    font-weight: normal;
+}
+
+.panel-body {
+    overflow-x: hidden;
+}
+
+.search-highlight {
+    background-color: yellow;
+}
+
+.pull-center {
+    display: table;
+    margin: 0 auto;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.pull-bottom {
+    position: absolute;
+    bottom: 0px;
+}
+
+.pull-top {
+    position: absolute;
+    top: 0px;
+}
+
+.upper-right {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+
+.no-wrap {
+    white-space: nowrap;
+}
+
+.deselect-checkbox {
+    position: relative;
+    top: -2px;
+    margin-left: -3px;
+    font-weight: bold !important;
+    color: #B56CB5 !important;
+}
+
+.entity-data-coll-header {
+    font-weight: bold;
+}
+
+
+
+/*
+    
+    Chevrons for collapsable panels    
+    
+*/
+.collapse-trigger {
+    cursor: pointer;
+}
+
+    .collapse-trigger .show-when-collapsed {
+        display: none;
+    }
+
+    .collapse-trigger.collapsed .show-when-collapsed {
+        display: inline-block;
+    }
+
+    .collapse-trigger .show-when-open {
+        display: inline-block;
+    }
+
+    .collapse-trigger.collapsed .show-when-open {
+        display: none;
+    }
+
+.pager-current {
+    font-weight: bold;
+}
+
+.checkboxlist-nowrap {
+    width: 100% !important;
+}
+
+    .checkboxlist-nowrap td {
+        width: 50% !important;
+    }
+
+
+/* Override bootstrap */
+.pager-current {
+    color: black !important;
+    background-color: #eee !important;
+}
+
+
+/* My account pager */
+.pagination {
+    margin-top: 0 !important;
+}
+
+    .pagination > .disabled > a {
+        color: #ccc;
+    }
+
+    .pagination > .active > a {
+        background-color: #34ACAF !important;
+        border-color: #34ACAF !important;
+    }
+
+    .pagination > li > a {
+        color: #b56cb5;
+    }
+
+.package-list-header label {
+    font-weight: bold !important;
+}
+
+.package-list-methods {
+    padding-left: 15px;
+    line-height: 1.5;
+}
+
+.package-expand-button {
+    margin-left: 5px;
+    cursor: pointer;
+}
+.admin-reference {
+    color: #C3C3C3 !important;
+}

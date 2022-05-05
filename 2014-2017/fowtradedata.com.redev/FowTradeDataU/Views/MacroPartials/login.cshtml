@@ -1,0 +1,59 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using System.Web.Mvc.Html
+@using ClientDependency.Core.Mvc
+@using Umbraco.Web
+@using Umbraco.Web.Models
+@using Umbraco.Web.Controllers
+@using FowTradeDataU.Controllers
+@using FowTradeDataU.Models.ViewModels
+@{
+    var lm = new LoginViewModel();
+
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+    Html.RequiresJs("/js/jquery.min.js");
+    Html.RequiresJs("/umbraco_client/Application/JQuery/jquery.validate.min.js");
+    Html.RequiresJs("/umbraco_client/Application/JQuery/jquery.validate.unobtrusive.min.js");
+}
+@Html.RenderJsHere()
+@using (Html.BeginUmbracoForm<LoginPageSurfaceController>("LoginTemplate"))
+{
+    <fieldset>
+        @Html.ValidationSummary("lm", true)
+        <div class="story omega bg-lined-block wrapped-block clearfix" style="width: 315px; margin: 10px 0;">
+            <h4 class="spc-align-top pull-left">Existing&nbsp;user&nbsp;login&nbsp;<span class="text-light">|</span></h4>
+            <p style="position: relative; top: 2px" class="spc-top-sml">
+                &nbsp;<a href='mailto:
+                         @Umbraco.Field("ciEmail", recursive: true)
+                         &subject=@HttpUtility.HtmlEncode(Umbraco.Field("requestAccountSubject", recursive: true))
+                         &body=@HttpUtility.HtmlEncode(Umbraco.Field("requestAccountBody", recursive: true))'>Request&nbsp;account</a>&nbsp;
+            </p>
+
+            <span id="loginError"></span>
+            <div class="clear" style="padding-bottom: 10px;">
+                <div>
+                    @Html.ValidationMessageFor(m => lm.Email)
+                    <div class="input-group">
+                        @Html.LabelFor(m => lm.Email, new {@class = "input-group-addon"})
+                        @Html.TextBoxFor(m => lm.Email, new {@class = "form-control", placeholder = "Enter email"})
+                    </div>
+                    @Html.ValidationMessageFor(m => lm.Password)
+                    <div class="input-group">
+                        @Html.LabelFor(m => lm.Password, new {@class = "input-group-addon"})
+                        @Html.PasswordFor(m => lm.Password, new {@class = "form-control", placeholder = "Enter password"})
+                    </div>
+                </div>
+                <input name="btnSubmit" value="Login" id="btnSubmit" class="btn btn-default" type="submit">
+            </div>
+        </div>
+
+        @if (Session["LoginAttemptsCount"] != null)
+        {
+            <div class='alert alert-danger fade in' style="width: 315px; margin: 10px 0;">
+                <a href='#' class='close' data-dismiss='alert' aria-label='close error-panel-close-btn'>&times;</a>
+                Invalid username or password.
+            </div>
+        }
+
+    </fieldset>
+}

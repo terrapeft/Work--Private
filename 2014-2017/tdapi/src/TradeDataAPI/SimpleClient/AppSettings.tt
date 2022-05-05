@@ -1,0 +1,73 @@
+<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Configuration" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Configuration" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Globalization" #>
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Reflection;
+using System.Collections.Specialized;
+
+namespace SimpleClient
+{
+    public static class AppSettings 
+	{
+        private static AppSettingsSection _appSettings;
+
+        private static NameValueCollection SettingsSection
+        {
+            get { return ConfigurationManager.AppSettings; }
+        }
+
+<#
+    var configurationFileMap = new ExeConfigurationFileMap();
+    configurationFileMap.ExeConfigFilename = this.Host.ResolvePath("App.config");
+    var configuration = ConfigurationManager.OpenMappedExeConfiguration(configurationFileMap, ConfigurationUserLevel.None);
+    foreach(KeyValueConfigurationElement setting in configuration.AppSettings.Settings
+        .Cast<KeyValueConfigurationElement>()
+        .Where(k => !k.Key.Contains('.')))
+    {
+        string settingType;
+        int i; 
+	    bool b; 
+	    decimal d;
+        bool asString =  setting.Key.StartsWith("str:");
+        var key = setting.Key.Replace("str:", string.Empty);
+
+        if (setting.Value.Contains(";") && !key.EndsWith("Template")) {#>
+		<# AddSummary(setting.Value); #>
+        public static IEnumerable<string> <#= key #> => SettingsSection["<#= setting.Key #>"].Split(new [] {';'}, StringSplitOptions.RemoveEmptyEntries);
+<# continue; } else if (!asString && int.TryParse(setting.Value, out i))
+            settingType = "int";
+        else if (!asString && bool.TryParse(setting.Value, out b))
+            settingType = "bool";
+        else if (!asString && decimal.TryParse(setting.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out d))
+            settingType = "decimal";
+        else { #>
+		<# AddSummary(setting.Value); #>
+		public static string <#= key #> => SettingsSection["<#= setting.Key #>"];
+<# continue; } 
+#>
+        <# AddSummary(setting.Value); #>
+		public static <#= settingType #> <#= key #> => <#= settingType #>.Parse(SettingsSection["<#= setting.Key #>"]);
+<# } #>
+    }
+}
+
+<#+
+private void AddSummary(string setting)
+{
+#>
+
+		/// <summary>
+        /// <#= string.IsNullOrEmpty(setting) 
+				? string.Empty 
+				: "Like \"" + (setting.IndexOf(Environment.NewLine) > -1 
+					? setting.Replace(Environment.NewLine, " ")
+					: setting) + "\"" #>
+        /// </summary>
+<#+
+}
+#>

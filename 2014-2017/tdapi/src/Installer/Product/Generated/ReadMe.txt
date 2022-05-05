@@ -1,0 +1,1 @@
+﻿Files in this folder are generated in the pre-build event.

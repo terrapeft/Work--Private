@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Bundle Name="TRADEdata API Service Package" Version="1.0.0.0" Manufacturer="Euromoney TRADEdata" UpgradeCode="7c735cb9-3648-4f9f-bb95-1fd3e0277922" Condition="NOT Installed">
+    <BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.HyperlinkLicense">
+      <bal:WixStandardBootstrapperApplication SuppressOptionsUI="yes" SuppressRepair="yes"  LogoFile="Images\logo.png" LicenseUrl="" xmlns:bal="http://schemas.microsoft.com/wix/BalExtension" />
+      <Payload SourceFile="..\..\..\CustomActions\Bin\$(var.Configuration)\Microsoft.Deployment.WindowsInstaller.dll" />
+    </BootstrapperApplicationRef>
+
+    <Chain>
+      <!-- framework 4.5 -->
+      <PackageGroupRef Id="NetFx45Web" />
+
+      <!-- URL Rewrite module for IIS -->
+      <MsiPackage  Permanent="yes" DisplayName="IIS Url Rewrite Module x86" DisplayInternalUI="yes" InstallCondition='(NOT Installed) AND (NOT VersionNT64)' SourceFile='$(var.ProjectDir)\CustomPackages\rewrite_2.0_rtw_x86.msi' />
+      <MsiPackage Permanent="yes" DisplayName="IIS Url Rewrite Module x64" DisplayInternalUI="yes" InstallCondition='(NOT Installed) AND (VersionNT64)' SourceFile='$(var.ProjectDir)\CustomPackages\rewrite_2.0_rtw_x64.msi' />
+
+      <!-- TDAPI -->
+      <MsiPackage DisplayName='TRADEdata API Service' SourceFile="$(var.WiXProduct.TargetPath)" InstallCondition='NOT Installed' DisplayInternalUI="yes" Compressed="yes" EnableFeatureSelection="yes" Vital="yes" />
+    </Chain>
+  </Bundle>
+</Wix>

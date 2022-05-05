@@ -1,0 +1,45 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    var year = DateTime.Today.Year;
+}
+<footer>
+    <div class="container">
+        <div class="footerstyle">
+            <div class="row">
+                <div class="col-sm-12 col-md-9">
+
+                    <nav class="navbar navbar-default hidden-xs" role="navigation">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="/">Home</a></li>
+
+                            <li>
+                                <a href="/privacy-policy">Privacy Policy</a>
+                            </li>
+
+                            <li>
+                                <a href="/terms-conditions">Terms &amp; Conditions</a>
+                            </li>
+
+                            <li>
+                                <a href="/cookies">Cookies</a>
+                            </li>
+
+                            <li>
+                                <a href="/about-us">About</a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="http://www.euromoneyplc.com/our-portfolio/specialist-finance-and-economic-data">Euromoney PLC</a>
+                            </li>
+                            <li>
+                                <a href="/support">Contact us</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-sm-12 col-md-3">
+                    <div class="copyright text-right"><small>All&nbsp;material&nbsp;subject to&nbsp;strictly&nbsp;enforced copyright&nbsp;laws.&nbsp;&#0169;&nbsp;@year <a href="http://www.euromoneyplc.com/">Euromoney&nbsp;Institutional&nbsp;Investor&nbsp;PLC</a>.</small></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

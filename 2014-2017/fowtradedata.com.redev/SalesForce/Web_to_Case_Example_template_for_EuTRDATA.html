@@ -1,0 +1,71 @@
+<!--  ----------------------------------------------------------------------  -->
+<!--  NOTE: Please add the following <META> element to your page <HEAD>.      -->
+<!--  If necessary, please modify the charset parameter to specify the        -->
+<!--  character set of your HTML page.                                        -->
+<!--  ----------------------------------------------------------------------  -->
+
+<META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
+
+<!--  ----------------------------------------------------------------------  -->
+<!--  NOTE: Please add the following <FORM> element to your page.             -->
+<!--  ----------------------------------------------------------------------  -->
+
+<form action="https://euromoneyplc--FOWTrade.cs87.my.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8" method="POST">
+
+<input type=hidden name="orgid" value="00D8E0000008k9f">
+<input type=hidden name="retURL" value="http://http://www.euromoneytradedata.com/">
+
+<!--  ----------------------------------------------------------------------  -->
+<!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
+<!--  these lines if you wish to test in debug mode.                          -->
+<!--  <input type="hidden" name="debug" value=1>                              -->
+<!--  <input type="hidden" name="debugEmail"                                  -->
+<!--  value="maciej.bartyzel@outbox.pl">                                      -->
+<!--  ----------------------------------------------------------------------  -->
+
+<label for="name">Contact Name</label><input  id="name" maxlength="80" name="name" size="20" type="text" /><br>
+
+<label for="email">Email</label><input  id="email" maxlength="80" name="email" size="20" type="text" /><br>
+
+<label for="phone">Phone</label><input  id="phone" maxlength="40" name="phone" size="20" type="text" /><br>
+
+<label for="subject">Subject</label><input  id="subject" maxlength="80" name="subject" size="20" type="text" /><br>
+
+<label for="description">Description</label><textarea name="description"></textarea><br>
+
+<label for="status">Status</label><select  id="status" name="status"><option value="">--None--</option><option value="On Hold">On Hold</option>
+<option value="Escalated">Escalated</option>
+<option value="Closed">Closed</option>
+<option value="New">New</option>
+<option value="In Progress">In Progress</option>
+<option value="Send to Agents">Send to Agents</option>
+<option value="Send to Editorial">Send to Editorial</option>
+<option value="Send to Fulfilment Accounts">Send to Fulfilment Accounts</option>
+<option value="Send to Marketing">Send to Marketing</option>
+<option value="Send to QSS">Send to QSS</option>
+<option value="Send to Sales">Send to Sales</option>
+<option value="Send to Tech Team">Send to Tech Team</option>
+<option value="Reopen">Reopen</option>
+<option value="Raised">Raised</option>
+<option value="Resolution in Progress">Resolution in Progress</option>
+<option value="Case Resolved">Case Resolved</option>
+</select><br>
+
+<label for="priority">Priority</label><select  id="priority" name="priority"><option value="">--None--</option><option value="High">High</option>
+<option value="Medium">Medium</option>
+<option value="Low">Low</option>
+</select><br>
+
+<label for="reason">Case Reason</label><select  id="reason" name="reason"><option value="">--None--</option><option value="Complete">Complete</option>
+<option value="User didn&#39;t attend training">User didn&#39;t attend training</option>
+<option value="Complex functionality">Complex functionality</option>
+<option value="Existing problem">Existing problem</option>
+<option value="Instructions not clear">Instructions not clear</option>
+<option value="New problem">New problem</option>
+<option value="Not Interested">Not Interested</option>
+<option value="Created in error/Spam">Created in error/Spam</option>
+</select><br>
+
+<input type="submit" name="submit">
+
+</form>

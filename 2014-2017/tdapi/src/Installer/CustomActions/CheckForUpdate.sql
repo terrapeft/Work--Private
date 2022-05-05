@@ -1,0 +1,1 @@
+﻿select isnull(db_id('{0}'), -1)

@@ -1,0 +1,15 @@
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+	@* OrderBy() takes the property to sort by and optionally order desc/asc *@
+	
+@foreach (var page in CurrentPage.Children.Where("Visible").OrderBy("productPositionInList"))
+{ 
+	<a class="btn btn-primary btn-larger" 
+	   href="@page.Url">@page.productName</a>
+       
+    <p>
+        <small>
+            @page.productDescription
+        </small>
+    </p>			   
+}

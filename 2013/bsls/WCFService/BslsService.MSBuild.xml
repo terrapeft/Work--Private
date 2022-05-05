@@ -1,0 +1,91 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Common Properties -->
+  <PropertyGroup>
+    <Root>C:\SvnRoot</Root>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SvnRootJunction Condition=" '$(SvnRootJunction)' == ''">D:\svn</SvnRootJunction>
+    <ProjectFile Condition=" '$(ProjectFile)' == '' ">$(SvnRootJunction)\src\build\MSBuild\BslsService.MSBuild.xml</ProjectFile>
+    <JnJBuildTasksPath>$(SvnRootJunction)\src\build\MSBuild\CustomBuildTasks</JnJBuildTasksPath>
+    <Arcadia Condition=" '$(Arcadia)' == ''" >False</Arcadia>
+    <ProjFolder Condition=" '$(Arcadia)' == 'False'" >proj</ProjFolder>
+    <TargetSvnFolders Condition=" '$(TargetSvnFolders)' == '' "> $(SvnRootJunction)\src\$(ProjFolder)\bsls+$(SvnRootJunction)\vendor</TargetSvnFolders>
+    <VSDir Condition=" '$(VSDir)' == '' ">D:\Program Files\Microsoft Visual Studio 10.0</VSDir>
+    <ZipResults>false</ZipResults>
+  </PropertyGroup>
+
+  <!-- Build Info -->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+    <Optimize Condition=" '$(Optimize)' == '' ">true</Optimize>
+    <DebugType Condition=" '$(DebugType)' == '' ">pdbonly</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <BSLSFolder>$(SvnRootJunction)\src\$(ProjFolder)\bsls\WcfService</BSLSFolder>    
+    <VendorFolder>$(SvnRootJunction)\vendor</VendorFolder>    
+  </PropertyGroup>
+
+  <!-- Environment Info -->
+  <PropertyGroup>
+    <ThirdDimensionExplorerJunction>D:\temp\BuildServer\Stable</ThirdDimensionExplorerJunction>
+    <EnvironmentConfigurationFileName>$(SvnRootJunction)\src\build\Environments\Stable.BuildEnvironment.xml</EnvironmentConfigurationFileName>
+  </PropertyGroup>
+
+  <!-- Project definitions to import -->
+  <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets" />
+  <Import Project="$(JnJBuildTasksPath)\JnJ.Build.Tasks.Targets" />
+  <Import Project="$(JnJBuildTasksPath)\3DX.ConfigureEnvironment.Targets" />  
+
+
+  <!-- Library Directory Info -->
+  <PropertyGroup>
+    <TempRoot Condition=" '$(TempRoot)' == '' ">D:\temp\BuildServer</TempRoot>
+    <ShareRoot Condition=" '$(ShareRoot)' == ''">D:\Builds\BslsService</ShareRoot>
+    <TempDirectory>$(TempRoot)</TempDirectory>
+    <ShareDirectory>$(ShareRoot)</ShareDirectory>
+    <TargetDirectory>$(ShareDirectory)</TargetDirectory>
+    <CopyResultsTarget>$(TargetDirectory)</CopyResultsTarget>
+  </PropertyGroup>
+
+  <!-- Version Info -->
+  <PropertyGroup>
+    <TargetVersionFile>$(ShareDirectory)\Version.txt</TargetVersionFile>
+    <SourceVersionFile>$(ShareDirectory)\$(Configuration)\package.version</SourceVersionFile>
+  </PropertyGroup>  
+
+  <Target Name="SetJunctions" Condition ="'$(Arcadia)' != 'True'">
+    <Exec Command="JnJConfigurationManager.exe ConfigureEnvironment /c:&quot;$(EnvironmentConfigurationFileName)&quot; /batch:&quot;$(EnvironmentVariablesBatchFileName)&quot; /j:&quot;C:\ThirdDimensionExplorer&quot;=&quot;$(ThirdDimensionExplorerJunction)&quot; /j:&quot;C:\SvnRoot&quot;=&quot;$(SvnRootJunction)&quot;" />
+  </Target>
+
+  <Target Name="CleanupJunctions" Condition=" '$(ConfigureEnvironment)' == 'True'">
+    <Exec Condition ="'$(Arcadia)' == 'True'" Command="JnJConfigurationManager.exe ConfigureEnvironment /cleanup /c:&quot;$(EnvironmentConfigurationFileName)&quot; /batch:&quot;$(EnvironmentVariablesBatchFileName)&quot;" />
+    <CallTarget Condition ="'$(Arcadia)' != 'True'" Targets ="CleanupEnvironment"/>
+  </Target>
+
+  <Target Name ="BuildService">
+    <MSBuild Projects="$(BSLSFolder)\BslsService.sln" Targets="Rebuild"/>
+  </Target>
+
+  <Target Name ="BuildSetup">
+    <Exec Command='"$(VSDir)\Common7\IDE\devenv" "$(BSLSFolder)\BslsService.sln" /rebuild "Release|Any CPU" /Project "$(BSLSFolder)\ServiceSetup\ServiceSetup.vdproj" /projectconfig "Release"' />
+  </Target>
+
+  <Target Name = "ClearReadonlyAttributes">
+     <Exec Command='attrib -R $(BSLSFolder)\*.* /S /D' />
+  </Target>
+
+  <Target Name ="CopyResults">
+    <Exec Command="rmdir $(CopyResultsTarget) /S /Q" ContinueOnError="true" IgnoreExitCode="true" />
+    <Exec Command="mkdir $(CopyResultsTarget)" />
+    <Exec Command="xcopy $(BSLSFolder)\ServiceSetup\$(Configuration)\*.msi $(CopyResultsTarget) /E /I" />
+  </Target>
+
+  <Target Name="Build">
+    <Exec Command="for /D %%f IN ($(TempDirectory)*) DO rmdir %%f /S /Q" />
+    <CallTarget Targets="ConfigureEnvironment;BuildService;BuildSetup;CopyResults;ClearReadonlyAttributes;CleanupJunctions" />
+  </Target>
+  
+</Project>

@@ -1,0 +1,2630 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="UsersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Actions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Audits">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IpAddr" Type="nvarchar" MaxLength="45" />
+          <Property Name="TableName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Values" Type="nvarchar(max)" />
+          <Property Name="ActionId" Type="int" Nullable="false" />
+          <Property Name="RecordDate" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountryId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Countries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DatabaseConfiguration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Alias" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ConnectionString" Type="nvarchar" MaxLength="2048" Nullable="false" />
+          <Property Name="StoredProcPrefix" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StoredProcParamPrefix" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StoredProcMethodPrefix" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StoredProcOwner" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StoredProcInformerPrefix" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDefault" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DataFormats">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailTemplates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="100" />
+          <Property Name="Body" Type="nvarchar(max)" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Informers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="240" Nullable="false" />
+          <Property Name="HeaderColor" Type="nvarchar" MaxLength="30" />
+          <Property Name="ContentColor" Type="nvarchar" MaxLength="30" />
+          <Property Name="FooterColor" Type="nvarchar" MaxLength="30" />
+          <Property Name="InformerStyle" Type="nvarchar" MaxLength="700" />
+          <Property Name="ContentStyle" Type="nvarchar" MaxLength="700" />
+          <Property Name="TitleStyle" Type="nvarchar" MaxLength="700" />
+          <Property Name="FooterStyle" Type="nvarchar" MaxLength="700" />
+          <Property Name="ContentProviderId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Xslt" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="XsltParameters" Type="nvarchar" MaxLength="1500" />
+          <Property Name="ShowFooter" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IPs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IP" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="GeoLocationCountryId" Type="int" />
+          <Property Name="IsAllowed" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CompanyId" Type="int" />
+        </EntityType>
+        <EntityType Name="MethodGroupMethod">
+          <Key>
+            <PropertyRef Name="MethodId" />
+            <PropertyRef Name="MethodGroupId" />
+          </Key>
+          <Property Name="MethodId" Type="int" Nullable="false" />
+          <Property Name="MethodGroupId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MethodGroups">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Shared" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsTrial" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Methods">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="200" />
+          <Property Name="TypeId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DatabaseId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MethodTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Permissions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PermissionTypeId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PermissionSearchGroup">
+          <Key>
+            <PropertyRef Name="PermissionId" />
+            <PropertyRef Name="SearchGroupId" />
+          </Key>
+          <Property Name="PermissionId" Type="int" Nullable="false" />
+          <Property Name="SearchGroupId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PermissionType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Resources">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Value" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1500" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="ResourceTypeId" Type="int" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ResourceType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="RolePermission">
+          <Key>
+            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="PermissionId" />
+          </Key>
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="PermissionId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SearchColumns">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="Alias" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="TableId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SearchGroupColumns">
+          <Key>
+            <PropertyRef Name="SearchGroupId" />
+            <PropertyRef Name="SearchColumnId" />
+          </Key>
+          <Property Name="SearchGroupId" Type="int" Nullable="false" />
+          <Property Name="SearchColumnId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SearchGroups">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="TableId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SearchTables">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServiceConfiguration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Value" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1500" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="ResourceTypeId" Type="int" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Statuses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubscriptionRequestMethodGroup">
+          <Key>
+            <PropertyRef Name="MethodGroupId" />
+            <PropertyRef Name="SubscriptionRequestId" />
+          </Key>
+          <Property Name="MethodGroupId" Type="int" Nullable="false" />
+          <Property Name="SubscriptionRequestId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubscriptionRequests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Accepted" Type="bit" Nullable="false" />
+          <Property Name="AcceptedBy" Type="int" />
+          <Property Name="Notify" Type="bit" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="LastUpdate" Type="datetime" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsFulfilled" Type="bit" Nullable="false" />
+          <Property Name="RequestTypeId" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="1500" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="EmailSent" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SubscriptionRequestType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subscriptions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MethodGroupId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ThresholdPeriods">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HowLong" Type="int" Nullable="false" />
+          <Property Name="DatePart" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TimeZones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Trial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="VerificationCode" Type="varchar" MaxLength="50" />
+          <Property Name="RequestId" Type="int" Nullable="false" />
+          <Property Name="TrialStart" Type="datetime" />
+          <Property Name="TrialEnd" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsageStats">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="IpId" Type="int" />
+          <Property Name="RequestDate" Type="datetime" Nullable="false" />
+          <Property Name="HttpStatusCode" Type="int" />
+          <Property Name="MethodId" Type="int" />
+          <Property Name="MethodArgs" Type="nvarchar(max)" />
+          <Property Name="DataFormatId" Type="int" Nullable="false" />
+          <Property Name="ErrorMessage" Type="nvarchar(max)" />
+          <Property Name="RequestDuration" Type="bigint" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+          <Property Name="TimeZoneId" Type="int" Nullable="false" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="100" />
+          <Property Name="Middlename" Type="nvarchar" MaxLength="100" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneExt" Type="nvarchar" MaxLength="10" />
+          <Property Name="Username" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Salt" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="FailedLoginAttemptsCnt" Type="smallint" Nullable="false" />
+          <Property Name="LastFailedAttempt" Type="datetime" />
+          <Property Name="AccountExpirationDate" Type="datetime" Nullable="false" />
+          <Property Name="ThresholdPeriodId" Type="int" Nullable="false" />
+          <Property Name="ThresholdPeriodEnd" Type="date" Nullable="false" />
+          <Property Name="Hits" Type="int" Nullable="false" />
+          <Property Name="HitsLimit" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="SessionId" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="UserSearchQueries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="QueryParameters" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Audit_AuditActions">
+          <End Role="Actions" Type="Self.Actions" Multiplicity="1" />
+          <End Role="Audits" Type="Self.Audits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Audits">
+              <PropertyRef Name="ActionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Audit_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Audits" Type="Self.Audits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Audits">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Companies_Countries">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
+          <End Role="Companies" Type="Self.Companies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Companies">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Informers_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Informers" Type="Self.Informers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Informers">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IPs_Companies">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="0..1" />
+          <End Role="IPs" Type="Self.IPs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IPs">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IPs_Countries">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
+          <End Role="IPs" Type="Self.IPs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IPs">
+              <PropertyRef Name="GeoLocationCountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MethodGroupMethod_Methods">
+          <End Role="Methods" Type="Self.Methods" Multiplicity="1" />
+          <End Role="MethodGroupMethod" Type="Self.MethodGroupMethod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Methods">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MethodGroupMethod">
+              <PropertyRef Name="MethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Methods_DatabaseConfiguration">
+          <End Role="DatabaseConfiguration" Type="Self.DatabaseConfiguration" Multiplicity="1" />
+          <End Role="Methods" Type="Self.Methods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DatabaseConfiguration">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Methods">
+              <PropertyRef Name="DatabaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Methods_MethodTypes">
+          <End Role="MethodTypes" Type="Self.MethodTypes" Multiplicity="1" />
+          <End Role="Methods" Type="Self.Methods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MethodTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Methods">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permissions_PermissionType">
+          <End Role="PermissionType" Type="Self.PermissionType" Multiplicity="1" />
+          <End Role="Permissions" Type="Self.Permissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PermissionType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Permissions">
+              <PropertyRef Name="PermissionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermissionSearchGroup_Permissions">
+          <End Role="Permissions" Type="Self.Permissions" Multiplicity="1" />
+          <End Role="PermissionSearchGroup" Type="Self.PermissionSearchGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permissions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PermissionSearchGroup">
+              <PropertyRef Name="PermissionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermissionSearchGroup_SearchGroups">
+          <End Role="SearchGroups" Type="Self.SearchGroups" Multiplicity="1" />
+          <End Role="PermissionSearchGroup" Type="Self.PermissionSearchGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SearchGroups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PermissionSearchGroup">
+              <PropertyRef Name="SearchGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Resources_ResourceType">
+          <End Role="ResourceType" Type="Self.ResourceType" Multiplicity="1" />
+          <End Role="Resources" Type="Self.Resources" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResourceType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Resources">
+              <PropertyRef Name="ResourceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolePermission_Permissions">
+          <End Role="Permissions" Type="Self.Permissions" Multiplicity="1" />
+          <End Role="RolePermission" Type="Self.RolePermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permissions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolePermission">
+              <PropertyRef Name="PermissionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolePermission_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="RolePermission" Type="Self.RolePermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolePermission">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SearchColumns_SearchTables">
+          <End Role="SearchTables" Type="Self.SearchTables" Multiplicity="1" />
+          <End Role="SearchColumns" Type="Self.SearchColumns" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SearchTables">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SearchColumns">
+              <PropertyRef Name="TableId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SearchGroupColumns_SearchColumns">
+          <End Role="SearchColumns" Type="Self.SearchColumns" Multiplicity="1" />
+          <End Role="SearchGroupColumns" Type="Self.SearchGroupColumns" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SearchColumns">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SearchGroupColumns">
+              <PropertyRef Name="SearchColumnId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SearchGroupColumns_SearchGroups">
+          <End Role="SearchGroups" Type="Self.SearchGroups" Multiplicity="1" />
+          <End Role="SearchGroupColumns" Type="Self.SearchGroupColumns" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SearchGroups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SearchGroupColumns">
+              <PropertyRef Name="SearchGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SearchGroups_SearchTables">
+          <End Role="SearchTables" Type="Self.SearchTables" Multiplicity="1" />
+          <End Role="SearchGroups" Type="Self.SearchGroups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SearchTables">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SearchGroups">
+              <PropertyRef Name="TableId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceConfiguration_ResourceType">
+          <End Role="ResourceType" Type="Self.ResourceType" Multiplicity="1" />
+          <End Role="ServiceConfiguration" Type="Self.ServiceConfiguration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResourceType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceConfiguration">
+              <PropertyRef Name="ResourceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoredProcedureListStoredProcedure_StoredProceduresLists">
+          <End Role="MethodGroups" Type="Self.MethodGroups" Multiplicity="1" />
+          <End Role="MethodGroupMethod" Type="Self.MethodGroupMethod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MethodGroups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MethodGroupMethod">
+              <PropertyRef Name="MethodGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubscriptionRequest_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="SubscriptionRequests" Type="Self.SubscriptionRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubscriptionRequests">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubscriptionRequest_Users_AcceptedBy">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="SubscriptionRequests" Type="Self.SubscriptionRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubscriptionRequests">
+              <PropertyRef Name="AcceptedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubscriptionRequestMethodGroup_MethodGroups">
+          <End Role="MethodGroups" Type="Self.MethodGroups" Multiplicity="1" />
+          <End Role="SubscriptionRequestMethodGroup" Type="Self.SubscriptionRequestMethodGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MethodGroups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubscriptionRequestMethodGroup">
+              <PropertyRef Name="MethodGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubscriptionRequestMethodGroup_SubscriptionRequests">
+          <End Role="SubscriptionRequests" Type="Self.SubscriptionRequests" Multiplicity="1" />
+          <End Role="SubscriptionRequestMethodGroup" Type="Self.SubscriptionRequestMethodGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubscriptionRequests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubscriptionRequestMethodGroup">
+              <PropertyRef Name="SubscriptionRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubscriptionRequests_SubscriptionRequestType">
+          <End Role="SubscriptionRequestType" Type="Self.SubscriptionRequestType" Multiplicity="1" />
+          <End Role="SubscriptionRequests" Type="Self.SubscriptionRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubscriptionRequestType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubscriptionRequests">
+              <PropertyRef Name="RequestTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subscriptions_MethodGroups">
+          <End Role="MethodGroups" Type="Self.MethodGroups" Multiplicity="1" />
+          <End Role="Subscriptions" Type="Self.Subscriptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MethodGroups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Subscriptions">
+              <PropertyRef Name="MethodGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subscriptions_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Subscriptions" Type="Self.Subscriptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Subscriptions">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trial_SubscriptionRequests">
+          <End Role="SubscriptionRequests" Type="Self.SubscriptionRequests" Multiplicity="1" />
+          <End Role="Trial" Type="Self.Trial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubscriptionRequests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Trial">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trial_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Trial" Type="Self.Trial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Trial">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsageStats_DataFormats">
+          <End Role="DataFormats" Type="Self.DataFormats" Multiplicity="1" />
+          <End Role="UsageStats" Type="Self.UsageStats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataFormats">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsageStats">
+              <PropertyRef Name="DataFormatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsageStats_IPs">
+          <End Role="IPs" Type="Self.IPs" Multiplicity="0..1" />
+          <End Role="UsageStats" Type="Self.UsageStats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IPs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsageStats">
+              <PropertyRef Name="IpId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsageStats_Methods">
+          <End Role="Methods" Type="Self.Methods" Multiplicity="0..1" />
+          <End Role="UsageStats" Type="Self.UsageStats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Methods">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsageStats">
+              <PropertyRef Name="MethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsageStats_Statuses">
+          <End Role="Statuses" Type="Self.Statuses" Multiplicity="1" />
+          <End Role="UsageStats" Type="Self.UsageStats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsageStats">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsageStats_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="UsageStats" Type="Self.UsageStats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsageStats">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Companies">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_ThresholdPeriods">
+          <End Role="ThresholdPeriods" Type="Self.ThresholdPeriods" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ThresholdPeriods">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="ThresholdPeriodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_TimeZones">
+          <End Role="TimeZones" Type="Self.TimeZones" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TimeZones">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="TimeZoneId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserSearchQueries_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserSearchQueries" Type="Self.UserSearchQueries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserSearchQueries">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="spInformerListOfCountries" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spSendTrialEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+          <Parameter Name="baseUrl" Type="nvarchar" Mode="In" />
+          <Parameter Name="methodName" Type="nvarchar" Mode="In" />
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="verificationLink" Type="nvarchar" Mode="In" />
+          <Parameter Name="templateName" Type="nvarchar" Mode="In" />
+          <Parameter Name="format" Type="varchar" Mode="In" />
+          <Parameter Name="mailProfile" Type="varchar" Mode="In" />
+          <Parameter Name="logoFullPath" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spTrialCheckUsername" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+          <Parameter Name="hasUser" Type="bit" Mode="InOut" />
+        </Function>
+        <EntityContainer Name="UsersModelStoreContainer">
+          <EntitySet Name="Actions" EntityType="Self.Actions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Audits" EntityType="Self.Audits" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DatabaseConfiguration" EntityType="Self.DatabaseConfiguration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DataFormats" EntityType="Self.DataFormats" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailTemplates" EntityType="Self.EmailTemplates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Informers" EntityType="Self.Informers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IPs" EntityType="Self.IPs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MethodGroupMethod" EntityType="Self.MethodGroupMethod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MethodGroups" EntityType="Self.MethodGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Methods" EntityType="Self.Methods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MethodTypes" EntityType="Self.MethodTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Permissions" EntityType="Self.Permissions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PermissionSearchGroup" EntityType="Self.PermissionSearchGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PermissionType" EntityType="Self.PermissionType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Resources" EntityType="Self.Resources" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResourceType" EntityType="Self.ResourceType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RolePermission" EntityType="Self.RolePermission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SearchColumns" EntityType="Self.SearchColumns" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SearchGroupColumns" EntityType="Self.SearchGroupColumns" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SearchGroups" EntityType="Self.SearchGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SearchTables" EntityType="Self.SearchTables" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceConfiguration" EntityType="Self.ServiceConfiguration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Statuses" EntityType="Self.Statuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubscriptionRequestMethodGroup" EntityType="Self.SubscriptionRequestMethodGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubscriptionRequests" EntityType="Self.SubscriptionRequests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubscriptionRequestType" EntityType="Self.SubscriptionRequestType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subscriptions" EntityType="Self.Subscriptions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThresholdPeriods" EntityType="Self.ThresholdPeriods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TimeZones" EntityType="Self.TimeZones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trial" EntityType="Self.Trial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsageStats" EntityType="Self.UsageStats" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserSearchQueries" EntityType="Self.UserSearchQueries" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Audit_AuditActions" Association="Self.FK_Audit_AuditActions">
+            <End Role="Actions" EntitySet="Actions" />
+            <End Role="Audits" EntitySet="Audits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Audit_Users" Association="Self.FK_Audit_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Audits" EntitySet="Audits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Companies_Countries" Association="Self.FK_Companies_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Companies" EntitySet="Companies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Informers_Users" Association="Self.FK_Informers_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Informers" EntitySet="Informers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IPs_Companies" Association="Self.FK_IPs_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="IPs" EntitySet="IPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IPs_Countries" Association="Self.FK_IPs_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="IPs" EntitySet="IPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MethodGroupMethod_Methods" Association="Self.FK_MethodGroupMethod_Methods">
+            <End Role="Methods" EntitySet="Methods" />
+            <End Role="MethodGroupMethod" EntitySet="MethodGroupMethod" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Methods_DatabaseConfiguration" Association="Self.FK_Methods_DatabaseConfiguration">
+            <End Role="DatabaseConfiguration" EntitySet="DatabaseConfiguration" />
+            <End Role="Methods" EntitySet="Methods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Methods_MethodTypes" Association="Self.FK_Methods_MethodTypes">
+            <End Role="MethodTypes" EntitySet="MethodTypes" />
+            <End Role="Methods" EntitySet="Methods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permissions_PermissionType" Association="Self.FK_Permissions_PermissionType">
+            <End Role="PermissionType" EntitySet="PermissionType" />
+            <End Role="Permissions" EntitySet="Permissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermissionSearchGroup_Permissions" Association="Self.FK_PermissionSearchGroup_Permissions">
+            <End Role="Permissions" EntitySet="Permissions" />
+            <End Role="PermissionSearchGroup" EntitySet="PermissionSearchGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermissionSearchGroup_SearchGroups" Association="Self.FK_PermissionSearchGroup_SearchGroups">
+            <End Role="SearchGroups" EntitySet="SearchGroups" />
+            <End Role="PermissionSearchGroup" EntitySet="PermissionSearchGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Resources_ResourceType" Association="Self.FK_Resources_ResourceType">
+            <End Role="ResourceType" EntitySet="ResourceType" />
+            <End Role="Resources" EntitySet="Resources" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolePermission_Permissions" Association="Self.FK_RolePermission_Permissions">
+            <End Role="Permissions" EntitySet="Permissions" />
+            <End Role="RolePermission" EntitySet="RolePermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolePermission_Roles" Association="Self.FK_RolePermission_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="RolePermission" EntitySet="RolePermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SearchColumns_SearchTables" Association="Self.FK_SearchColumns_SearchTables">
+            <End Role="SearchTables" EntitySet="SearchTables" />
+            <End Role="SearchColumns" EntitySet="SearchColumns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SearchGroupColumns_SearchColumns" Association="Self.FK_SearchGroupColumns_SearchColumns">
+            <End Role="SearchColumns" EntitySet="SearchColumns" />
+            <End Role="SearchGroupColumns" EntitySet="SearchGroupColumns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SearchGroupColumns_SearchGroups" Association="Self.FK_SearchGroupColumns_SearchGroups">
+            <End Role="SearchGroups" EntitySet="SearchGroups" />
+            <End Role="SearchGroupColumns" EntitySet="SearchGroupColumns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SearchGroups_SearchTables" Association="Self.FK_SearchGroups_SearchTables">
+            <End Role="SearchTables" EntitySet="SearchTables" />
+            <End Role="SearchGroups" EntitySet="SearchGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceConfiguration_ResourceType" Association="Self.FK_ServiceConfiguration_ResourceType">
+            <End Role="ResourceType" EntitySet="ResourceType" />
+            <End Role="ServiceConfiguration" EntitySet="ServiceConfiguration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoredProcedureListStoredProcedure_StoredProceduresLists" Association="Self.FK_StoredProcedureListStoredProcedure_StoredProceduresLists">
+            <End Role="MethodGroups" EntitySet="MethodGroups" />
+            <End Role="MethodGroupMethod" EntitySet="MethodGroupMethod" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubscriptionRequest_Users" Association="Self.FK_SubscriptionRequest_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="SubscriptionRequests" EntitySet="SubscriptionRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubscriptionRequest_Users_AcceptedBy" Association="Self.FK_SubscriptionRequest_Users_AcceptedBy">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="SubscriptionRequests" EntitySet="SubscriptionRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubscriptionRequestMethodGroup_MethodGroups" Association="Self.FK_SubscriptionRequestMethodGroup_MethodGroups">
+            <End Role="MethodGroups" EntitySet="MethodGroups" />
+            <End Role="SubscriptionRequestMethodGroup" EntitySet="SubscriptionRequestMethodGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubscriptionRequestMethodGroup_SubscriptionRequests" Association="Self.FK_SubscriptionRequestMethodGroup_SubscriptionRequests">
+            <End Role="SubscriptionRequests" EntitySet="SubscriptionRequests" />
+            <End Role="SubscriptionRequestMethodGroup" EntitySet="SubscriptionRequestMethodGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubscriptionRequests_SubscriptionRequestType" Association="Self.FK_SubscriptionRequests_SubscriptionRequestType">
+            <End Role="SubscriptionRequestType" EntitySet="SubscriptionRequestType" />
+            <End Role="SubscriptionRequests" EntitySet="SubscriptionRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subscriptions_MethodGroups" Association="Self.FK_Subscriptions_MethodGroups">
+            <End Role="MethodGroups" EntitySet="MethodGroups" />
+            <End Role="Subscriptions" EntitySet="Subscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subscriptions_Users" Association="Self.FK_Subscriptions_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Subscriptions" EntitySet="Subscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trial_SubscriptionRequests" Association="Self.FK_Trial_SubscriptionRequests">
+            <End Role="SubscriptionRequests" EntitySet="SubscriptionRequests" />
+            <End Role="Trial" EntitySet="Trial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trial_Users" Association="Self.FK_Trial_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Trial" EntitySet="Trial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsageStats_DataFormats" Association="Self.FK_UsageStats_DataFormats">
+            <End Role="DataFormats" EntitySet="DataFormats" />
+            <End Role="UsageStats" EntitySet="UsageStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsageStats_IPs" Association="Self.FK_UsageStats_IPs">
+            <End Role="IPs" EntitySet="IPs" />
+            <End Role="UsageStats" EntitySet="UsageStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsageStats_Methods" Association="Self.FK_UsageStats_Methods">
+            <End Role="Methods" EntitySet="Methods" />
+            <End Role="UsageStats" EntitySet="UsageStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsageStats_Statuses" Association="Self.FK_UsageStats_Statuses">
+            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="UsageStats" EntitySet="UsageStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsageStats_Users" Association="Self.FK_UsageStats_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsageStats" EntitySet="UsageStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_Roles" Association="Self.FK_UserRole_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_Users" Association="Self.FK_UserRole_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Companies" Association="Self.FK_Users_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_ThresholdPeriods" Association="Self.FK_Users_ThresholdPeriods">
+            <End Role="ThresholdPeriods" EntitySet="ThresholdPeriods" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_TimeZones" Association="Self.FK_Users_TimeZones">
+            <End Role="TimeZones" EntitySet="TimeZones" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserSearchQueries_Users" Association="Self.FK_UserSearchQueries_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserSearchQueries" EntitySet="UserSearchQueries" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UsersModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="UsersEntities" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+          <FunctionImport Name="spInformerListOfCountries" ReturnType="Collection(UsersModel.spInformerListOfCountries_Result)" />
+          <EntitySet Name="Actions" EntityType="UsersModel.Action" />
+          <EntitySet Name="Audits" EntityType="UsersModel.Audit" />
+          <EntitySet Name="Companies" EntityType="UsersModel.Company" />
+          <EntitySet Name="MethodGroups" EntityType="UsersModel.MethodGroup" />
+          <EntitySet Name="Methods" EntityType="UsersModel.Method" />
+          <EntitySet Name="MethodTypes" EntityType="UsersModel.MethodType" />
+          <EntitySet Name="Resources" EntityType="UsersModel.Resource" />
+          <EntitySet Name="Roles" EntityType="UsersModel.Role" />
+          <EntitySet Name="ServiceConfigurations" EntityType="UsersModel.ServiceConfiguration" />
+          <EntitySet Name="Statuses" EntityType="UsersModel.Status" />
+          <EntitySet Name="ThresholdPeriods" EntityType="UsersModel.ThresholdPeriod" />
+          <EntitySet Name="Users" EntityType="UsersModel.User" />
+          <AssociationSet Name="FK_Audit_AuditActions" Association="UsersModel.FK_Audit_AuditActions">
+            <End Role="Action" EntitySet="Actions" />
+            <End Role="Audit" EntitySet="Audits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Audit_Users" Association="UsersModel.FK_Audit_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Audit" EntitySet="Audits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Companies" Association="UsersModel.FK_Users_Companies">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Methods_MethodTypes" Association="UsersModel.FK_Methods_MethodTypes">
+            <End Role="MethodType" EntitySet="MethodTypes" />
+            <End Role="Method" EntitySet="Methods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_ThresholdPeriods" Association="UsersModel.FK_Users_ThresholdPeriods">
+            <End Role="ThresholdPeriod" EntitySet="ThresholdPeriods" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="MethodGroupMethod" Association="UsersModel.MethodGroupMethod">
+            <End Role="Method" EntitySet="Methods" />
+            <End Role="MethodGroup" EntitySet="MethodGroups" />
+          </AssociationSet>
+          <AssociationSet Name="UserRole" Association="UsersModel.UserRole">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="ResourceTypes" EntityType="UsersModel.ResourceType" />
+          <AssociationSet Name="FK_Resources_ResourceType" Association="UsersModel.FK_Resources_ResourceType">
+            <End Role="ResourceType" EntitySet="ResourceTypes" />
+            <End Role="Resource" EntitySet="Resources" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceConfiguration_ResourceType" Association="UsersModel.FK_ServiceConfiguration_ResourceType">
+            <End Role="ResourceType" EntitySet="ResourceTypes" />
+            <End Role="ServiceConfiguration" EntitySet="ServiceConfigurations" />
+          </AssociationSet>
+          <EntitySet Name="Informers" EntityType="UsersModel.Informer" />
+          <AssociationSet Name="FK_Informers_Methods1" Association="UsersModel.FK_Informers_Methods1">
+            <End Role="Method" EntitySet="Methods" />
+            <End Role="Informer" EntitySet="Informers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Informers_Users" Association="UsersModel.FK_Informers_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Informer" EntitySet="Informers" />
+          </AssociationSet>
+          <EntitySet Name="SubscriptionRequests" EntityType="UsersModel.SubscriptionRequest" />
+          <EntitySet Name="SubscriptionRequestTypes" EntityType="UsersModel.SubscriptionRequestType" />
+          <EntitySet Name="SearchColumns" EntityType="UsersModel.SearchColumn" />
+          <EntitySet Name="SearchGroups" EntityType="UsersModel.SearchGroup" />
+          <AssociationSet Name="SearchGroupColumns" Association="UsersModel.SearchGroupColumns">
+            <End Role="SearchColumn" EntitySet="SearchColumns" />
+            <End Role="SearchGroup" EntitySet="SearchGroups" />
+          </AssociationSet>
+          <EntitySet Name="Countries" EntityType="UsersModel.Country" />
+          <AssociationSet Name="FK_Companies_Countries" Association="UsersModel.FK_Companies_Countries">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
+          <EntitySet Name="TimeZones" EntityType="UsersModel.TimeZone" />
+          <AssociationSet Name="FK_Users_TimeZones" Association="UsersModel.FK_Users_TimeZones">
+            <End Role="TimeZone" EntitySet="TimeZones" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="Permissions" EntityType="UsersModel.Permission" />
+          <AssociationSet Name="RolePermission" Association="UsersModel.RolePermission">
+            <End Role="Permission" EntitySet="Permissions" />
+            <End Role="Role" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="PermissionSearchGroup" Association="UsersModel.PermissionSearchGroup">
+            <End Role="Permission" EntitySet="Permissions" />
+            <End Role="SearchGroup" EntitySet="SearchGroups" />
+          </AssociationSet>
+          <EntitySet Name="PermissionTypes" EntityType="UsersModel.PermissionType" />
+          <AssociationSet Name="FK_Permissions_PermissionType" Association="UsersModel.FK_Permissions_PermissionType">
+            <End Role="PermissionType" EntitySet="PermissionTypes" />
+            <End Role="Permission" EntitySet="Permissions" />
+          </AssociationSet>
+          <EntitySet Name="SearchTables" EntityType="UsersModel.SearchTable" />
+          <AssociationSet Name="FK_SearchColumns_SearchTables" Association="UsersModel.FK_SearchColumns_SearchTables">
+            <End Role="SearchTable" EntitySet="SearchTables" />
+            <End Role="SearchColumn" EntitySet="SearchColumns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SearchGroups_SearchTables" Association="UsersModel.FK_SearchGroups_SearchTables">
+            <End Role="SearchTable" EntitySet="SearchTables" />
+            <End Role="SearchGroup" EntitySet="SearchGroups" />
+          </AssociationSet>
+          <EntitySet Name="UserSearchQueries" EntityType="UsersModel.UserSearchQuery" />
+          <AssociationSet Name="FK_UserSearchQueries_Users" Association="UsersModel.FK_UserSearchQueries_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserSearchQuery" EntitySet="UserSearchQueries" />
+          </AssociationSet>
+          <EntitySet Name="DataFormats" EntityType="UsersModel.DataFormat" />
+          <EntitySet Name="UsageStats" EntityType="UsersModel.UsageStat" />
+          <AssociationSet Name="FK_UsageStats_DataFormats" Association="UsersModel.FK_UsageStats_DataFormats">
+            <End Role="DataFormat" EntitySet="DataFormats" />
+            <End Role="UsageStat" EntitySet="UsageStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsageStats_Methods" Association="UsersModel.FK_UsageStats_Methods">
+            <End Role="Method" EntitySet="Methods" />
+            <End Role="UsageStat" EntitySet="UsageStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsageStats_Statuses" Association="UsersModel.FK_UsageStats_Statuses">
+            <End Role="Status" EntitySet="Statuses" />
+            <End Role="UsageStat" EntitySet="UsageStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsageStats_Users" Association="UsersModel.FK_UsageStats_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UsageStat" EntitySet="UsageStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubscriptionRequests_SubscriptionRequestType" Association="UsersModel.FK_SubscriptionRequests_SubscriptionRequestType">
+            <End Role="SubscriptionRequestType" EntitySet="SubscriptionRequestTypes" />
+            <End Role="SubscriptionRequest" EntitySet="SubscriptionRequests" />
+          </AssociationSet>
+          <AssociationSet Name="SubscriptionRequestMethodGroup" Association="UsersModel.SubscriptionRequestMethodGroup">
+            <End Role="MethodGroup" EntitySet="MethodGroups" />
+            <End Role="SubscriptionRequest" EntitySet="SubscriptionRequests" />
+          </AssociationSet>
+          <EntitySet Name="Subscriptions" EntityType="UsersModel.Subscription" />
+          <AssociationSet Name="FK_Subscriptions_MethodGroups" Association="UsersModel.FK_Subscriptions_MethodGroups">
+            <End Role="MethodGroup" EntitySet="MethodGroups" />
+            <End Role="Subscription" EntitySet="Subscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subscriptions_Users" Association="UsersModel.FK_Subscriptions_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Subscription" EntitySet="Subscriptions" />
+          </AssociationSet>
+          <EntitySet Name="IPs" EntityType="UsersModel.IP" />
+          <AssociationSet Name="FK_IPs_Companies" Association="UsersModel.FK_IPs_Companies">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="IP" EntitySet="IPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IPs_Countries" Association="UsersModel.FK_IPs_Countries">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="IP" EntitySet="IPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsageStats_UsersIPs" Association="UsersModel.FK_UsageStats_UsersIPs">
+            <End Role="IP" EntitySet="IPs" />
+            <End Role="UsageStat" EntitySet="UsageStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubscriptionRequest_Users" Association="UsersModel.FK_SubscriptionRequest_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="SubscriptionRequest" EntitySet="SubscriptionRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubscriptionRequest_Users_AcceptedBy" Association="UsersModel.FK_SubscriptionRequest_Users_AcceptedBy">
+            <End Role="User" EntitySet="Users" />
+            <End Role="SubscriptionRequest" EntitySet="SubscriptionRequests" />
+          </AssociationSet>
+          <EntitySet Name="EmailTemplates" EntityType="UsersModel.EmailTemplate" />
+          <EntitySet Name="DatabaseConfigurations" EntityType="UsersModel.DatabaseConfiguration" />
+          <AssociationSet Name="FK_Methods_DatabaseConfiguration" Association="UsersModel.FK_Methods_DatabaseConfiguration">
+            <End Role="DatabaseConfiguration" EntitySet="DatabaseConfigurations" />
+            <End Role="Method" EntitySet="Methods" />
+          </AssociationSet>
+          <FunctionImport Name="spSendTrialEmail">
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="baseUrl" Mode="In" Type="String" />
+            <Parameter Name="methodName" Mode="In" Type="String" />
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="verificationLink" Mode="In" Type="String" />
+            <Parameter Name="templateName" Mode="In" Type="String" />
+            <Parameter Name="format" Mode="In" Type="String" />
+            <Parameter Name="mailProfile" Mode="In" Type="String" />
+            <Parameter Name="logoFullPath" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Trials" EntityType="UsersModel.Trial" />
+          <AssociationSet Name="FK_Trial_Users" Association="UsersModel.FK_Trial_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Trial" EntitySet="Trials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trial_SubscriptionRequests" Association="UsersModel.FK_Trial_SubscriptionRequests">
+            <End Role="SubscriptionRequest" EntitySet="SubscriptionRequests" />
+            <End Role="Trial" EntitySet="Trials" />
+          </AssociationSet>
+          <FunctionImport Name="spTrialCheckUsername">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="hasUser" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          </EntityContainer>
+        <ComplexType Name="spInformerListOfCountries_Result">
+          <Property Type="String" Name="Country" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Column1" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="Action">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Audits" Relationship="UsersModel.FK_Audit_AuditActions" FromRole="Action" ToRole="Audit" />
+        </EntityType>
+        <EntityType Name="Audit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="String" Name="TableName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Values" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ActionId" Nullable="false" />
+          <Property Type="DateTime" Name="RecordDate" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <NavigationProperty Name="Action" Relationship="UsersModel.FK_Audit_AuditActions" FromRole="Audit" ToRole="Action" />
+          <NavigationProperty Name="User" Relationship="UsersModel.FK_Audit_Users" FromRole="Audit" ToRole="User" />
+          <Property Type="String" Name="IpAddr" MaxLength="45" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Address" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Phone" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="Fax" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Users" Relationship="UsersModel.FK_Users_Companies" FromRole="Company" ToRole="User" />
+          <Property Type="Int32" Name="CountryId" Nullable="false" />
+          <NavigationProperty Name="Country" Relationship="UsersModel.FK_Companies_Countries" FromRole="Company" ToRole="Country" />
+          <NavigationProperty Name="IPs" Relationship="UsersModel.FK_IPs_Companies" FromRole="Company" ToRole="IP" />
+        </EntityType>
+        <EntityType Name="MethodGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Methods" Relationship="UsersModel.MethodGroupMethod" FromRole="MethodGroup" ToRole="Method" />
+          <NavigationProperty Name="SubscriptionRequests" Relationship="UsersModel.SubscriptionRequestMethodGroup" FromRole="MethodGroup" ToRole="SubscriptionRequest" />
+          <NavigationProperty Name="Subscriptions" Relationship="UsersModel.FK_Subscriptions_MethodGroups" FromRole="MethodGroup" ToRole="Subscription" />
+          <Property Type="Boolean" Name="Shared" Nullable="false" />
+          <Property Name="IsTrial" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Method">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" DefaultValue="" />
+          <Property Type="Int32" Name="TypeId" Nullable="false" />
+          <NavigationProperty Name="MethodType" Relationship="UsersModel.FK_Methods_MethodTypes" FromRole="Method" ToRole="MethodType" />
+          <NavigationProperty Name="MethodGroups" Relationship="UsersModel.MethodGroupMethod" FromRole="Method" ToRole="MethodGroup" />
+          <NavigationProperty Name="UsageStats" Relationship="UsersModel.FK_UsageStats_Methods" FromRole="Method" ToRole="UsageStat" />
+          <Property Type="String" Name="DisplayName" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="DatabaseId" Nullable="false" />
+          <NavigationProperty Name="DatabaseConfiguration" Relationship="UsersModel.FK_Methods_DatabaseConfiguration" FromRole="Method" ToRole="DatabaseConfiguration" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          </EntityType>
+        <EntityType Name="MethodType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Methods" Relationship="UsersModel.FK_Methods_MethodTypes" FromRole="MethodType" ToRole="Method" />
+        </EntityType>
+        <EntityType Name="Resource">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Value" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="1500" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ResourceTypeId" Nullable="false" />
+          <NavigationProperty Name="ResourceType" Relationship="UsersModel.FK_Resources_ResourceType" FromRole="Resource" ToRole="ResourceType" />
+          <Property Type="String" Name="GroupName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="UsersModel.UserRole" FromRole="Role" ToRole="User" />
+          <NavigationProperty Name="Permissions" Relationship="UsersModel.RolePermission" FromRole="Role" ToRole="Permission" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServiceConfiguration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Value" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="1500" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ResourceTypeId" Nullable="false" />
+          <NavigationProperty Name="ResourceType" Relationship="UsersModel.FK_ServiceConfiguration_ResourceType" FromRole="ServiceConfiguration" ToRole="ResourceType" />
+          <Property Type="String" Name="GroupName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UsageStats" Relationship="UsersModel.FK_UsageStats_Statuses" FromRole="Status" ToRole="UsageStat" />
+        </EntityType>
+        <EntityType Name="ThresholdPeriod">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="HowLong" Nullable="false" />
+          <Property Type="String" Name="DatePart" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="UsersModel.FK_Users_ThresholdPeriods" FromRole="ThresholdPeriod" ToRole="User" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="CompanyId" Nullable="false" />
+          <Property Type="String" Name="Firstname" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Middlename" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Lastname" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Phone" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="PhoneExt" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Salt" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" a:StoreGeneratedPattern="None" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int16" Name="FailedLoginAttemptsCnt" Nullable="false" />
+          <Property Type="DateTime" Name="LastFailedAttempt" Precision="3" />
+          <Property Type="DateTime" Name="AccountExpirationDate" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="ThresholdPeriodId" Nullable="false" />
+          <Property Type="DateTime" Name="ThresholdPeriodEnd" Nullable="false" Precision="0" />
+          <Property Type="Int32" Name="Hits" Nullable="false" />
+          <Property Type="Int32" Name="HitsLimit" Nullable="false" />
+          <NavigationProperty Name="Audits" Relationship="UsersModel.FK_Audit_Users" FromRole="User" ToRole="Audit" />
+          <NavigationProperty Name="Company" Relationship="UsersModel.FK_Users_Companies" FromRole="User" ToRole="Company" />
+          <NavigationProperty Name="ThresholdPeriod" Relationship="UsersModel.FK_Users_ThresholdPeriods" FromRole="User" ToRole="ThresholdPeriod" />
+          <NavigationProperty Name="Roles" Relationship="UsersModel.UserRole" FromRole="User" ToRole="Role" />
+          <Property Type="Int32" Name="TimeZoneId" Nullable="false" />
+          <NavigationProperty Name="TimeZone" Relationship="UsersModel.FK_Users_TimeZones" FromRole="User" ToRole="TimeZone" />
+          <NavigationProperty Name="UserSearchQueries" Relationship="UsersModel.FK_UserSearchQueries_Users" FromRole="User" ToRole="UserSearchQuery" />
+          <NavigationProperty Name="UsageStats" Relationship="UsersModel.FK_UsageStats_Users" FromRole="User" ToRole="UsageStat" />
+          <NavigationProperty Name="Subscriptions" Relationship="UsersModel.FK_Subscriptions_Users" FromRole="User" ToRole="Subscription" />
+          <NavigationProperty Name="SubscriptionRequests" Relationship="UsersModel.FK_SubscriptionRequest_Users" FromRole="User" ToRole="SubscriptionRequest" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Guid" Name="SessionId" />
+          <NavigationProperty Name="Trials" Relationship="UsersModel.FK_Trial_Users" FromRole="User" ToRole="Trial" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Audit_AuditActions">
+          <End Type="UsersModel.Action" Role="Action" Multiplicity="1" />
+          <End Type="UsersModel.Audit" Role="Audit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Action">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Audit">
+              <PropertyRef Name="ActionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Audit_Users">
+          <End Type="UsersModel.User" Role="User" Multiplicity="1" />
+          <End Type="UsersModel.Audit" Role="Audit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Audit">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Companies">
+          <End Type="UsersModel.Company" Role="Company" Multiplicity="1" />
+          <End Type="UsersModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Methods_MethodTypes">
+          <End Type="UsersModel.MethodType" Role="MethodType" Multiplicity="1" />
+          <End Type="UsersModel.Method" Role="Method" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MethodType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Method">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_ThresholdPeriods">
+          <End Type="UsersModel.ThresholdPeriod" Role="ThresholdPeriod" Multiplicity="1" />
+          <End Type="UsersModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ThresholdPeriod">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="ThresholdPeriodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MethodGroupMethod">
+          <End Type="UsersModel.Method" Role="Method" Multiplicity="*" />
+          <End Type="UsersModel.MethodGroup" Role="MethodGroup" Multiplicity="*" />
+        </Association>
+        <Association Name="UserRole">
+          <End Type="UsersModel.Role" Role="Role" Multiplicity="*" />
+          <End Type="UsersModel.User" Role="User" Multiplicity="*" />
+        </Association>
+        <EntityType Name="ResourceType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Resources" Relationship="UsersModel.FK_Resources_ResourceType" FromRole="ResourceType" ToRole="Resource" />
+          <NavigationProperty Name="ServiceConfigurations" Relationship="UsersModel.FK_ServiceConfiguration_ResourceType" FromRole="ResourceType" ToRole="ServiceConfiguration" />
+          <Property Type="String" Name="Description" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Resources_ResourceType">
+          <End Type="UsersModel.ResourceType" Role="ResourceType" Multiplicity="1" />
+          <End Type="UsersModel.Resource" Role="Resource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResourceType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Resource">
+              <PropertyRef Name="ResourceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceConfiguration_ResourceType">
+          <End Type="UsersModel.ResourceType" Role="ResourceType" Multiplicity="1" />
+          <End Type="UsersModel.ServiceConfiguration" Role="ServiceConfiguration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResourceType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceConfiguration">
+              <PropertyRef Name="ResourceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Informer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="240" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="HeaderColor" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ContentColor" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="InformerStyle" MaxLength="700" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ContentStyle" MaxLength="700" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TitleStyle" MaxLength="700" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ContentProviderId" Nullable="false" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="Xslt" Nullable="false" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="XsltParameters" MaxLength="1500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Method" Relationship="UsersModel.FK_Informers_Methods1" FromRole="Informer" ToRole="Method" />
+          <NavigationProperty Name="User" Relationship="UsersModel.FK_Informers_Users" FromRole="Informer" ToRole="User" />
+          <Property Type="String" Name="FooterColor" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FooterStyle" MaxLength="700" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="ShowFooter" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Informers_Methods1">
+          <End Type="UsersModel.Method" Role="Method" Multiplicity="1" />
+          <End Type="UsersModel.Informer" Role="Informer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Method">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Informer">
+              <PropertyRef Name="ContentProviderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Informers_Users">
+          <End Type="UsersModel.User" Role="User" Multiplicity="1" />
+          <End Type="UsersModel.Informer" Role="Informer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Informer">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SubscriptionRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="DateTime" Name="LastUpdate" Nullable="false" Precision="3" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Boolean" Name="IsFulfilled" Nullable="false" />
+          <Property Type="Int32" Name="RequestTypeId" Nullable="false" />
+          <NavigationProperty Name="SubscriptionRequestType" Relationship="UsersModel.FK_SubscriptionRequests_SubscriptionRequestType" FromRole="SubscriptionRequest" ToRole="SubscriptionRequestType" />
+          <NavigationProperty Name="MethodGroups" Relationship="UsersModel.SubscriptionRequestMethodGroup" FromRole="SubscriptionRequest" ToRole="MethodGroup" />
+          <Property Type="Boolean" Name="Accepted" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="UsersModel.FK_SubscriptionRequest_Users" FromRole="SubscriptionRequest" ToRole="User" />
+          <Property Type="Int32" Name="AcceptedBy" Nullable="true" />
+          <NavigationProperty Name="Acceptor" Relationship="UsersModel.FK_SubscriptionRequest_Users_AcceptedBy" FromRole="SubscriptionRequest" ToRole="User" />
+          <Property Type="String" Name="Comment" MaxLength="1500" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Notify" />
+          <Property Name="EmailSent" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Trials" Relationship="UsersModel.FK_Trial_SubscriptionRequests" FromRole="SubscriptionRequest" ToRole="Trial" />
+        </EntityType>
+        <EntityType Name="SubscriptionRequestType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SubscriptionRequests" Relationship="UsersModel.FK_SubscriptionRequests_SubscriptionRequestType" FromRole="SubscriptionRequestType" ToRole="SubscriptionRequest" />
+        </EntityType>
+        <EntityType Name="SearchColumn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="120" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SearchGroups" Relationship="UsersModel.SearchGroupColumns" FromRole="SearchColumn" ToRole="SearchGroup" />
+          <Property Type="String" Name="Alias" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="TableId" Nullable="false" />
+          <NavigationProperty Name="SearchTable" Relationship="UsersModel.FK_SearchColumns_SearchTables" FromRole="SearchColumn" ToRole="SearchTable" />
+        </EntityType>
+        <EntityType Name="SearchGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="120" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SearchColumns" Relationship="UsersModel.SearchGroupColumns" FromRole="SearchGroup" ToRole="SearchColumn" />
+          <NavigationProperty Name="Permissions" Relationship="UsersModel.PermissionSearchGroup" FromRole="SearchGroup" ToRole="Permission" />
+          <Property Type="Int32" Name="TableId" Nullable="false" />
+          <NavigationProperty Name="SearchTable" Relationship="UsersModel.FK_SearchGroups_SearchTables" FromRole="SearchGroup" ToRole="SearchTable" />
+        </EntityType>
+        <Association Name="SearchGroupColumns">
+          <End Type="UsersModel.SearchColumn" Role="SearchColumn" Multiplicity="*" />
+          <End Type="UsersModel.SearchGroup" Role="SearchGroup" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Companies" Relationship="UsersModel.FK_Companies_Countries" FromRole="Country" ToRole="Company" />
+          <NavigationProperty Name="IpList" Relationship="UsersModel.FK_IPs_Countries" FromRole="Country" ToRole="IP" />
+        </EntityType>
+        <Association Name="FK_Companies_Countries">
+          <End Type="UsersModel.Country" Role="Country" Multiplicity="1" />
+          <End Type="UsersModel.Company" Role="Company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Company">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TimeZone">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="UsersModel.FK_Users_TimeZones" FromRole="TimeZone" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Users_TimeZones">
+          <End Type="UsersModel.TimeZone" Role="TimeZone" Multiplicity="1" />
+          <End Type="UsersModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TimeZone">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="TimeZoneId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Permission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Roles" Relationship="UsersModel.RolePermission" FromRole="Permission" ToRole="Role" />
+          <NavigationProperty Name="SearchGroups" Relationship="UsersModel.PermissionSearchGroup" FromRole="Permission" ToRole="SearchGroup" />
+          <Property Type="Int32" Name="PermissionTypeId" Nullable="false" />
+          <NavigationProperty Name="PermissionType" Relationship="UsersModel.FK_Permissions_PermissionType" FromRole="Permission" ToRole="PermissionType" />
+        </EntityType>
+        <Association Name="RolePermission">
+          <End Type="UsersModel.Permission" Role="Permission" Multiplicity="*" />
+          <End Type="UsersModel.Role" Role="Role" Multiplicity="*" />
+        </Association>
+        <Association Name="PermissionSearchGroup">
+          <End Type="UsersModel.Permission" Role="Permission" Multiplicity="*" />
+          <End Type="UsersModel.SearchGroup" Role="SearchGroup" Multiplicity="*" />
+        </Association>
+        <EntityType Name="PermissionType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+          <NavigationProperty Name="Permissions" Relationship="UsersModel.FK_Permissions_PermissionType" FromRole="PermissionType" ToRole="Permission" />
+        </EntityType>
+        <Association Name="FK_Permissions_PermissionType">
+          <End Type="UsersModel.PermissionType" Role="PermissionType" Multiplicity="1" />
+          <End Type="UsersModel.Permission" Role="Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PermissionType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Permission">
+              <PropertyRef Name="PermissionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SearchTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="120" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SearchColumns" Relationship="UsersModel.FK_SearchColumns_SearchTables" FromRole="SearchTable" ToRole="SearchColumn" />
+          <NavigationProperty Name="SearchGroups" Relationship="UsersModel.FK_SearchGroups_SearchTables" FromRole="SearchTable" ToRole="SearchGroup" />
+        </EntityType>
+        <Association Name="FK_SearchColumns_SearchTables">
+          <End Type="UsersModel.SearchTable" Role="SearchTable" Multiplicity="1" />
+          <End Type="UsersModel.SearchColumn" Role="SearchColumn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SearchTable">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SearchColumn">
+              <PropertyRef Name="TableId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SearchGroups_SearchTables">
+          <End Type="UsersModel.SearchTable" Role="SearchTable" Multiplicity="1" />
+          <End Type="UsersModel.SearchGroup" Role="SearchGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SearchTable">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SearchGroup">
+              <PropertyRef Name="TableId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UserSearchQuery">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Type="String" Name="QueryParameters" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="UsersModel.FK_UserSearchQueries_Users" FromRole="UserSearchQuery" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_UserSearchQueries_Users">
+          <End Type="UsersModel.User" Role="User" Multiplicity="1" />
+          <End Type="UsersModel.UserSearchQuery" Role="UserSearchQuery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserSearchQuery">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DataFormat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UsageStats" Relationship="UsersModel.FK_UsageStats_DataFormats" FromRole="DataFormat" ToRole="UsageStat" />
+        </EntityType>
+        <EntityType Name="UsageStat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="UserId" />
+          <Property Type="Int32" Name="IpId" />
+          <Property Type="DateTime" Name="RequestDate" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="HttpStatusCode" />
+          <Property Type="Int32" Name="MethodId" />
+          <Property Type="String" Name="MethodArgs" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="DataFormatId" Nullable="false" />
+          <Property Type="String" Name="ErrorMessage" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="RequestDuration" />
+          <Property Type="Int32" Name="StatusId" Nullable="false" />
+          <NavigationProperty Name="Method" Relationship="UsersModel.FK_UsageStats_Methods" FromRole="UsageStat" ToRole="Method" />
+          <NavigationProperty Name="Status" Relationship="UsersModel.FK_UsageStats_Statuses" FromRole="UsageStat" ToRole="Status" />
+          <NavigationProperty Name="User" Relationship="UsersModel.FK_UsageStats_Users" FromRole="UsageStat" ToRole="User" />
+          <NavigationProperty Name="IP" Relationship="UsersModel.FK_UsageStats_UsersIPs" FromRole="UsageStat" ToRole="IP" />
+        </EntityType>
+        <Association Name="FK_UsageStats_DataFormats">
+          <End Type="UsersModel.DataFormat" Role="DataFormat" Multiplicity="1" />
+          <End Type="UsersModel.UsageStat" Role="UsageStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataFormat">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsageStat">
+              <PropertyRef Name="DataFormatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsageStats_Methods">
+          <End Type="UsersModel.Method" Role="Method" Multiplicity="0..1" />
+          <End Type="UsersModel.UsageStat" Role="UsageStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Method">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsageStat">
+              <PropertyRef Name="MethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsageStats_Statuses">
+          <End Type="UsersModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="UsersModel.UsageStat" Role="UsageStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsageStat">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsageStats_Users">
+          <End Type="UsersModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="UsersModel.UsageStat" Role="UsageStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsageStat">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubscriptionRequests_SubscriptionRequestType">
+          <End Type="UsersModel.SubscriptionRequestType" Role="SubscriptionRequestType" Multiplicity="1" />
+          <End Type="UsersModel.SubscriptionRequest" Role="SubscriptionRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubscriptionRequestType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubscriptionRequest">
+              <PropertyRef Name="RequestTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SubscriptionRequestMethodGroup">
+          <End Type="UsersModel.MethodGroup" Role="MethodGroup" Multiplicity="*" />
+          <End Type="UsersModel.SubscriptionRequest" Role="SubscriptionRequest" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Subscription">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="MethodGroupId" Nullable="false" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <NavigationProperty Name="MethodGroup" Relationship="UsersModel.FK_Subscriptions_MethodGroups" FromRole="Subscription" ToRole="MethodGroup" />
+          <NavigationProperty Name="User" Relationship="UsersModel.FK_Subscriptions_Users" FromRole="Subscription" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Subscriptions_MethodGroups">
+          <End Type="UsersModel.MethodGroup" Role="MethodGroup" Multiplicity="1" />
+          <End Type="UsersModel.Subscription" Role="Subscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MethodGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Subscription">
+              <PropertyRef Name="MethodGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subscriptions_Users">
+          <End Type="UsersModel.User" Role="User" Multiplicity="1" />
+          <End Type="UsersModel.Subscription" Role="Subscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Subscription">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="IP">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Ip" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="GeoLocationCountryId" />
+          <Property Type="Boolean" Name="IsAllowed" Nullable="false" />
+          <Property Type="Int32" Name="CompanyId" />
+          <NavigationProperty Name="Company" Relationship="UsersModel.FK_IPs_Companies" FromRole="IP" ToRole="Company" />
+          <NavigationProperty Name="LookedUpCountry" Relationship="UsersModel.FK_IPs_Countries" FromRole="IP" ToRole="Country" />
+          <NavigationProperty Name="UsageStats" Relationship="UsersModel.FK_UsageStats_UsersIPs" FromRole="IP" ToRole="UsageStat" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_IPs_Companies">
+          <End Type="UsersModel.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="UsersModel.IP" Role="IP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IP">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IPs_Countries">
+          <End Type="UsersModel.Country" Role="Country" Multiplicity="0..1" />
+          <End Type="UsersModel.IP" Role="IP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IP">
+              <PropertyRef Name="GeoLocationCountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsageStats_UsersIPs">
+          <End Type="UsersModel.IP" Role="IP" Multiplicity="0..1" />
+          <End Type="UsersModel.UsageStat" Role="UsageStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IP">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsageStat">
+              <PropertyRef Name="IpId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubscriptionRequest_Users">
+          <End Type="UsersModel.User" Role="User" Multiplicity="1" />
+          <End Type="UsersModel.SubscriptionRequest" Role="SubscriptionRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubscriptionRequest">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubscriptionRequest_Users_AcceptedBy">
+          <End Type="UsersModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="UsersModel.SubscriptionRequest" Role="SubscriptionRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubscriptionRequest">
+              <PropertyRef Name="AcceptedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EmailTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        </EntityType>
+        <EntityType Name="DatabaseConfiguration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="Alias" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ConnectionString" Type="String" Nullable="false" MaxLength="2048" FixedLength="false" Unicode="true" />
+          <Property Name="StoredProcPrefix" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StoredProcParamPrefix" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StoredProcMethodPrefix" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StoredProcOwner" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StoredProcInformerPrefix" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDefault" Type="Boolean" />
+          <NavigationProperty Name="Methods" Relationship="UsersModel.FK_Methods_DatabaseConfiguration" FromRole="DatabaseConfiguration" ToRole="Method" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Methods_DatabaseConfiguration">
+          <End Type="UsersModel.DatabaseConfiguration" Role="DatabaseConfiguration" Multiplicity="1" />
+          <End Type="UsersModel.Method" Role="Method" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DatabaseConfiguration">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Method">
+              <PropertyRef Name="DatabaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Trial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="VerificationCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TrialStart" Type="DateTime" Precision="3" />
+          <Property Name="TrialEnd" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User" Relationship="UsersModel.FK_Trial_Users" FromRole="Trial" ToRole="User" />
+          <Property Name="RequestId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SubscriptionRequest" Relationship="UsersModel.FK_Trial_SubscriptionRequests" FromRole="Trial" ToRole="SubscriptionRequest" />
+        </EntityType>
+        <Association Name="FK_Trial_Users">
+          <End Type="UsersModel.User" Role="User" Multiplicity="1" />
+          <End Type="UsersModel.Trial" Role="Trial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Trial">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trial_SubscriptionRequests">
+          <End Type="UsersModel.SubscriptionRequest" Role="SubscriptionRequest" Multiplicity="1" />
+          <End Type="UsersModel.Trial" Role="Trial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubscriptionRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Trial">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UsersModelStoreContainer" CdmEntityContainer="UsersEntities">
+          <FunctionImportMapping FunctionImportName="spInformerListOfCountries" FunctionName="UsersModel.Store.spInformerListOfCountries">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="UsersModel.spInformerListOfCountries_Result">
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Actions">
+            <EntityTypeMapping TypeName="UsersModel.Action">
+              <MappingFragment StoreEntitySet="Actions">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <Condition ColumnName="IsDeleted" Value="0" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Audits">
+            <EntityTypeMapping TypeName="UsersModel.Audit">
+              <MappingFragment StoreEntitySet="Audits">
+                <ScalarProperty Name="IpAddr" ColumnName="IpAddr" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RecordDate" ColumnName="RecordDate" />
+                <ScalarProperty Name="ActionId" ColumnName="ActionId" />
+                <ScalarProperty Name="Values" ColumnName="Values" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <Condition ColumnName="IsDeleted" Value="0" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="UsersModel.Company">
+              <MappingFragment StoreEntitySet="Companies">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <Condition ColumnName="IsDeleted" Value="0" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MethodGroups">
+            <EntityTypeMapping TypeName="UsersModel.MethodGroup">
+              <MappingFragment StoreEntitySet="MethodGroups">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsTrial" ColumnName="IsTrial" />
+                <ScalarProperty Name="Shared" ColumnName="Shared" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Methods">
+            <EntityTypeMapping TypeName="UsersModel.Method">
+              <MappingFragment StoreEntitySet="Methods">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DatabaseId" ColumnName="DatabaseId" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MethodTypes">
+            <EntityTypeMapping TypeName="UsersModel.MethodType">
+              <MappingFragment StoreEntitySet="MethodTypes">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <Condition ColumnName="IsDeleted" Value="0" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Resources">
+            <EntityTypeMapping TypeName="UsersModel.Resource">
+              <MappingFragment StoreEntitySet="Resources">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="ResourceTypeId" ColumnName="ResourceTypeId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="UsersModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceConfigurations">
+            <EntityTypeMapping TypeName="UsersModel.ServiceConfiguration">
+              <MappingFragment StoreEntitySet="ServiceConfiguration">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="ResourceTypeId" ColumnName="ResourceTypeId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Statuses">
+            <EntityTypeMapping TypeName="UsersModel.Status">
+              <MappingFragment StoreEntitySet="Statuses">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <Condition ColumnName="IsDeleted" Value="0" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThresholdPeriods">
+            <EntityTypeMapping TypeName="UsersModel.ThresholdPeriod">
+              <MappingFragment StoreEntitySet="ThresholdPeriods">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DatePart" ColumnName="DatePart" />
+                <ScalarProperty Name="HowLong" ColumnName="HowLong" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="UsersModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="TimeZoneId" ColumnName="TimeZoneId" />
+                <ScalarProperty Name="HitsLimit" ColumnName="HitsLimit" />
+                <ScalarProperty Name="Hits" ColumnName="Hits" />
+                <ScalarProperty Name="ThresholdPeriodEnd" ColumnName="ThresholdPeriodEnd" />
+                <ScalarProperty Name="ThresholdPeriodId" ColumnName="ThresholdPeriodId" />
+                <ScalarProperty Name="AccountExpirationDate" ColumnName="AccountExpirationDate" />
+                <ScalarProperty Name="LastFailedAttempt" ColumnName="LastFailedAttempt" />
+                <ScalarProperty Name="FailedLoginAttemptsCnt" ColumnName="FailedLoginAttemptsCnt" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="PhoneExt" ColumnName="PhoneExt" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Middlename" ColumnName="Middlename" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="MethodGroupMethod" TypeName="UsersModel.MethodGroupMethod" StoreEntitySet="MethodGroupMethod">
+            <EndProperty Name="MethodGroup">
+              <ScalarProperty Name="Id" ColumnName="MethodGroupId" />
+            </EndProperty>
+            <EndProperty Name="Method">
+              <ScalarProperty Name="Id" ColumnName="MethodId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="UserRole" TypeName="UsersModel.UserRole" StoreEntitySet="UserRole">
+            <EndProperty Name="User">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="Role">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="ResourceTypes">
+            <EntityTypeMapping TypeName="UsersModel.ResourceType">
+              <MappingFragment StoreEntitySet="ResourceType">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Informers">
+            <EntityTypeMapping TypeName="UsersModel.Informer">
+              <MappingFragment StoreEntitySet="Informers">
+                <ScalarProperty Name="ShowFooter" ColumnName="ShowFooter" />
+                <ScalarProperty Name="FooterStyle" ColumnName="FooterStyle" />
+                <ScalarProperty Name="FooterColor" ColumnName="FooterColor" />
+                <ScalarProperty Name="XsltParameters" ColumnName="XsltParameters" />
+                <ScalarProperty Name="Xslt" ColumnName="Xslt" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ContentProviderId" ColumnName="ContentProviderId" />
+                <ScalarProperty Name="TitleStyle" ColumnName="TitleStyle" />
+                <ScalarProperty Name="ContentStyle" ColumnName="ContentStyle" />
+                <ScalarProperty Name="InformerStyle" ColumnName="InformerStyle" />
+                <ScalarProperty Name="ContentColor" ColumnName="ContentColor" />
+                <ScalarProperty Name="HeaderColor" ColumnName="HeaderColor" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <Condition ColumnName="IsDeleted" Value="0" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubscriptionRequests">
+            <EntityTypeMapping TypeName="UsersModel.SubscriptionRequest">
+              <MappingFragment StoreEntitySet="SubscriptionRequests">
+                <ScalarProperty Name="EmailSent" ColumnName="EmailSent" />
+                <ScalarProperty Name="Notify" ColumnName="Notify" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="AcceptedBy" ColumnName="AcceptedBy" />
+                <ScalarProperty Name="Accepted" ColumnName="Accepted" />
+                <ScalarProperty Name="RequestTypeId" ColumnName="RequestTypeId" />
+                <ScalarProperty Name="IsFulfilled" ColumnName="IsFulfilled" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <Condition ColumnName="IsDeleted" Value="0" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubscriptionRequestTypes">
+            <EntityTypeMapping TypeName="UsersModel.SubscriptionRequestType">
+              <MappingFragment StoreEntitySet="SubscriptionRequestType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <Condition ColumnName="IsDeleted" Value="0" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SearchColumns">
+            <EntityTypeMapping TypeName="UsersModel.SearchColumn">
+              <MappingFragment StoreEntitySet="SearchColumns">
+                <ScalarProperty Name="TableId" ColumnName="TableId" />
+                <ScalarProperty Name="Alias" ColumnName="Alias" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <Condition ColumnName="IsDeleted" Value="0" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SearchGroups">
+            <EntityTypeMapping TypeName="UsersModel.SearchGroup">
+              <MappingFragment StoreEntitySet="SearchGroups">
+                <ScalarProperty Name="TableId" ColumnName="TableId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <Condition ColumnName="IsDeleted" Value="0" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="SearchGroupColumns" TypeName="UsersModel.SearchGroupColumns" StoreEntitySet="SearchGroupColumns">
+            <EndProperty Name="SearchGroup">
+              <ScalarProperty Name="Id" ColumnName="SearchGroupId" />
+            </EndProperty>
+            <EndProperty Name="SearchColumn">
+              <ScalarProperty Name="Id" ColumnName="SearchColumnId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="UsersModel.Country">
+              <MappingFragment StoreEntitySet="Countries">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <Condition ColumnName="IsDeleted" Value="0" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TimeZones">
+            <EntityTypeMapping TypeName="UsersModel.TimeZone">
+              <MappingFragment StoreEntitySet="TimeZones">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <Condition ColumnName="IsDeleted" Value="0" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permissions">
+            <EntityTypeMapping TypeName="UsersModel.Permission">
+              <MappingFragment StoreEntitySet="Permissions">
+                <ScalarProperty Name="PermissionTypeId" ColumnName="PermissionTypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <Condition ColumnName="IsDeleted" Value="0" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="RolePermission" TypeName="UsersModel.RolePermission" StoreEntitySet="RolePermission">
+            <EndProperty Name="Role">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="Permission">
+              <ScalarProperty Name="Id" ColumnName="PermissionId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="PermissionSearchGroup" TypeName="UsersModel.PermissionSearchGroup" StoreEntitySet="PermissionSearchGroup">
+            <EndProperty Name="SearchGroup">
+              <ScalarProperty Name="Id" ColumnName="SearchGroupId" />
+            </EndProperty>
+            <EndProperty Name="Permission">
+              <ScalarProperty Name="Id" ColumnName="PermissionId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="PermissionTypes">
+            <EntityTypeMapping TypeName="UsersModel.PermissionType">
+              <MappingFragment StoreEntitySet="PermissionType">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SearchTables">
+            <EntityTypeMapping TypeName="UsersModel.SearchTable">
+              <MappingFragment StoreEntitySet="SearchTables">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <Condition ColumnName="IsDeleted" Value="0" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserSearchQueries">
+            <EntityTypeMapping TypeName="UsersModel.UserSearchQuery">
+              <MappingFragment StoreEntitySet="UserSearchQueries">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="QueryParameters" ColumnName="QueryParameters" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <Condition ColumnName="IsDeleted" Value="0" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DataFormats">
+            <EntityTypeMapping TypeName="UsersModel.DataFormat">
+              <MappingFragment StoreEntitySet="DataFormats">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <Condition ColumnName="IsDeleted" Value="0" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsageStats">
+            <EntityTypeMapping TypeName="UsersModel.UsageStat">
+              <MappingFragment StoreEntitySet="UsageStats">
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="RequestDuration" ColumnName="RequestDuration" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+                <ScalarProperty Name="DataFormatId" ColumnName="DataFormatId" />
+                <ScalarProperty Name="MethodArgs" ColumnName="MethodArgs" />
+                <ScalarProperty Name="MethodId" ColumnName="MethodId" />
+                <ScalarProperty Name="HttpStatusCode" ColumnName="HttpStatusCode" />
+                <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
+                <ScalarProperty Name="IpId" ColumnName="IpId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <Condition ColumnName="IsDeleted" Value="0" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="SubscriptionRequestMethodGroup" TypeName="UsersModel.SubscriptionRequestMethodGroup" StoreEntitySet="SubscriptionRequestMethodGroup">
+            <EndProperty Name="SubscriptionRequest">
+              <ScalarProperty Name="Id" ColumnName="SubscriptionRequestId" />
+            </EndProperty>
+            <EndProperty Name="MethodGroup">
+              <ScalarProperty Name="Id" ColumnName="MethodGroupId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Subscriptions">
+            <EntityTypeMapping TypeName="UsersModel.Subscription">
+              <MappingFragment StoreEntitySet="Subscriptions">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="MethodGroupId" ColumnName="MethodGroupId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <Condition ColumnName="IsDeleted" Value="0" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IPs">
+            <EntityTypeMapping TypeName="UsersModel.IP">
+              <MappingFragment StoreEntitySet="IPs">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="IsAllowed" ColumnName="IsAllowed" />
+                <ScalarProperty Name="GeoLocationCountryId" ColumnName="GeoLocationCountryId" />
+                <ScalarProperty Name="Ip" ColumnName="IP" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailTemplates">
+            <EntityTypeMapping TypeName="UsersModel.EmailTemplate">
+              <MappingFragment StoreEntitySet="EmailTemplates">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <Condition ColumnName="IsDeleted" Value="0" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DatabaseConfigurations">
+            <EntityTypeMapping TypeName="UsersModel.DatabaseConfiguration">
+              <MappingFragment StoreEntitySet="DatabaseConfiguration">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+                <ScalarProperty Name="StoredProcInformerPrefix" ColumnName="StoredProcInformerPrefix" />
+                <ScalarProperty Name="StoredProcOwner" ColumnName="StoredProcOwner" />
+                <ScalarProperty Name="StoredProcMethodPrefix" ColumnName="StoredProcMethodPrefix" />
+                <ScalarProperty Name="StoredProcParamPrefix" ColumnName="StoredProcParamPrefix" />
+                <ScalarProperty Name="StoredProcPrefix" ColumnName="StoredProcPrefix" />
+                <ScalarProperty Name="ConnectionString" ColumnName="ConnectionString" />
+                <ScalarProperty Name="Alias" ColumnName="Alias" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spSendTrialEmail" FunctionName="UsersModel.Store.spSendTrialEmail" />
+          <EntitySetMapping Name="Trials">
+            <EntityTypeMapping TypeName="UsersModel.Trial">
+              <MappingFragment StoreEntitySet="Trial">
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="TrialEnd" ColumnName="TrialEnd" />
+                <ScalarProperty Name="TrialStart" ColumnName="TrialStart" />
+                <ScalarProperty Name="VerificationCode" ColumnName="VerificationCode" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <Condition ColumnName="IsDeleted" Value="0" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spTrialCheckUsername" FunctionName="UsersModel.Store.spTrialCheckUsername" />
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer>
+    <edmx:Connection>
+      <edmx:DesignerInfoPropertySet>
+        <edmx:DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </edmx:DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <edmx:DesignerInfoPropertySet>
+        <edmx:DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <edmx:DesignerProperty Name="EnablePluralization" Value="True" />
+        <edmx:DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <edmx:DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
+        <edmx:DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </edmx:DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <edmx:Diagram Name="Model" ZoomLevel="74" ShowGrid="true">
+        <edmx:EntityTypeShape EntityType="UsersModel.Action" Width="1.5" PointX="12.25" PointY="18.25" />
+        <edmx:EntityTypeShape EntityType="UsersModel.Audit" Width="1.5" PointX="14.5" PointY="12.75" />
+        <edmx:EntityTypeShape EntityType="UsersModel.Company" Width="1.5" PointX="9.75" PointY="7" />
+        <edmx:EntityTypeShape EntityType="UsersModel.MethodGroup" Width="1.5" PointX="5.25" PointY="11.75" />
+        <edmx:EntityTypeShape EntityType="UsersModel.Method" Width="1.5" PointX="3" PointY="11.5" />
+        <edmx:EntityTypeShape EntityType="UsersModel.MethodType" Width="1.5" PointX="0.75" PointY="11.75" />
+        <edmx:EntityTypeShape EntityType="UsersModel.Resource" Width="1.5" PointX="0.5" PointY="1.125" />
+        <edmx:EntityTypeShape EntityType="UsersModel.Role" Width="1.5" PointX="9.75" PointY="14.875" />
+        <edmx:EntityTypeShape EntityType="UsersModel.ServiceConfiguration" Width="1.5" PointX="2.125" PointY="1.125" />
+        <edmx:EntityTypeShape EntityType="UsersModel.Status" Width="1.5" PointX="12.25" PointY="8.5" />
+        <edmx:EntityTypeShape EntityType="UsersModel.ThresholdPeriod" Width="1.5" PointX="9.75" PointY="17.5" />
+        <edmx:EntityTypeShape EntityType="UsersModel.User" Width="2.125" PointX="12" PointY="10.875" />
+        <edmx:AssociationConnector Association="UsersModel.FK_Audit_AuditActions" />
+        <edmx:AssociationConnector Association="UsersModel.FK_Audit_Users" />
+        <edmx:AssociationConnector Association="UsersModel.FK_Users_Companies" />
+        <edmx:AssociationConnector Association="UsersModel.FK_Methods_MethodTypes" />
+        <edmx:AssociationConnector Association="UsersModel.FK_Users_ThresholdPeriods" />
+        <edmx:AssociationConnector Association="UsersModel.MethodGroupMethod" />
+        <edmx:AssociationConnector Association="UsersModel.UserRole" />
+        <edmx:EntityTypeShape EntityType="UsersModel.ResourceType" Width="1.5" PointX="0.5" PointY="6.25" />
+        <edmx:AssociationConnector Association="UsersModel.FK_Resources_ResourceType" />
+        <edmx:AssociationConnector Association="UsersModel.FK_ServiceConfiguration_ResourceType" />
+        <edmx:EntityTypeShape EntityType="UsersModel.Informer" Width="2.125" PointX="17.5" PointY="11.875" />
+        <edmx:AssociationConnector Association="UsersModel.FK_Informers_Methods1" />
+        <edmx:AssociationConnector Association="UsersModel.FK_Informers_Users" />
+        <edmx:EntityTypeShape EntityType="UsersModel.SubscriptionRequest" Width="2.375" PointX="14.5" PointY="22.625" />
+        <edmx:EntityTypeShape EntityType="UsersModel.SubscriptionRequestType" Width="2.375" PointX="14.5" PointY="17.375" />
+        <edmx:EntityTypeShape EntityType="UsersModel.SearchColumn" Width="1.5" PointX="7.5" PointY="15.5" />
+        <edmx:EntityTypeShape EntityType="UsersModel.SearchGroup" Width="1.5" PointX="9.75" PointY="11.375" />
+        <edmx:AssociationConnector Association="UsersModel.SearchGroupColumns" />
+        <edmx:EntityTypeShape EntityType="UsersModel.Country" Width="1.75" PointX="7.25" PointY="7.5" />
+        <edmx:AssociationConnector Association="UsersModel.FK_Companies_Countries" />
+        <edmx:EntityTypeShape EntityType="UsersModel.TimeZone" Width="1.5" PointX="9.75" PointY="20.25" />
+        <edmx:AssociationConnector Association="UsersModel.FK_Users_TimeZones" />
+        <edmx:EntityTypeShape EntityType="UsersModel.Permission" Width="1.5" PointX="7.5" PointY="11.375" />
+        <edmx:AssociationConnector Association="UsersModel.RolePermission" />
+        <edmx:AssociationConnector Association="UsersModel.PermissionSearchGroup" />
+        <edmx:EntityTypeShape EntityType="UsersModel.PermissionType" Width="1.5" PointX="5.25" PointY="8.75" />
+        <edmx:AssociationConnector Association="UsersModel.FK_Permissions_PermissionType" />
+        <edmx:EntityTypeShape EntityType="UsersModel.SearchTable" Width="1.5" PointX="5.25" PointY="15.75" />
+        <edmx:AssociationConnector Association="UsersModel.FK_SearchColumns_SearchTables" />
+        <edmx:AssociationConnector Association="UsersModel.FK_SearchGroups_SearchTables" />
+        <edmx:EntityTypeShape EntityType="UsersModel.UserSearchQuery" Width="1.5" PointX="14.5" PointY="20" />
+        <edmx:AssociationConnector Association="UsersModel.FK_UserSearchQueries_Users" />
+        <edmx:EntityTypeShape EntityType="UsersModel.DataFormat" Width="1.5" PointX="12.25" PointY="2.75" />
+        <edmx:EntityTypeShape EntityType="UsersModel.UsageStat" Width="1.5" PointX="14.5" PointY="6.875" />
+        <edmx:AssociationConnector Association="UsersModel.FK_UsageStats_DataFormats" />
+        <edmx:AssociationConnector Association="UsersModel.FK_UsageStats_Methods" />
+        <edmx:AssociationConnector Association="UsersModel.FK_UsageStats_Statuses" />
+        <edmx:AssociationConnector Association="UsersModel.FK_UsageStats_Users" />
+        <edmx:AssociationConnector Association="UsersModel.FK_SubscriptionRequests_SubscriptionRequestType" />
+        <edmx:AssociationConnector Association="UsersModel.SubscriptionRequestMethodGroup" />
+        <edmx:EntityTypeShape EntityType="UsersModel.Subscription" Width="1.5" PointX="9.75" PointY="22.875" />
+        <edmx:AssociationConnector Association="UsersModel.FK_Subscriptions_MethodGroups" />
+        <edmx:AssociationConnector Association="UsersModel.FK_Subscriptions_Users" />
+        <edmx:EntityTypeShape EntityType="UsersModel.IP" Width="2.625" PointX="14.5" PointY="2.75" />
+        <edmx:AssociationConnector Association="UsersModel.FK_IPs_Companies" />
+        <edmx:AssociationConnector Association="UsersModel.FK_IPs_Countries" />
+        <edmx:AssociationConnector Association="UsersModel.FK_UsageStats_UsersIPs" />
+        <edmx:AssociationConnector Association="UsersModel.FK_SubscriptionRequest_Users" />
+        <edmx:AssociationConnector Association="UsersModel.FK_SubscriptionRequest_Users_AcceptedBy" />
+        <edmx:EntityTypeShape EntityType="UsersModel.EmailTemplate" Width="1.5" PointX="3.75" PointY="1.125" />
+        <edmx:EntityTypeShape EntityType="UsersModel.DatabaseConfiguration" Width="2" PointX="5.375" PointY="1.125" />
+        <edmx:AssociationConnector Association="UsersModel.FK_Methods_DatabaseConfiguration" />
+        <edmx:EntityTypeShape EntityType="UsersModel.Trial" Width="2.125" PointX="9.25" PointY="1.25" />
+        <edmx:AssociationConnector Association="UsersModel.FK_Trial_Users" />
+        <edmx:AssociationConnector Association="UsersModel.FK_Trial_SubscriptionRequests" />
+        </edmx:Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

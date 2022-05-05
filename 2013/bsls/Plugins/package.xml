@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Package Name="BSLS" FriendlyName="Barcode Series and Labeling System" Version="1.7.0.0">
+  <Role>Chemist</Role>
+  <Role>Biologist</Role>
+</Package>

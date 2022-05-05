@@ -1,0 +1,15 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+<div style="display: none; opacity: 0.5; top: 0px; left: 0px;" class="cookieAccepterGrayBody">
+</div>
+	
+<div class="cookieAccepterSlider" style="width: 0px; left: -223px; background: none;">
+    <div class="cookieAccepterSliderButton"></div>
+    <div class="cookieAccepterSliderLink"></div>
+</div>
+<div class="cookieAccepterPopup" style="position: absolute; left: 357.5px; top: 71.5px; display: none;">
+    <div class="cookieAccepterPopupCloseButton"></div>
+    @Html.Raw(@Model.MacroParameters["popupText"])
+    <p class="cookieAccepterPopupParagraph">
+        <input type="submit" name="submitButton" value="" class="cookieAccepterPopupButton" onclick="SetCookie(24)">
+    </p>
+</div>

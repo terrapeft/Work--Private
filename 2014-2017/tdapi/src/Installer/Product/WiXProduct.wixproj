@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>3.10</ProductVersion>
+    <EnableProjectHarvesting>True</EnableProjectHarvesting>
+    <ProjectGuid>8f292ec8-0e82-4cbe-b470-f46deda37822</ProjectGuid>
+    <SchemaVersion>2.0</SchemaVersion>
+    <OutputName>Installer</OutputName>
+    <OutputType>Package</OutputType>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <Name>WiXProduct</Name>
+    <IncludeSearchPaths>
+    </IncludeSearchPaths>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <DefineConstants>Debug;api_pub=publish\API;admin_pub=publish\Admin;</DefineConstants>
+    <SuppressIces>ICE03</SuppressIces>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <DefineConstants>api_pub=publish\API;admin_pub=publish\Admin;customer_pub=publish\Customer</DefineConstants>
+    <SuppressPdbOutput>True</SuppressPdbOutput>
+    <SuppressValidation>False</SuppressValidation>
+    <SuppressIces>
+    </SuppressIces>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Dialogs.wxs" />
+    <Compile Include="Generated\_AdminWebFiles.wxs" />
+    <Compile Include="Generated\_TradeDataAPIFiles.wxs" />
+    <Compile Include="Product.wxs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WixExtension Include="WixNetFxExtension">
+      <HintPath>$(WixExtDir)\WixNetFxExtension.dll</HintPath>
+      <Name>WixNetFxExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixUtilExtension">
+      <HintPath>$(WixExtDir)\WixUtilExtension.dll</HintPath>
+      <Name>WixUtilExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixUIExtension">
+      <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
+      <Name>WixUIExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixSqlExtension">
+      <HintPath>$(WixExtDir)\WixSqlExtension.dll</HintPath>
+      <Name>WixSqlExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixIIsExtension">
+      <HintPath>$(WixExtDir)\WixIIsExtension.dll</HintPath>
+      <Name>WixIIsExtension</Name>
+    </WixExtension>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\TradeDataAPI\TradeDataAPI\TradeDataAPI.csproj">
+      <Name>TradeDataAPI</Name>
+      <Project>{c8421f84-0ed5-46e2-a765-154b84a6a3f3}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>API_FOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\UsersUI\UsersUI\AdministrativeUI.csproj">
+      <Name>AdministrativeUI</Name>
+      <Project>{33763686-5217-46bc-ac0d-8f19776b1ed0}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\CustomActions\WiXCustomActions.csproj">
+      <Name>WiXCustomActions</Name>
+      <Project>{2932a054-41b4-48f0-ad84-747866588f88}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Docs\" />
+    <Folder Include="Generated" />
+    <Folder Include="Images\" />
+    <Folder Include="SQL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configuration.wxi" />
+    <Content Include="Images\db.ico" />
+    <Content Include="SQL\6. user.sql" />
+    <None Include="Docs\events2.png" />
+    <Content Include="Docs\events.png" />
+    <Content Include="Generated\ReadMe.txt" />
+    <Content Include="Images\backdropLeft.png" />
+    <Content Include="Images\banner.png" />
+    <Content Include="SQL\1. users db, ddl script.sql" />
+    <Content Include="SQL\2. users db, dml script.sql" />
+    <Content Include="SQL\3. Job tdApi_Users_ExpireUsers.sql" />
+    <Content Include="SQL\4. Job tdApi_Users_ZeroHitCounter.sql" />
+    <Content Include="SQL\5. TRADEdataAPI db, ddl script.sql" />
+  </ItemGroup>
+  <Import Project="$(WixTargetsPath)" />
+  <PropertyGroup>
+    <PreBuildEvent>set run=1
+
+rem if %25run%25=0 goto :exit
+
+set pub="..\..\publish"
+set pubFromSite="..\..\Installer\Product\publish"
+set sln="..\..\..\..\UsersUI\UsersUI.sln"
+set api_root="..\..\..\..\TradeDataAPI\TradeDataAPI\"
+set api_proj="..\..\..\..\TradeDataAPI\TradeDataAPI\TradeDataAPI.csproj"
+set admin_proj="..\..\..\..\UsersUI\UsersUI\AdministrativeUI.csproj"
+rem set customer_proj="..\..\..\..\UsersUI\CustomersUI\CustomersUI.csproj"
+set gen="..\..\Generated"
+
+set msbuild="C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe"
+set heat="C:\Program Files (x86)\WiX Toolset v3.10\bin\heat.exe"
+
+REM %2a%2a%2a Delete previous publish content %2a%2a%2a
+rmdir /S /Q %25pub%25
+rmdir /S /Q "..\Gen"
+
+REM %2a%2a%2a Rebuild UserUI solution in Release mode %2a%2a%2a
+REM %25msbuild%25 /p:Configuration=Release /t:ReBuild %25sln%25
+
+
+
+REM %2a%2a%2a PUBLISHING %2a%2a%2a
+
+REM %2a%2a%2a Publishing TradeDataAPI project %2a%2a%2a
+%25msbuild%25 /t:ResolveReferences%3b_CopyWebApplication /p:Configuration=$(ConfigurationName)%3bDebugSymbols=false%3bDebugType=none%3bOutDir=$(ProjectDir)\bin\Gen%3bWebProjectOutputDir=%25pubFromSite%25\API %25api_proj%25
+xcopy "%25api_root%25bin\%2a.dll" "%25pub%25\API\bin\" /y
+
+REM %2a%2a%2a Publishing UsersUI (Administrative) project %2a%2a%2a
+%25msbuild%25 /t:ResolveReferences%3b_CopyWebApplication /p:Configuration=$(ConfigurationName)%3bDebugSymbols=false%3bDebugType=none%3bOutDir=$(ProjectDir)\bin\Gen%3bWebProjectOutputDir=%25pubFromSite%25\Admin %25admin_proj%25
+xcopy "$(SolutionDir)UsersUI\bin\%2a.dll" "%25pub%25\Admin\bin\" /y
+
+REM %2a%2a%2a Publishing CustomersUI project %2a%2a%2a
+rem %25msbuild%25 /t:ResolveReferences%3b_CopyWebApplication /p:Configuration=$(ConfigurationName)%3bDebugSymbols=false%3bDebugType=none%3bOutDir=$(ProjectDir)\bin\Gen%3bWebProjectOutputDir=%25pubFromSite%25\Customer %25customer_proj%25
+rem xcopy "$(SolutionDir)CustomersUI\bin\%2a.dll" "%25pub%25\Customer\bin\" /y
+
+
+REM %2a%2a%2a HARVESTING %2a%2a%2a
+
+REM %2a%2a%2a Harvesting the TradeDataAPI output %2a%2a%2a
+%25heat%25 dir %25pub%25\API -dr API_FOLDER -ke -srd -cg ApiWeb -var var.api_pub -gg -out %25gen%25\_TradeDataAPIFiles.wxs
+
+REM %2a%2a%2a Harvesting the UsersUI output %2a%2a%2a
+%25heat%25 dir %25pub%25\Admin -dr WEB_ADMIN_FOLDER -ke -srd -cg AdminWeb -var var.admin_pub -gg -out %25gen%25\_AdminWebFiles.wxs
+
+REM %2a%2a%2a Harvesting the CustomersUI output %2a%2a%2a
+rem %25heat%25 dir %25pub%25\Customer -dr WEB_CUSTOMER_FOLDER -ke -srd -cg CustomersWeb -var var.customer_pub -gg -out %25gen%25\_CustomersWebFiles.wxs
+
+:exit</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>if exist "..\..\publish" rmdir /S /Q "..\..\publish"
+if exist "..\Generated" rmdir /S /Q "..\Generated"
+
+rem xcopy "$(TargetDir)%2a.msi" "$(ProjectDir)%2a.msi" /c /y /d /S
+rem if exist "$(ProjectDir)Product.msi" del /F "$(ProjectDir)Product.msi"
+rem ren "$(ProjectDir)Installer.msi" Product.msi
+
+xcopy "$(TargetDir)%2a.msi" "$(ProjectDir)..\..\MSI\%2a.msi" /c /y /d /S
+
+copy "$(TargetDir)installer.msi" "$(ProjectDir)..\..\..\..\etdplatform\Statix\installer\MSI\tdapi.msi"
+copy "$(TargetDir)installer.msi" "$(ProjectDir)..\..\..\..\etdplatform\SymbolLookup\installer\MSI\tdapi.msi"
+if exist "e:\Install" copy "$(TargetDir)%2a.msi" "e:\Install\tdapi.msi"</PostBuildEvent>
+  </PropertyGroup>
+  <!--
+	To modify your build process, add your task inside one of the targets below and uncomment it.
+	Other similar extension points exist, see Wix.targets.
+	<Target Name="BeforeBuild">
+	</Target>
+	<Target Name="AfterBuild">
+	</Target>
+	-->
+  <!-- Define default target with name 'Build' -->
+</Project>

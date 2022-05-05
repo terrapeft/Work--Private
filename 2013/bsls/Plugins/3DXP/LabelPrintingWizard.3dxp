@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ExplorerPluginHandler xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <menuItemPath>Tools|BSLS|Print Labels</menuItemPath>
+   <menuPosition>150</menuPosition>
+   <assembly>ThirdDimension.Explorer.BarcodeSeries.dll</assembly>
+   <type>Jnj.ThirdDimension.Explorer.BarcodeSeries.LabelPrintingWizard</type>
+   <needsView>false</needsView>
+   <needsStructures>false</needsStructures>
+   <parameters>
+      <value>
+         <helpPage>Label+Printing</helpPage>
+         <dsn>ABCDTRNS</dsn>
+         <!--dsn>ABCDTest</dsn-->
+         <applicationId>19</applicationId>
+      </value>
+   </parameters>
+   <toolbarInfo>
+      <toolbar>BSLS</toolbar>
+      <tooltipText>Label Printing Interface</tooltipText>
+      <text>Label Printing Interface</text>
+      <icon>
+         iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOwgAA
+         DsIBFShKgAAAAMxJREFUSEvtU7ENgzAQTKZgC89DQVoG8ADxBBSuXCDRunXHIBQe56M7ycgiSCjEcRQp
+         L704W8/5fBzXvr/L5RMF4tJFsVWIh2GALbyAc06wttZyb1kWNnAIQaZpItZacz69B/ykOCcG/hPTs9+w
+         AklQSq2KsR7HUZqmkRgjG3ieZ/HeExtjOA+cql6Ou+7GQ195bmd3c1zq165nxdcVJ18hpG1bdl6nrADp
+         3gfLDztFnKcmqcxJ30pFTrQlLUKc/N36fNqKo/SsxACl+wHEle2vE9VfYwAAAABJRU5ErkJggg==
+      </icon>
+   </toolbarInfo>
+</ExplorerPluginHandler>

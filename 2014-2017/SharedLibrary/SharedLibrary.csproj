@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B2C7552C-432D-4A1D-BFF1-0F0A041B5761}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SharedLibrary</RootNamespace>
+    <AssemblyName>SharedLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\SharedLibrary.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Arcadia Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Arcadia Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'x64 Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64 Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\SharedLibrary.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Elmah">
+      <HintPath>..\External Dependencies\ELMAH\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="LukeSkywalker.IPNetwork">
+      <HintPath>..\External Dependencies\IPNetwork\LukeSkywalker.IPNetwork.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Deployment.WindowsInstaller, Version=3.0.0.0, Culture=neutral, PublicKeyToken=ce35f76fcda82bad, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Web.Administration, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\External Dependencies\Newtonsoft\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Web.Design">
+      <HintPath>..\External Dependencies\Telerik\RadControls\Q3 2010 For ASP.Net Ajax\Bin20\Telerik.Web.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.UI">
+      <HintPath>..\External Dependencies\Telerik\RadControls\Q3 2010 For ASP.Net Ajax\Bin20\Telerik.Web.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cache\CacheHelper.cs" />
+    <Compile Include="ClientStatistics\ClientStatistics.cs" />
+    <Compile Include="ClientStatistics\ClientStatisticsHelper.cs" />
+    <Compile Include="Common\GeneralHelper.cs" />
+    <Compile Include="Database\DbHelper.cs" />
+    <Compile Include="DynamicRadGrid\Columns\DynamicGridBoundColumn.cs" />
+    <Compile Include="DynamicRadGrid\Columns\GridTemplateColumnEx.cs" />
+    <Compile Include="DynamicRadGrid\RadGridEx.cs" />
+    <Compile Include="DynamicRadGrid\ValidationError.cs" />
+    <Compile Include="Elmah\ErrorLogPageFactoryMultiApp.cs" />
+    <Compile Include="Elmah\Logger.cs" />
+    <Compile Include="ExtensionMethods\ExtensionMethods.cs" />
+    <Compile Include="IPAddress\IpAddressHelper.cs" />
+    <Compile Include="IPAddress\IpListSplitter.cs" />
+    <Compile Include="IPAddress\IpLookupJson.cs" />
+    <Compile Include="JSON\JsonHelper.cs" />
+    <Compile Include="Passwords\CryptoHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Session\SessionHelper.cs" />
+    <Compile Include="SmartScaffolding\AttributeExtensionMethods.cs" />
+    <Compile Include="SmartScaffolding\Attributes\AdvancedSearchAttribute.cs" />
+    <Compile Include="SmartScaffolding\Attributes\AllowActionAttribute.cs" />
+    <Compile Include="SmartScaffolding\Attributes\CssClassAttribute.cs" />
+    <Compile Include="SmartScaffolding\Attributes\OrderByItAttribute.cs" />
+    <Compile Include="SmartScaffolding\Attributes\ReadOnlyInAttribute.cs" />
+    <Compile Include="SmartScaffolding\Attributes\ResourceTableAttribute.cs" />
+    <Compile Include="SmartScaffolding\Attributes\RestrictActionAttribute.cs" />
+    <Compile Include="SmartScaffolding\Attributes\ScaffoldPrimaryKeyAttribute.cs" />
+    <Compile Include="SmartScaffolding\Attributes\GroupByAttribute.cs" />
+    <Compile Include="SmartScaffolding\Attributes\HideColumnInAttribute.cs" />
+    <Compile Include="SmartScaffolding\Attributes\JsonTypeAttribute.cs" />
+    <Compile Include="SmartScaffolding\Attributes\LinkAttribute.cs" />
+    <Compile Include="SmartScaffolding\Attributes\OrderByAttribute.cs" />
+    <Compile Include="SmartScaffolding\Attributes\SearchByAttribute.cs" />
+    <Compile Include="SmartScaffolding\Attributes\TableCategoryAttribute.cs" />
+    <Compile Include="SmartScaffolding\Attributes\WhereAttribute.cs" />
+    <Compile Include="SmartScaffolding\ControlExtensions.cs" />
+    <Compile Include="SmartScaffolding\ColumnExtensionMethods.cs" />
+    <Compile Include="SmartScaffolding\PageEnums.cs" />
+    <Compile Include="SmtpClient\EmailHelper.cs" />
+    <Compile Include="WebControls\ListBoxExtended.cs" />
+    <Compile Include="WiX\CustomActionsBase.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

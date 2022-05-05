@@ -1,0 +1,17 @@
+﻿@using Umbraco.Web.Security
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "MasterFowTemplate.cshtml";
+    var user = Session["CurrentUser"];
+}
+
+<div style="padding-bottom: 20px;">
+    @if (user == null)
+    {
+        @Umbraco.RenderMacro("Login")
+    }
+    else
+    {
+        <div>You are logged in as @user</div>
+    }
+</div>

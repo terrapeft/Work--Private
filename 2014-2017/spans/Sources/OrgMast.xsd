@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:sql="urn:schemas-microsoft-com:mapping-schema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<sql:relationship name="ExchangeMasterProductFamilyMaster" parent="OrgMaster_ExchangeMaster" parent-key="Id" child="OrgMaster_ProductFamilyMaster" child-key="ExchangeMasterId"/>
+			<sql:relationship name="ClearingOrgMasterExchangeMaster" parent="OrgMaster_ClearingOrgMaster" parent-key="Id" child="OrgMaster_ExchangeMaster" child-key="ClearingOrgMasterId"/>
+			<sql:relationship name="ClearingOrgMasterPointDef" parent="OrgMaster_ClearingOrgMaster" parent-key="Id" child="OrgMaster_PointDef" child-key="ClearingOrgMasterId"/>
+			<sql:relationship name="RoundingToClearingOrgMaster" parent="OrgMaster_ClearingOrgMaster" parent-key="Id" child="OrgMaster_ClearingOrgMasterRounding" child-key="ClearingOrgMasterId"/>
+			<sql:relationship name="RoundingToXMAMaster" parent="OrgMaster_XMAMaster" parent-key="Id" child="OrgMaster_XMAMasterRounding" child-key="XMAMasterId"/>
+			<sql:relationship name="XMAMasterPointDef" parent="OrgMaster_XMAMaster" parent-key="Id" child="OrgMaster_PointDef" child-key="XMAMasterId"/>
+			<sql:relationship name="XMAMasterBFCOLinkageMaster" parent="OrgMaster_XMAMaster" parent-key="Id" child="OrgMaster_BFCOLinkageMaster" child-key="XMAMasterId"/>
+			<sql:relationship name="BFCOLinkageMasterBFExchLinkageMaster" parent="OrgMaster_BFCOLinkageMaster" parent-key="Id" child="OrgMaster_BFExchLinkageMaster" child-key="BFCOLinkageMasterId"/>
+			<sql:relationship name="BFExchLinkageMasterBFPFLinkageMaster" parent="OrgMaster_BFExchLinkageMaster" parent-key="Id" child="OrgMaster_BFPFLinkageMaster" child-key="BFExchLinkageMasterId"/>
+			<sql:relationship name="DeltaPointToPointDef" parent="OrgMaster_PointDef" parent-key="id" child="OrgMaster_PointDefDeltaPoint" child-key="PointDefId"/>
+			<sql:relationship name="ScanPointToPointDef" parent="OrgMaster_PointDef" parent-key="id" child="OrgMaster_PointDefScanPoint" child-key="PointDefId"/>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="root" sql:is-constant="true">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="dictionaries" sql:is-constant="true">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="DeltaPoint" sql:is-constant="true">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="r" maxOccurs="unbounded" sql:overflow-field="MissingElements" sql:relation="OrgMaster_DeltaPoint">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Id" type="xs:string"/>
+													<xs:element name="PointNumber" type="xs:unsignedByte"/>
+													<xs:element name="PriceScanMult" type="xs:decimal"/>
+													<xs:element name="PriceScanNumerator" type="xs:decimal"/>
+													<xs:element name="PriceScanDenominator" type="xs:decimal"/>
+													<xs:element name="VolScanMult" type="xs:decimal"/>
+													<xs:element name="VolScanNumerator" type="xs:decimal"/>
+													<xs:element name="VolScanDenominator" type="xs:decimal"/>
+													<xs:element name="DeltaProbWeight" type="xs:decimal"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ScanPoint" sql:is-constant="true">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="r" maxOccurs="unbounded" sql:overflow-field="MissingElements" sql:relation="OrgMaster_ScanPoint">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Id" type="xs:string"/>
+													<xs:element name="PointNumber" type="xs:unsignedByte"/>
+													<xs:element name="PriceScanMult" type="xs:decimal"/>
+													<xs:element name="PriceScanNumerator" type="xs:decimal"/>
+													<xs:element name="PriceScanDenominator" type="xs:decimal"/>
+													<xs:element name="VolScanMult" type="xs:decimal"/>
+													<xs:element name="VolScanNumerator" type="xs:decimal"/>
+													<xs:element name="VolScanDenominator" type="xs:decimal"/>
+													<xs:element name="DeltaProbWeight" type="xs:decimal"/>
+													<xs:element name="PairedPointNumber" type="xs:unsignedByte"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Rounding" sql:is-constant="true">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="r" maxOccurs="unbounded" sql:overflow-field="MissingElements" sql:relation="OrgMaster_Rounding">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Id" type="xs:string"/>
+													<xs:element name="RoundingPlace" type="xs:unsignedByte"/>
+													<xs:element name="RoundingType" type="xs:unsignedByte"/>
+													<xs:element name="DecimalDigits" type="xs:unsignedByte"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="spanOrgMastFile" sql:is-constant="true">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="AccountTypeMaster" sql:is-constant="true">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="r" maxOccurs="unbounded" sql:overflow-field="MissingElements" sql:relation="OrgMaster_AccountTypeMaster">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="AcctTypeCode" type="xs:string"/>
+													<xs:element name="AcctTypeDesc" type="xs:string"/>
+													<xs:element name="IsClearingLevel" type="xs:unsignedByte"/>
+													<xs:element name="IsGrossMargin" type="xs:unsignedByte"/>
+													<xs:element name="Priority" type="xs:unsignedByte"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="SegTypeMaster" sql:is-constant="true">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="r" maxOccurs="unbounded" sql:overflow-field="MissingElements" sql:relation="OrgMaster_SegTypeMaster">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="SegTypeCode" type="xs:string"/>
+													<xs:element name="SegTypeDesc" type="xs:string"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="CurrencyMaster" sql:is-constant="true">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="r" maxOccurs="unbounded" sql:overflow-field="MissingElements" sql:relation="OrgMaster_CurrencyMaster">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="CurrencyCode" type="xs:string"/>
+													<xs:element name="CurrencySymbol" type="xs:string"/>
+													<xs:element name="CurrencyName" type="xs:string"/>
+													<xs:element name="DecPos" type="xs:unsignedByte"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="PBClassDefMaster" sql:is-constant="true">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="r" maxOccurs="unbounded" sql:overflow-field="MissingElements" sql:relation="OrgMaster_PBClassDefMaster">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="PBClassID" type="xs:unsignedByte"/>
+													<xs:element name="PBClassCode" type="xs:string"/>
+													<xs:element name="PBClassDesc" type="xs:string"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ClearingOrgMaster" sql:is-constant="true">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="r" maxOccurs="unbounded" sql:overflow-field="MissingElements" sql:relation="OrgMaster_ClearingOrgMaster">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="COAcro" type="xs:string"/>
+													<xs:element name="COName" type="xs:string"/>
+													<xs:element name="COAcroAlias" type="xs:string"/>
+													<xs:element name="IsGrossMargin" type="xs:unsignedByte"/>
+													<xs:element name="DoContractScaling" type="xs:unsignedByte"/>
+													<xs:element name="DoIntercommSpreading" type="xs:unsignedByte"/>
+													<xs:element name="LoadDeltaScalingFactors" type="xs:unsignedByte"/>
+													<xs:element name="LoadRedefRecords" type="xs:unsignedByte"/>
+													<xs:element name="LimitOptionValue" type="xs:unsignedByte"/>
+													<xs:element name="AggregateByPosType" type="xs:unsignedByte"/>
+													<xs:element name="SOMGross" type="xs:unsignedByte"/>
+													<xs:element name="PrefixCCNames" type="xs:unsignedByte"/>
+													<xs:element name="LoadScanSpreads" type="xs:unsignedByte"/>
+													<xs:element name="CustUseLov" type="xs:unsignedByte"/>
+													<xs:element name="UseLovPct" type="xs:decimal"/>
+													<xs:element name="LimitSubAccountOffset" type="xs:unsignedByte"/>
+													<xs:element name="DefaultWFPRMeth" type="xs:string"/>
+													<xs:element name="Rounding" minOccurs="0" sql:is-constant="true">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="id" type="xs:string" maxOccurs="unbounded" sql:field="RoundingId" sql:relationship="RoundingToClearingOrgMaster" sql:relation="OrgMaster_ClearingOrgMasterRounding"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="PointDef" minOccurs="0" sql:is-constant="true">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="r" sql:overflow-field="MissingElements" sql:relation="OrgMaster_PointDef" sql:relationship="ClearingOrgMasterPointDef">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="PBClassID" type="xs:unsignedByte"/>
+																			<xs:element name="DeltaPoint" sql:is-constant="true">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="id" type="xs:string" maxOccurs="unbounded" sql:field="DeltaPointId" sql:relationship="DeltaPointToPointDef" sql:relation="OrgMaster_PointDefDeltaPoint"/>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="ScanPoint" sql:is-constant="true">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="id" type="xs:string" maxOccurs="unbounded" sql:field="ScanPointId" sql:relationship="ScanPointToPointDef" sql:relation="OrgMaster_PointDefScanPoint"/>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="ExchangeMaster" minOccurs="0" sql:is-constant="true">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="r" maxOccurs="unbounded" sql:overflow-field="MissingElements" sql:relation="OrgMaster_ExchangeMaster" sql:relationship="ClearingOrgMasterExchangeMaster">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="ExchAcro" type="xs:string"/>
+																			<xs:element name="ExchCode" type="xs:string"/>
+																			<xs:element name="ExchName" type="xs:string"/>
+																			<xs:element name="ProductFamilyMaster" minOccurs="0" sql:is-constant="true">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="r" maxOccurs="unbounded" sql:overflow-field="MissingElements" sql:relation="OrgMaster_ProductFamilyMaster" sql:relationship="ExchangeMasterProductFamilyMaster">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="PFCode" type="xs:string"/>
+																									<xs:element name="Type" type="xs:unsignedByte"/>
+																									<xs:element name="PFName" type="xs:string"/>
+																									<xs:element name="CVM" type="xs:decimal"/>
+																									<xs:element name="SettleDecLoc" type="xs:unsignedByte"/>
+																									<xs:element name="StrikeDecLoc" type="xs:byte"/>
+																									<xs:element name="SettleAlignCode" type="xs:string"/>
+																									<xs:element name="StrikeAlignCode" type="xs:string"/>
+																									<xs:element name="CabinetOptionValue" type="xs:decimal"/>
+																									<xs:element name="SkipOnLoad" type="xs:unsignedByte"/>
+																									<xs:element name="CurrentlyActive" type="xs:string"/>
+																									<xs:element name="PricingModel" type="xs:string"/>
+																									<xs:element name="PriceQuotationMethod" type="xs:string"/>
+																									<xs:element name="ValuationMethod" type="xs:string"/>
+																									<xs:element name="SettlementMethod" type="xs:string"/>
+																									<xs:element name="SettleCurrencyCode" type="xs:string"/>
+																									<xs:element name="CountryCode"/>
+																									<xs:element name="ExerciseStyle" type="xs:string"/>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="XMAMaster" sql:is-constant="true">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="r" maxOccurs="unbounded" sql:overflow-field="MissingElements" sql:relation="OrgMaster_XMAMaster">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="COAcro" type="xs:string"/>
+													<xs:element name="COName" type="xs:string"/>
+													<xs:element name="COAcroAlias" type="xs:string"/>
+													<xs:element name="IsGrossMargin" type="xs:unsignedByte"/>
+													<xs:element name="DoContractScaling" type="xs:unsignedByte"/>
+													<xs:element name="DoIntercommSpreading" type="xs:unsignedByte"/>
+													<xs:element name="LoadDeltaScalingFactors" type="xs:unsignedByte"/>
+													<xs:element name="LoadRedefRecords" type="xs:unsignedByte"/>
+													<xs:element name="LimitOptionValue" type="xs:unsignedByte"/>
+													<xs:element name="AggregateByPosType" type="xs:unsignedByte"/>
+													<xs:element name="SOMGross" type="xs:unsignedByte"/>
+													<xs:element name="PrefixCCNames" type="xs:unsignedByte"/>
+													<xs:element name="LoadScanSpreads" type="xs:unsignedByte"/>
+													<xs:element name="CustUseLov" type="xs:unsignedByte"/>
+													<xs:element name="UseLovPct" type="xs:decimal"/>
+													<xs:element name="LimitSubAccountOffset" type="xs:unsignedByte"/>
+													<xs:element name="DefaultWFPRMeth" type="xs:string"/>
+													<xs:element name="BusFuncType" type="xs:string"/>
+													<xs:element name="Rounding" sql:is-constant="true">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="id" type="xs:string" maxOccurs="unbounded" sql:field="RoundingId" sql:relationship="RoundingToXMAMaster" sql:relation="OrgMaster_XMAMasterRounding"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="PointDef" minOccurs="0" sql:is-constant="true">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="r" sql:overflow-field="MissingElements" sql:relation="OrgMaster_PointDef" sql:relationship="XMAMasterPointDef">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="PBClassID" type="xs:unsignedByte"/>
+																			<xs:element name="DeltaPoint" sql:is-constant="true">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="id" type="xs:string" maxOccurs="unbounded" sql:field="DeltaPointId" sql:relationship="DeltaPointToPointDef" sql:relation="OrgMaster_PointDefDeltaPoint"/>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="ScanPoint" sql:is-constant="true">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="id" type="xs:string" maxOccurs="unbounded" sql:field="ScanPointId" sql:relationship="ScanPointToPointDef" sql:relation="OrgMaster_PointDefScanPoint"/>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="BFCOLinkageMaster" minOccurs="0" sql:is-constant="true">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="r" maxOccurs="unbounded" sql:overflow-field="MissingElements" sql:relation="OrgMaster_BFCOLinkageMaster" sql:relationship="XMAMasterBFCOLinkageMaster">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="XMAMasterId" type="xs:integer"/>
+																			<xs:element name="COAcro" type="xs:string"/>
+																			<xs:element name="COAcroAlias" type="xs:string"/>
+																			<xs:element name="BFExchLinkageMaster" sql:is-constant="true">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="r" maxOccurs="unbounded" sql:overflow-field="MissingElements" sql:relation="OrgMaster_BFExchLinkageMaster" sql:relationship="BFCOLinkageMasterBFExchLinkageMaster">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="BFCOLinkageMasterId" type="xs:integer"/>
+																									<xs:element name="ExchAcro" type="xs:string"/>
+																									<xs:element name="ExchAcroAlias" type="xs:string"/>
+																									<xs:element name="ExchCodeAlias" type="xs:string"/>
+																									<xs:element name="BFPFLinkageMaster" minOccurs="0" sql:is-constant="true">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="r" maxOccurs="unbounded" sql:overflow-field="MissingElements" sql:relation="OrgMaster_BFPFLinkageMaster" sql:relationship="BFExchLinkageMasterBFPFLinkageMaster">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="BFExchLinkageMasterId" type="xs:integer"/>
+																															<xs:element name="PFCode" type="xs:string"/>
+																															<xs:element name="Type" type="xs:unsignedByte"/>
+																															<xs:element name="PFCodeAlias" type="xs:string"/>
+																															<xs:element name="SettleDecLoc" type="xs:unsignedByte"/>
+																															<xs:element name="StrikeDecLoc" type="xs:byte"/>
+																															<xs:element name="SettleAlignCode" type="xs:string"/>
+																															<xs:element name="StrikeAlignCode" type="xs:byte"/>
+																															<xs:element name="CabinetOptionValue" type="xs:decimal"/>
+																															<xs:element name="SkipOnLoad" type="xs:unsignedByte"/>
+																															<xs:element name="CurrentlyActive" type="xs:string"/>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																											</xs:sequence>
+																										</xs:complexType>
+																									</xs:element>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

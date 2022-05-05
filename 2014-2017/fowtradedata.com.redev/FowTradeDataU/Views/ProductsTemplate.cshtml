@@ -1,0 +1,14 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "MasterFowTemplate.cshtml";
+}
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-8">
+        <h3 class="larger-caps">@Umbraco.Field("header")</h3>
+        <br>	
+        @Umbraco.RenderMacro("ListProducts")
+   		<div style="margin-top:40px; margin-bottom:40px;">
+        	@Html.Partial("ContactInfo")
+		</div>
+    </div>
+</div>
