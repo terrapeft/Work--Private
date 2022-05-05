@@ -1,0 +1,57 @@
+NBO_NCU_UserAddress
+
+1.  Gets count without any filters from:
+    Interim.UserContactAddress_Stage
+    Interim.LogonUsers_Stage
+    Interim.ContactPref_Stage
+    Interim.ActiveUserContacAddress_Stage
+    Interim.UserDefaultCommunication_Stage
+
+2.  "Load process records"
+    1.Loads user updates from Interim.LogonUsers_Stage => User::UpdateUsers
+    2.Loads new addresses from INTERIM.UserContactaddress_Stage => User::NewAddress
+        if they are not in Customer.UserContactAddress and NewCentralUsers.dbo.Addresses 
+    3.Loads communications for deletion from Interim.UserDefaultCommunication_Stage => User::Defaultaid
+        in case there is no records in INTERIM.UserContactaddress_Stage for current user
+    4.Loads pref updates from Interim.ContactPref_Stage => User::UpdateCotnactPref
+        in case there are no in Interim.LogonUsers_Stage for current user with ActionCode = 'I'
+    5.Loads addresses for deletion from Interim.ActiveUserContacAddress_Stage => User::DeleteAddress
+        if they are not in the Customer.UsercContactAddress
+    6.Loads UserId, UserContactAddressID from Interim.[LogonUsers_Stage] and Interim.[UserContactAddress_Stage] => User::NewUserAddress
+        where ActionCode = 'I' and there is no address in Customer.UserContactAddress
+        joining with [dbo].[VW_NBOAddresses_TrialList] and [dbo].[VW_NBOAddresses]
+    7.Loads addresses from Interim.UserContactAddress_Stage => User::UpdateAddress
+        where ActionCode = 'I' and address exists.
+
+3. "Collect Replication Bug Records"
+    Fetchs userid and addressid and puts some of them to NoInterim temp table.
+4. "Add New User Address"
+    Insert new users into UserDetails, 
+    Insert addresses into Addresses,
+    Insert into Interim.[Repl_NBO_NCU_UserAddressInsert] record from [Interim].[Addresses_ReplTest] by auid 
+    Insert into Interim.Addresses
+    Insert into Interim.UserDetails
+    Update contact preferences in dbo.UserDetails from Customer.UserContactPreferences
+    Clear processed entities in Interim.[LogonUsers_Stage], Interim.[UserContactAddress_Stage]
+5. "NewAddress"
+    Insert into Addresses
+    Update Addresses with phone, fax etc.
+    Delete from Interim.[UserContactAddress_Stage] 
+6. "Drop Repl Bug Temp Table" (usually fails as there is no ##NoInterim table)
+    Update Interim.AddressUCAMap
+    Delete ##NoInterim
+7. "Update Users"
+    EXEC dbo.[Repl_UpdateUserDetails]
+    Delete from Interim.[LogonUsers_Stage] by user and actioncode = 'U'
+8. "Update Address"
+    EXEC [dbo].[Repl_UpdateInterimAddresses]
+    Delete from Interim.[UserContactAddress_Stage] 
+9. "Default Address Change"
+    Do the job
+    DELETE FROM Interim.UserDefaultCommunication_Stage
+10."Update UserContact Preferences"
+    Do the job
+    DELETE FROM Interim.[ContactPref_Stage]
+11."Delete Address"
+    Do the job
+    DELETE FROM Interim.ActiveUserContacAddress_Stage

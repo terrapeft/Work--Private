@@ -1,0 +1,1425 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/12/2011 8:42:41 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="VM-BMICHALSKI"
+  DTS:CreatorName="FP\bmichalski"
+  DTS:DTSID="{331C57FF-6563-4131-9817-AFCE3AD79E21}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3045.24"
+  DTS:LocaleID="1045"
+  DTS:ObjectName="NBO_NCU_Subscription_Exluded"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="37"
+  DTS:VersionGUID="{7B0C835E-8D69-4D88-9E75-F265730566E0}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BackOffice]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{5DDEA536-1072-4722-B476-BE3FC980611B}"
+      DTS:ObjectName="BackOffice">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=EU01-SQL-DEV-03.GLOBAL.ROOT;User ID=replication;Initial Catalog=BackOffice;Provider=SQLNCLI11;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"></DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[NewCentralUsers]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C8350BED-35C1-407F-8670-75D2E265984F}"
+      DTS:ObjectName="NewCentralUsers">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=EU01-SQL-DEV-03.GLOBAL.ROOT;User ID=replication;Initial Catalog=NewCentralUsers;Provider=SQLNCLI11;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"></DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="C:\NBO-NCU Replication\Configuration.dtsConfig"
+      DTS:ConfigurationType="1"
+      DTS:CreationName=""
+      DTS:DTSID="{8E244FFD-5C0E-4303-9371-23EBC9039DD1}"
+      DTS:ObjectName="Configuration" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{867E154F-2ECC-468A-A862-0B42D5706FE7}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="scnt">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{85A4E4ED-DCA9-4363-BE3F-9CD5F1840426}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="toActivateId">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FB4FDB54-658A-4BBC-A308-0BAB69E67B43}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="trGUID">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Actiavation or Dectivation"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{F619AF9F-985D-4539-A452-4E20D0EB7294}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Actiavation or Dectivation">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{29ECAE16-5343-4FD8-9921-ED387160C778}"
+        DTS:ObjectName="{308AF27D-0F71-4566-A9F1-D3AD18AF16F9}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::toActivateId" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{4B5AFF27-1033-4FCC-8EB0-CB8F0394A8CB}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="User"
+          DTS:ObjectName="RegSid">
+          <DTS:VariableValue
+            DTS:DataType="3">0</DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{6E12AF33-12D9-4431-BDF0-3C8768714A10}"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="RTrGUID">
+          <DTS:VariableValue
+            DTS:DataType="8"
+            xml:space="preserve"></DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Actiavation or Dectivation\Del Processed Subs"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{111572B5-0170-4D36-82E6-9EF69C97A74C}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Del Processed Subs"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{5DDEA536-1072-4722-B476-BE3FC980611B}"
+              SQLTask:BypassPrepare="False"
+              SQLTask:SqlStatementSource="DELETE&#xA;FROM Interim.SubscriptionUserExcluded_Stage&#xA; WHERE TrGUID = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::RTrGUID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Actiavation or Dectivation\SubUserExcluded"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{566B25DF-AD75-49AE-934F-1B7C6A5F74E6}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SubUserExcluded">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              engineThreads="5"
+              version="1">
+              <components>
+                <component
+                  refId="Package\Actiavation or Dectivation\SubUserExcluded\Act or Deact"
+                  componentClassID="Microsoft.ConditionalSplit"
+                  contactInfo="Conditional Split;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Evaluates and directs rows in a dataset."
+                  name="Act or Deact"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\Act or Deact.Inputs[Conditional Split Input]"
+                      description="Input to the Conditional Split Transformation"
+                      name="Conditional Split Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Act or Deact.Inputs[Conditional Split Input].Columns[Action]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="1"
+                          cachedName="Action"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].Columns[Action]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\Act or Deact.Outputs[Activation]"
+                      description="Output 1 of the Conditional Split Transformation"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="Activation"
+                      synchronousInputId="Package\Actiavation or Dectivation\SubUserExcluded\Act or Deact.Inputs[Conditional Split Input]"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                          name="Expression">#{Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].Columns[Action]} == "D"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the friendly version of the expression. This expression version uses column names."
+                          expressionType="Notify"
+                          name="FriendlyExpression">Action == "D"</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                          name="EvaluationOrder">0</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\Act or Deact.Outputs[Deactivation]"
+                      description="Default Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      name="Deactivation"
+                      synchronousInputId="Package\Actiavation or Dectivation\SubUserExcluded\Act or Deact.Inputs[Conditional Split Input]">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          name="IsDefaultOut">true</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\Act or Deact.Outputs[Conditional Split Error Output]"
+                      description="Error Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Conditional Split Error Output"
+                      synchronousInputId="Package\Actiavation or Dectivation\SubUserExcluded\Act or Deact.Inputs[Conditional Split Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Act or Deact.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Act or Deact.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Act or Deact.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Act or Deact.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Actiavation or Dectivation\SubUserExcluded\activate CAPMasterDonor 1"
+                  componentClassID="Microsoft.OLEDBCommand"
+                  contactInfo="OLE DB Command;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Executes an SQL command for each row in a dataset."
+                  localeId="1045"
+                  name="activate CAPMasterDonor 1"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SET CONTEXT_INFO 0x55555; UPDATE  [dbo].[CAPMasterDonor] SET [cmdActive] = 1 WHERE [cmdDonorSubID]= ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1250</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\activate CAPMasterDonor 1.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[NewCentralUsers]"
+                      connectionManagerRefId="Package.ConnectionManagers[NewCentralUsers]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\activate CAPMasterDonor 1.Inputs[OLE DB Command Input]"
+                      errorOrTruncationOperation="Command Execution"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Command Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\activate CAPMasterDonor 1.Inputs[OLE DB Command Input].Columns[DonorId]"
+                          cachedDataType="i4"
+                          cachedName="DonorId"
+                          externalMetadataColumnId="Package\Actiavation or Dectivation\SubUserExcluded\activate CAPMasterDonor 1.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].Columns[DonorId]"
+                          name="DonorId" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\activate CAPMasterDonor 1.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          dataType="i4"
+                          name="Param_0">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">17</property>
+                          </properties>
+                        </externalMetadataColumn>
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\activate CAPMasterDonor 1.Outputs[OLE DB Command Output]"
+                      exclusionGroup="1"
+                      name="OLE DB Command Output"
+                      synchronousInputId="Package\Actiavation or Dectivation\SubUserExcluded\activate CAPMasterDonor 1.Inputs[OLE DB Command Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\activate CAPMasterDonor 1.Outputs[OLE DB Command Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Command Error Output"
+                      synchronousInputId="Package\Actiavation or Dectivation\SubUserExcluded\activate CAPMasterDonor 1.Inputs[OLE DB Command Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\activate CAPMasterDonor 1.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\activate CAPMasterDonor 1.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\activate CAPMasterDonor 1.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\activate CAPMasterDonor 1.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Actiavation or Dectivation\SubUserExcluded\Activate Sub"
+                  componentClassID="Microsoft.OLEDBCommand"
+                  contactInfo="OLE DB Command;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Executes an SQL command for each row in a dataset."
+                  localeId="1045"
+                  name="Activate Sub"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">EXEC dbo.[Repl_NBO_NCU_Activate_Subscription] ?,?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1250</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\Activate Sub.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[NewCentralUsers]"
+                      connectionManagerRefId="Package.ConnectionManagers[NewCentralUsers]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\Activate Sub.Inputs[OLE DB Command Input]"
+                      errorOrTruncationOperation="Command Execution"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Command Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Activate Sub.Inputs[OLE DB Command Input].Columns[DonorId]"
+                          cachedDataType="i4"
+                          cachedName="DonorId"
+                          externalMetadataColumnId="Package\Actiavation or Dectivation\SubUserExcluded\Activate Sub.Inputs[OLE DB Command Input].ExternalColumns[@sid]"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].Columns[DonorId]" />
+                        <inputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Activate Sub.Inputs[OLE DB Command Input].Columns[SubscriptionEndDateTime]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="SubscriptionEndDateTime"
+                          externalMetadataColumnId="Package\Actiavation or Dectivation\SubUserExcluded\Activate Sub.Inputs[OLE DB Command Input].ExternalColumns[@SubEndDateTime]"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].Columns[SubscriptionEndDateTime]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Activate Sub.Inputs[OLE DB Command Input].ExternalColumns[@sid]"
+                          dataType="i4"
+                          name="@sid">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">81</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Activate Sub.Inputs[OLE DB Command Input].ExternalColumns[@SubEndDateTime]"
+                          dataType="dbTimeStamp"
+                          name="@SubEndDateTime">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\Activate Sub.Outputs[OLE DB Command Output]"
+                      exclusionGroup="1"
+                      name="OLE DB Command Output"
+                      synchronousInputId="Package\Actiavation or Dectivation\SubUserExcluded\Activate Sub.Inputs[OLE DB Command Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\Activate Sub.Outputs[OLE DB Command Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Command Error Output"
+                      synchronousInputId="Package\Actiavation or Dectivation\SubUserExcluded\Activate Sub.Inputs[OLE DB Command Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Activate Sub.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Activate Sub.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Activate Sub.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Activate Sub.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Actiavation or Dectivation\SubUserExcluded\Agaisnt CAPMaster"
+                  componentClassID="Microsoft.Lookup"
+                  contactInfo="Lookup;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="Looks up values in a reference dataset by using exact matching."
+                  name="Agaisnt CAPMaster"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement that generates the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[CAPMaster]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommandParam"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[CAPMaster]) [refTable]
+where [refTable].[cmID] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the cache type of the lookup table."
+                      name="CacheType"
+                      typeConverter="CacheType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indicates whether to reference metadata in an XML format."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="cmID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="cmMasterSubID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="cmMaxNoDonors" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="cmWelcomeStubID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="cmThankyouStubID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="cmMaxDonorsReachedStubID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="cmWelcomeEmailStubID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="cmDonorAlreadyExistsStubID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="cmActive" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="cmLoginReminderStubID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="cmGUID" dataType="DT_GUID" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                      name="ParameterMap">#{Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].Columns[cmID]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1250</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of connection used to access the reference dataset."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\Agaisnt CAPMaster.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[NewCentralUsers]"
+                      connectionManagerRefId="Package.ConnectionManagers[NewCentralUsers]"
+                      description="Connection manager used to access lookup data."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\Agaisnt CAPMaster.Inputs[Lookup Input]"
+                      name="Lookup Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Agaisnt CAPMaster.Inputs[Lookup Input].Columns[cmID]"
+                          cachedDataType="i4"
+                          cachedName="cmID"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].Columns[cmID]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">cmID</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\Agaisnt CAPMaster.Outputs[Lookup Match Output]"
+                      errorOrTruncationOperation="Lookup"
+                      errorRowDisposition="IgnoreFailure"
+                      exclusionGroup="1"
+                      name="Lookup Match Output"
+                      synchronousInputId="Package\Actiavation or Dectivation\SubUserExcluded\Agaisnt CAPMaster.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Agaisnt CAPMaster.Outputs[Lookup Match Output].Columns[cmMasterSubID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Copy Column"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Agaisnt CAPMaster.Outputs[Lookup Match Output].Columns[cmMasterSubID]"
+                          name="cmMasterSubID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">cmMasterSubID</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\Agaisnt CAPMaster.Outputs[Lookup No Match Output]"
+                      description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                      exclusionGroup="1"
+                      name="Lookup No Match Output"
+                      synchronousInputId="Package\Actiavation or Dectivation\SubUserExcluded\Agaisnt CAPMaster.Inputs[Lookup Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\Agaisnt CAPMaster.Outputs[Lookup Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Lookup Error Output"
+                      synchronousInputId="Package\Actiavation or Dectivation\SubUserExcluded\Agaisnt CAPMaster.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Agaisnt CAPMaster.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Agaisnt CAPMaster.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Agaisnt CAPMaster.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Agaisnt CAPMaster.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Actiavation or Dectivation\SubUserExcluded\deactivate CAPMasterDonor"
+                  componentClassID="Microsoft.OLEDBCommand"
+                  contactInfo="OLE DB Command;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Executes an SQL command for each row in a dataset."
+                  name="deactivate CAPMasterDonor"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SET CONTEXT_INFO 0x55555; UPDATE  [dbo].[CAPMasterDonor] SET [cmdActive] = 0 WHERE [cmdDonorSubID]= ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1250</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\deactivate CAPMasterDonor.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[NewCentralUsers]"
+                      connectionManagerRefId="Package.ConnectionManagers[NewCentralUsers]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\deactivate CAPMasterDonor.Inputs[OLE DB Command Input]"
+                      errorOrTruncationOperation="Command Execution"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Command Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\deactivate CAPMasterDonor.Inputs[OLE DB Command Input].Columns[DonorId]"
+                          cachedDataType="i4"
+                          cachedName="DonorId"
+                          externalMetadataColumnId="Package\Actiavation or Dectivation\SubUserExcluded\deactivate CAPMasterDonor.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].Columns[DonorId]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\deactivate CAPMasterDonor.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          dataType="i4"
+                          name="Param_0">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">17</property>
+                          </properties>
+                        </externalMetadataColumn>
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\deactivate CAPMasterDonor.Outputs[OLE DB Command Output]"
+                      exclusionGroup="1"
+                      name="OLE DB Command Output"
+                      synchronousInputId="Package\Actiavation or Dectivation\SubUserExcluded\deactivate CAPMasterDonor.Inputs[OLE DB Command Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\deactivate CAPMasterDonor.Outputs[OLE DB Command Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Command Error Output"
+                      synchronousInputId="Package\Actiavation or Dectivation\SubUserExcluded\deactivate CAPMasterDonor.Inputs[OLE DB Command Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\deactivate CAPMasterDonor.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\deactivate CAPMasterDonor.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\deactivate CAPMasterDonor.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\deactivate CAPMasterDonor.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Actiavation or Dectivation\SubUserExcluded\Deactivate Sub"
+                  componentClassID="Microsoft.OLEDBCommand"
+                  contactInfo="OLE DB Command;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Executes an SQL command for each row in a dataset."
+                  localeId="1045"
+                  name="Deactivate Sub"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">EXEC dbo.[Repl_NBO_NCU_Deactivate_Subscription] ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1250</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\Deactivate Sub.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[NewCentralUsers]"
+                      connectionManagerRefId="Package.ConnectionManagers[NewCentralUsers]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\Deactivate Sub.Inputs[OLE DB Command Input]"
+                      errorOrTruncationOperation="Command Execution"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Command Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Deactivate Sub.Inputs[OLE DB Command Input].Columns[DonorId]"
+                          cachedDataType="i4"
+                          cachedName="DonorId"
+                          externalMetadataColumnId="Package\Actiavation or Dectivation\SubUserExcluded\Deactivate Sub.Inputs[OLE DB Command Input].ExternalColumns[@sid]"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].Columns[DonorId]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Deactivate Sub.Inputs[OLE DB Command Input].ExternalColumns[@sid]"
+                          dataType="i4"
+                          name="@sid">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">81</property>
+                          </properties>
+                        </externalMetadataColumn>
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\Deactivate Sub.Outputs[OLE DB Command Output]"
+                      exclusionGroup="1"
+                      name="OLE DB Command Output"
+                      synchronousInputId="Package\Actiavation or Dectivation\SubUserExcluded\Deactivate Sub.Inputs[OLE DB Command Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\Deactivate Sub.Outputs[OLE DB Command Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Command Error Output"
+                      synchronousInputId="Package\Actiavation or Dectivation\SubUserExcluded\Deactivate Sub.Inputs[OLE DB Command Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Deactivate Sub.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Deactivate Sub.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Deactivate Sub.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Deactivate Sub.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Subs View"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT  
+     SUE.SubscriptionUserID AS DonorId
+    ,SUE.Action
+   ,UGS.UserGroupSubscriptionID AS [cmID]
+, 1 AS [IsActive]
+,S.SubscriptionEndDateTime
+  FROM [Interim].[SubscriptionUserExcluded_Stage] AS SUE
+  JOIN [Logon].[SubscriptionUser] AS SU ON  SU.SubscriptionUserId = SUE.SubscriptionUserId
+  JOIN [Logon].[UserGroupSubscription] AS UGS ON SU.SubscriptionId = UGS.SubscriptionID
+JOIN [Orders].[Subscription] AS S ON S.SubscriptionId = SU.SubscriptionId
+ WHERE [TrGuid]=?</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1250</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping">"Parameter0",{6E12AF33-12D9-4431-BDF0-3C8768714A10};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[BackOffice]"
+                      connectionManagerRefId="Package.ConnectionManagers[BackOffice]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].Columns[Action]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].ExternalColumns[Action]"
+                          length="1"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].Columns[Action]"
+                          name="Action"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].Columns[cmID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].ExternalColumns[cmID]"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].Columns[cmID]"
+                          name="cmID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].Columns[IsActive]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].ExternalColumns[IsActive]"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].Columns[IsActive]"
+                          name="IsActive"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].Columns[SubscriptionEndDateTime]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].ExternalColumns[SubscriptionEndDateTime]"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].Columns[SubscriptionEndDateTime]"
+                          name="SubscriptionEndDateTime"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].Columns[DonorId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].ExternalColumns[DonorId]"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].Columns[DonorId]"
+                          name="DonorId"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].ExternalColumns[Action]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="Action" />
+                        <externalMetadataColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].ExternalColumns[cmID]"
+                          dataType="i4"
+                          name="cmID" />
+                        <externalMetadataColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].ExternalColumns[IsActive]"
+                          dataType="i4"
+                          name="IsActive" />
+                        <externalMetadataColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].ExternalColumns[SubscriptionEndDateTime]"
+                          dataType="dbTimeStamp"
+                          name="SubscriptionEndDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output].ExternalColumns[DonorId]"
+                          dataType="i4"
+                          name="DonorId" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Error Output].Columns[DonorId]"
+                          dataType="i4"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Error Output].Columns[DonorId]"
+                          name="DonorId" />
+                        <outputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Error Output].Columns[Action]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Error Output].Columns[Action]"
+                          name="Action" />
+                        <outputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Error Output].Columns[cmID]"
+                          dataType="i4"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Error Output].Columns[cmID]"
+                          name="cmID" />
+                        <outputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Error Output].Columns[IsActive]"
+                          dataType="i4"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Error Output].Columns[IsActive]"
+                          name="IsActive" />
+                        <outputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Error Output].Columns[SubscriptionEndDateTime]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Error Output].Columns[SubscriptionEndDateTime]"
+                          name="SubscriptionEndDateTime" />
+                        <outputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Actiavation or Dectivation\SubUserExcluded.Paths[Activation]"
+                  endId="Package\Actiavation or Dectivation\SubUserExcluded\Agaisnt CAPMaster.Inputs[Lookup Input]"
+                  name="Activation"
+                  startId="Package\Actiavation or Dectivation\SubUserExcluded\Act or Deact.Outputs[Activation]" />
+                <path
+                  refId="Package\Actiavation or Dectivation\SubUserExcluded.Paths[Deactivation]"
+                  endId="Package\Actiavation or Dectivation\SubUserExcluded\deactivate CAPMasterDonor.Inputs[OLE DB Command Input]"
+                  name="Deactivation"
+                  startId="Package\Actiavation or Dectivation\SubUserExcluded\Act or Deact.Outputs[Deactivation]" />
+                <path
+                  refId="Package\Actiavation or Dectivation\SubUserExcluded.Paths[Lookup Output]"
+                  endId="Package\Actiavation or Dectivation\SubUserExcluded\activate CAPMasterDonor 1.Inputs[OLE DB Command Input]"
+                  name="Lookup Output"
+                  startId="Package\Actiavation or Dectivation\SubUserExcluded\Agaisnt CAPMaster.Outputs[Lookup Match Output]" />
+                <path
+                  refId="Package\Actiavation or Dectivation\SubUserExcluded.Paths[OLE DB Command Output]"
+                  endId="Package\Actiavation or Dectivation\SubUserExcluded\Activate Sub.Inputs[OLE DB Command Input]"
+                  name="OLE DB Command Output"
+                  startId="Package\Actiavation or Dectivation\SubUserExcluded\activate CAPMasterDonor 1.Outputs[OLE DB Command Output]" />
+                <path
+                  refId="Package\Actiavation or Dectivation\SubUserExcluded.Paths[OLE DB Command Output1]"
+                  endId="Package\Actiavation or Dectivation\SubUserExcluded\Deactivate Sub.Inputs[OLE DB Command Input]"
+                  name="OLE DB Command Output"
+                  startId="Package\Actiavation or Dectivation\SubUserExcluded\deactivate CAPMasterDonor.Outputs[OLE DB Command Output]" />
+                <path
+                  refId="Package\Actiavation or Dectivation\SubUserExcluded.Paths[OLE DB Source Output]"
+                  endId="Package\Actiavation or Dectivation\SubUserExcluded\Act or Deact.Inputs[Conditional Split Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Actiavation or Dectivation\SubUserExcluded\Subs View.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Actiavation or Dectivation.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{007D2388-BFD6-4322-A5E2-E81C83D71E6E}"
+          DTS:From="Package\Actiavation or Dectivation\SubUserExcluded"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Actiavation or Dectivation\Del Processed Subs" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{37586F13-ADA7-4CC6-A0BC-B8BF64C94641}"
+          DTS:ObjectName="{37586F13-ADA7-4CC6-A0BC-B8BF64C94641}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::RTrGUID" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{6315F62A-B7F4-46FB-9D7E-BDD968202260}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          engineThreads="5"
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\SU"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SU"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT     
+      TrGUID
+      FROM Interim.SubscriptionUserExcluded_Stage  AS US</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1250</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\SU.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BackOffice]"
+                  connectionManagerRefId="Package.ConnectionManagers[BackOffice]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\SU.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\SU.Outputs[OLE DB Source Output].Columns[TrGUID]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\SU.Outputs[OLE DB Source Output].ExternalColumns[TrGUID]"
+                      lineageId="Package\Data Flow Task\SU.Outputs[OLE DB Source Output].Columns[TrGUID]"
+                      name="TrGUID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\SU.Outputs[OLE DB Source Output].ExternalColumns[TrGUID]"
+                      dataType="guid"
+                      name="TrGUID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\SU.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\SU.Outputs[OLE DB Source Error Output].Columns[TrGUID]"
+                      dataType="guid"
+                      lineageId="Package\Data Flow Task\SU.Outputs[OLE DB Source Error Output].Columns[TrGUID]"
+                      name="TrGUID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\SU.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\SU.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\SU.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\SU.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\SU A"
+              componentClassID="Microsoft.RecordsetDestination"
+              contactInfo="Recordset Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates and populates an in-memory ADO recordset."
+              name="SU A">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the recordset."
+                  name="VariableName">User::toActivateId</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\SU A.Inputs[Recordset Destination Input]"
+                  hasSideEffects="true"
+                  name="Recordset Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\SU A.Inputs[Recordset Destination Input].Columns[TrGUID]"
+                      cachedDataType="guid"
+                      cachedName="TrGUID"
+                      lineageId="Package\Data Flow Task\SU.Outputs[OLE DB Source Output].Columns[TrGUID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task\SU A.Inputs[Recordset Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\SU.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B0780A38-5926-4F3C-A99B-9D92075B4266}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5DDEA536-1072-4722-B476-BE3FC980611B}"
+          SQLTask:SqlStatementSource="DECLARE @scnt INT;&#xA;&#xA;select @scnt = count(*) FROM [Interim].[SubscriptionUserExcluded_Stage];&#xA;&#xA;SELECT @scnt as scnt"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="scnt"
+            SQLTask:DtsVariableName="User::scnt" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{43C74FFB-DFD2-462F-A5DB-66E0C2DE403A}"
+      DTS:EvalOp="1"
+      DTS:Expression="@scnt&gt;0"
+      DTS:From="Package\Execute SQL Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Data Flow Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{4F5DC262-5963-41DF-A386-98239C433C92}"
+      DTS:From="Package\Data Flow Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Actiavation or Dectivation" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Actiavation or Dectivation\Del Processed Subs"
+          TopLeft="85.2830188679245,298.358490566038" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Actiavation or Dectivation\SubUserExcluded"
+          TopLeft="84.8679245283018,79.2264150943396" />
+        <EdgeLayout
+          Id="Package\Actiavation or Dectivation.PrecedenceConstraints[Constraint 1]"
+          TopLeft="152.754716981132,123.150943396226">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.415094339622669,175.207547169811"
+              Start="0,0"
+              End="0.415094339622669,167.707547169811">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,87.5849056603773" />
+                  <mssgle:LineSegment
+                    End="0.415094339622669,87.5849056603773" />
+                  <mssgle:LineSegment
+                    End="0.415094339622669,167.707547169811" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="367,426"
+          Size="367,470"
+          Id="Package\Actiavation or Dectivation"
+          TopLeft="426.745283018868,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Data Flow Task"
+          TopLeft="12.5566037735849,217.160377358491" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Execute SQL Task"
+          TopLeft="5.5,58.3301886792453" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="73.3867924528302,102.254716981132">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="7.0566037735849,114.905660377358"
+              Start="0,0"
+              End="7.0566037735849,107.405660377358">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.4339622641509" />
+                  <mssgle:LineSegment
+                    End="7.0566037735849,57.4339622641509" />
+                  <mssgle:LineSegment
+                    End="7.0566037735849,107.405660377358" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-4.47169811320755,62.4339622641509,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="148.330188679245,239.122641509434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="278.415094339623,1.24528301886792"
+              Start="0,0"
+              End="270.915094339623,1.24528301886792">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="139.207547169811,0" />
+                  <mssgle:LineSegment
+                    End="139.207547169811,1.24528301886792" />
+                  <mssgle:LineSegment
+                    End="270.915094339623,1.24528301886792" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[BackOffice]">
+    <DataSourceID>Back Office</DataSourceID>
+  </ConnectionManager>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[NewCentralUsers]">
+    <DataSourceID>New Central Users</DataSourceID>
+  </ConnectionManager>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

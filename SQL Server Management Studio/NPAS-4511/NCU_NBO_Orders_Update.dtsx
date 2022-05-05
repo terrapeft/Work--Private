@@ -1,0 +1,1231 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/4/2011 9:55:51 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="VM-BMICHALSKI"
+  DTS:CreatorName="FP\bmichalski"
+  DTS:DTSID="{3B371D53-74D3-4031-BFFB-6BF466CB765B}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3045.24"
+  DTS:LocaleID="1045"
+  DTS:ObjectName="NCU_Orders_Update"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="65"
+  DTS:VersionGUID="{E23F4B1F-0679-43A0-B8C1-78813F8B084C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BackOffice]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{2215C2BE-D57E-4F51-9C84-7118DF5D387E}"
+      DTS:ObjectName="BackOffice">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=EU01-SQL-DEV-03.GLOBAL.ROOT;User ID=replication;Initial Catalog=BackOffice;Provider=SQLNCLI11;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"></DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[NewCentralUsers]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D9799222-C0E6-4345-A26F-5932B92445F4}"
+      DTS:ObjectName="NewCentralUsers">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=EU01-SQL-DEV-03.GLOBAL.ROOT;User ID=replication;Initial Catalog=NewCentralUsers;Provider=SQLNCLI11;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"></DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="C:\NBO-NCU Replication\Configuration.dtsConfig"
+      DTS:ConfigurationType="1"
+      DTS:CreationName=""
+      DTS:DTSID="{B46DF491-660C-4909-A5D3-DF5649BD38E8}"
+      DTS:ObjectName="Configuration" />
+  </DTS:Configurations>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="BackOffice"
+      DTS:CreationName="Microsoft.LogProviderSQLServer"
+      DTS:Description="Writes log entries for events to a SQL Server database"
+      DTS:DTSID="{E2E90A18-E771-4FE9-B982-622AA40FF9EB}"
+      DTS:ObjectName="SSIS log provider for SQL Server">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{ED410C4F-3732-4948-AE42-75A1C318D516}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="orderGUID">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0DBA00F6-F29C-4ECC-86C0-14DCA9A29F77}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ordersRowSet">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1C17C382-4C6E-4A2B-B5E4-ACEF3910D32D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="scnt">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">2,7,OnError,12,OnTaskFailed</DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnTaskFailed"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{E2E90A18-E771-4FE9-B982-622AA40FF9EB}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Count of LP"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{82E88B19-641E-439C-A33F-BD91DC7C63E7}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Count of LP"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D9799222-C0E6-4345-A26F-5932B92445F4}"
+          SQLTask:SqlStatementSource="DECLARE @scnt INT;&#xA;SELECT @scnt = COUNT(*) &#xA;FROM         Orders_Stage&#xA;WHERE     (oAction = 'U')&#xA;SELECT @scnt as scnt;&#xA;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="scnt"
+            SQLTask:DtsVariableName="User::scnt" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\For Each LP"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{409B815B-7991-4364-A2C5-27B6088E1054}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="For Each LP"
+      DTS:TransactionOption="0">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{8B9FE306-DD2E-4D25-896D-D109E78F8AFE}"
+        DTS:ObjectName="{6D2D8C1E-5A02-4903-B3A5-CC6FB6E629AD}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::ordersRowSet" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\For Each LP\Delete from staging"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{F9DAF417-E6CA-4BBB-ADDF-2B1692B02646}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Delete from staging"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0"
+          DTS:TransactionOption="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D9799222-C0E6-4345-A26F-5932B92445F4}"
+              SQLTask:SqlStatementSource="DELETE FROM [Orders_Stage]  WHERE [trGUID]= ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::orderGUID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\For Each LP\Orders Update"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{AA2F77AB-2301-46A2-9E8E-761C85855A27}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Orders Update"
+          DTS:TransactionOption="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              engineThreads="5"
+              version="1">
+              <components>
+                <component
+                  refId="Package\For Each LP\Orders Update\Additional Info"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Updates column values using expressions"
+                  localeId="1045"
+                  name="Additional Info"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\For Each LP\Orders Update\Additional Info.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\For Each LP\Orders Update\Additional Info.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\For Each LP\Orders Update\Additional Info.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\For Each LP\Orders Update\Additional Info.Outputs[Derived Column Output].Columns[Result]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\For Each LP\Orders Update\Additional Info.Outputs[Derived Column Output].Columns[Result]"
+                          name="Result"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">0</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">0</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\For Each LP\Orders Update\Additional Info.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\For Each LP\Orders Update\Additional Info.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\For Each LP\Orders Update\Additional Info.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\For Each LP\Orders Update\Additional Info.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\For Each LP\Orders Update\Additional Info.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\For Each LP\Orders Update\Additional Info.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\For Each LP\Orders Update\Join Validation"
+                  componentClassID="Microsoft.ConditionalSplit"
+                  contactInfo="Conditional Split;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Evaluates and directs rows in a dataset."
+                  name="Join Validation"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\For Each LP\Orders Update\Join Validation.Inputs[Conditional Split Input]"
+                      description="Input to the Conditional Split Transformation"
+                      name="Conditional Split Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\For Each LP\Orders Update\Join Validation.Inputs[Conditional Split Input].Columns[NBOOrderId]"
+                          cachedDataType="i4"
+                          cachedName="NBOOrderId"
+                          lineageId="Package\For Each LP\Orders Update\Orders.Outputs[Lookup Match Output].Columns[NBOOrderId]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\For Each LP\Orders Update\Join Validation.Outputs[Fail]"
+                      description="Output 1 of the Conditional Split Transformation"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="Fail"
+                      synchronousInputId="Package\For Each LP\Orders Update\Join Validation.Inputs[Conditional Split Input]"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                          name="Expression">[ISNULL](#{Package\For Each LP\Orders Update\Orders.Outputs[Lookup Match Output].Columns[NBOOrderId]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the friendly version of the expression. This expression version uses column names."
+                          expressionType="Notify"
+                          name="FriendlyExpression">ISNULL(NBOOrderId)</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                          name="EvaluationOrder">0</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\For Each LP\Orders Update\Join Validation.Outputs[OK]"
+                      description="Default Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      name="OK"
+                      synchronousInputId="Package\For Each LP\Orders Update\Join Validation.Inputs[Conditional Split Input]">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          name="IsDefaultOut">true</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\For Each LP\Orders Update\Join Validation.Outputs[Conditional Split Error Output]"
+                      description="Error Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Conditional Split Error Output"
+                      synchronousInputId="Package\For Each LP\Orders Update\Join Validation.Inputs[Conditional Split Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\For Each LP\Orders Update\Join Validation.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\For Each LP\Orders Update\Join Validation.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\For Each LP\Orders Update\Join Validation.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\For Each LP\Orders Update\Join Validation.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\For Each LP\Orders Update\Orders"
+                  componentClassID="Microsoft.Lookup"
+                  contactInfo="Lookup;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="Looks up values in a reference dataset by using exact matching."
+                  name="Orders"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement that generates the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [Orders].[Orders]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommandParam"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the cache type of the lookup table."
+                      name="CacheType"
+                      typeConverter="CacheType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indicates whether to reference metadata in an XML format."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="OrderId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="OrderTypeId" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CreatorUserId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="OrderDateTime" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="BillingUserContactAddressId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="UserContactAddressId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CustomerReference" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LeadSourceId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ClientVatNumber" dataType="DT_STR" length="15" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="CurrencyId" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TotalPricePaid" dataType="DT_NUMERIC" length="0" precision="18" scale="2" codePage="0"/&gt;&lt;referenceColumn name="TotalVatPaid" dataType="DT_NUMERIC" length="0" precision="18" scale="2" codePage="0"/&gt;&lt;referenceColumn name="TotalPostagePackageFee" dataType="DT_NUMERIC" length="0" precision="18" scale="2" codePage="0"/&gt;&lt;referenceColumn name="IntServerIpAddress" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ParentOrderId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ApplicationId" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CreatorCultUserId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LineItemCount" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TaxCalculationId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PaymentProviderId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PaymentStatusId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MCOrderId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SiteId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                      name="ParameterMap">#{Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Output].Columns[oID]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1250</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of connection used to access the reference dataset."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\For Each LP\Orders Update\Orders.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[BackOffice]"
+                      connectionManagerRefId="Package.ConnectionManagers[BackOffice]"
+                      description="Connection manager used to access lookup data."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\For Each LP\Orders Update\Orders.Inputs[Lookup Input]"
+                      name="Lookup Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\For Each LP\Orders Update\Orders.Inputs[Lookup Input].Columns[oID]"
+                          cachedDataType="i4"
+                          cachedName="oID"
+                          lineageId="Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Output].Columns[oID]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">OrderId</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\For Each LP\Orders Update\Orders.Outputs[Lookup Match Output]"
+                      errorOrTruncationOperation="Lookup"
+                      errorRowDisposition="IgnoreFailure"
+                      exclusionGroup="1"
+                      name="Lookup Match Output"
+                      synchronousInputId="Package\For Each LP\Orders Update\Orders.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\For Each LP\Orders Update\Orders.Outputs[Lookup Match Output].Columns[PaymentStatusId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Copy Column"
+                          lineageId="Package\For Each LP\Orders Update\Orders.Outputs[Lookup Match Output].Columns[PaymentStatusId]"
+                          name="PaymentStatusId"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">PaymentStatusId</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\For Each LP\Orders Update\Orders.Outputs[Lookup Match Output].Columns[NBOOrderId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Copy Column"
+                          lineageId="Package\For Each LP\Orders Update\Orders.Outputs[Lookup Match Output].Columns[NBOOrderId]"
+                          name="NBOOrderId"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">OrderId</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\For Each LP\Orders Update\Orders.Outputs[Lookup No Match Output]"
+                      description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                      exclusionGroup="1"
+                      name="Lookup No Match Output"
+                      synchronousInputId="Package\For Each LP\Orders Update\Orders.Inputs[Lookup Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\For Each LP\Orders Update\Orders.Outputs[Lookup Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Lookup Error Output"
+                      synchronousInputId="Package\For Each LP\Orders Update\Orders.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\For Each LP\Orders Update\Orders.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\For Each LP\Orders Update\Orders.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\For Each LP\Orders Update\Orders.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\For Each LP\Orders Update\Orders.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\For Each LP\Orders Update\Update Order"
+                  componentClassID="Microsoft.OLEDBCommand"
+                  contactInfo="OLE DB Command;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Executes an SQL command for each row in a dataset."
+                  name="Update Order"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SET Context_Info 0x55555 ;
+EXEC	?=[Orders].[repl_uspUpdateOrder]
+		@OrderId = ?,
+		@OrderDateTime = ?,
+		@PaymentStatusId = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\For Each LP\Orders Update\Update Order.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[BackOffice]"
+                      connectionManagerRefId="Package.ConnectionManagers[BackOffice]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\For Each LP\Orders Update\Update Order.Inputs[OLE DB Command Input]"
+                      errorOrTruncationOperation="Command Execution"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Command Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\For Each LP\Orders Update\Update Order.Inputs[OLE DB Command Input].Columns[oOrderDate]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="oOrderDate"
+                          externalMetadataColumnId="Package\For Each LP\Orders Update\Update Order.Inputs[OLE DB Command Input].ExternalColumns[@OrderDateTime]"
+                          lineageId="Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Output].Columns[oOrderDate]" />
+                        <inputColumn
+                          refId="Package\For Each LP\Orders Update\Update Order.Inputs[OLE DB Command Input].Columns[PaymentStatusId]"
+                          cachedDataType="i4"
+                          cachedName="PaymentStatusId"
+                          externalMetadataColumnId="Package\For Each LP\Orders Update\Update Order.Inputs[OLE DB Command Input].ExternalColumns[@PaymentStatusId]"
+                          lineageId="Package\For Each LP\Orders Update\Orders.Outputs[Lookup Match Output].Columns[PaymentStatusId]" />
+                        <inputColumn
+                          refId="Package\For Each LP\Orders Update\Update Order.Inputs[OLE DB Command Input].Columns[Result]"
+                          cachedDataType="i4"
+                          cachedName="Result"
+                          externalMetadataColumnId="Package\For Each LP\Orders Update\Update Order.Inputs[OLE DB Command Input].ExternalColumns[@RETURN_VALUE]"
+                          lineageId="Package\For Each LP\Orders Update\Additional Info.Outputs[Derived Column Output].Columns[Result]" />
+                        <inputColumn
+                          refId="Package\For Each LP\Orders Update\Update Order.Inputs[OLE DB Command Input].Columns[NBOOrderId]"
+                          cachedDataType="i4"
+                          cachedName="NBOOrderId"
+                          externalMetadataColumnId="Package\For Each LP\Orders Update\Update Order.Inputs[OLE DB Command Input].ExternalColumns[@OrderId]"
+                          lineageId="Package\For Each LP\Orders Update\Orders.Outputs[Lookup Match Output].Columns[NBOOrderId]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\For Each LP\Orders Update\Update Order.Inputs[OLE DB Command Input].ExternalColumns[@OrderId]"
+                          dataType="i4"
+                          name="@OrderId">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">81</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\For Each LP\Orders Update\Update Order.Inputs[OLE DB Command Input].ExternalColumns[@OrderDateTime]"
+                          dataType="dbTimeStamp"
+                          name="@OrderDateTime">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\For Each LP\Orders Update\Update Order.Inputs[OLE DB Command Input].ExternalColumns[@PaymentStatusId]"
+                          dataType="i4"
+                          name="@PaymentStatusId">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">81</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\For Each LP\Orders Update\Update Order.Inputs[OLE DB Command Input].ExternalColumns[@RETURN_VALUE]"
+                          dataType="i4"
+                          name="@RETURN_VALUE">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">18</property>
+                          </properties>
+                        </externalMetadataColumn>
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\For Each LP\Orders Update\Update Order.Outputs[OLE DB Command Output]"
+                      exclusionGroup="1"
+                      name="OLE DB Command Output"
+                      synchronousInputId="Package\For Each LP\Orders Update\Update Order.Inputs[OLE DB Command Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\For Each LP\Orders Update\Update Order.Outputs[OLE DB Command Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Command Error Output"
+                      synchronousInputId="Package\For Each LP\Orders Update\Update Order.Inputs[OLE DB Command Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\For Each LP\Orders Update\Update Order.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\For Each LP\Orders Update\Update Order.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\For Each LP\Orders Update\Update Order.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\For Each LP\Orders Update\Update Order.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\For Each LP\Orders Update\Updated Order"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  localeId="1045"
+                  name="Updated Order"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT     oID, oOrderDate, oPaymentCleared
+FROM         Orders_Stage
+WHERE     (oAction = 'U') AND trGUID = ?</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1250</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping">"Parameter0",{ED410C4F-3732-4948-AE42-75A1C318D516};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\For Each LP\Orders Update\Updated Order.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[NewCentralUsers]"
+                      connectionManagerRefId="Package.ConnectionManagers[NewCentralUsers]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Output].Columns[oID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Output].ExternalColumns[oID]"
+                          lineageId="Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Output].Columns[oID]"
+                          name="oID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Output].Columns[oOrderDate]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Output].ExternalColumns[oOrderDate]"
+                          lineageId="Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Output].Columns[oOrderDate]"
+                          name="oOrderDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Output].Columns[oPaymentCleared]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Output].ExternalColumns[oPaymentCleared]"
+                          lineageId="Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Output].Columns[oPaymentCleared]"
+                          name="oPaymentCleared"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Output].ExternalColumns[oID]"
+                          dataType="i4"
+                          name="oID" />
+                        <externalMetadataColumn
+                          refId="Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Output].ExternalColumns[oOrderDate]"
+                          dataType="dbTimeStamp"
+                          name="oOrderDate" />
+                        <externalMetadataColumn
+                          refId="Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Output].ExternalColumns[oPaymentCleared]"
+                          dataType="bool"
+                          name="oPaymentCleared" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Error Output].Columns[oID]"
+                          dataType="i4"
+                          lineageId="Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Error Output].Columns[oID]"
+                          name="oID" />
+                        <outputColumn
+                          refId="Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Error Output].Columns[oOrderDate]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Error Output].Columns[oOrderDate]"
+                          name="oOrderDate" />
+                        <outputColumn
+                          refId="Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Error Output].Columns[oPaymentCleared]"
+                          dataType="bool"
+                          lineageId="Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Error Output].Columns[oPaymentCleared]"
+                          name="oPaymentCleared" />
+                        <outputColumn
+                          refId="Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\For Each LP\Orders Update.Paths[Derived Column Output]"
+                  endId="Package\For Each LP\Orders Update\Orders.Inputs[Lookup Input]"
+                  name="Derived Column Output"
+                  startId="Package\For Each LP\Orders Update\Additional Info.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\For Each LP\Orders Update.Paths[Lookup Output]"
+                  endId="Package\For Each LP\Orders Update\Join Validation.Inputs[Conditional Split Input]"
+                  name="Lookup Output"
+                  startId="Package\For Each LP\Orders Update\Orders.Outputs[Lookup Match Output]" />
+                <path
+                  refId="Package\For Each LP\Orders Update.Paths[OK]"
+                  endId="Package\For Each LP\Orders Update\Update Order.Inputs[OLE DB Command Input]"
+                  name="OK"
+                  startId="Package\For Each LP\Orders Update\Join Validation.Outputs[OK]" />
+                <path
+                  refId="Package\For Each LP\Orders Update.Paths[OLE DB Source Output]"
+                  endId="Package\For Each LP\Orders Update\Additional Info.Inputs[Derived Column Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\For Each LP\Orders Update\Updated Order.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\For Each LP.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{84CC6726-B07C-49A0-8EAA-399C0C09436E}"
+          DTS:From="Package\For Each LP\Orders Update"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\For Each LP\Delete from staging" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{2E47ACDD-2155-44BE-8614-2FE8EE3761C0}"
+          DTS:ObjectName="{2E47ACDD-2155-44BE-8614-2FE8EE3761C0}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::orderGUID" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Prepare dataset"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{9CC8E00C-7CB7-4D8C-B912-B32B1EF7532B}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Prepare dataset"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          engineThreads="5"
+          version="1">
+          <components>
+            <component
+              refId="Package\Prepare dataset\NBO LP"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="NBO LP"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT     TrGuid
+FROM         Orders_Stage
+WHERE     (oAction = 'U')</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1250</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Prepare dataset\NBO LP.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[NewCentralUsers]"
+                  connectionManagerRefId="Package.ConnectionManagers[NewCentralUsers]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Output].Columns[TrGuid]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Output].ExternalColumns[TrGuid]"
+                      lineageId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Output].Columns[TrGuid]"
+                      name="TrGuid"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Output].ExternalColumns[TrGuid]"
+                      dataType="guid"
+                      name="TrGuid" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Error Output].Columns[TrGuid]"
+                      dataType="guid"
+                      lineageId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Error Output].Columns[TrGuid]"
+                      name="TrGuid" />
+                    <outputColumn
+                      refId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Prepare dataset\ordersRowSet"
+              componentClassID="Microsoft.RecordsetDestination"
+              contactInfo="Recordset Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates and populates an in-memory ADO recordset."
+              name="ordersRowSet">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the recordset."
+                  name="VariableName">User::ordersRowSet</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Prepare dataset\ordersRowSet.Inputs[Recordset Destination Input]"
+                  hasSideEffects="true"
+                  name="Recordset Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Prepare dataset\ordersRowSet.Inputs[Recordset Destination Input].Columns[TrGuid]"
+                      cachedDataType="guid"
+                      cachedName="TrGuid"
+                      lineageId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Output].Columns[TrGuid]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Prepare dataset.Paths[OLE DB Source Output]"
+              endId="Package\Prepare dataset\ordersRowSet.Inputs[Recordset Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{2DB9BAF3-F3E7-4FFC-9095-7BD2FF7E7484}"
+      DTS:EvalOp="1"
+      DTS:Expression="@[User::scnt] &gt; 0"
+      DTS:From="Package\Count of LP"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Prepare dataset" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{8F3183C8-ADB7-4F50-8569-1EA50A367E1B}"
+      DTS:From="Package\Prepare dataset"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\For Each LP" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Count of LP"
+          TopLeft="5.5,49.6509433962264" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\For Each LP\Delete from staging"
+          TopLeft="94.6792452830189,364.056603773585" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\For Each LP\Orders Update"
+          TopLeft="99.8490566037736,151.490566037736" />
+        <EdgeLayout
+          Id="Package\For Each LP.PrecedenceConstraints[Constraint]"
+          TopLeft="167.735849056604,195.415094339623">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-5.16981132075472,168.641509433962"
+              Start="0,0"
+              End="-5.16981132075472,161.141509433962">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,84.3018867924528" />
+                  <mssgle:LineSegment
+                    End="-5.16981132075472,84.3018867924528" />
+                  <mssgle:LineSegment
+                    End="-5.16981132075472,161.141509433962" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="360,539"
+          Size="360,583"
+          Id="Package\For Each LP"
+          TopLeft="391.952830188679,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Prepare dataset"
+          TopLeft="57.9150943396226,182.103773584906" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="73.3867924528302,93.5754716981132">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="52.4150943396227,88.5283018867924"
+              Start="0,0"
+              End="52.4150943396227,81.0283018867924">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.2641509433962" />
+                  <mssgle:LineSegment
+                    End="52.4150943396227,44.2641509433962" />
+                  <mssgle:LineSegment
+                    End="52.4150943396227,81.0283018867924" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="18.2075471698113,49.2641509433962,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="193.688679245283,204.066037735849">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="198.264150943396,93.1320754716981"
+              Start="0,0"
+              End="190.764150943396,93.1320754716981">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="99.1320754716981,0" />
+                  <mssgle:LineSegment
+                    End="99.1320754716981,93.1320754716981" />
+                  <mssgle:LineSegment
+                    End="190.764150943396,93.1320754716981" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[BackOffice]">
+    <DataSourceID>Back Office</DataSourceID>
+  </ConnectionManager>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[NewCentralUsers]">
+    <DataSourceID>New Central Users</DataSourceID>
+  </ConnectionManager>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

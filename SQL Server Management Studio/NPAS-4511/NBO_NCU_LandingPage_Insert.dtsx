@@ -1,0 +1,791 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/28/2011 8:17:57 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="VM-BMICHALSKI"
+  DTS:CreatorName="FP\bmichalski"
+  DTS:DTSID="{0173D38C-379A-4DFC-88DA-D08317996EFD}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3045.24"
+  DTS:LocaleID="1045"
+  DTS:ObjectName="NBO_NCU_LandingPage_Insert"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="77"
+  DTS:VersionGUID="{ADD8A224-E888-483B-8506-2E4AF4112B0E}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BackOffice]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1D74A617-C40B-4BC5-AABB-D74A3638C1A9}"
+      DTS:ObjectName="BackOffice">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=EU01-SQL-DEV-03.GLOBAL.ROOT;User ID=replication;Initial Catalog=BackOffice;Provider=SQLNCLI11;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"></DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[NewCentralUsers]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{F0957D73-C088-4F9F-B42D-9451A2CDDB32}"
+      DTS:ObjectName="NewCentralUsers">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=EU01-SQL-DEV-03.GLOBAL.ROOT;User ID=replication;Initial Catalog=NewCentralUsers;Provider=SQLNCLI11;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"></DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="C:\NBO-NCU Replication\Configuration.dtsConfig"
+      DTS:ConfigurationType="1"
+      DTS:CreationName=""
+      DTS:DTSID="{F3A86DEC-AD49-4473-9940-FE82ED649171}"
+      DTS:ObjectName="Configuration" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{933EB194-F454-4AAA-95EF-1FC5F886201D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="lpGUID">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1AD95FA2-7655-4587-8550-70B1FC2C90A6}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="lpRowSet">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{262D9F9B-FC6E-46F9-A545-6F0A7BA58997}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="scnt">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6A600479-6F37-432D-89E1-186EAFE84309}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="trGUID">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E5DD1AD3-2B9B-4A0D-A391-6351CC929CCC}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ugsID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="2">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">2,7,OnError,12,OnTaskFailed</DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnTaskFailed"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Count of LP"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{4E055B0B-8804-4FD8-9B44-1A89B626577B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Count of LP"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="2" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1D74A617-C40B-4BC5-AABB-D74A3638C1A9}"
+          SQLTask:SqlStatementSource="DECLARE @scnt INT;&#xA;SELECT @scnt = COUNT(*) FROM Interim.LandingPage_Stage &#xA;SELECT @scnt as scnt;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="scnt"
+            SQLTask:DtsVariableName="User::scnt" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DELETE SL UserGroups"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{38835909-B092-43CD-9BF7-6CFAFFBAC231}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DELETE SL UserGroups"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1D74A617-C40B-4BC5-AABB-D74A3638C1A9}"
+          SQLTask:SqlStatementSource="DELETE FROM  Interim.LandingPage_Stage where trGUID IN(&#xA;SELECT LP.trGUID&#xA;FROM Interim.LandingPage_Stage LP&#xA;JOIN Logon.usergroupsubscription UGS ON UGS.usergroupsubscriptionid = LP.UserGroupSubscriptionId&#xA;JOIN Logon.UserGroup UG ON UG.usergroupid = UGS.usergroupid &#xA;WHERE UsergroupTypeId = 2)&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Fix to Ammend duplicate GUID in NCU"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{EBA818FA-2C3D-4667-975E-02E3786C7281}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Fix to Ammend duplicate GUID in NCU"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1D74A617-C40B-4BC5-AABB-D74A3638C1A9}"
+          SQLTask:SqlStatementSource="DECLARE @NBOcmid INT&#xA;DECLARE @cmid INT&#xA;DECLARE @NBOGUID UniqueIdentifier&#xA;&#xA;&#xA;DECLARE db_cursor CURSOR FOR&#xA;SELECT C.cmID, C.cmGUID, LS.UserGroupSubscriptionId FROM NewCentralUsers.dbo.CAPMaster C&#xA;JOIN Interim.LandingPage_Stage LS &#xA;ON C.cmGUID = LS.LandingPageGuid and LS.UserGroupSubscriptionId != C.cmID&#xA;where Ls.UserGroupSubscriptionId in (&#xA;&#xA;SELECT LP.UserGroupSubscriptionId&#xA;FROM Interim.LandingPage_Stage LP&#xA;JOIN Logon.usergroupsubscription UGS ON UGS.usergroupsubscriptionid = LP.UserGroupSubscriptionId&#xA;JOIN Logon.UserGroup UG ON UG.usergroupid = UGS.usergroupid &#xA;WHERE UsergroupTypeId != 2&#xA;)&#xA;&#xA;&#xA;OPEN db_cursor   &#xA;FETCH NEXT FROM db_cursor INTO @cmid,@NBOGUID,@NBOcmid&#xA;WHILE @@FETCH_STATUS = 0   &#xA;BEGIN  &#xA;&#xA;&#xA;DECLARE @NCUGUID UniqueIdentifier&#xA;&#xA;SELECT @NCUGUID = cmGUID from NewCentralUsers.dbo.CAPMaster where cmID = @NBOcmid&#xA;&#xA;SET CONTEXT_INFO 0X55555&#xA;UPDATE NewCentralUsers.dbo.CAPMaster&#xA;SET cmGUID = NEWID()&#xA;WHERE cmID = @cmid&#xA;&#xA;SET CONTEXT_INFO 0X55555&#xA;UPDATE NewCentralUsers.dbo.CAPMaster&#xA;SET cmGUID = @NBOGUID&#xA;WHERE cmID = @NBOcmid&#xA;&#xA;SET CONTEXT_INFO 0X55555&#xA;UPDATE NewCentralUsers.dbo.CAPMaster&#xA;SET cmGUID = @NCUGUID&#xA;WHERE cmID = @cmid&#xA;&#xA;FETCH NEXT FROM db_cursor INTO @cmid,@NBOGUID,@NBOcmid&#xA;END&#xA;CLOSE db_cursor   &#xA;DEALLOCATE db_cursor" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\For Each LP"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{6D24AB18-FC39-40A2-B43B-6A1F289A2560}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="For Each LP"
+      DTS:TransactionOption="0">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{AC0E0D46-26BF-468B-849A-F887DBDE7BAD}"
+        DTS:ObjectName="{AC0E0D46-26BF-468B-849A-F887DBDE7BAD}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::lpRowSet" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="2" />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\For Each LP\Delete from staging"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{D803105E-15DB-4955-82CC-E9B52888600A}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Delete from staging"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0"
+            DTS:LoggingMode="2" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1D74A617-C40B-4BC5-AABB-D74A3638C1A9}"
+              SQLTask:SqlStatementSource="DELETE FROM Interim.[LandingPage_Stage]  WHERE [trGUID]= ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::trGUID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\For Each LP\Update CAPMaster"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{BA140740-8338-421B-B211-0C7A48AA2DDA}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update CAPMaster"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{F0957D73-C088-4F9F-B42D-9451A2CDDB32}"
+              SQLTask:SqlStatementSource="Update [dbo].[CAPMaster] &#xA;SET [cmGUID] = ? &#xA;WHERE [cmID] = ?;&#xA;&#xA;SELECT @@rowcount as scnt;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="scnt"
+                SQLTask:DtsVariableName="User::scnt" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::lpGUID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::ugsID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\For Each LP.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{10658510-E097-4C51-9C7B-7AC8DFA0A2E2}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::scnt]&gt;0"
+          DTS:From="Package\For Each LP\Update CAPMaster"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\For Each LP\Delete from staging" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{99D72504-A873-47AF-803F-22D1A9BC037F}"
+          DTS:ObjectName="{99D72504-A873-47AF-803F-22D1A9BC037F}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::trGUID" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{B760EFC5-1975-4E7E-81D5-2F8CCD4A3CEC}"
+          DTS:ObjectName="{B760EFC5-1975-4E7E-81D5-2F8CCD4A3CEC}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::ugsID" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{BF7A2E63-475C-4988-A7D3-1C570F2B1D4A}"
+          DTS:ObjectName="{BF7A2E63-475C-4988-A7D3-1C570F2B1D4A}"
+          DTS:ValueIndex="2"
+          DTS:VariableName="User::lpGUID" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Prepare dataset"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{5EBA8CCE-014A-4EE5-B686-DE594C8127A5}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Prepare dataset"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="2" />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          engineThreads="5"
+          version="1">
+          <components>
+            <component
+              refId="Package\Prepare dataset\lpRowSet"
+              componentClassID="Microsoft.RecordsetDestination"
+              contactInfo="Recordset Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates and populates an in-memory ADO recordset."
+              name="lpRowSet">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the recordset."
+                  name="VariableName">User::lpRowSet</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Prepare dataset\lpRowSet.Inputs[Recordset Destination Input]"
+                  hasSideEffects="true"
+                  name="Recordset Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Prepare dataset\lpRowSet.Inputs[Recordset Destination Input].Columns[trGUID]"
+                      cachedDataType="guid"
+                      cachedName="trGUID"
+                      lineageId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Output].Columns[trGUID]" />
+                    <inputColumn
+                      refId="Package\Prepare dataset\lpRowSet.Inputs[Recordset Destination Input].Columns[UserGroupSubscriptionId]"
+                      cachedDataType="i4"
+                      cachedName="UserGroupSubscriptionId"
+                      lineageId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Output].Columns[UserGroupSubscriptionId]" />
+                    <inputColumn
+                      refId="Package\Prepare dataset\lpRowSet.Inputs[Recordset Destination Input].Columns[LandingPageGuid]"
+                      cachedDataType="guid"
+                      cachedName="LandingPageGuid"
+                      lineageId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Output].Columns[LandingPageGuid]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Prepare dataset\NBO LP"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="NBO LP"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT LP.trGUID, LP.UserGroupSubscriptionId,LP.LandingPageGuid
+FROM Interim.LandingPage_Stage LP
+JOIN Logon.usergroupsubscription UGS ON UGS.usergroupsubscriptionid = LP.UserGroupSubscriptionId
+JOIN Logon.UserGroup UG ON UG.usergroupid = UGS.usergroupid 
+WHERE UsergroupTypeId != 2</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1250</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Prepare dataset\NBO LP.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BackOffice]"
+                  connectionManagerRefId="Package.ConnectionManagers[BackOffice]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Output].Columns[trGUID]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Output].ExternalColumns[trGUID]"
+                      lineageId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Output].Columns[trGUID]"
+                      name="trGUID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Output].Columns[UserGroupSubscriptionId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Output].ExternalColumns[UserGroupSubscriptionId]"
+                      lineageId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Output].Columns[UserGroupSubscriptionId]"
+                      name="UserGroupSubscriptionId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Output].Columns[LandingPageGuid]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Output].ExternalColumns[LandingPageGuid]"
+                      lineageId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Output].Columns[LandingPageGuid]"
+                      name="LandingPageGuid"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Output].ExternalColumns[trGUID]"
+                      dataType="guid"
+                      name="trGUID" />
+                    <externalMetadataColumn
+                      refId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Output].ExternalColumns[UserGroupSubscriptionId]"
+                      dataType="i4"
+                      name="UserGroupSubscriptionId" />
+                    <externalMetadataColumn
+                      refId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Output].ExternalColumns[LandingPageGuid]"
+                      dataType="guid"
+                      name="LandingPageGuid" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Error Output].Columns[trGUID]"
+                      dataType="guid"
+                      lineageId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Error Output].Columns[trGUID]"
+                      name="trGUID" />
+                    <outputColumn
+                      refId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Error Output].Columns[UserGroupSubscriptionId]"
+                      dataType="i4"
+                      lineageId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Error Output].Columns[UserGroupSubscriptionId]"
+                      name="UserGroupSubscriptionId" />
+                    <outputColumn
+                      refId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Error Output].Columns[LandingPageGuid]"
+                      dataType="guid"
+                      lineageId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Error Output].Columns[LandingPageGuid]"
+                      name="LandingPageGuid" />
+                    <outputColumn
+                      refId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Prepare dataset.Paths[OLE DB Source Output]"
+              endId="Package\Prepare dataset\lpRowSet.Inputs[Recordset Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Prepare dataset\NBO LP.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{03B31E70-71DB-4C6C-B3A4-B344821CE160}"
+      DTS:EvalOp="1"
+      DTS:Expression="@[User::scnt] &gt; 0"
+      DTS:From="Package\Count of LP"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Fix to Ammend duplicate GUID in NCU" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{484B340A-BAFB-4D29-924F-CA17C7C68BF7}"
+      DTS:From="Package\Prepare dataset"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\For Each LP" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{9E9DE11E-EFEC-47F1-84CA-E12BD92FDF12}"
+      DTS:From="Package\For Each LP"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\DELETE SL UserGroups" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{EBA42723-5586-4A27-8963-27D65510FAEA}"
+      DTS:From="Package\Fix to Ammend duplicate GUID in NCU"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Prepare dataset" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Count of LP"
+          TopLeft="28.9716981132074,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\DELETE SL UserGroups"
+          TopLeft="22.7452830188679,555.839622641509" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Fix to Ammend duplicate GUID in NCU"
+          TopLeft="31.7264150943395,94.4811320754717" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\For Each LP\Delete from staging"
+          TopLeft="11.9622641509434,94.5471698113208" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\For Each LP\Update CAPMaster"
+          TopLeft="11.9622641509434,10.0943396226415" />
+        <EdgeLayout
+          Id="Package\For Each LP.PrecedenceConstraints[Constraint]"
+          TopLeft="79.8490566037735,54.0188679245283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.5283018867925"
+              Start="0,0"
+              End="0,33.0283018867925">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.0283018867925" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,8.51415094339623,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="190,195"
+          Size="190,239"
+          Id="Package\For Each LP"
+          TopLeft="5.5,269.27358490566" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Prepare dataset"
+          TopLeft="24.9716981132074,167.198113207547" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="96.8584905660377,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="2.75471698113188,45.0566037735849"
+              Start="0,0"
+              End="2.75471698113188,37.5566037735849">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.5283018867924" />
+                  <mssgle:LineSegment
+                    End="2.75471698113188,22.5283018867924" />
+                  <mssgle:LineSegment
+                    End="2.75471698113188,37.5566037735849" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-6.62264150943406,27.5283018867924,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="92.8584905660377,211.122641509434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="7.43396226415075,58.1509433962264"
+              Start="0,0"
+              End="7.43396226415075,50.6509433962264">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.0566037735849" />
+                  <mssgle:LineSegment
+                    End="7.43396226415075,29.0566037735849" />
+                  <mssgle:LineSegment
+                    End="7.43396226415075,50.6509433962264" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="58.7830188679245,508.481132075472">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="31.8490566037735,47.3584905660377"
+              Start="0,0"
+              End="31.8490566037735,39.8584905660377">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5094339622642" />
+                  <mssgle:LineSegment
+                    End="31.8490566037735,35.5094339622642" />
+                  <mssgle:LineSegment
+                    End="31.8490566037735,39.8584905660377" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="78.8584905660377,138.405660377358">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="14,28.7924528301887"
+              Start="0,0"
+              End="14,21.2924528301887">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.622641509434" />
+                  <mssgle:LineSegment
+                    End="14,21.622641509434" />
+                  <mssgle:LineSegment
+                    End="14,21.2924528301887" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[BackOffice]">
+    <DataSourceID>Back Office</DataSourceID>
+  </ConnectionManager>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[NewCentralUsers]">
+    <DataSourceID>New Central Users</DataSourceID>
+  </ConnectionManager>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

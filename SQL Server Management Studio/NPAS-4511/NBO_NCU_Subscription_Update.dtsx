@@ -1,0 +1,2886 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/10/2011 10:54:58 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="VM-BMICHALSKI"
+  DTS:CreatorName="FP\bmichalski"
+  DTS:DTSID="{6A82764E-C8BF-4F4A-BD72-6A7E97FEAAC1}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3045.24"
+  DTS:LocaleID="1045"
+  DTS:ObjectName="NBO_NCU_Subscription_Update"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="174"
+  DTS:VersionGUID="{759CDB47-8C65-4219-A293-6694B2372E39}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BackOffice]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1D0D0E99-9F5B-40B1-9447-80EE6A06915F}"
+      DTS:ObjectName="BackOffice">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=EU01-SQL-DEV-03.GLOBAL.ROOT;User ID=replication;Initial Catalog=BackOffice;Provider=SQLNCLI11;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"></DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[NewCentralUsers]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{45D2CD7D-89B1-4F72-8D16-6BA7CBB4D474}"
+      DTS:ObjectName="NewCentralUsers">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=EU01-SQL-DEV-03.GLOBAL.ROOT;User ID=replication;Initial Catalog=NewCentralUsers;Provider=SQLNCLI11;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"></DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="C:\NBO-NCU Replication\Configuration.dtsConfig"
+      DTS:ConfigurationType="1"
+      DTS:CreationName=""
+      DTS:DTSID="{62931F0F-4079-4A21-BD65-7B4818BED114}"
+      DTS:ObjectName="Configuration" />
+  </DTS:Configurations>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="BackOffice"
+      DTS:CreationName="Microsoft.LogProviderSQLServer"
+      DTS:Description="Writes log entries for events to a SQL Server database"
+      DTS:DTSID="{9AE76865-2213-4B8E-9B89-ABA25C356B7D}"
+      DTS:ObjectName="SSIS log provider for SQL Server">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8873985E-6A78-4141-84D6-BD7BC1F59B10}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="regSubId">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C8E14F6E-E45D-4C7D-96F8-A86739AF217B}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="scnt">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{23C4FD8E-F2E5-4121-ADFC-B645B2997AD0}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="spid">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{08C69277-4AA2-4AAC-B35B-4C26C8D772A9}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="subscnt">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{15A57037-F1BC-442B-B50D-AB251391D6EC}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SubUserId">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AC33D6DE-9CFC-43CF-AA87-D1583D4E8290}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="UserId">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">2,7,OnError,12,OnTaskFailed</DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnTaskFailed"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{9AE76865-2213-4B8E-9B89-ABA25C356B7D}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{CF3BF684-5B0A-4E0E-AE8B-1A65F63E7C5C}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1D0D0E99-9F5B-40B1-9447-80EE6A06915F}"
+          SQLTask:SqlStatementSource="DECLARE @scnt INT;&#xA;&#xA;select @scnt = count(*) FROM [Interim].[Subscription_Stage]  AS S&#xA;JOIN Logon.SubscriptionUser AS SU ON SU.SubscriptionId = S.SubscriptionID&#xA;WHERE S.Action ='U'&#xA;&#xA;SELECT @scnt as scnt;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="scnt"
+            SQLTask:DtsVariableName="User::scnt" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Prepare Record Sets"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{5B7762E9-09DB-4B6A-8AE6-CB965F6651E5}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Prepare Record Sets"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          engineThreads="5"
+          version="1">
+          <components>
+            <component
+              refId="Package\Prepare Record Sets\Recordset Destination"
+              componentClassID="Microsoft.RecordsetDestination"
+              contactInfo="Recordset Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates and populates an in-memory ADO recordset."
+              name="Recordset Destination">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the recordset."
+                  name="VariableName">User::regSubId</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Prepare Record Sets\Recordset Destination.Inputs[Recordset Destination Input]"
+                  hasSideEffects="true"
+                  name="Recordset Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Prepare Record Sets\Recordset Destination.Inputs[Recordset Destination Input].Columns[SubscriptionUserId]"
+                      cachedDataType="i4"
+                      cachedName="SubscriptionUserId"
+                      lineageId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Output].Columns[SubscriptionUserId]" />
+                    <inputColumn
+                      refId="Package\Prepare Record Sets\Recordset Destination.Inputs[Recordset Destination Input].Columns[TrGUID]"
+                      cachedDataType="guid"
+                      cachedName="TrGUID"
+                      lineageId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Output].Columns[TrGUID]" />
+                    <inputColumn
+                      refId="Package\Prepare Record Sets\Recordset Destination.Inputs[Recordset Destination Input].Columns[UserID]"
+                      cachedDataType="i4"
+                      cachedName="UserID"
+                      lineageId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Output].Columns[UserID]" />
+                    <inputColumn
+                      refId="Package\Prepare Record Sets\Recordset Destination.Inputs[Recordset Destination Input].Columns[spid]"
+                      cachedDataType="i4"
+                      cachedName="spid"
+                      lineageId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Output].Columns[spid]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Prepare Record Sets\Reg Sub"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Reg Sub"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT  
+      SU.SubscriptionUserId, TrGUID,SU.UserID,PM.spid
+  FROM [Interim].[Subscription_Stage] AS S
+  JOIN [Logon].SubscriptionUser AS SU ON S.SubscriptionId = SU.SubscriptionId
+  JOIN [Product].[Products] AS P ON P.ProductID = S.ProductID
+JOIN [INTERIM].[Repl_NCUNBOProductMap] PM ON 
+PM.ProductId = S.ProductId
+ WHERE [Action]='U' AND  not EXISTS (select 1 from Orders.ExcludedSubscription OE WHERE SU.SubscriptionId = OE.SubscriptionId AND OE.ReasonId = 4) AND subscriptionuserid != 8032660 AND SU.subscriptionuserid not in (select subscriptionuserid from INTERIM.subsnotinNCU)</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1250</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Prepare Record Sets\Reg Sub.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BackOffice]"
+                  connectionManagerRefId="Package.ConnectionManagers[BackOffice]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Output].Columns[TrGUID]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Output].ExternalColumns[TrGUID]"
+                      lineageId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Output].Columns[TrGUID]"
+                      name="TrGUID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Output].Columns[SubscriptionUserId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Output].ExternalColumns[SubscriptionUserId]"
+                      lineageId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Output].Columns[SubscriptionUserId]"
+                      name="SubscriptionUserId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Output].Columns[UserID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Output].ExternalColumns[UserID]"
+                      lineageId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Output].Columns[UserID]"
+                      name="UserID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Output].Columns[spid]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Output].ExternalColumns[spid]"
+                      lineageId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Output].Columns[spid]"
+                      name="spid"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Output].ExternalColumns[TrGUID]"
+                      dataType="guid"
+                      name="TrGUID" />
+                    <externalMetadataColumn
+                      refId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Output].ExternalColumns[SubscriptionUserId]"
+                      dataType="i4"
+                      name="SubscriptionUserId" />
+                    <externalMetadataColumn
+                      refId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Output].ExternalColumns[UserID]"
+                      dataType="i4"
+                      name="UserID" />
+                    <externalMetadataColumn
+                      refId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Output].ExternalColumns[spid]"
+                      dataType="i4"
+                      name="spid" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Error Output].Columns[SubscriptionUserId]"
+                      dataType="i4"
+                      lineageId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Error Output].Columns[SubscriptionUserId]"
+                      name="SubscriptionUserId" />
+                    <outputColumn
+                      refId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Error Output].Columns[TrGUID]"
+                      dataType="guid"
+                      lineageId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Error Output].Columns[TrGUID]"
+                      name="TrGUID" />
+                    <outputColumn
+                      refId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Error Output].Columns[UserID]"
+                      dataType="i4"
+                      lineageId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Error Output].Columns[UserID]"
+                      name="UserID" />
+                    <outputColumn
+                      refId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Error Output].Columns[spid]"
+                      dataType="i4"
+                      lineageId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Error Output].Columns[spid]"
+                      name="spid" />
+                    <outputColumn
+                      refId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Prepare Record Sets.Paths[OLE DB Source Output]"
+              endId="Package\Prepare Record Sets\Recordset Destination.Inputs[Recordset Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Prepare Record Sets\Reg Sub.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Regular Subs"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{7DACEE75-DDDD-4934-AE21-D378D6E5666C}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Regular Subs">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{0DA19FCC-480D-4382-A9DD-548FDB4CB525}"
+        DTS:ObjectName="{0DA19FCC-480D-4382-A9DD-548FDB4CB525}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::regSubId" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{9474725C-4F69-4BC5-8247-71583D300B14}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="User"
+          DTS:ObjectName="RegSid">
+          <DTS:VariableValue
+            DTS:DataType="3">0</DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{D05CD550-D72D-4026-B885-AEF310EE7AAC}"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="RTrGUID">
+          <DTS:VariableValue
+            DTS:DataType="8"
+            xml:space="preserve"></DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Regular Subs\Del Processed Subs"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{F54A06C4-9552-475D-BDA9-489BDCE2921E}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Del Processed Subs"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1D0D0E99-9F5B-40B1-9447-80EE6A06915F}"
+              SQLTask:BypassPrepare="False"
+              SQLTask:SqlStatementSource="DELETE&#xA;FROM Interim.Subscription_Stage &#xA; WHERE TrGUID = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::RTrGUID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Regular Subs\Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{BC8DF6ED-741D-4028-997B-2D5ACA9B7671}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{45D2CD7D-89B1-4F72-8D16-6BA7CBB4D474}"
+              SQLTask:SqlStatementSource="DECLARE @scnt INT;&#xA;select @scnt = count(*) &#xA;FROM dbo.Subscriptions where spid = ? and suId = ? ;&#xA;SELECT @scnt as scnt;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="scnt"
+                SQLTask:DtsVariableName="User::subscnt" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::spid"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::UserId"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Regular Subs\Subscription Add  without Order"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{EDF8B06E-8B57-4222-954E-11A57625F4B0}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Subscription Add  without Order">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              engineThreads="5"
+              version="1">
+              <components>
+                <component
+                  refId="Package\Regular Subs\Subscription Add  without Order\dbo_Subs Update"
+                  componentClassID="Microsoft.OLEDBCommand"
+                  contactInfo="OLE DB Command;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Executes an SQL command for each row in a dataset."
+                  name="dbo_Subs Update"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SET CONTEXT_INFO 0x55555; 
+
+UPDATE [dbo].[Subscriptions]
+   SET [sExpiryDate] = ?
+ WHERE [sID] = ?;</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1250</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Regular Subs\Subscription Add  without Order\dbo_Subs Update.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[NewCentralUsers]"
+                      connectionManagerRefId="Package.ConnectionManagers[NewCentralUsers]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Regular Subs\Subscription Add  without Order\dbo_Subs Update.Inputs[OLE DB Command Input]"
+                      errorOrTruncationOperation="Command Execution"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Command Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\dbo_Subs Update.Inputs[OLE DB Command Input].Columns[sExpiryDate]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="sExpiryDate"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\dbo_Subs Update.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sExpiryDate]" />
+                        <inputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\dbo_Subs Update.Inputs[OLE DB Command Input].Columns[NCUsID]"
+                          cachedDataType="i4"
+                          cachedName="NCUsID"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\dbo_Subs Update.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Sid Lookup.Outputs[Lookup Match Output].Columns[NCUsID]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\dbo_Subs Update.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          dataType="dbTimeStamp"
+                          name="Param_0">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\dbo_Subs Update.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                          dataType="i4"
+                          name="Param_1">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Regular Subs\Subscription Add  without Order\dbo_Subs Update.Outputs[OLE DB Command Output]"
+                      exclusionGroup="1"
+                      name="OLE DB Command Output"
+                      synchronousInputId="Package\Regular Subs\Subscription Add  without Order\dbo_Subs Update.Inputs[OLE DB Command Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Regular Subs\Subscription Add  without Order\dbo_Subs Update.Outputs[OLE DB Command Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Command Error Output"
+                      synchronousInputId="Package\Regular Subs\Subscription Add  without Order\dbo_Subs Update.Inputs[OLE DB Command Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\dbo_Subs Update.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\dbo_Subs Update.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\dbo_Subs Update.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\dbo_Subs Update.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command"
+                  componentClassID="Microsoft.OLEDBCommand"
+                  contactInfo="OLE DB Command;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Executes an SQL command for each row in a dataset."
+                  name="OLE DB Command"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SET CONTEXT_INFO 0x55555; 
+UPDATE [dbo].[Subscriptions]
+   SET [sTrialExpiryDate] = ?,
+            sTrialTerminatedDate = ?,
+           sUpdateDate = Getdate(),
+           sUpdatedBy = 'NewBackOffice-Replication'
+ WHERE [sID] = ?;</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1250</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[NewCentralUsers]"
+                      connectionManagerRefId="Package.ConnectionManagers[NewCentralUsers]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command.Inputs[OLE DB Command Input]"
+                      errorOrTruncationOperation="Command Execution"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Command Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command.Inputs[OLE DB Command Input].Columns[sTrialExpiryDate]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="sTrialExpiryDate"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sTrialExpiryDate]" />
+                        <inputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command.Inputs[OLE DB Command Input].Columns[NCUsID]"
+                          cachedDataType="i4"
+                          cachedName="NCUsID"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Sid Lookup.Outputs[Lookup Match Output].Columns[NCUsID]" />
+                        <inputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command.Inputs[OLE DB Command Input].Columns[Copy of sTrialExpiryDate]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="Copy of sTrialExpiryDate"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Outputs[Data Conversion Output].Columns[Copy of sTrialExpiryDate]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          dataType="dbTimeStamp"
+                          name="Param_0">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                          dataType="dbTimeStamp"
+                          name="Param_1">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                          dataType="i4"
+                          name="Param_2">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">17</property>
+                          </properties>
+                        </externalMetadataColumn>
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command.Outputs[OLE DB Command Output]"
+                      exclusionGroup="1"
+                      name="OLE DB Command Output"
+                      synchronousInputId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command.Inputs[OLE DB Command Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Command Error Output"
+                      synchronousInputId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command.Inputs[OLE DB Command Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 1"
+                  componentClassID="Microsoft.OLEDBCommand"
+                  contactInfo="OLE DB Command;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Executes an SQL command for each row in a dataset."
+                  name="OLE DB Command 1"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">DELETE FROM Subscriptions_Stage where sid = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1250</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 1.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[NewCentralUsers]"
+                      connectionManagerRefId="Package.ConnectionManagers[NewCentralUsers]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 1.Inputs[OLE DB Command Input]"
+                      errorOrTruncationOperation="Command Execution"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Command Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[NCUsID]"
+                          cachedDataType="i4"
+                          cachedName="NCUsID"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Sid Lookup.Outputs[Lookup Match Output].Columns[NCUsID]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          dataType="i4"
+                          name="Param_0">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">17</property>
+                          </properties>
+                        </externalMetadataColumn>
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 1.Outputs[OLE DB Command Output]"
+                      exclusionGroup="1"
+                      name="OLE DB Command Output"
+                      synchronousInputId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 1.Inputs[OLE DB Command Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 1.Outputs[OLE DB Command Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Command Error Output"
+                      synchronousInputId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 1.Inputs[OLE DB Command Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 2"
+                  componentClassID="Microsoft.OLEDBCommand"
+                  contactInfo="OLE DB Command;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Executes an SQL command for each row in a dataset."
+                  name="OLE DB Command 2"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">DELETE FROM Subscriptions_Stage where sid = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1250</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 2.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[NewCentralUsers]"
+                      connectionManagerRefId="Package.ConnectionManagers[NewCentralUsers]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 2.Inputs[OLE DB Command Input]"
+                      errorOrTruncationOperation="Command Execution"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Command Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 2.Inputs[OLE DB Command Input].Columns[NCUsID]"
+                          cachedDataType="i4"
+                          cachedName="NCUsID"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 2.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Sid Lookup.Outputs[Lookup Match Output].Columns[NCUsID]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 2.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          dataType="i4"
+                          name="Param_0">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">17</property>
+                          </properties>
+                        </externalMetadataColumn>
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 2.Outputs[OLE DB Command Output]"
+                      exclusionGroup="1"
+                      name="OLE DB Command Output"
+                      synchronousInputId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 2.Inputs[OLE DB Command Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 2.Outputs[OLE DB Command Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Command Error Output"
+                      synchronousInputId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 2.Inputs[OLE DB Command Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 2.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 2.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 2.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 2.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 3"
+                  componentClassID="Microsoft.OLEDBCommand"
+                  contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Executes an SQL command for each row in a dataset."
+                  name="OLE DB Command 3"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">DELETE FROM INTERIM.subsnotinNCU WHERE
+subscriptionUserId = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1250</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 3.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[BackOffice]"
+                      connectionManagerRefId="Package.ConnectionManagers[BackOffice]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 3.Inputs[OLE DB Command Input]"
+                      errorOrTruncationOperation="Command Execution"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Command Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 3.Inputs[OLE DB Command Input].Columns[SubscriptionUserId]"
+                          cachedDataType="i4"
+                          cachedName="SubscriptionUserId"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 3.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[SubscriptionUserId]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 3.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          dataType="i4"
+                          name="Param_0">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">81</property>
+                          </properties>
+                        </externalMetadataColumn>
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 3.Outputs[OLE DB Command Output]"
+                      exclusionGroup="1"
+                      name="OLE DB Command Output"
+                      synchronousInputId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 3.Inputs[OLE DB Command Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 3.Outputs[OLE DB Command Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Command Error Output"
+                      synchronousInputId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 3.Inputs[OLE DB Command Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 3.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 3.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 3.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 3.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[Interim].[SubsNotinNCU]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1250</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[BackOffice]"
+                      connectionManagerRefId="Package.ConnectionManagers[BackOffice]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SubscriptionUserId]"
+                          cachedDataType="i4"
+                          cachedName="SubscriptionUserId"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SubscriptionUserId]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[SubscriptionUserId]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SubscriptionUserId]"
+                          dataType="i4"
+                          name="SubscriptionUserId" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Regular Subs\Subscription Add  without Order\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Regular Subs\Subscription Add  without Order\Sid Lookup"
+                  componentClassID="Microsoft.Lookup"
+                  contactInfo="Lookup;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="Looks up values in a reference dataset by using exact matching."
+                  name="Sid Lookup"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement that generates the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM SUBSCRIPTIONS WITH(NOLOCK)</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommandParam"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from
+	(SELECT * FROM SUBSCRIPTIONS WITH(NOLOCK)) as refTable
+where [refTable].[sUID] = ? and  [refTable].[spID] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the cache type of the lookup table."
+                      name="CacheType"
+                      typeConverter="CacheType">2</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indicates whether to reference metadata in an XML format."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="sID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sUID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sPID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sStartDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sExpiryDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sTrialExpiryDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sSubscriptionNumber" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sMasterRecord" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sAllowedSessions" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sNumberOfLogons" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sNumberOfGUIDs" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sStatus" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sCreationDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sCreatedBy" dataType="DT_STR" length="150" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="sUpdateDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sUpdatedBy" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="sAreasOfInterest" dataType="DT_WSTR" length="1000" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sFirstLoggedOn" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sComments" dataType="DT_WSTR" length="200" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sQuestion" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sPendingPayment" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sIPOnly" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sAdditionalQuestions" dataType="DT_WSTR" length="1000" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sCopyPaste" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sGUID" dataType="DT_GUID" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sIPLogOnCheck" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sTrialTerminatedDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                      name="ParameterMap">#{Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sUID]};#{Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sPID]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1250</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of connection used to access the reference dataset."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Regular Subs\Subscription Add  without Order\Sid Lookup.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[NewCentralUsers]"
+                      connectionManagerRefId="Package.ConnectionManagers[NewCentralUsers]"
+                      description="Connection manager used to access lookup data."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Regular Subs\Subscription Add  without Order\Sid Lookup.Inputs[Lookup Input]"
+                      name="Lookup Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Sid Lookup.Inputs[Lookup Input].Columns[sUID]"
+                          cachedDataType="i4"
+                          cachedName="sUID"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sUID]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">sUID</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Sid Lookup.Inputs[Lookup Input].Columns[sPID]"
+                          cachedDataType="i4"
+                          cachedName="sPID"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sPID]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">sPID</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Regular Subs\Subscription Add  without Order\Sid Lookup.Outputs[Lookup Match Output]"
+                      errorOrTruncationOperation="Lookup"
+                      exclusionGroup="1"
+                      name="Lookup Match Output"
+                      synchronousInputId="Package\Regular Subs\Subscription Add  without Order\Sid Lookup.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Sid Lookup.Outputs[Lookup Match Output].Columns[NCUsID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Copy Column"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Sid Lookup.Outputs[Lookup Match Output].Columns[NCUsID]"
+                          name="NCUsID"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">sID</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Regular Subs\Subscription Add  without Order\Sid Lookup.Outputs[Lookup No Match Output]"
+                      description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                      exclusionGroup="1"
+                      name="Lookup No Match Output"
+                      synchronousInputId="Package\Regular Subs\Subscription Add  without Order\Sid Lookup.Inputs[Lookup Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Regular Subs\Subscription Add  without Order\Sid Lookup.Outputs[Lookup Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Lookup Error Output"
+                      synchronousInputId="Package\Regular Subs\Subscription Add  without Order\Sid Lookup.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Sid Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Sid Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Sid Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Sid Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Regular Subs\Subscription Add  without Order\Sub Or Trial"
+                  componentClassID="Microsoft.ConditionalSplit"
+                  contactInfo="Conditional Split;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Evaluates and directs rows in a dataset."
+                  name="Sub Or Trial"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Regular Subs\Subscription Add  without Order\Sub Or Trial.Inputs[Conditional Split Input]"
+                      description="Input to the Conditional Split Transformation"
+                      name="Conditional Split Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Sub Or Trial.Inputs[Conditional Split Input].Columns[SubscriptionTypeId]"
+                          cachedDataType="ui1"
+                          cachedName="SubscriptionTypeId"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[SubscriptionTypeId]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Regular Subs\Subscription Add  without Order\Sub Or Trial.Outputs[Trial]"
+                      description="Output 1 of the Conditional Split Transformation"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="Trial"
+                      synchronousInputId="Package\Regular Subs\Subscription Add  without Order\Sub Or Trial.Inputs[Conditional Split Input]"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                          name="Expression">#{Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[SubscriptionTypeId]} == 2</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the friendly version of the expression. This expression version uses column names."
+                          expressionType="Notify"
+                          name="FriendlyExpression">SubscriptionTypeId == 2</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                          name="EvaluationOrder">0</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Regular Subs\Subscription Add  without Order\Sub Or Trial.Outputs[Sub]"
+                      description="Output 2 of the Conditional Split Transformation"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="Sub"
+                      synchronousInputId="Package\Regular Subs\Subscription Add  without Order\Sub Or Trial.Inputs[Conditional Split Input]"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                          name="Expression">#{Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[SubscriptionTypeId]} == 3</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the friendly version of the expression. This expression version uses column names."
+                          expressionType="Notify"
+                          name="FriendlyExpression">SubscriptionTypeId == 3</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                          name="EvaluationOrder">1</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Regular Subs\Subscription Add  without Order\Sub Or Trial.Outputs[Conditional Split Default Output]"
+                      description="Default Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      name="Conditional Split Default Output"
+                      synchronousInputId="Package\Regular Subs\Subscription Add  without Order\Sub Or Trial.Inputs[Conditional Split Input]">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          name="IsDefaultOut">true</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Regular Subs\Subscription Add  without Order\Sub Or Trial.Outputs[Conditional Split Error Output]"
+                      description="Error Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Conditional Split Error Output"
+                      synchronousInputId="Package\Regular Subs\Subscription Add  without Order\Sub Or Trial.Inputs[Conditional Split Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Sub Or Trial.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Sub Or Trial.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Sub Or Trial.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Sub Or Trial.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="SubscriptionNumber"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Inputs[Data Conversion Input].Columns[SubscriptionCode]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="15"
+                          cachedName="SubscriptionCode"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[SubscriptionCode]" />
+                        <inputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Inputs[Data Conversion Input].Columns[sCreatedBy]"
+                          cachedDataType="wstr"
+                          cachedLength="256"
+                          cachedName="sCreatedBy"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sCreatedBy]" />
+                        <inputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Inputs[Data Conversion Input].Columns[sUpdatedBy]"
+                          cachedDataType="wstr"
+                          cachedLength="256"
+                          cachedName="sUpdatedBy"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sUpdatedBy]" />
+                        <inputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Inputs[Data Conversion Input].Columns[sTrialExpiryDate]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="sTrialExpiryDate"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sTrialExpiryDate]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Outputs[Data Conversion Output].Columns[SubscriptionNumber]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="15"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Outputs[Data Conversion Output].Columns[SubscriptionNumber]"
+                          name="SubscriptionNumber"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[SubscriptionCode]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Outputs[Data Conversion Output].Columns[Copy of sCreatedBy]"
+                          codePage="1250"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="256"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Outputs[Data Conversion Output].Columns[Copy of sCreatedBy]"
+                          name="Copy of sCreatedBy"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sCreatedBy]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Outputs[Data Conversion Output].Columns[Copy of sUpdatedBy]"
+                          codePage="1250"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="256"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Outputs[Data Conversion Output].Columns[Copy of sUpdatedBy]"
+                          name="Copy of sUpdatedBy"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sUpdatedBy]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Outputs[Data Conversion Output].Columns[Copy (2) of sCreatedBy]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="256"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Outputs[Data Conversion Output].Columns[Copy (2) of sCreatedBy]"
+                          name="Copy (2) of sCreatedBy"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sCreatedBy]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Outputs[Data Conversion Output].Columns[Copy (2) of sUpdatedBy]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="256"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Outputs[Data Conversion Output].Columns[Copy (2) of sUpdatedBy]"
+                          name="Copy (2) of sUpdatedBy"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sUpdatedBy]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Outputs[Data Conversion Output].Columns[Copy of sTrialExpiryDate]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Outputs[Data Conversion Output].Columns[Copy of sTrialExpiryDate]"
+                          name="Copy of sTrialExpiryDate"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sTrialExpiryDate]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Subscriptions to Update"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT  
+      S.SubscriptionID as [sID]
+      ,SU.SubscriptionUserId
+	,SU.UserID AS [sUID]
+      ,NCUPublicationID AS [sPID]
+, SubscriptionTypeId
+      ,SubscriptionStartDateTime AS [sStartDate]
+      ,CASE WHEN SubscriptionTypeId =  3 THEN SubscriptionEndDateTime  END AS [sExpiryDate] 
+      ,CASE WHEN SubscriptionTypeId =  2 THEN SubscriptionEndDateTime  END AS [sTrialExpiryDate]
+      ,1 AS [sMasterRecord]
+      ,1 AS [sAllowedSessions]
+      ,1 AS [sNumberOfLogons]
+      ,1 AS [sNumberOfGUIDs]
+      ,CASE WHEN SubscriptionTypeId = 1 THEN 2 ELSE 10 END AS [sStatus]
+      --,SubscriptionStartDateTime AS [sCreationDate]
+     ,UB.SubscriptionCreatedDateTime AS [sCreationDate]
+     ,UB. SubscriptionCreatedBy AS [sCreatedBy]
+      --,UserId AS [sCreatedBy]
+       ,UB.SubscriptionUpdatedDateTime AS [sUpdateDate]
+      ,UB.SubscriptionUpdatedBy AS [sUpdatedBy]
+      --,NULL AS [sUpdateDate]
+     -- ,NULL AS [sUpdatedBy]
+      ,NULL AS [sFirstLoggedOn]
+      ,NULL AS [sComments]
+      ,NULL AS [sIPOnly]
+      ,NULL AS [sCopyPaste]
+      ,NULL AS [sIPLogOnCheck]
+      ,NULL AS [sTrialTerminatedDate]
+      ,SC.SubscriptionCode 
+  FROM [Interim].[Subscription_Stage] AS S
+  JOIN Logon.SubscriptionUser AS SU ON S.SubscriptionId = SU.SubscriptionId
+  JOIN [Product].[Products] AS P ON P.ProductID = S.ProductID
+LEFT JOIN   Orders.SubscriptionCode AS SC ON S.SubscriptionCodeId = SC.SubscriptionCodeId
+CROSS APPLY [Audit].[ufGetSubscriptionAuditDetailsWithCreatorInfo] ( S.SubscriptionId) UB
+ WHERE [Action]='U' AND [TrGuid]=?</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1250</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping">"Parameter0",{D05CD550-D72D-4026-B885-AEF310EE7AAC};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[BackOffice]"
+                      connectionManagerRefId="Package.ConnectionManagers[BackOffice]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sID]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sID]"
+                          name="sID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[SubscriptionUserId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[SubscriptionUserId]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[SubscriptionUserId]"
+                          name="SubscriptionUserId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sPID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sPID]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sPID]"
+                          name="sPID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sStartDate]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sStartDate]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sStartDate]"
+                          name="sStartDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sExpiryDate]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sExpiryDate]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sExpiryDate]"
+                          name="sExpiryDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sTrialExpiryDate]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sTrialExpiryDate]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sTrialExpiryDate]"
+                          name="sTrialExpiryDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sMasterRecord]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sMasterRecord]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sMasterRecord]"
+                          name="sMasterRecord"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sAllowedSessions]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sAllowedSessions]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sAllowedSessions]"
+                          name="sAllowedSessions"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sNumberOfLogons]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sNumberOfLogons]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sNumberOfLogons]"
+                          name="sNumberOfLogons"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sNumberOfGUIDs]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sNumberOfGUIDs]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sNumberOfGUIDs]"
+                          name="sNumberOfGUIDs"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sStatus]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sStatus]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sStatus]"
+                          name="sStatus"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sCreationDate]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sCreationDate]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sCreationDate]"
+                          name="sCreationDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sUpdateDate]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sUpdateDate]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sUpdateDate]"
+                          name="sUpdateDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sUpdatedBy]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sUpdatedBy]"
+                          length="256"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sUpdatedBy]"
+                          name="sUpdatedBy"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sFirstLoggedOn]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sFirstLoggedOn]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sFirstLoggedOn]"
+                          name="sFirstLoggedOn"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sComments]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sComments]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sComments]"
+                          name="sComments"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sIPOnly]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sIPOnly]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sIPOnly]"
+                          name="sIPOnly"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sCopyPaste]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sCopyPaste]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sCopyPaste]"
+                          name="sCopyPaste"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sIPLogOnCheck]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sIPLogOnCheck]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sIPLogOnCheck]"
+                          name="sIPLogOnCheck"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sTrialTerminatedDate]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sTrialTerminatedDate]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sTrialTerminatedDate]"
+                          name="sTrialTerminatedDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[SubscriptionCode]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[SubscriptionCode]"
+                          length="15"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[SubscriptionCode]"
+                          name="SubscriptionCode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sCreatedBy]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sCreatedBy]"
+                          length="256"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sCreatedBy]"
+                          name="sCreatedBy"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sUID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sUID]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[sUID]"
+                          name="sUID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[SubscriptionTypeId]"
+                          dataType="ui1"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[SubscriptionTypeId]"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].Columns[SubscriptionTypeId]"
+                          name="SubscriptionTypeId"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sID]"
+                          dataType="i4"
+                          name="sID" />
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[SubscriptionUserId]"
+                          dataType="i4"
+                          name="SubscriptionUserId" />
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sPID]"
+                          dataType="i4"
+                          name="sPID" />
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sStartDate]"
+                          dataType="dbTimeStamp"
+                          name="sStartDate" />
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sExpiryDate]"
+                          dataType="dbTimeStamp"
+                          name="sExpiryDate" />
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sTrialExpiryDate]"
+                          dataType="dbTimeStamp"
+                          name="sTrialExpiryDate" />
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sMasterRecord]"
+                          dataType="i4"
+                          name="sMasterRecord" />
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sAllowedSessions]"
+                          dataType="i4"
+                          name="sAllowedSessions" />
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sNumberOfLogons]"
+                          dataType="i4"
+                          name="sNumberOfLogons" />
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sNumberOfGUIDs]"
+                          dataType="i4"
+                          name="sNumberOfGUIDs" />
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sStatus]"
+                          dataType="i4"
+                          name="sStatus" />
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sCreationDate]"
+                          dataType="dbTimeStamp"
+                          name="sCreationDate" />
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sUpdateDate]"
+                          dataType="dbTimeStamp"
+                          name="sUpdateDate" />
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sUpdatedBy]"
+                          dataType="wstr"
+                          length="256"
+                          name="sUpdatedBy" />
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sFirstLoggedOn]"
+                          dataType="i4"
+                          name="sFirstLoggedOn" />
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sComments]"
+                          dataType="i4"
+                          name="sComments" />
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sIPOnly]"
+                          dataType="i4"
+                          name="sIPOnly" />
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sCopyPaste]"
+                          dataType="i4"
+                          name="sCopyPaste" />
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sIPLogOnCheck]"
+                          dataType="i4"
+                          name="sIPLogOnCheck" />
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sTrialTerminatedDate]"
+                          dataType="i4"
+                          name="sTrialTerminatedDate" />
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[SubscriptionCode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="SubscriptionCode" />
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sCreatedBy]"
+                          dataType="wstr"
+                          length="256"
+                          name="sCreatedBy" />
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[sUID]"
+                          dataType="i4"
+                          name="sUID" />
+                        <externalMetadataColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output].ExternalColumns[SubscriptionTypeId]"
+                          dataType="ui1"
+                          name="SubscriptionTypeId" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sID]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sID]"
+                          name="sID" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[SubscriptionUserId]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[SubscriptionUserId]"
+                          name="SubscriptionUserId" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sUID]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sUID]"
+                          name="sUID" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sPID]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sPID]"
+                          name="sPID" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[SubscriptionTypeId]"
+                          dataType="ui1"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[SubscriptionTypeId]"
+                          name="SubscriptionTypeId" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sStartDate]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sStartDate]"
+                          name="sStartDate" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sExpiryDate]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sExpiryDate]"
+                          name="sExpiryDate" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sTrialExpiryDate]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sTrialExpiryDate]"
+                          name="sTrialExpiryDate" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sMasterRecord]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sMasterRecord]"
+                          name="sMasterRecord" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sAllowedSessions]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sAllowedSessions]"
+                          name="sAllowedSessions" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sNumberOfLogons]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sNumberOfLogons]"
+                          name="sNumberOfLogons" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sNumberOfGUIDs]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sNumberOfGUIDs]"
+                          name="sNumberOfGUIDs" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sStatus]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sStatus]"
+                          name="sStatus" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sCreationDate]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sCreationDate]"
+                          name="sCreationDate" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sCreatedBy]"
+                          dataType="wstr"
+                          length="256"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sCreatedBy]"
+                          name="sCreatedBy" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sUpdateDate]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sUpdateDate]"
+                          name="sUpdateDate" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sUpdatedBy]"
+                          dataType="wstr"
+                          length="256"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sUpdatedBy]"
+                          name="sUpdatedBy" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sFirstLoggedOn]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sFirstLoggedOn]"
+                          name="sFirstLoggedOn" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sComments]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sComments]"
+                          name="sComments" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sIPOnly]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sIPOnly]"
+                          name="sIPOnly" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sCopyPaste]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sCopyPaste]"
+                          name="sCopyPaste" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sIPLogOnCheck]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sIPLogOnCheck]"
+                          name="sIPLogOnCheck" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sTrialTerminatedDate]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[sTrialTerminatedDate]"
+                          name="sTrialTerminatedDate" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[SubscriptionCode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[SubscriptionCode]"
+                          name="SubscriptionCode" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Regular Subs\Subscription Add  without Order.Paths[Data Conversion Output]"
+                  endId="Package\Regular Subs\Subscription Add  without Order\Sid Lookup.Inputs[Lookup Input]"
+                  name="Data Conversion Output"
+                  startId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Regular Subs\Subscription Add  without Order.Paths[Lookup No Match Output]"
+                  endId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 3.Inputs[OLE DB Command Input]"
+                  name="Lookup No Match Output"
+                  startId="Package\Regular Subs\Subscription Add  without Order\Sid Lookup.Outputs[Lookup No Match Output]" />
+                <path
+                  refId="Package\Regular Subs\Subscription Add  without Order.Paths[Lookup Output]"
+                  endId="Package\Regular Subs\Subscription Add  without Order\Sub Or Trial.Inputs[Conditional Split Input]"
+                  name="Lookup Output"
+                  startId="Package\Regular Subs\Subscription Add  without Order\Sid Lookup.Outputs[Lookup Match Output]" />
+                <path
+                  refId="Package\Regular Subs\Subscription Add  without Order.Paths[OLE DB Command Output]"
+                  endId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 1.Inputs[OLE DB Command Input]"
+                  name="OLE DB Command Output"
+                  startId="Package\Regular Subs\Subscription Add  without Order\dbo_Subs Update.Outputs[OLE DB Command Output]" />
+                <path
+                  refId="Package\Regular Subs\Subscription Add  without Order.Paths[OLE DB Command Output1]"
+                  endId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 2.Inputs[OLE DB Command Input]"
+                  name="OLE DB Command Output"
+                  startId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command.Outputs[OLE DB Command Output]" />
+                <path
+                  refId="Package\Regular Subs\Subscription Add  without Order.Paths[OLE DB Command Output2]"
+                  endId="Package\Regular Subs\Subscription Add  without Order\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Command Output"
+                  startId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 3.Outputs[OLE DB Command Output]" />
+                <path
+                  refId="Package\Regular Subs\Subscription Add  without Order.Paths[OLE DB Source Output]"
+                  endId="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber.Inputs[Data Conversion Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\Regular Subs\Subscription Add  without Order.Paths[Sub]"
+                  endId="Package\Regular Subs\Subscription Add  without Order\dbo_Subs Update.Inputs[OLE DB Command Input]"
+                  name="Sub"
+                  startId="Package\Regular Subs\Subscription Add  without Order\Sub Or Trial.Outputs[Sub]" />
+                <path
+                  refId="Package\Regular Subs\Subscription Add  without Order.Paths[Trial]"
+                  endId="Package\Regular Subs\Subscription Add  without Order\OLE DB Command.Inputs[OLE DB Command Input]"
+                  name="Trial"
+                  startId="Package\Regular Subs\Subscription Add  without Order\Sub Or Trial.Outputs[Trial]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Regular Subs.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{09CAD700-5AF6-4366-B52C-EC0AE5747531}"
+          DTS:From="Package\Regular Subs\Subscription Add  without Order"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Regular Subs\Execute SQL Task" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Regular Subs.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{50724603-7108-4FD3-BFA3-79E696375380}"
+          DTS:EvalOp="1"
+          DTS:Expression="@[User::subscnt] &gt; 0"
+          DTS:From="Package\Regular Subs\Execute SQL Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Regular Subs\Del Processed Subs" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{1D38BCF1-1D06-48A9-B23B-00F8106EA3AC}"
+          DTS:ObjectName="{1D38BCF1-1D06-48A9-B23B-00F8106EA3AC}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::RegSid" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{90E772CE-3C9C-4647-A219-D4080F9FD4AC}"
+          DTS:ObjectName="{90E772CE-3C9C-4647-A219-D4080F9FD4AC}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::RTrGUID" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{8D7667E3-0313-4F02-865E-7CCAFA9CABCF}"
+          DTS:ObjectName="{8D7667E3-0313-4F02-865E-7CCAFA9CABCF}"
+          DTS:ValueIndex="2"
+          DTS:VariableName="User::UserId" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{5D8640E8-DE6A-40E7-803A-2191370EA6DC}"
+          DTS:ObjectName="{5D8640E8-DE6A-40E7-803A-2191370EA6DC}"
+          DTS:ValueIndex="3"
+          DTS:VariableName="User::spid" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{74C4B11B-81A2-4834-9821-B8D5B702DCD4}"
+      DTS:From="Package\Prepare Record Sets"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Regular Subs" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{75B8C9FC-9643-49E0-A0A5-2771CF62C969}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::scnt] &gt; 0"
+      DTS:From="Package\Execute SQL Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Prepare Record Sets" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Execute SQL Task"
+          TopLeft="253.38679245283,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Prepare Record Sets"
+          TopLeft="37.7641509433961,6.48113207547171" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Regular Subs\Del Processed Subs"
+          TopLeft="49.6603773584905,259.415094339623" />
+        <NodeLayout
+          Size="135,44"
+          Id="Package\Regular Subs\Execute SQL Task"
+          TopLeft="34.7924528301887,131.264150943396" />
+        <NodeLayout
+          Size="158,44"
+          Id="Package\Regular Subs\Subscription Add  without Order"
+          TopLeft="22.867924528302,19.7169811320755" />
+        <EdgeLayout
+          Id="Package\Regular Subs.PrecedenceConstraints[Constraint]"
+          TopLeft="101.735849056604,63.6415094339623">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.679245283018872,67.622641509434"
+              Start="0,0"
+              End="0.679245283018872,60.122641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.811320754717" />
+                  <mssgle:LineSegment
+                    End="0.679245283018872,33.811320754717" />
+                  <mssgle:LineSegment
+                    End="0.679245283018872,60.122641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Regular Subs.PrecedenceConstraints[Constraint 1]"
+          TopLeft="102.415094339623,175.150943396226">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="15.132075471698,84.2641509433962"
+              Start="0,0"
+              End="15.132075471698,76.7641509433962">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.1132075471698" />
+                  <mssgle:LineSegment
+                    End="15.132075471698,42.1132075471698" />
+                  <mssgle:LineSegment
+                    End="15.132075471698,76.7641509433962" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-0.433962264150978,47.1132075471698,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="238,317"
+          Size="238,361"
+          Id="Package\Regular Subs"
+          TopLeft="5.5,112.066037735849" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="105.650943396226,50.4056603773585">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="19.0188679245282,61.6603773584906"
+              Start="0,0"
+              End="19.0188679245282,54.1603773584906">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.8301886792453" />
+                  <mssgle:LineSegment
+                    End="19.0188679245282,30.8301886792453" />
+                  <mssgle:LineSegment
+                    End="19.0188679245282,54.1603773584906" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="253.38679245283,27.4622641509434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-79.8490566037735,0.981132075471692"
+              Start="0,0"
+              End="-72.3490566037735,0.981132075471692">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-39.9245283018868,0" />
+                  <mssgle:LineSegment
+                    End="-39.9245283018868,0.981132075471692" />
+                  <mssgle:LineSegment
+                    End="-72.3490566037735,0.981132075471692" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-47.9245283018868,-26,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[BackOffice]">
+    <DataSourceID>Back Office</DataSourceID>
+  </ConnectionManager>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[NewCentralUsers]">
+    <DataSourceID>New Central Users</DataSourceID>
+  </ConnectionManager>
+  <TaskHost
+    design-time-name="Package\Regular Subs\Subscription Add  without Order">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 2"
+          TopLeft="5.50000000000006,515.5" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Regular Subs\Subscription Add  without Order\Subscriptions to Update"
+          TopLeft="438.5,5.5" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 3"
+          TopLeft="446.5,311.5" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Regular Subs\Subscription Add  without Order\SubscriptionNumber"
+          TopLeft="447,107.5" />
+        <NodeLayout
+          Size="131,42"
+          Id="Package\Regular Subs\Subscription Add  without Order\Sid Lookup"
+          TopLeft="468.5,209.5" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Regular Subs\Subscription Add  without Order\OLE DB Destination"
+          TopLeft="459.5,413.5" />
+        <NodeLayout
+          Size="135,42"
+          Id="Package\Regular Subs\Subscription Add  without Order\Sub Or Trial"
+          TopLeft="250.5,311.5" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Regular Subs\Subscription Add  without Order\OLE DB Command 1"
+          TopLeft="241.5,515.5" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Regular Subs\Subscription Add  without Order\dbo_Subs Update"
+          TopLeft="237,413.5" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\Regular Subs\Subscription Add  without Order\OLE DB Command"
+          TopLeft="10.0000000000001,413.5" />
+        <EdgeLayout
+          Id="Package\Regular Subs\Subscription Add  without Order.Paths[Data Conversion Output]"
+          TopLeft="534,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Regular Subs\Subscription Add  without Order.Paths[Trial]"
+          TopLeft="296.833333333333,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-203.833333333333,60"
+              Start="0,0"
+              End="-203.833333333333,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.4216691068814" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.4216691068814"
+                    Point2="0,24.4216691068814"
+                    Point3="-4,24.4216691068814" />
+                  <mssgle:LineSegment
+                    End="-199.833333333333,24.4216691068814" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-199.833333333333,24.4216691068814"
+                    Point2="-203.833333333333,24.4216691068814"
+                    Point3="-203.833333333333,28.4216691068814" />
+                  <mssgle:LineSegment
+                    End="-203.833333333333,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-112.209889322917,29.4216691068814,20.5864453125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Regular Subs\Subscription Add  without Order.Paths[Sub]"
+          TopLeft="339.166666666667,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-21.1666666666666,60"
+              Start="0,0"
+              End="-21.1666666666666,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.4216691068814" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.4216691068814"
+                    Point2="0,24.4216691068814"
+                    Point3="-4,24.4216691068814" />
+                  <mssgle:LineSegment
+                    End="-17.1666666666666,24.4216691068814" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-17.1666666666666,24.4216691068814"
+                    Point2="-21.1666666666666,24.4216691068814"
+                    Point3="-21.1666666666666,28.4216691068814" />
+                  <mssgle:LineSegment
+                    End="-21.1666666666666,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-19.5899739583333,29.4216691068814,18.01328125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Regular Subs\Subscription Add  without Order.Paths[OLE DB Source Output]"
+          TopLeft="534,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Regular Subs\Subscription Add  without Order.Paths[OLE DB Command Output2]"
+          TopLeft="534,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="11,60"
+              Start="0,0"
+              End="11,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="7,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="7,30"
+                    Point2="11,30"
+                    Point3="11,34" />
+                  <mssgle:LineSegment
+                    End="11,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Regular Subs\Subscription Add  without Order.Paths[OLE DB Command Output1]"
+          TopLeft="93.0000000000001,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Regular Subs\Subscription Add  without Order.Paths[OLE DB Command Output]"
+          TopLeft="318,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="11.0000000000001,60"
+              Start="0,0"
+              End="11.0000000000001,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="7.00000000000006,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="7.00000000000006,30"
+                    Point2="11.0000000000001,30"
+                    Point3="11.0000000000001,34" />
+                  <mssgle:LineSegment
+                    End="11.0000000000001,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Regular Subs\Subscription Add  without Order.Paths[Lookup Output]"
+          TopLeft="513.5,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-195.5,60"
+              Start="0,0"
+              End="-195.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.4343891402715" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.4343891402715"
+                    Point2="0,24.4343891402715"
+                    Point3="-4,24.4343891402715" />
+                  <mssgle:LineSegment
+                    End="-191.5,24.4343891402715" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-191.5,24.4343891402715"
+                    Point2="-195.5,24.4343891402715"
+                    Point3="-195.5,28.4343891402715" />
+                  <mssgle:LineSegment
+                    End="-195.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-145.94138671875,29.4343891402715,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Regular Subs\Subscription Add  without Order.Paths[Lookup No Match Output]"
+          TopLeft="554.5,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-20.5,60"
+              Start="0,0"
+              End="-20.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.4343891402715" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.4343891402715"
+                    Point2="0,24.4343891402715"
+                    Point3="-4,24.4343891402715" />
+                  <mssgle:LineSegment
+                    End="-16.5,24.4343891402715" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-16.5,24.4343891402715"
+                    Point2="-20.5,24.4343891402715"
+                    Point3="-20.5,28.4343891402715" />
+                  <mssgle:LineSegment
+                    End="-20.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-66.05638671875,29.4343891402715,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
